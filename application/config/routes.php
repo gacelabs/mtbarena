@@ -5,6 +5,9 @@ $route['default_controller'] = 'home';
 // $route['index'] = 'home';
 // $route[''] = 'home';
 
+$route['dashboard'] = 'dashboard';
+$route['dash'] = 'dashboard';
+
 $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';
 $route['logout'] = 'profile/sign_out';

@@ -91,7 +91,7 @@ class Accounts {
 		];
 	}
 
-	public function login($credits=FALSE, $table='users')
+	public function login($credits=FALSE, $redirect_url='', $table='users')
 	{
 		// debug($this->has_session, 1);
 		if ($credits != FALSE AND is_array($credits) AND $this->has_session == FALSE) {
@@ -101,7 +101,11 @@ class Accounts {
 			if (isset($return['allowed']) AND $return['allowed']) {
 				$this->class->session->set_userdata('profile', $return['profile']);
 				$this->profile = $return['profile'];
-				return TRUE;
+				if ($redirect_url != '') {
+					redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
+				} else {
+					return TRUE;
+				}
 			}
 		}
 		/*else the user is logged in or session active*/

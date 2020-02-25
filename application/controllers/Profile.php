@@ -10,8 +10,8 @@ class Profile extends MY_Controller {
 
 	public function sign_in()
 	{
-		$post = ['username'=>'bong', 'password'=>2];
-		// $post = $this->input->post();
+		// $post = ['username'=>'bong', 'password'=>2];
+		$post = $this->input->post();
 		$is_ok = $this->accounts->login($post);
 		// debug($is_ok, 1);
 		if ($is_ok) {
