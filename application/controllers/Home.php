@@ -30,8 +30,7 @@ class Home extends MY_Controller {
 				'column_visibility_class' => '',
 				'bikes_to_compare' => 2,
 				'ui_elements' => array(
-					// 'page_elements/mtb_compare_specs',
-					'dashboard_elements/post_bike',
+					'page_elements/mtb_compare_specs'
 				)
 			),
 			'page_right_column' => array(
