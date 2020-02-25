@@ -55,7 +55,6 @@ class Home extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/masonry.min.js').'"></script>'
 			)
 		);
-
 		$this->load->view('page_templates/home_template', $structure);
 	}
 }
