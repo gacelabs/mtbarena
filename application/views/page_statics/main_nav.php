@@ -24,7 +24,7 @@
 					<a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> <span class="hidden-sm">Home</span></a>
 				</li>
 				<li class="<?php if (!empty($body_id) && $body_id == 'compare') {echo 'active';} ?>">
-					<a href="#"><i class="fa fa-clone"></i> <span class="hidden-sm">Compare</span></a>
+					<a href="<?php echo base_url('compare'); ?>"><i class="fa fa-clone"></i> <span class="hidden-sm">Compare</span></a>
 				</li>
 				<li class="<?php if (!empty($body_id) && $body_id == 'marketplace') {echo 'active';} ?>">
 					<a href="#"><i class="fa fa-shopping-bag"></i> <span class="hidden-sm">Marketplace</span></a>
@@ -34,14 +34,17 @@
 				</li>
 				<?php if ($current_profile): ?>
 					<li class="<?php if (!empty($body_id) && $body_id == 'log_in') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Log out">
-						<a href="/logout"><i class="fa fa-sign-in"></i> <span class="hidden-lg hidden-md hidden-sm">Log out</span></a>
+						<a href="<?php echo base_url('logout'); ?>"><i class="fa fa-sign-in"></i> <span class="hidden-lg hidden-md hidden-sm">Log out</span></a>
+					</li>
+					<li class="<?php if (!empty($body_id) && $body_id == 'dashboard') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Dashboard">
+						<a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-tachometer"></i> <span class="hidden-lg hidden-md hidden-sm">Dashboard</span></a>
 					</li>
 				<?php else: ?>
 					<li class="<?php if (!empty($body_id) && $body_id == 'log_in') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Log in" trigger-modal="#modal_login">
 						<a href="#"><i class="fa fa-sign-in"></i> <span class="hidden-lg hidden-md hidden-sm">Log in</span></a>
 					</li>
 					<li class="<?php if (!empty($body_id) && $body_id == 'sign_up') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Sign up">
-						<a href="/sign_up"><i class="fa fa-user-plus"></i> <span class="hidden-lg hidden-md hidden-sm">Sign up</span></a>
+						<a href="<?php echo base_url('sign_up'); ?>"><i class="fa fa-user-plus"></i> <span class="hidden-lg hidden-md hidden-sm">Sign up</span></a>
 					</li>
 				<?php endif ?>
 			</ul>

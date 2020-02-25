@@ -9,7 +9,7 @@
 				<ul class="grid-column column-50-50">
 					<li>left</li>
 					<li>
-						<form action="/login" method="post">
+						<form action="<?php echo base_url('login'); ?>" method="post">
 							<div class="form-group">
 								<label for="email_address">Email address</label>
 								<input type="email" class="form-control" name="email_address" id="email_address">

@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- <base href="<?php echo base_url(); ?>" target="_self"> -->
 	<?php $this->load->view('page_requires/page_head'); ?>
 </head>
 
@@ -23,7 +22,6 @@
 		?>
 
 		<!-- page body -->
-
 		<?php
 
 			$show_left_column = '';
@@ -89,7 +87,7 @@
 			</div>
 		</div>
 
-	<!-- page footer -->
+		<!-- page footer -->
 		<?php
 
 			if ($page_footer)

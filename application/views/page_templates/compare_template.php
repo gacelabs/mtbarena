@@ -31,7 +31,7 @@
 				$show_left_column = true;
 			}
 
-			if (!empty($page_right_column['ui_elements'])) {
+			if (!empty($page_center_column['ui_elements'])) {
 				$show_right_column = true;
 			}
 
@@ -49,10 +49,10 @@
 				</div>
 				<?php } ?>
 
-				<?php if ($show_right_column) { ?>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-padding <?php echo(!empty($page_right_column['column_visibility_class']) ? $page_right_column['column_visibility_class'] : ''); ?>" col-position="center">
+				<?php if ($page_center_column) { ?>
+				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-padding <?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>" col-position="center">
 					<?php
-						foreach ($page_right_column['ui_elements'] as $ui_elements) {
+						foreach ($page_center_column['ui_elements'] as $ui_elements) {
 							$this->load->view($ui_elements);
 						}
 					?>

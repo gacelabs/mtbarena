@@ -1,9 +1,9 @@
 <div class="box-item">
 	<div class="box-item-body-top" id="mtbCompareSpecs">
 		<ul class="spaced-list between">
-			<?php if ($body_id == 'landing' || $body_id == 'compare') { ?>
+			<?php if ($body_id == 'compare') { ?>
 			<li>
-				<p class="zero-gap color-theme"><b>Head to Head Specs Comparison</b></p>
+				<p class="zero-gap color-theme"><b>Full Specs Comparison</b></p>
 			</li>
 			<li>
 				<ul class="inline-list text-right">
@@ -24,7 +24,7 @@
 				<p class="zero-gap color-theme"><b>Today's Match Up</b></p>
 			</li>
 			<li>
-				<p class="zero-gap" id="date_today"></p>
+				<p class="zero-gap dateToday"></p>
 			</li>
 			<?php } ?>
 		</ul>
@@ -32,24 +32,24 @@
 	<div class="box-item-body" id="mtbItemMainParent" style="padding-top:0;">
 		<div class="mtb-item-specs-main-parent" id="bikeModelBox">
 			<ul class="grid-column <?php if ($page_center_column['bikes_to_compare'] == 2) {echo 'column-50-50';}else{echo 'column-33-33-33';} ?>">
-				<li class="mtb-left">
+				<li class="mtb-left" data-toggle="tooltip" data-placement="bottom" title="Change model" trigger-modal="#modal_change_model">
 					<div class="mtb-item-label-box" style="margin:0;">
 						<p class="mtb-item-label-box-text text-ellipsis zero-gap">Trix X1 Elite 2020</p>
-						<p class="text-ellipsis zero-gap"><small class="color-lightgray">From: Dealer Name</small></p>
+						<p class="text-ellipsis zero-gap"><small class="color-lightgray">From: Dealer Name (Posted: Nov 2019)</small></p>
 					</div>
 				</li>
 				<?php if ($page_center_column['bikes_to_compare'] == 3) { ?>
-				<li class="mtb-middle">
+				<li class="mtb-middle" data-toggle="tooltip" data-placement="bottom" title="Change model" trigger-modal="#modal_change_model">
 					<div class="mtb-item-label-box" style="margin:0;">
 						<p class="mtb-item-label-box-text text-ellipsis zero-gap">Keysto Conquest</p>
-						<p class="text-ellipsis zero-gap"><small class="color-lightgray">From: Dealer Name</small></p>
+						<p class="text-ellipsis zero-gap"><small class="color-lightgray">From: Dealer Name (Updated: Jan 2019)</small></p>
 					</div>
 				</li>
 				<?php } ?>
-				<li class="mtb-right">
+				<li class="mtb-right" data-toggle="tooltip" data-placement="bottom" title="Change model" trigger-modal="#modal_change_model">
 					<div class="mtb-item-label-box" style="margin:0;">
 						<p class="mtb-item-label-box-text text-ellipsis zero-gap">Phantom 601 Alivio Groupset 2020</p>
-						<p class="text-ellipsis zero-gap"><small class="color-lightgray text-ellipsis">From: Official</small></p>
+						<p class="text-ellipsis zero-gap"><small class="color-lightgray text-ellipsis">From: Official (Updated: May 2019)</small></p>
 					</div>
 				</li>
 			</ul>
@@ -82,7 +82,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a href="#">View Trinx X1 Elite</a></li>
-								<li><a href="#">Change model</a></li>
+								<li trigger-modal="#modal_change_model"><a href="#">Change model</a></li>
 								<!-- <li><a href="#">Check Marketplace</a></li>
 								<li><a href="#">More photos</a></li> -->
 								<li class="divider hidden-lg hidden-md hidden-sm"></li>
@@ -133,7 +133,7 @@
 							</button>
 							<ul class="dropdown-menu">
 								<li><a href="#">View Trinx X1 Elite</a></li>
-								<li><a href="#">Change model</a></li>
+								<li trigger-modal="#modal_change_model"><a href="#">Change model</a></li>
 								<!-- <li><a href="#">Check Marketplace</a></li>
 								<li><a href="#">More photos</a></li> -->
 								<li class="divider hidden-lg hidden-md hidden-sm"></li>
@@ -184,7 +184,7 @@
 							</button>
 							<ul class="dropdown-menu pull-right">
 								<li><a href="#">View Trinx X1 Elite</a></li>
-								<li><a href="#">Change model</a></li>
+								<li trigger-modal="#modal_change_model"><a href="#">Change model</a></li>
 								<!-- <li><a href="#">Check Marketplace</a></li>
 								<li><a href="#">More photos</a></li> -->
 								<li class="divider hidden-lg hidden-md hidden-sm"></li>

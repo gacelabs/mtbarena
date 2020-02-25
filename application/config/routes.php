@@ -12,6 +12,8 @@ $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';
 $route['logout'] = 'profile/sign_out';
 
+$route['compare'] = 'compare';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

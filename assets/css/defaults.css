@@ -372,6 +372,12 @@ textarea {
 	min-height: 34px;
 	max-height: 100px;
 }
+[data-toggle="collapse"] {
+	cursor: pointer;
+}
+.panel-default>.panel-heading {
+	background-color: #ececec;
+}
 .zero-gap {
 	margin: 0;
 	padding: 0;

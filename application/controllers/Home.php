@@ -44,7 +44,8 @@ class Home extends MY_Controller {
 				)
 			),
 			'modals' => array(
-				'modal_elements/login'
+				'modal_elements/login',
+				'modal_elements/change_model'
 			),
 			'page_data' => array(
 

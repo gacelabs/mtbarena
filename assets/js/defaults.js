@@ -93,7 +93,8 @@ $(document).ready(function() {
 		}
 	});
 
-	
+	$('.selectpicker').selectpicker();
+
 });
 
 $(window).on('load resize change', function() {

@@ -67,6 +67,17 @@
 		border-bottom: 0 none;
 		color: #7f2496 !important;
 	}
+	#navbar .navbar-form .form-control, #navbar .navbar-form .btn-default {
+		background-color: transparent;
+		border: 1px solid #ccc !important;
+		color: #aaa;
+	}
+	#navbar .navbar-form .form-control::placeholder {
+		color: #aaa;
+	}
+	#navbar .navbar-form .form-control:focus, #navbar .navbar-form .form-control:focus::placeholder {
+		color: #333;
+	}
 	.col-xs-padding {
 		padding-left: 0;
 		padding-right: 0;
@@ -78,7 +89,7 @@
 		border-bottom: 1px solid #ccc;
 	}
 	.mtb-left-image-box>img, .mtb-middle-image-box>img, .mtb-right-image-box>img {
-		height: 160px;
+		height: 100px;
 	}
 	.mtb-left-image-box, .mtb-middle-image-box, .mtb-right-image-box {
 		height: auto;
@@ -93,11 +104,11 @@
 		float: none !important;
 		width: 100%;
 	}
-	#mtbItemMainParent .dropdown-menu {
+	/*#mtbItemMainParent .dropdown-menu {
 		left: 50%;
 		right: auto;
 		transform: translate(-50%, 0);
-	}
+	}*/
 	.mtb-item-label-box-text {
 		font-size: 16px;
 	}
@@ -132,5 +143,23 @@
 	.post-bike-parent-box [class*="col-"] {
 		padding-left: 0;
 		padding-right: 0;
+	}
+	#dashboard .box-item-body {
+		padding: 10px !important;
+	}
+	.panel-default>.panel-heading>.panel-title {
+		font-size: 14px;
+	}
+	#dashboard .table-responsive {
+		border: 0 none;
+	}
+	#accordion .panel-body {
+		padding: 10px;
+	}
+	#accordion .panel-body>div {
+		margin-bottom: 15px;
+	}
+	#accordion .panel-body>div:last-child {
+		margin-bottom: 0;
 	}
 }
