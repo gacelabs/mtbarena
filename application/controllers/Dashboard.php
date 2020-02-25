@@ -12,8 +12,8 @@ class Dashboard extends MY_Controller {
 				'assets/css/mediaquery',
 			),
 			'title' => 'MTB Arena | Dashboard',
-			'body_id' => 'dasbhoard',
-			'body_class' => 'dasbhoard',
+			'body_id' => 'dashboard',
+			'body_class' => 'dashboard',
 			'page_nav' => 'page_statics/main_nav',
 			'page_left_column' => array(
 				'column_visibility_class' => 'hidden-xs',
@@ -47,5 +47,15 @@ class Dashboard extends MY_Controller {
 		);
 
 		$this->load->view('page_templates/dashboard_template', $structure);
+	}
+
+	public function add_item()
+	{
+		$post = $this->input->post();
+		// debug($_FILES, 1);
+		$filename = files_upload($_FILES, TRUE, 'bikes/images');
+		$post['feat_photo'] = $filename;
+		// debug($post, 1);
+		return $this->custom_model->add('bike_item', $post, 'dashboard'); /*redirect to dashboard*/
 	}
 }

@@ -5,7 +5,7 @@
 	</div>
 	<div class="box-item-body">
 		<div class="table-responsive post-bike-parent-box">
-			<form action="" method="post">
+			<form action="/dashboard/add_item" method="post" enctype="multipart/form-data">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="bike_model">Bike Model Name</label>
@@ -280,25 +280,39 @@
 								tempor incididunt ut labore et dolore.</p>
 							</li>
 							<li style="padding-left:10px;">
+								<div class="form-group">
+									<input type="text" class="form-control" name="price" id="price">
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<ul class="grid-column column-30-70">
+							<li>
+								<p class="zero-gap"><b>Price Tag:</b></p>
+								<p class="zero-gap" style="font-size:10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore.</p>
+							</li>
+							<li style="padding-left:10px;">
 								<ul class="inline-list">
 									<li style="margin-right: 15px;">
 										<div class="radio">
 											<label>
-												<input type="radio" name="price" value="cheap"><i class="fa fa-tags"></i>
+												<input type="radio" name="price_tag" value="affordable"><i class="fa fa-tags"></i>
 											</label>
 										</div>
 									</li>
 									<li style="margin-right: 15px;">
 										<div class="radio">
 											<label>
-												<input type="radio" name="price" value="mid"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+												<input type="radio" name="price_tag" value="mid"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
 											</label>
 										</div>
 									</li>
 									<li>
 										<div class="radio">
 											<label>
-												<input type="radio" name="price" value="premium"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+												<input type="radio" name="price_tag" value="premium"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
 											</label>
 										</div>
 									</li>

@@ -141,23 +141,60 @@ function get_root_path($path='', $is_doc_path=TRUE)
 	}
 }
 
-function files_upload($_files=FALSE, $dir='') {
+function save_image($base64_string=FALSE, $file=FALSE) {
+	if ($base64_string) {
+		if ($file == FALSE) {
+			$output_file = get_root_path('assets/data/photos/'.random_string().'.jpg');
+		} else {
+			$output_file = get_root_path($file);
+		}
+		/*open the output file for writing*/
+		$ifp = fopen($output_file, 'wb'); 
+		/*split the string on commas*/
+		/*$data[0] == "data:image/png;base64"*/
+		/*$data[1] == <actual base64 string>*/
+		$data = explode(',', $base64_string);
+		/*we could add validation here with ensuring count($data) > 1*/
+		fwrite($ifp, base64_decode($data[1]));
+		/*clean up the file resource*/
+		fclose($ifp); 
+		// return get_root_path($file, FALSE); 
+		return $file; 
+	}
+	return FALSE;
+}
+
+function files_upload($_files=FALSE, $return_path=FALSE, $dir='') {
 	if ($_files) {
+		// debug($_files, 1);
+		/*create the dirs*/
+		$folder_chunks = explode('/', 'assets/data/files/');
+		if (count($folder_chunks)) {
+			$uploaddir = get_root_path();
+			foreach ($folder_chunks as $key => $folder) {
+				$uploaddir .= $folder.'/';
+				// debug($uploaddir);
+				@mkdir($uploaddir);
+			}
+		}
 		@mkdir(get_root_path('assets/data/files/'));
 		$uploaddir = get_root_path('assets/data/files/'.$dir);
 		
 		if ($dir != '') {
 			/*create the dirs*/
 			$folder_chunks = explode('/', str_replace(' ', '_', $dir));
+			// debug($folder_chunks);
 			if (count($folder_chunks)) {
 				$uploaddir = get_root_path('assets/data/files/');
 				foreach ($folder_chunks as $key => $folder) {
 					$uploaddir .= $folder.'/';
+					// debug($uploaddir);
 					@mkdir($uploaddir);
 				}
 			}
 		}
 		@chmod($uploaddir, 0755);
+		// debug($uploaddir, 1);
 
 		$array_index = array_keys($_files);
 		$result = FALSE;
@@ -187,7 +224,12 @@ function files_upload($_files=FALSE, $dir='') {
 				}
 			}
 		}
+		// debug($uploaddir, 1);
 		// debug($_files, 1);
-		return $result;
+		if ($return_path AND isset($input)) {
+			return 'assets/data/files/'.$dir.'/'.$_files[$input]['name'];
+		} else {
+			return $result;
+		}
 	}
 }
