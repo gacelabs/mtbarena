@@ -34,11 +34,8 @@ class Accounts {
 				}
 			}
 		}
-		return [
-			'allowed' => $allowed,
-			'message' => $msg,
-			'profile' => $user
-		];
+
+		return ['allowed' => $allowed, 'message' => $msg, 'profile' => $user];
 	}
 
 	public function register($post=FALSE, $redirect_url='', $table='users')
@@ -84,11 +81,8 @@ class Accounts {
 		} else {
 			$msg = 'Empty request found!';
 		}
-		return [
-			'allowed' => $allowed,
-			'message' => $msg,
-			'profile' => $user
-		];
+
+		return ['allowed' => $allowed, 'message' => $msg, 'profile' => $user];
 	}
 
 	public function login($credits=FALSE, $redirect_url='', $table='users')
