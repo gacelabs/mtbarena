@@ -1,0 +1,148 @@
+@media screen and (max-width: 991px) {
+	/*[col-position="center"] {
+		padding-left: 15px;
+		padding-right: 15px;
+	}*/
+	.mtb-left-image-box, .mtb-right-image-box {
+		height: auto;
+	}
+	.box-absolute {
+		position: relative;
+		width: inherit;
+	}
+	.box-item.box-fixed {
+		position: unset;
+		width: inherit;
+	}
+	.mtb-left-image-box>img, .mtb-right-image-box>img, .image-caption-box img {
+		height: auto;
+		max-height: 400px;
+	}
+	.news-feed-item .image-cropped {
+		width: 140px;
+		height: 145px;
+	}
+}
+@media screen and (max-width: 767px) {
+
+	body {
+		padding-top: 45px;
+	}
+	.navbar {
+		min-height: 40px;
+		height: 40px;
+	}
+	.navbar-default .navbar-brand {
+		height: 39px;
+		padding: 10px;
+	}
+
+	.navbar-form {
+		margin-top: 0;
+		margin-bottom: 0;
+		border-top: none;
+	}
+	.nav-border {
+		border-right: none;
+	}
+	.navbar-toggle {
+		color: #cb3fef;
+		font-size: 18px;
+		margin: 6px 10px;
+		padding: 0;
+	}
+	.navbar-toggle[aria-expanded="false"], .navbar-toggle[aria-expanded="true"] {
+		border: 1px solid transparent !important;
+		background-color: transparent !important;
+	}
+	.navbar-collapse {
+		background-color: #fff;
+		box-shadow: 0 12px 16px 2px rgba(0,0,0,0.1);
+		z-index: 9;
+
+	}
+	.navbar-toggle[aria-expanded="true"]>i {
+		color: #f4f0f5;
+	}
+	.navbar-default .navbar-nav>li>a {
+		color: #c794d4;
+	}
+	.navbar-default .navbar-nav>.active>a {
+		border-bottom: 0 none;
+		color: #7f2496 !important;
+	}
+	.col-xs-padding {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.box-item {
+		border: none;
+		border-radius: 0;
+		border-top: 1px solid #ddd;
+		border-bottom: 1px solid #ccc;
+	}
+	.mtb-left-image-box, .mtb-right-image-box {
+		height: auto;
+		max-height: 300px;
+		padding: 0;
+		margin-bottom: 5px;
+	}
+	.mtb-item-label-box {
+		padding: 5px;
+	}
+	.mtb-item-label-box button[data-toggle="dropdown"] {
+		float: none !important;
+		width: 100%;
+	}
+	#mtbItemMainParent .dropdown-menu {
+		left: 50%;
+		right: auto;
+		transform: translate(-50%, 0);
+	}
+	/*.mtb-list-social-box {
+		align-items: stretch;
+		display: flex;
+		justify-content: space-between;
+		padding: 0;
+		width: 100%;
+	}
+	.mtb-list-social-box>li {
+		display: block;
+		flex: 0 1 auto;
+		list-style-type: none;
+	}*/
+	.mtb-item-label-box-text {
+		font-size: 16px;
+	}
+	#bikeModelBox .mtb-left, #bikeModelBox .mtb-right {
+		width: 50%;
+	}
+	#bikeModelBox .mtb-table-separator {
+		border: 0 none;
+	}
+	#bikeModelBox.scroll-show {
+		top: 40px;
+		left: 0;
+		/*width: 100% !important;*/
+	}
+	.news-feed-title-divider, .news-feed-item {
+		border-right: 0 none !important;
+		border-left: 0 none !important;
+	}
+	.news-feed-title-divider>div.text-left {
+		padding: 0 10px;
+	}
+	.news-feed-item-body>.spaced-list {
+		justify-content: unset;
+		display: block;
+	}
+	.news-feed-item-body>.spaced-list>li {
+		flex: unset;
+	}
+	.news-feed-item-body .image-cropped {
+		width: 100% !important;
+	}
+	#bikeModelBox, #bikeModelBoxs {
+		top: 40px;
+	}
+}
