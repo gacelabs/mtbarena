@@ -20,7 +20,7 @@
 
 }
 
-.mtb-left-image-box, .mtb-right-image-box {
+.mtb-left-image-box, .mtb-middle-image-box, .mtb-right-image-box {
 	text-align: center;
 	height: auto;
 	max-height: 500px;
@@ -34,12 +34,12 @@
 	transform: scaleX(-1);
 }
 
-.mtb-left-image-box>img, .mtb-right-image-box>img {
+.mtb-left-image-box>img, .mtb-middle-image-box>img, .mtb-right-image-box>img {
 	text-align: center;
 	margin: 0 auto;
 	width: 100%;
 	object-fit: contain;
-	height: 165px;
+	height: 200px;
 }
 
 .mtb-item-label-box {

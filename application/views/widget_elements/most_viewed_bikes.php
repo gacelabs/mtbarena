@@ -18,16 +18,6 @@
 						<td><a href="">Trinx X1 Elite</a></td>
 						<td>1,139</td>
 					</tr>
-					<tr>
-						<th scope="row">2</th>
-						<td><a href="">Aeroic Tornado X2</a></td>
-						<td>754</td>
-					</tr>
-					<tr>
-						<th scope="row">3</th>
-						<td><a href="">Phantom 604</a></td>
-						<td>132</td>
-					</tr>
 				</tbody>
 			</table>
 		</div>

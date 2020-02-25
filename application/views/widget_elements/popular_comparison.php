@@ -10,33 +10,6 @@
 						<tr>
 							<td><a href="">Trinx X1 Elite vs. Aeroic Tornado X2</a></td>
 						</tr>
-						<tr>
-							<td><a href="">Phantom 604 vs. Aeroic Tornado X2</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Aeroic Tornado X2 vs. Merida Big Seven 40-D</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Trinx X1 Elite vs. Aeroic Tornado X2</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Phantom 604 vs. Aeroic Tornado X2</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Aeroic Tornado X2 vs. Merida Big Seven 40-D</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Trinx X1 Elite vs. Aeroic Tornado X2</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Phantom 604 vs. Aeroic Tornado X2</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Aeroic Tornado X2 vs. Merida Big Seven 40-D</a></td>
-						</tr>
-						<tr>
-							<td><a href="">Aeroic Tornado X2 vs. Merida Big Seven 40-D</a></td>
-						</tr>
 					</tbody>
 				</table>
 			</div>

@@ -3,7 +3,7 @@
 		padding-left: 15px;
 		padding-right: 15px;
 	}*/
-	.mtb-left-image-box, .mtb-right-image-box {
+	.mtb-left-image-box, .mtb-middle-image-box, .mtb-right-image-box {
 		height: auto;
 	}
 	.box-absolute {
@@ -13,10 +13,6 @@
 	.box-item.box-fixed {
 		position: unset;
 		width: inherit;
-	}
-	.mtb-left-image-box>img, .mtb-right-image-box>img, .image-caption-box img {
-		height: auto;
-		max-height: 400px;
 	}
 	.news-feed-item .image-cropped {
 		width: 140px;
@@ -81,7 +77,10 @@
 		border-top: 1px solid #ddd;
 		border-bottom: 1px solid #ccc;
 	}
-	.mtb-left-image-box, .mtb-right-image-box {
+	.mtb-left-image-box>img, .mtb-middle-image-box>img, .mtb-right-image-box>img {
+		height: 160px;
+	}
+	.mtb-left-image-box, .mtb-middle-image-box, .mtb-right-image-box {
 		height: auto;
 		max-height: 300px;
 		padding: 0;
@@ -99,23 +98,8 @@
 		right: auto;
 		transform: translate(-50%, 0);
 	}
-	/*.mtb-list-social-box {
-		align-items: stretch;
-		display: flex;
-		justify-content: space-between;
-		padding: 0;
-		width: 100%;
-	}
-	.mtb-list-social-box>li {
-		display: block;
-		flex: 0 1 auto;
-		list-style-type: none;
-	}*/
 	.mtb-item-label-box-text {
 		font-size: 16px;
-	}
-	#bikeModelBox .mtb-left, #bikeModelBox .mtb-right {
-		width: 50%;
 	}
 	#bikeModelBox .mtb-table-separator {
 		border: 0 none;
