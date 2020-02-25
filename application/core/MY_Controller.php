@@ -14,9 +14,13 @@ class MY_Controller extends CI_Controller {
 		// debug($this->accounts->has_session, 1);
 		
 		/*CHECK ACCOUNT LOGINS HERE*/
-		if ($this->accounts->has_session AND !in_array($class_name, ['home'])) {
-			// debug($this->session, 1);
-			redirect(base_url());
+		if ($this->accounts->has_session) {
+			// debug($class_name, 1);
+			if (!in_array($class_name, ['home', 'dashboard'])) {
+				if (!in_array('logout', $this->uri->segment_array())) {
+					redirect(base_url());
+				}
+			}
 		} elseif (!in_array($class_name, ['home', 'profile'])) {
 			redirect(base_url());
 		}

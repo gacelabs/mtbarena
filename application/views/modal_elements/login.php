@@ -9,18 +9,18 @@
 				<ul class="grid-column column-50-50">
 					<li>left</li>
 					<li>
-						<form action="" method="post">
+						<form action="/login" method="post">
 							<div class="form-group">
 								<label for="email_address">Email address</label>
 								<input type="email" class="form-control" name="email_address" id="email_address">
 							</div>
 							<div class="form-group">
-								<label for="paassword">Password</label>
-								<input type="password" class="form-control" name="paassword" id="paassword">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" name="password" id="password">
 							</div>
 							<ul class="spaced-list between">
 								<li>
-									<button type="button" class="btn btn-primary">Log in</button>
+									<button type="submit" class="btn btn-primary">Log in</button>
 								</li>
 								<li>
 									<a href="" class="btn">Can't login?</a>

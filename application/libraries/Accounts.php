@@ -17,10 +17,10 @@ class Accounts {
 	{
 		$allowed = FALSE; $user = FALSE; $msg = '';
 		if ($credits) {
-			if (isset($credits['username']) AND isset($credits['password'])) {
+			if (isset($credits['email_address']) AND isset($credits['password'])) {
 				$credits['password'] = md5($credits['password']);
-				$username_query = $this->class->db->get_where($table, ['username' => $credits['username']]);
-				if ($username_query->num_rows()) {
+				$email_address_query = $this->class->db->get_where($table, ['email_address' => $credits['email_address']]);
+				if ($email_address_query->num_rows()) {
 					$query = $this->class->db->get_where($table, $credits);
 					// debug($query->row_array(), 1);
 					if ($query->num_rows()) {
@@ -49,8 +49,8 @@ class Accounts {
 					$msg = 'Password mismatch!';
 				}
 			}
-			if (isset($post['username']) AND isset($post['password'])) {
-				$credits = ['username'=>$post['username'], 'password'=>$post['password']];
+			if (isset($post['email_address']) AND isset($post['password'])) {
+				$credits = ['email_address'=>$post['email_address'], 'password'=>$post['password']];
 				$return = $this->check_credits($credits, $table);
 				if ($passed) {
 					if (isset($return['allowed']) AND $return['allowed'] == FALSE) {
@@ -87,7 +87,7 @@ class Accounts {
 
 	public function login($credits=FALSE, $redirect_url='', $table='users')
 	{
-		// debug($this->has_session, 1);
+		// debug($credits, 1);
 		if ($credits != FALSE AND is_array($credits) AND $this->has_session == FALSE) {
 			/*user is logging in*/
 			$return = $this->check_credits($credits, $table);
