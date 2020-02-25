@@ -15,11 +15,13 @@ class Profile extends MY_Controller {
 		// debug($post, 1);
 		$is_ok = $this->accounts->login($post);
 		// debug($is_ok, 1);
-		if ($is_ok) {
-			redirect(base_url()); /*direct to the home when login success*/
-		} else {
-			$this->load->view('welcome_message');
-		}
+		redirect(base_url());
+		// if ($is_ok) {
+		// 	/*direct to the home when login success*/
+		// 	redirect(base_url());
+		// } else {
+		// 	$this->load->view('welcome_message');
+		// }
 	}
 
 	public function sign_out()
