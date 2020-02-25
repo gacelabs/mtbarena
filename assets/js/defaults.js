@@ -26,6 +26,16 @@ $(document).ready(function() {
 		}
 	});
 
+	$(function() {
+		$('[trigger-modal]').click(function() {
+			var modalId = $(this).attr('trigger-modal');
+
+			$(modalId).modal('show');
+
+			$('.navbar-collapse').removeClass('in').attr('aria-expanded', 'false');
+		});
+	});
+
 	// date today
 	$(function() {
 		var today = new Date(),

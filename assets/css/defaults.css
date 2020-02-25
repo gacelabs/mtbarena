@@ -5,6 +5,9 @@ body {
 p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 	color: #777;
 }
+.modal-dialog {
+	margin: 70px auto 30px auto;
+}
 #navbar {
 	background-color: #7f2496;
 	position: fixed;

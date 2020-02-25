@@ -18,36 +18,6 @@ class Home extends MY_Controller {
 			'body_id' => 'landing',
 			'body_class' => 'landing',
 			'page_nav' => 'page_statics/main_nav',
-			/*'page_left_column' => array(
-				'column_visibility_class' => 'hidden-xs',
-				'ui_elements' => array(
-					'page_elements/marketplace',
-					'page_elements/top_bike_shops',
-					'page_elements/most_viewed_bikes',
-					'page_elements/popular_comparison'
-				),
-			),
-			'page_center_column' => array(
-				'column_visibility_class' => '',
-				'bikes_to_compare' => 3,
-				'ui_elements' => array(
-					'page_elements/mtb_compare_specs',
-					'page_elements/mtb_compare_specs_featured',
-					'page_elements/mtb_single_bike_specs',
-					// 'page_elements/news_feed_box'
-				)
-			),
-			'page_right_column' => array(
-				'column_visibility_class' => 'hidden-xs',
-				'ui_elements' => array(
-					'page_elements/ride_events'
-				)
-			),
-			'page_footer' => array(
-				'column_visibility_class' => '',
-				'ui_elements' => array(
-				)
-			),*/
 			'page_left_column' => array(
 				'column_visibility_class' => 'hidden-xs',
 				'ui_elements' => array(
@@ -73,7 +43,7 @@ class Home extends MY_Controller {
 				)
 			),
 			'modals' => array(
-				
+				'modal_elements/login'
 			),
 			'page_data' => array(
 
