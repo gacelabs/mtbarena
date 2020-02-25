@@ -145,4 +145,8 @@
 	#bikeModelBox, #bikeModelBoxs {
 		top: 40px;
 	}
+	.post-bike-parent-box [class*="col-"] {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }

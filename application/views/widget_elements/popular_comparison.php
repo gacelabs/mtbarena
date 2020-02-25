@@ -43,5 +43,5 @@
 		</div>
 	</div>
 
-	<?php $this->load->view('page_elements/mtb_arena_mini_footer'); ?>
+	<?php $this->load->view('widget_elements/mtb_arena_mini_footer'); ?>
 </div>

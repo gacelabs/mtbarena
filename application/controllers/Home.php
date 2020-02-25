@@ -13,6 +13,7 @@ class Home extends MY_Controller {
 				'assets/css/mtb-single-bike-specs',
 				'assets/css/news-feed-box',
 				'assets/css/mediaquery',
+				'assets/css/post_bike'
 			),
 			'title' => 'MTB Arena | Home',
 			'body_id' => 'landing',
@@ -21,15 +22,16 @@ class Home extends MY_Controller {
 			'page_left_column' => array(
 				'column_visibility_class' => 'hidden-xs',
 				'ui_elements' => array(
-					'page_elements/most_viewed_bikes',
-					'page_elements/popular_comparison'
+					'widget_elements/most_viewed_bikes',
+					'widget_elements/popular_comparison'
 				),
 			),
 			'page_center_column' => array(
 				'column_visibility_class' => '',
 				'bikes_to_compare' => 2,
 				'ui_elements' => array(
-					'page_elements/mtb_compare_specs',
+					// 'page_elements/mtb_compare_specs',
+					'dashboard_elements/post_bike',
 				)
 			),
 			'page_right_column' => array(

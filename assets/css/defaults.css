@@ -1,6 +1,7 @@
 body {
 	padding-top: 65px;
 	background-color: #e7e7e7;
+	padding-bottom: 20px;
 }
 p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 	color: #777;
@@ -328,6 +329,9 @@ small {
 .grid-column.column-70-30 {
 	grid-template-columns: 70% 30%;
 }
+.grid-column.column-30-70 {
+	grid-template-columns: 30% 70%;
+}
 .date-photo-sched-column, .date-photo-item-image-column {
 	height: 80px;
 }
@@ -362,6 +366,11 @@ small {
 .elem-block {
 	display: block;
 	width: 100%;
+}
+textarea {
+	resize: vertical;
+	min-height: 34px;
+	max-height: 100px;
 }
 .zero-gap {
 	margin: 0;
