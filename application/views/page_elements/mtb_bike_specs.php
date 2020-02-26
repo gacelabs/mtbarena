@@ -43,7 +43,7 @@
 				<div class="mtb-item-model-parent">
 					<img src="<?php echo base_url('assets/images/mtb/trinx_x1_elite.png'); ?>" class="mtb-item-image image-cropped contain">
 					<div class="modelItemLabelBox">
-						<p class="mtb-item-model-name text-ellipsis zero-gap">Trix X1 Elite 2020</p>
+						<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="Trix X1 Elite 2020">
 						<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: Dealer Name (Posted: Nov 2019)</small></p>
 					</div>
 				</div>
@@ -58,11 +58,143 @@
 			<!-- LOOP here -->
 			<div class="mtb-item-specs-parent">
 				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
-					<small class="color-gray">Made by</small>
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
 				</div>
-				<div class="grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
-					<p class="mtb-item-spec-desc zero-gap">Trinx: USA, Thailand, Malaysia</p>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+				<?php } ?>
+				</div>
+			</div>
+
+			<div class="mtb-item-specs-parent">
+				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+					<small class="color-theme mtb-item-spec-label-text">Made by</small>
+				</div>
+				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
+					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
 				<?php } ?>
 				</div>
 			</div>

@@ -6,6 +6,9 @@ body {
 p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 	color: #777;
 }
+.form-control {
+	box-shadow: none !important;
+}
 .modal-dialog {
 	margin: 70px auto 30px auto;
 }
@@ -23,7 +26,7 @@ p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 	background-color: #fff;
 }
 .bg-theme {
-	background-color: #7f32d4;
+	background-color: #7f2496;
 }
 .color-theme {
 	color: #7f2496;
@@ -391,6 +394,9 @@ textarea {
 }
 #postBikeForm textarea, #postBikeForm input {
 	box-shadow: none !important;
+}
+.bs-select-parent .dropdown-menu.open {
+	right: 0;
 }
 .zero-gap {
 	margin: 0;

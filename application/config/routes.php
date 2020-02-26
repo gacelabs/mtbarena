@@ -7,6 +7,9 @@ $route['default_controller'] = 'home';
 
 $route['dashboard'] = 'dashboard';
 $route['dash'] = 'dashboard';
+$route['dashboard/post-bike'] = 'dashboard/post_bike';
+$route['dashboard/store'] = 'dashboard/store';
+$route['dashboard/profile'] = 'dashboard/profile';
 
 $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';

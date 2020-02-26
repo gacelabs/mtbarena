@@ -1,14 +1,20 @@
 <div class="stick-me">
 	<div class="box-item">
 		<div class="box-item-body-top">
-			<p class="zero-gap color-theme"><b>User Name Here</b></p>
-			<p class="zero-gap color-theme"><small>Store Name</small></p>
+			<p class="zero-gap color-theme"><b>Store Name</b></p>
+			<p class="zero-gap color-theme"><small>User Name Here</small></p>
 		</div>
 		<div class="box-item-body">
-			<div class="table-responsive">
-				<a href="#"><p>Post new bike</p></a>
-				<a href="#"><p>Online store</p></a>
-				<a href="#"><p>Profile settings</p></a>
+			<div class="dashboard-menu-box">
+				<a href="<?php echo base_url('dashboard/store'); ?>">
+					<p class="<?php echo ($body_class == "store" ? 'active' : ''); ?>">Online store</p>
+				</a>
+				<a href="<?php echo base_url('dashboard/post-bike'); ?>">
+					<p class="<?php echo ($body_class == "post-bike" ? 'active' : ''); ?>">Post bike</p>
+				</a>
+				<a href="<?php echo base_url('dashboard/profile'); ?>">
+					<p class="<?php echo ($body_class == "profile" ? 'active' : ''); ?>">Profile</p>
+				</a>
 			</div>
 		</div>
 	</div>

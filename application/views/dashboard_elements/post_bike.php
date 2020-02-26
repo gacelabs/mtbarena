@@ -27,12 +27,14 @@
 								<p class="zero-gap" style="font-size:10px;">Automatically fills in all the specs according to the bike model selected.</p>
 							</li>
 							<li style="padding-left:10px;">
-								<select class="selectpicker show-tick" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4">
-									<option data-tokens="trinx x1 elite 2020" data-subtext="- From: Trinx Official (Updated: Feb 2020)">Trinx X1 Elite 2020</option>
-									<option data-tokens="phantom 601" data-subtext="- From: Ava Bike Shop (Posted: Dec 2019)">Phantom 601</option>
-									<option data-tokens="keysto conquest" data-subtext="- From: Ema Margaret Cycling (Posted: May 2019)">Keysto Conquest</option>
-									<option data-tokens="cannondale carbon fiber" data-subtext="- From: Decimal Bike Supplier (Updated: Nov 2019)">Cannondale Carbon Fiber</option>
-								</select>
+								<div class="form-group bs-select-parent">
+									<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4">
+										<option data-tokens="trinx x1 elite 2020" data-subtext="Trinx Official (Updated: Feb 2020)">Trinx X1 Elite 2020</option>
+										<option data-tokens="phantom 601" data-subtext="Ava Bike Shop (Posted: Dec 2019)">Phantom 601</option>
+										<option data-tokens="keysto conquest" data-subtext="Ema Margaret Cycling (Posted: May 2019)">Keysto Conquest</option>
+										<option data-tokens="cannondale carbon fiber" data-subtext="Decimal Bike Supplier (Updated: Nov 2019)">Cannondale Carbon Fiber</option>
+									</select>
+								</div>
 							</li>
 						</ul>
 					</div>

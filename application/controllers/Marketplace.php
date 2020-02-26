@@ -12,8 +12,8 @@ class Marketplace extends MY_Controller {
 				'assets/css/mediaquery',
 			),
 			'title' => 'MTB Arena | Marketplace',
-			'body_id' => 'landing',
-			'body_class' => 'landing',
+			'body_id' => 'marketplace',
+			'body_class' => 'marketplace',
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
@@ -26,7 +26,6 @@ class Marketplace extends MY_Controller {
 			'page_center_column' => array(
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
-					'page_elements/marketplace'
 				)
 			),
 			'page_right_column' => array(

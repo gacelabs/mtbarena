@@ -65,6 +65,7 @@
 	.navbar-default .navbar-nav>.active>a {
 		border-bottom: 0 none;
 		color: #7f2496 !important;
+		font-weight: bold;
 	}
 	#navbar .navbar-form .form-control, #navbar .navbar-form .btn-default {
 		background-color: transparent;

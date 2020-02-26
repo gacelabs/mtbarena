@@ -5,7 +5,7 @@
 	<?php $this->load->view('page_requires/page_head'); ?>
 </head>
 
-<body id="<?php echo (empty($body_id) ? '' : $body_id); ?>">
+<body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
 
 	<!-- page nav -->
 		<?php
