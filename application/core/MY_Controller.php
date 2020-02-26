@@ -16,12 +16,12 @@ class MY_Controller extends CI_Controller {
 		/*CHECK ACCOUNT LOGINS HERE*/
 		if ($this->accounts->has_session) {
 			// debug($class_name, 1);
-			if (!in_array($class_name, ['home', 'dashboard', 'compare'])) {
+			if (!in_array($class_name, ['home', 'dashboard', 'compare', 'singlebike', 'marketplace'])) {
 				if (!in_array('logout', $this->uri->segment_array())) {
 					redirect(base_url());
 				}
 			}
-		} elseif (!in_array($class_name, ['home', 'profile', 'compare'])) {
+		} elseif (!in_array($class_name, ['home', 'profile', 'compare', 'singlebike', 'marketplace'])) {
 			redirect(base_url());
 		}
 		// debug($this->uri->segment_array());

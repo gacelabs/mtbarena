@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Compare extends MY_Controller {
+class SingleBike extends MY_Controller {
 
 	public function index()
 	{
@@ -9,14 +9,15 @@ class Compare extends MY_Controller {
 				''
 			),
 			'css_links' => array(
+				'assets/css/defaults',
 				'assets/css/mtb-bike-specs',
-				'assets/css/mediaquery',
+				'assets/css/mediaquery'
 			),
-			'title' => 'Bike Model 1 VS. Bike Model 2',
-			'body_id' => 'compare',
-			'body_class' => 'compare',
+			'title' => 'Bike Model Full Specifications',
+			'body_id' => 'singleBike',
+			'body_class' => 'single-bike',
 			'page_nav' => 'page_statics/main_nav',
-			'bikes_to_compare' => 2,
+			'bikes_to_compare' => 1,
 			'page_left_column' => array(
 				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
 				'ui_elements' => array(
@@ -38,10 +39,10 @@ class Compare extends MY_Controller {
 			'page_footer' => array(
 				'column_visibility_class' => '',
 				'ui_elements' => array(
+
 				)
 			),
 			'modals' => array(
-				'modal_elements/login',
 				'modal_elements/search_bike'
 			),
 			'page_data' => array(
@@ -54,6 +55,7 @@ class Compare extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/mtb-bike-specs.js').'"></script>'
 			)
 		);
+
 		$this->load->view('page_templates/main_template', $structure);
 	}
 }

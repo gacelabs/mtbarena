@@ -1,11 +1,10 @@
 <div class="box-item">
 	<div class="box-item-body-top">
-		<p class="zero-gap color-theme"><b>User Name Here</b></p>
-		<p class="zero-gap color-theme"><small>Store Name</small></p>
+		<p class="zero-gap color-theme"><b>Post new bike</b></p>
 	</div>
 	<div class="box-item-body" style="padding:10px 0;">
 		<div class="table-responsive post-bike-parent-box">
-			<form action="/dashboard/add_item" method="post" enctype="multipart/form-data">
+			<form action="/dashboard/add_item" method="post" enctype="multipart/form-data" id="postBikeForm">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="bike_model">Bike Model Name</label>
@@ -34,7 +33,6 @@
 									<option data-tokens="keysto conquest" data-subtext="- From: Ema Margaret Cycling (Posted: May 2019)">Keysto Conquest</option>
 									<option data-tokens="cannondale carbon fiber" data-subtext="- From: Decimal Bike Supplier (Updated: Nov 2019)">Cannondale Carbon Fiber</option>
 								</select>
-
 							</li>
 						</ul>
 					</div>

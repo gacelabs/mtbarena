@@ -12,7 +12,12 @@ $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';
 $route['logout'] = 'profile/sign_out';
 
+// url = mtbarena.com/compare?bike=model-here&bike=model-here/
 $route['compare'] = 'compare';
+
+
+// url = mtbarena.com/mtb/model-here-full-specifications/
+$route['mtb'] = 'singlebike';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

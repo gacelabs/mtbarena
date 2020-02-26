@@ -27,7 +27,7 @@
 					<a href="<?php echo base_url('compare'); ?>"><i class="fa fa-clone"></i> <span class="hidden-sm">Compare</span></a>
 				</li>
 				<li class="<?php if (!empty($body_id) && $body_id == 'marketplace') {echo 'active';} ?>">
-					<a href="#"><i class="fa fa-shopping-bag"></i> <span class="hidden-sm">Marketplace</span></a>
+					<a href="<?php echo base_url('marketplace'); ?>"><i class="fa fa-shopping-bag"></i> <span class="hidden-sm">Marketplace</span></a>
 				</li>
 				<li class="<?php if (!empty($body_id) && $body_id == 'rides') {echo 'active';} ?> nav-border">
 					<a href="#"><i class="fa fa-bicycle"></i> <span class="hidden-sm">Rides</span></a>

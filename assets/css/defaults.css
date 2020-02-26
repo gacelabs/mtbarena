@@ -259,10 +259,15 @@ ul.spaced-list.between.half-size>li {
 	font-size: 12px;
 }
 .image-cropped {
-	object-fit: contain;
 	object-position: center;
 	margin: 0 auto;
 	padding: 0;
+}
+.image-cropped.contain {
+	object-fit: contain;
+}
+.image-cropped.cover {
+	object-fit: cover;;
 }
 .image-cropped.small {
 	height: 25px;
@@ -317,11 +322,14 @@ small {
 	display: grid;
 	grid-gap: 0;
 }
+.grid-column.column-100 {
+	grid-template-columns: 100%;
+}
 .grid-column.column-50-50 {
 	grid-template-columns: 50% 50%;
 }
 .grid-column.column-33-33-33 {
-	grid-template-columns: 33% 33% 33%;
+	grid-template-columns: 33.33% 33.33% 33.33%;
 }
 .grid-column.column-80-20 {
 	grid-template-columns: 80% 20%;
@@ -334,12 +342,6 @@ small {
 }
 .date-photo-sched-column, .date-photo-item-image-column {
 	height: 80px;
-}
-.grid-column .image-cropped {
-	height: 100%;
-	object-fit: cover;
-	text-align: center;
-	width: 100%;
 }
 .date-photo-item-sched-column {
 	background-color: #e24443;
@@ -376,7 +378,19 @@ textarea {
 	cursor: pointer;
 }
 .panel-default>.panel-heading {
+	transition: all .3s ease-in-out;
 	background-color: #ececec;
+	color: #aaa;
+}
+.panel-default>.panel-heading:hover, .panel-default>.panel-heading[aria-expanded="true"] {
+	color: #333;
+	background-color: #dcdcdc;
+}
+.panel-group .panel+.panel {
+	margin-top: 10px;
+}
+#postBikeForm textarea, #postBikeForm input {
+	box-shadow: none !important;
 }
 .zero-gap {
 	margin: 0;

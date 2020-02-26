@@ -20,9 +20,8 @@
 	}
 }
 @media screen and (max-width: 767px) {
-
 	body {
-		padding-top: 45px;
+		padding-top: 50px;
 	}
 	.navbar {
 		min-height: 40px;

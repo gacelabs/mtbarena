@@ -93,7 +93,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.selectpicker').selectpicker();
+	// $('.selectpicker').selectpicker();
 
 });
 
@@ -117,10 +117,10 @@ $(window).on('load resize change', function() {
 
 					if (prevScrollpos > currentScrollPos) {
 						document.getElementById("navbar").style.top = "0";
-						$('#bikeModelBox, #bikeModelBoxs, .pos-fixed').removeAttr('style');
+						$('#bikeStickyName, .pos-fixed').removeAttr('style');
 					} else {
 						document.getElementById("navbar").style.top = "-50px";
-						$('#bikeModelBox, #bikeModelBoxs').css('top', 0);
+						$('#bikeStickyName').css('top', 0);
 						$('.pos-fixed').css('top', 15);
 					}
 					prevScrollpos = currentScrollPos;
@@ -136,7 +136,6 @@ $(window).on('load resize change', function() {
 
 		var parentWidth = $('.affix').parent('[class^=col-]').width();
 
-		
 		$.each($('.affix'), function() {
 			$(this).css('width', parentWidth).removeClass('hide');
 		});

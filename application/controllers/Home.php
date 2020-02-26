@@ -9,32 +9,30 @@ class Home extends MY_Controller {
 				''
 			),
 			'css_links' => array(
-				'assets/css/mtb-compare-specs',
-				'assets/css/mtb-single-bike-specs',
-				'assets/css/news-feed-box',
-				'assets/css/mediaquery',
-				'assets/css/post_bike'
+				'assets/css/defaults',
+				'assets/css/mtb-bike-specs',
+				'assets/css/mediaquery'
 			),
 			'title' => 'MTB Arena | Home',
 			'body_id' => 'landing',
 			'body_class' => 'landing',
 			'page_nav' => 'page_statics/main_nav',
+			'bikes_to_compare' => 2,
 			'page_left_column' => array(
-				'column_visibility_class' => 'hidden-xs',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
 				'ui_elements' => array(
 					'widget_elements/most_viewed_bikes',
 					'widget_elements/popular_comparison'
 				),
 			),
 			'page_center_column' => array(
-				'column_visibility_class' => '',
-				'bikes_to_compare' => 2,
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
-					'page_elements/mtb_compare_specs'
+					'page_elements/mtb_bike_specs'
 				)
 			),
 			'page_right_column' => array(
-				'column_visibility_class' => 'hidden-xs',
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
 				'ui_elements' => array(
 				)
 			),
@@ -45,7 +43,7 @@ class Home extends MY_Controller {
 			),
 			'modals' => array(
 				'modal_elements/login',
-				'modal_elements/change_model'
+				'modal_elements/search_bike'
 			),
 			'page_data' => array(
 
@@ -53,9 +51,10 @@ class Home extends MY_Controller {
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/masonry.min.js').'"></script>'
+				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/mtb-bike-specs.js').'"></script>'
 			)
 		);
-		$this->load->view('page_templates/home_template', $structure);
+		$this->load->view('page_templates/main_template', $structure);
 	}
 }

@@ -6,10 +6,9 @@
 		</div>
 		<div class="box-item-body">
 			<div class="table-responsive">
-				<p>link</p>
-				<p>link</p>
-				<p>link</p>
-				<p>link</p>
+				<a href="#"><p>Post new bike</p></a>
+				<a href="#"><p>Online store</p></a>
+				<a href="#"><p>Profile settings</p></a>
 			</div>
 		</div>
 	</div>

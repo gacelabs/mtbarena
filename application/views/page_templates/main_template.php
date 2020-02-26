@@ -22,46 +22,36 @@
 		?>
 
 		<!-- page body -->
-		<?php
-
-			$show_left_column = '';
-			$show_right_column = '';
-
-			if (!empty($page_left_column['ui_elements'])) {
-				$show_left_column = true;
-			}
-
-			if (!empty($page_center_column['ui_elements'])) {
-				$show_right_column = true;
-			}
-
-		?>
-			
 		<div class="container">
 			<div class="row">
-				<?php if ($show_left_column) { ?>
-				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-padding <?php echo(!empty($page_left_column['column_visibility_class']) ? $page_left_column['column_visibility_class'] : ''); ?>">
+				<div class="<?php echo(!empty($page_left_column['column_visibility_class']) ? $page_left_column['column_visibility_class'] : ''); ?>">
 					<?php
 						foreach ($page_left_column['ui_elements'] as $ui_element) {
 							$this->load->view($ui_element);
 						}
 					?>
 				</div>
-				<?php } ?>
 
-				<?php if ($page_center_column) { ?>
-				<div class="col-lg-9 col-md-9 col-sm-9 col-xs-padding <?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>" col-position="center">
-					<?php
+				<div class="<?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>" col-position="center">
+					<?php 
 						foreach ($page_center_column['ui_elements'] as $ui_elements) {
 							$this->load->view($ui_elements);
 						}
 					?>
 				</div>
-				<?php } ?>
+				
+
+				<div class="<?php echo(!empty($page_right_column['column_visibility_class']) ? $page_right_column['column_visibility_class'] : ''); ?>">
+					<?php
+						foreach ($page_right_column['ui_elements'] as $ui_elements) {
+							$this->load->view($ui_elements);
+						}
+					?>
+				</div>
 			</div>
 		</div>
 
-	<!-- page footer -->
+		<!-- page footer -->
 		<?php
 
 			if ($page_footer)
