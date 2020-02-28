@@ -28,6 +28,9 @@ p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 .bg-theme {
 	background-color: #7f2496;
 }
+.color-link:hover {
+	color: #337ab7;
+}
 .color-theme {
 	color: #7f2496;
 }
@@ -326,7 +329,7 @@ small {
 	grid-gap: 0;
 }
 .grid-column.column-100 {
-	grid-template-columns: 100%;
+	grid-template-columns: 1fr;
 }
 .grid-column.column-50-50 {
 	grid-template-columns: 50% 50%;
@@ -397,6 +400,24 @@ textarea {
 }
 .bs-select-parent .dropdown-menu.open {
 	right: 0;
+}
+.span-versus {
+	position: absolute;
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.15);
+	background-color: #fff;
+	width: 30px;
+	height: 30px;
+	border-radius: 100px;
+	text-align: center;
+	padding: 5px 0;
+	font-weight: bold;
+	display: grid;
+	grid-template-rows: auto;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 0;
+	bottom: 60px;
 }
 .zero-gap {
 	margin: 0;

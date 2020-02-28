@@ -1,0 +1,59 @@
+.mtb-compare-bike-tiles-parent * {
+	text-decoration: none !important;
+}
+.mtb-compare-bike-tiles-parent .grid-column-item-gutter:hover .box-item {
+	transition: all .3s ease-in-out;
+	box-shadow: 0 3px 5px -2px rgba(0,0,0,0.15);
+}
+.grid-column {
+	margin-bottom: 5px;
+}
+.grid-column.column-50-50 {
+	transition: all .3s ease-in-out;
+}
+.grid-column-item-gutter:nth-child(odd) {
+	padding: 0 5px 10px 0;
+}
+.grid-column-item-gutter:nth-child(even) {
+	padding: 0 0 10px 5px;
+}
+.grid-column .mtb-item-model-inner:first-child {
+	border-right: 2px solid #fff;
+}
+.grid-column .mtb-item-model-inner:last-child {
+	border-left: 2px solid #fff;
+}
+.mtb-compare-bike-tiles-parent .box-item-body {
+	padding: 0;
+}
+.mtb-item-image {
+	height: 150px;
+	width: 100%;
+}
+.mtb-item-model-inner:first-child .mtb-item-image {
+	border-right: 0 none;
+}
+
+@media screen and (max-width: 767px) {
+	.mtb-compare-bike-tiles-parent, .mtb-compare-bike-tiles-parent .box-item-body-top .spaced-list.between {
+		display: block;
+	}
+	.mtb-compare-bike-tiles-parent .box-item-body-top .spaced-list.between>li {
+		display: block;
+		text-align: left !important;
+	}
+	.mtb-compare-bike-tiles-parent .box-item-body-top .spaced-list.between>li:first-child {
+		margin-bottom: 3px;
+	}
+	.mtb-compare-bike-tiles-parent .grid-column-item-gutter {
+		margin-bottom: 10px;
+		width: 100%;
+		padding: 0;
+	}
+	.mtb-compare-bike-tiles-parent .grid-column-item-gutter:last-child {
+		margin-bottom: 0;
+	}
+	.mtb-compare-bike-tiles-parent .box-item-body-top {
+		padding: 5px;
+	}
+}

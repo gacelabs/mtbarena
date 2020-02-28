@@ -14,6 +14,9 @@
 				</table>
 			</div>
 		</div>
+		<div class="text-center" style="padding:10px 0;border-top:1px solid #eee;">
+			<a href="<?php echo base_url('compare'); ?>" style="text-decoration:none;"><p class="color-link zero-gap">View All</p></a>
+		</div>
 	</div>
 
 	<?php $this->load->view('widget_elements/mtb_arena_mini_footer'); ?>

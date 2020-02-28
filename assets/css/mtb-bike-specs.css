@@ -1,9 +1,6 @@
-.grid-column>*:nth-child(2) {
-	background-color: #f7f7f7;
-}
 .bikeStickyName {
 	background-color: #fff;
-	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+	/*box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);*/
 	left: 0;
 	margin: 0 -10px 0 -10px;
 	padding: 10px;
@@ -16,9 +13,17 @@
 .mtb-item-model-parent {
 	border: 1px solid #e5d6f5;
 	margin: 0;
-	padding: 10px;
 	position: relative;
 	text-align: center;
+}
+.mtb-item-model-inner {
+	padding: 10px;
+}
+.mtb-item-model-parent:nth-child(2) .mtb-item-model-inner, .mtb-item-spec-desc .mtb-item-spec-desc-inner:nth-child(2) {
+	background-color: #f7f7f7;
+}
+.mtb-item-spec-desc-inner {
+	padding: 10px;
 }
 .mtb-item-model-parent:nth-child(2), .mtb-item-model-parent:nth-child(3) {
 	border-left: 0 none;
@@ -37,28 +42,25 @@
     margin: 0;
     text-align: center;
 }
-.mtb-item-specs-parent:first-child {
-	margin-top: 15px;
-}
 .mtb-item-spec-label {
 	background-color: #e5d6f5;
 	padding: 2px 10px;
 	text-transform: uppercase;
 }
-.mtb-item-spec-desc {
-	padding: 10px;
-}
 .mtb-item-image {
+	height: 200px;
 	transition: all .3s ease-in-out;
+	width: 100%;
+	margin-bottom: 2px;
 }
 .mtbImageShrinker {
-	height: auto !important;
-	left: 20px;
+	height: 25px !important;
+	left: 16px;
 	margin-bottom: 0 !important;
 	position: absolute;
-	top: 15px;
-	width: 40px !important;
-	z-index: 1;
+	top: 14px;
+	width: 25px !important;
+	z-index: 9;
 }
 .column-100 .mtb-item-image {
 	object-fit: contain !important;
@@ -73,7 +75,7 @@
 .changeBikeInput:focus::placeholder {
 	color: #ccc;
 }
-#inputDropdown {
+.inputDropdown {
 	background-color: #f3f3f3;
 	border: 1px solid #ccc;
 	box-shadow: 0px 4px 10px -2px rgba(0,0,0,0.15);
@@ -83,34 +85,111 @@
 	text-align: left;
 	z-index: 1;
 }
-#inputDropdown .image-cropped {
+.inputDropdown .image-cropped {
 	background-color: #fff;
 	border: 1px solid #ccc;
+	height: 40px;
+	object-fit: contain !important;
+	width: 40px;
 }
 .result-bike-item {
 	cursor: pointer;
 	padding: 5px 10px !important;
 	transition: all .3s ease-in-out;
+
+	display: flex;
+	flex-direction: row;
+	white-space: nowrap;
+	width: 100%;
+}
+.media-body {
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 1;
+	justify-content: center;
+	min-width: 0;
+}
+.result-bike-item .media-body>* {
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .result-bike-item:hover {
 	background-color: #fff;
 }
-
+.compare-search-icon {
+	color: #aaa;
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	z-index: 9;
+}
 @media screen and (max-width: 767px) {
+	#mtbItemMainParent {
+		padding-bottom: 0;
+	}
+	#mtbCompareSpecs>ul {
+		display: block;
+	}
+	#mtbCompareSpecs>ul>li {
+		text-align: left !important;
+	}
+	#mtbCompareSpecs>ul>li:nth-child(2) {
+		margin-top: 5px;
+	}
 	.bikeStickyName {
-		top: 40px;
+		position: static;
+		padding: 0;
+		border: 0 none !important;
+		box-shadow: none;
+	}
+	.mtb-item-model-parent {
+		border-top: 0 none;
+	}
+	.mtb-item-model-parent:first-child {
+		border-left: 0;
+	}
+	.mtb-item-model-parent:nth-child(2), .mtb-item-model-parent:nth-child(3) {
+		border-right: 0 none;
 	}
 	.mtb-item-model-name {
-		font-size: 16px;
+		font-size: 14px;
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 	.mtb-main-parent {
 		margin-left: -10px;
 		margin-right: -10px;
+	}
+	.mtb-item-image {
+		height: 70px;
+	}
+	.inputDropdown .image-cropped {
+		width: 25px;
+		height: 25px;
+	}
+	.result-bike-item {
+		padding: 5px !important;
+	}
+	.result-bike-item .media-left {
+		padding-right: 5px !important;
+	}
+	.result-bike-item .media-body>* {
+		font-size: 12px;
 	}
 	.mtb-item-specs-parent:first-child {
 		margin-top: 10px;
 	}
 	.mtb-item-model-parent>img {
 		height: 100px;
+	}
+	.mtb-item-specs-parent:first-child {
+		margin-top: 0;
+	}
+	.compare-search-icon {
+		display: none;
+	}
+	.box-item-body-top, .mtb-item-model-inner, .mtb-item-spec-desc-inner {
+		padding: 5px !important;
 	}
 }

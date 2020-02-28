@@ -93,16 +93,15 @@ $(document).ready(function() {
 		}
 	});
 
-	// $('.selectpicker').selectpicker();
-
 });
 
 $(window).on('load resize change', function() {
 
-	var winWidth = $(window).width();
-		scrollPosition = 300;
-		adjTop = -20
+	var winWidth = $(window).width(),
+		scrollPosition = 300,
+		adjTop = -20,
 		parentWidth = $('[col-position="center"]').width()-2;
+		
 	if (winWidth <= 767) {
 		parentWidth = $('[col-position="center"]').width();
 
@@ -117,10 +116,10 @@ $(window).on('load resize change', function() {
 
 					if (prevScrollpos > currentScrollPos) {
 						document.getElementById("navbar").style.top = "0";
-						$('#bikeStickyName, .pos-fixed').removeAttr('style');
+						$('.bikeStickyName, .pos-fixed').removeAttr('style');
 					} else {
 						document.getElementById("navbar").style.top = "-50px";
-						$('#bikeStickyName').css('top', 0);
+						$('.bikeStickyName').css('top', 0);
 						$('.pos-fixed').css('top', 15);
 					}
 					prevScrollpos = currentScrollPos;

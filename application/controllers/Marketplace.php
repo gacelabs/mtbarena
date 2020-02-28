@@ -19,8 +19,8 @@ class Marketplace extends MY_Controller {
 			'page_left_column' => array(
 				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
 				'ui_elements' => array(
-					'widget_elements/most_viewed_bikes',
-					'widget_elements/popular_comparison'
+					'widget_elements/most_viewed_bikes_list',
+					'widget_elements/popular_comparison_list'
 				),
 			),
 			'page_center_column' => array(

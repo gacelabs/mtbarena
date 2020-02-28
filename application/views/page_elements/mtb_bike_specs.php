@@ -17,9 +17,9 @@
 			<?php if ($bikeCount == 1) { ?>
 				<p class="zero-gap color-theme"><b>Bike Model Full Specifications</b></p>
 			<?php } elseif ($bikeCount == 2) { ?>
-				<p class="zero-gap color-theme"><b>Head-To-Head Bike Full Specs</b></p>
+				<p class="zero-gap color-theme"><b>Head-To-Head Bike Full Specifications</b></p>
 			<?php } elseif ($bikeCount == 3) { ?>
-				<p class="zero-gap color-theme"><b>Triple Match Up Bike Full Specs</b></p>
+				<p class="zero-gap color-theme"><b>Triple Match Up Bike Full Specifications</b></p>
 			<?php } ?>
 			</li>
 
@@ -41,10 +41,13 @@
 			<!-- LOOP here -->
 			<?php for ($i=0; $i<$bikeCount; $i++) { ?>
 				<div class="mtb-item-model-parent">
-					<img src="<?php echo base_url('assets/images/mtb/trinx_x1_elite.png'); ?>" class="mtb-item-image image-cropped contain">
-					<div class="modelItemLabelBox">
-						<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="Trix X1 Elite 2020">
-						<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: Dealer Name (Posted: Nov 2019)</small></p>
+					<div class="mtb-item-model-inner">
+						<img src="<?php echo base_url('assets/images/mtb/gt_force_full_sus.jpg'); ?>" class="mtb-item-image image-cropped cover">
+						<div class="modelItemLabelBox">
+							<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="GT Force Full Suspension">
+							<span class="compare-search-icon"><i class="fa fa-search"></i></span>
+							<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: Dealer Name (Posted: Nov 2019)</small></p>
+						</div>
 					</div>
 				</div>
 			<?php } ?>
@@ -62,7 +65,9 @@
 				</div>
 				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
-					<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+					<div class="mtb-item-spec-desc-inner">
+						<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+					</div>
 				<?php } ?>
 				</div>
 			</div>
