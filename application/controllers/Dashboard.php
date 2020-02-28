@@ -176,7 +176,7 @@ class Dashboard extends MY_Controller {
 	public function add_item()
 	{
 		$post = $this->input->post();
-		// debug($_FILES, 1);
+		// debug($_FILES);
 		$filename = files_upload($_FILES, TRUE, 'bikes/images');
 		$post['feat_photo'] = $filename;
 		// debug($post, 1);

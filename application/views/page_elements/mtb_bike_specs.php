@@ -39,18 +39,20 @@
 			<div class="grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 
 			<!-- LOOP here -->
-			<?php for ($i=0; $i<$bikeCount; $i++) { ?>
-				<div class="mtb-item-model-parent">
-					<div class="mtb-item-model-inner">
-						<img src="<?php echo base_url('assets/images/mtb/gt_force_full_sus.jpg'); ?>" class="mtb-item-image image-cropped cover">
-						<div class="modelItemLabelBox">
-							<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="GT Force Full Suspension">
-							<span class="compare-search-icon"><i class="fa fa-search"></i></span>
-							<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: Dealer Name (Posted: Nov 2019)</small></p>
+			<?php if (isset($page_data['bikes']) AND $page_data['bikes']): ?>
+				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
+					<div class="mtb-item-model-parent">
+						<div class="mtb-item-model-inner">
+							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image image-cropped cover">
+							<div class="modelItemLabelBox">
+								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="GT Force Full Suspension">
+								<span class="compare-search-icon"><i class="fa fa-search"></i></span>
+								<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?> (Posted: <?php echo date('M Y', strtotime($bike['added']));?>)</small></p>
+							</div>
 						</div>
 					</div>
-				</div>
-			<?php } ?>
+				<?php endforeach ?>
+			<?php endif ?>
 			<!-- LOOP here -->
 
 			</div>
@@ -59,18 +61,20 @@
 		<div class="mtb-main-parent" id="mtbMainParent">
 
 			<!-- LOOP here -->
-			<div class="mtb-item-specs-parent">
-				<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
-					<small class="color-theme mtb-item-spec-label-text">Made by</small>
-				</div>
-				<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
-				<?php for ($i=0; $i<$bikeCount; $i++) { ?>
-					<div class="mtb-item-spec-desc-inner">
-						<p class="mtb-item-spec-desc-text zero-gap">Trinx: USA, Thailand, Malaysia</p>
+			<?php if (isset($page_data['bikes']) AND $page_data['bikes']): ?>
+				<div class="mtb-item-specs-parent">
+					<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+						<small class="color-theme mtb-item-spec-label-text">Made by</small>
 					</div>
-				<?php } ?>
+					<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+						<?php foreach ($page_data['bikes'] as $key => $bike): ?>
+							<div class="mtb-item-spec-desc-inner">
+								<p class="mtb-item-spec-desc-text zero-gap"><?php echo ucfirst($bike['made_by']);?></p>
+							</div>
+						<?php endforeach ?>
+					</div>
 				</div>
-			</div>
+			<?php endif ?>
 			<!-- LOOP here -->
 
 		</div>

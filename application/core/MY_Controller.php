@@ -3,6 +3,7 @@
 class MY_Controller extends CI_Controller {
 
 	public $device_id = FALSE;
+	public $shall_not_pass = FALSE;
 
 	public function __construct()
 	{
@@ -14,14 +15,14 @@ class MY_Controller extends CI_Controller {
 		// debug($this->accounts->has_session, 1);
 		
 		/*CHECK ACCOUNT LOGINS HERE*/
+		// debug($this->shall_not_pass, 1);
 		if ($this->accounts->has_session) {
-			// debug($class_name, 1);
-			if (!in_array($class_name, ['home', 'dashboard', 'compare', 'singlebike', 'marketplace'])) {
+			if (!$this->shall_not_pass) {
 				if (!in_array('logout', $this->uri->segment_array())) {
 					redirect(base_url());
 				}
 			}
-		} elseif (!in_array($class_name, ['home', 'profile', 'compare', 'singlebike', 'marketplace'])) {
+		} elseif (!$this->shall_not_pass) {
 			redirect(base_url());
 		}
 		// debug($this->uri->segment_array());

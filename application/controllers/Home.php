@@ -2,8 +2,11 @@
 
 class Home extends MY_Controller {
 
+	public $shall_not_pass = TRUE;
+
 	public function index()
 	{
+		$this->load->model('custom_model');
 		$structure = array(
 			'metas' => array(
 				''
@@ -45,7 +48,7 @@ class Home extends MY_Controller {
 				'modal_elements/login'
 			),
 			'page_data' => array(
-
+				'bikes' => $this->custom_model->home_first_load()
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',

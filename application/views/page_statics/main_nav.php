@@ -30,7 +30,7 @@
 					<a href="<?php echo base_url('marketplace'); ?>"><i class="fa fa-shopping-bag"></i> <span class="hidden-sm">Marketplace</span></a>
 				</li>
 				<li class="<?php if (!empty($body_id) && $body_id == 'rides') {echo 'active';} ?> nav-border">
-					<a href="#"><i class="fa fa-bicycle"></i> <span class="hidden-sm">Rides</span></a>
+					<a href="javascript:;"><i class="fa fa-bicycle"></i> <span class="hidden-sm">Rides</span></a>
 				</li>
 				<?php if ($current_profile): ?>
 					<li class="<?php if (!empty($body_id) && $body_id == 'log_in') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Log out">
@@ -41,7 +41,7 @@
 					</li>
 				<?php else: ?>
 					<li class="<?php if (!empty($body_id) && $body_id == 'log_in') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Log in" trigger-modal="#modal_login">
-						<a href="#"><i class="fa fa-sign-in"></i> <span class="hidden-lg hidden-md hidden-sm">Log in</span></a>
+						<a href="javascript:;"><i class="fa fa-sign-in"></i> <span class="hidden-lg hidden-md hidden-sm">Log in</span></a>
 					</li>
 					<li class="<?php if (!empty($body_id) && $body_id == 'sign_up') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Sign up">
 						<a href="<?php echo base_url('sign_up'); ?>"><i class="fa fa-user-plus"></i> <span class="hidden-lg hidden-md hidden-sm">Sign up</span></a>

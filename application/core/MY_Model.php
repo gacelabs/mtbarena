@@ -8,6 +8,18 @@ class MY_Model extends CI_Model {
 		parent::__construct();
 	}
 
+	public function query($string=FALSE)
+	{
+		if ($string) {
+			$data = $this->db->query($string);
+			// debug($data);
+			if ($data->num_rows()) {
+				return $data->result_array();
+			}
+		}
+		return FALSE;
+	}
+
 	public function add($table=FALSE, $post=FALSE, $redirect_url='')
 	{
 		if ($table AND $post) {

@@ -227,7 +227,7 @@ function files_upload($_files=FALSE, $return_path=FALSE, $dir='') {
 		// debug($uploaddir, 1);
 		// debug($_files, 1);
 		if ($return_path AND isset($input)) {
-			return 'assets/data/files/'.$dir.'/'.$_files[$input]['name'];
+			return 'assets/data/files/'.$dir.'/'.($_files[$input]['name'] == '' ? 'none.png' : $_files[$input]['name']);
 		} else {
 			return $result;
 		}
