@@ -14,7 +14,7 @@ class Custom_Model extends MY_Model {
 		}
 		return $this->query("
 		SELECT DISTINCT 
-				u.store_name, CONCAT(b.user_id, '-', b.id, '/mtb/', LOWER(REPLACE(b.bike_model, ' ', '-')), '-full-specifications') AS bike_url, b.*
+				u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', LOWER(REPLACE(b.bike_model, ' ', '-')), '-full-specifications') AS bike_url, b.*
 			FROM bike_items b 
 				INNER JOIN users u ON u.id = b.user_id 
 			$where_clause
@@ -23,17 +23,21 @@ class Custom_Model extends MY_Model {
 		");
 	}
 
-	public function compare_first_load($limit=FALSE, $offset=FALSE)
+	public function compare_first_load($limit=FALSE, $offset=FALSE, $clause=FALSE)
 	{
 		if ($limit) {
 			if ($offset) {
-				$query = $this->db->order_by('popularity', 'DESC')->limit($limit, $offset)->get('compares');
+				$this->db->order_by('popularity', 'DESC')->limit($limit, $offset);
 			} else {
-				$query = $this->db->order_by('popularity', 'DESC')->limit($limit)->get('compares');
+				$this->db->order_by('popularity', 'DESC')->limit($limit);
 			}
 		} else {
-			$query = $this->db->order_by('popularity', 'DESC')->get('compares');
+			$this->db->order_by('popularity', 'DESC');
 		}
+		if ($clause) {
+			$this->db->where($clause);
+		}
+		$query = $this->db->get('compares');
 		if ($query->num_rows()) {
 			$compares = $query->result_array();
 			foreach ($compares as $key => $row) {

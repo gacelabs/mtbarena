@@ -6,63 +6,70 @@ class Compare extends MY_Controller {
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
-		if ($get) {
-			debug($get, 1);
+		if ($id_user_id AND $bike_model) {
+			if ($get) {
+				$id_user_id = trim($get['id_user_id']);
+				$bike_model = trim($get['bike_model']);
+			}
+			$where = construct_where($id_user_id, 'compares.');
+			$compares = $this->custom_model->compare_first_load(FALSE, FALSE, $where);
+			// debug($compares, 1);
 		} else {
-			$structure = array(
-				'metas' => array(
-					''
-				),
-				'css_links' => array(
-					'assets/css/defaults',
-					'assets/css/mtb-compare-bike-tiles',
-					'assets/css/mediaquery',
-				),
-				'title' => 'Bike Model 1 VS. Bike Model 2',
-				'body_id' => 'compare',
-				'body_class' => 'compare',
-				'page_nav' => 'page_statics/main_nav',
-				'bikes_to_compare' => '',
-				'page_left_column' => array(
-					'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
-					'ui_elements' => array(
-						'widget_elements/most_viewed_bikes_list',
-						'widget_elements/popular_comparison_list'
-					),
-				),
-				'page_center_column' => array(
-					'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
-					'ui_elements' => array(
-						'page_elements/mtb_compare_bike_tiles'
-					)
-				),
-				'page_right_column' => array(
-					'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
-					'ui_elements' => array(
-					)
-				),
-				'page_footer' => array(
-					'column_visibility_class' => '',
-					'ui_elements' => array(
-					)
-				),
-				'modals' => array(
-					'modal_elements/login'
-				),
-				'page_data' => array(
-					'compares' => $this->custom_model->compare_first_load(),
-					'mostviews' => $this->custom_model->bike_items(10),
-					'populars' => $this->custom_model->compare_first_load(10)
-				),
-				'footer_scripts' => array(
-					'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
-					'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
-					'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
-					'<script type="text/javascript" src="'.base_url('assets/js/mtb-bike-specs.js').'"></script>'
-				)
-			);
-			$this->load->view('page_templates/main_template', $structure);
+			$compares = $this->custom_model->compare_first_load();
 		}
+		$structure = array(
+			'metas' => array(
+				''
+			),
+			'css_links' => array(
+				'assets/css/defaults',
+				'assets/css/mtb-compare-bike-tiles',
+				'assets/css/mediaquery',
+			),
+			'title' => 'Bike Model 1 VS. Bike Model 2',
+			'body_id' => 'compare',
+			'body_class' => 'compare',
+			'page_nav' => 'page_statics/main_nav',
+			'bikes_to_compare' => '',
+			'page_left_column' => array(
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
+				'ui_elements' => array(
+					'widget_elements/most_viewed_bikes_list',
+					'widget_elements/popular_comparison_list'
+				),
+			),
+			'page_center_column' => array(
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'ui_elements' => array(
+					'page_elements/mtb_compare_bike_tiles'
+				)
+			),
+			'page_right_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				)
+			),
+			'page_footer' => array(
+				'column_visibility_class' => '',
+				'ui_elements' => array(
+				)
+			),
+			'modals' => array(
+				'modal_elements/login'
+			),
+			'page_data' => array(
+				'compares' => $compares,
+				'mostviews' => $this->custom_model->bike_items(10),
+				'populars' => $this->custom_model->compare_first_load(10)
+			),
+			'footer_scripts' => array(
+				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/mtb-bike-specs.js').'"></script>'
+			)
+		);
+		$this->load->view('page_templates/main_template', $structure);
 	}
 
 	public function add()

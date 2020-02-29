@@ -2,10 +2,10 @@
 
 class SingleBike extends MY_Controller {
 
-	public function index($id_post_id=FALSE, $bike_model=FALSE)
+	public function index($id_user_id=FALSE, $bike_model=FALSE)
 	{
 		if ($bike_model) {
-			$where = construct_where($id_post_id, 'b.');
+			$where = construct_where($id_user_id, 'b.');
 		}
 		$structure = array(
 			'metas' => array(

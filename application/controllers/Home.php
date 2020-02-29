@@ -14,7 +14,7 @@ class Home extends MY_Controller {
 				'assets/css/mtb-bike-specs',
 				'assets/css/mediaquery'
 			),
-			'title' => 'MTB Arena | Home',
+			'title' => 'Home | MTB Arena',
 			'body_id' => 'landing',
 			'body_class' => 'landing',
 			'page_nav' => 'page_statics/main_nav',

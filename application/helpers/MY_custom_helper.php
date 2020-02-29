@@ -240,7 +240,7 @@ function construct_where($id_post_id=FALSE, $table_or_alias='') {
 		$data = explode('-', $id_post_id);
 		// debug($data, 1);
 		if (count($data) == 2) {
-			return $table_or_alias.'id = '.$data[1].' AND '.$table_or_alias.'user_id = '.$data[0];
+			return $table_or_alias.'id = '.$data[0].' AND '.$table_or_alias.'user_id = '.$data[1];
 		}
 	}
 	return FALSE;
