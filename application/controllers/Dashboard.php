@@ -190,10 +190,17 @@ class Dashboard extends MY_Controller {
 	{
 		$this->load->model('custom_model');
 		$post = $this->input->get();
-		// $post['query'] = "se";
-		if ($post) $query = trim($post['keyword']);
+		$and = "";
+		if ($post) {
+			$query = trim($post['keyword']);
+			if (isset($post['id:not'])) {
+				$and = " AND b.id != '".$post['id:not']."'";
+			} elseif (isset($post['id:is'])) {
+				$and = " AND b.id = '".$post['id:is']."'";
+			}
+		}
 		// debug($post, 1);
-		$bike_items = $this->custom_model->bike_items(FALSE, "b.bike_model LIKE '%$query%'");
+		$bike_items = $this->custom_model->bike_items(FALSE, "b.bike_model LIKE '%$query%'".$and);
 		// debug($bike_items, 1);
 		echo json_encode($bike_items);
 	}

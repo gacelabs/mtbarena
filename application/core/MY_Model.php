@@ -10,6 +10,28 @@ class MY_Model extends CI_Model {
 		// debug($ci->accounts);
 	}
 
+	public function get($table=FALSE, $where=FALSE, $field=FALSE, $func='result', $redirect_url='')
+	{
+		if ($table) {
+			if ($field) {
+				$this->db->select($field);
+			}
+			if ($where) {
+				$this->db->where($where);
+			}
+			$data = $this->db->get($table);
+			// debug($data);
+			if ($data->num_rows()) {
+				if ($redirect_url != '') {
+					redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
+				} else {
+					return $data->{$func.'_array'}();
+				}
+			}
+		}
+		return FALSE;
+	}
+
 	public function query($string=FALSE)
 	{
 		if ($string) {
@@ -26,6 +48,19 @@ class MY_Model extends CI_Model {
 	{
 		if ($table AND $post) {
 			$this->db->insert($table, $post);
+			if ($redirect_url != '') {
+				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
+			} else {
+				return $this->db->insert_id();
+			}
+		}
+		return FALSE;
+	}
+
+	public function save($table=FALSE, $set=FALSE, $where=FALSE, $redirect_url='')
+	{
+		if ($table AND $set AND $where) {
+			$this->db->update($table, $set, $where);
 			if ($redirect_url != '') {
 				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
 			} else {
