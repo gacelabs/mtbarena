@@ -14,7 +14,7 @@ class Custom_Model extends MY_Model {
 		}
 		return $this->query("
 		SELECT DISTINCT 
-				u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', LOWER(REPLACE(b.bike_model, ' ', '-')), '-full-specifications') AS bike_url, b.*
+				u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
 			FROM bike_items b 
 				INNER JOIN users u ON u.id = b.user_id 
 			$where_clause

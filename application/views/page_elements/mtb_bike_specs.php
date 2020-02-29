@@ -56,18 +56,24 @@
 			<div class="mtb-main-parent" id="mtbMainParent">
 
 				<!-- LOOP here -->
-				<div class="mtb-item-specs-parent">
-					<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
-						<small class="color-theme mtb-item-spec-label-text">Made by</small>
-					</div>
-					<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
-						<?php foreach ($page_data['bikes'] as $key => $bike): ?>
-							<div class="mtb-item-spec-desc-inner">
-								<p class="mtb-item-spec-desc-text zero-gap"><?php echo ucfirst($bike['made_by']);?></p>
+				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
+					<?php foreach ($bike as $field => $value): ?>
+						<?php if (!in_array($field, ['id','user_id','bike_url','store_name','feat_photo','spec_from','price','view_count','compare_count','added','updated'])): ?>
+							<div class="mtb-item-specs-parent">
+								<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+									<small class="color-theme mtb-item-spec-label-text"><?php echo str_replace('_', ' ', $field);?></small>
+								</div>
+								<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+									<?php for ($i=0; $i < $bikeCount; $i++): ?>
+										<div class="mtb-item-spec-desc-inner">
+											<p class="mtb-item-spec-desc-text zero-gap"><?php echo $page_data['bikes'][$i][$field];?></p>
+										</div>
+									<?php endfor ?>
+								</div>
 							</div>
-						<?php endforeach ?>
-					</div>
-				</div>
+						<?php endif ?>
+					<?php endforeach ?>
+				<?php endforeach ?>
 				<!-- LOOP here -->
 
 			</div>

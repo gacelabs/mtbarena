@@ -181,6 +181,7 @@ class Dashboard extends MY_Controller {
 		// debug($_FILES);
 		$filename = files_upload($_FILES, TRUE, 'bikes/images');
 		$post['feat_photo'] = $filename;
+		$post['user_id'] = $this->accounts->profile['id'];
 		// debug($post, 1);
 		return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
 	}
