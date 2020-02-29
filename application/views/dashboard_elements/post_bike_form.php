@@ -4,7 +4,7 @@
 	</div>
 	<div class="box-item-body" style="padding:10px 0;">
 		<div class="table-responsive post-bike-parent-box">
-			<form action="/dashboard/add_item" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<form action="<?php echo base_url('dashboard/add_item');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="bike_model">Bike Model Name</label>
