@@ -8,7 +8,7 @@
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="bike_model">Bike Model Name</label>
-						<input type="text" class="form-control" name="bike_model" id="bike_model">
+						<input type="text" class="form-control" name="bike_model" id="bike_model" required>
 					</div>
 				</div>
 				
@@ -57,7 +57,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="made_by" id="made_by"></textarea>
+													<textarea rows="2" class="form-control" name="made_by" id="made_by" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -71,7 +71,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="colorway" id="colorway"></textarea>
+													<textarea rows="2" class="form-control" name="colorway" id="colorway" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -85,7 +85,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group" style="margin-bottom: 0;">
-													<textarea rows="2" class="form-control" name="frame" id="frame"></textarea>
+													<textarea rows="2" class="form-control" name="frame" id="frame" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -159,7 +159,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="cassette" id="cassette"></textarea>
+													<textarea rows="2" class="form-control" name="cassette" id="cassette" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -173,7 +173,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="chain" id="chain"></textarea>
+													<textarea rows="2" class="form-control" name="chain" id="chain" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -187,7 +187,7 @@
 											</li>
 											<li style="padding-left:10px;" style="margin-bottom: 0;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="brake" id="brake"></textarea>
+													<textarea rows="2" class="form-control" name="brake" id="brake" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -210,7 +210,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="rim" id="rim"></textarea>
+													<textarea rows="2" class="form-control" name="rim" id="rim" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -223,7 +223,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="tires" id="tires"></textarea>
+													<textarea rows="2" class="form-control" name="tires" id="tires" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -236,7 +236,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="chainwheel" id="chainwheel"></textarea>
+													<textarea rows="2" class="form-control" name="chainwheel" id="chainwheel" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -249,7 +249,7 @@
 											</li>
 											<li style="padding-left:10px;" style="margin-bottom: 0;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="hub" id="hub"></textarea>
+													<textarea rows="2" class="form-control" name="hub" id="hub" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -272,7 +272,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="saddle" id="saddle"></textarea>
+													<textarea rows="2" class="form-control" name="saddle" id="saddle" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -285,7 +285,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="seatpost" id="seatpost"></textarea>
+													<textarea rows="2" class="form-control" name="seatpost" id="seatpost" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -298,7 +298,7 @@
 											</li>
 											<li style="padding-left:10px;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="stem" id="stem"></textarea>
+													<textarea rows="2" class="form-control" name="stem" id="stem" required></textarea>
 												</div>
 											</li>
 										</ul>
@@ -311,7 +311,7 @@
 											</li>
 											<li style="padding-left:10px;" style="margin-bottom: 0;">
 												<div class="form-group">
-													<textarea rows="2" class="form-control" name="handlebar" id="handlebar"></textarea>
+													<textarea rows="2" class="form-control" name="handlebar" id="handlebar" required></textarea>
 												</div>
 											</li>
 										</ul>

@@ -1,4 +1,4 @@
-<div class="stick-me">
+<div class="stick-me dashboard-menu-parent">
 	<div class="box-item">
 		<div class="box-item-body-top">
 			<p class="zero-gap color-theme"><b>Store Name</b></p>

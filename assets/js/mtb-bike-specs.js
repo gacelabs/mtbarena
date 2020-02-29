@@ -1,33 +1,3 @@
-$(window).on('load resize change', function() {
-
-	// shrinks model image on scroll
-	$(function() {
-		var	scrollPosition = 100;
-
-		window.onscroll = function() {
-
-			if (window.pageYOffset > scrollPosition) {
-				$('.mtb-item-image').addClass('mtbImageShrinker');
-				$('.bikeStickyName').css('box-shadow', '0px 2px 4px 0px rgba(0,0,0,0.1)');
-				$('.changeBikeInput').val('').blur();
-				$('.inputDropdown').remove();
-			} else if (window.pageYOffset < 30) {
-				$('.changeBikeInput').val('').blur();
-				$('.inputDropdown').remove();
-				$('.bikeStickyName').css('box-shadow', '');
-			}
-
-
-			if (window.pageYOffset == 0) {
-				$(document).click($('.mtbImageShrinker'), function() {
-					$('.mtb-item-image').removeClass('mtbImageShrinker');
-				});
-			}
-		};
-	});
-
-});
-
 // input dropdown for changeBikeInput
 $(function() {
 	$('.changeBikeInput').on('keyup', function() {

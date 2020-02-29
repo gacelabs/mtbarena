@@ -39,7 +39,7 @@
 				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
 					<div class="mtb-item-model-parent">
 						<div class="mtb-item-model-inner">
-							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
+							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image shrinkMe image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
 							<div class="modelItemLabelBox">
 								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="<?php echo ucwords($bike['bike_model']);?>">
 								<span class="compare-search-icon"><i class="fa fa-search"></i></span>
@@ -67,7 +67,7 @@
 									<?php for ($i=0; $i < $bikeCount; $i++): ?>
 										<div class="mtb-item-spec-desc-inner">
 											<p class="mtb-item-spec-desc-text zero-gap">
-												<?php if ($field == 'external_link'): ?><a target="_blank" href="<?php echo $page_data['bikes'][$i][$field];?>"><?php endif ?>
+												<?php if ($field == 'external_link'): ?><a class="external-link" target="_blank" href="<?php echo $page_data['bikes'][$i][$field];?>"><?php endif ?>
 												<?php echo $page_data['bikes'][$i][$field];?>
 												<?php if ($field == 'external_link'): ?></a><?php endif ?>
 											</p>
