@@ -241,6 +241,8 @@ function construct_where($id_post_id=FALSE, $table_or_alias='') {
 		// debug($data, 1);
 		if (count($data) == 2) {
 			return $table_or_alias.'id = '.$data[0].' AND '.$table_or_alias.'user_id = '.$data[1];
+		} elseif (count($data) == 1) {
+			return $table_or_alias.'id = '.$data[0];
 		}
 	}
 	return FALSE;
@@ -321,13 +323,13 @@ function bike_search($query=FALSE)
 
 		$sql = "
 		SELECT 
-				u.store_name, CONCAT(b.user_id, '-', b.id, '/mtb/', LOWER(REPLACE(b.bike_model, ' ', '-')), '-full-specifications') AS bike_url,
+				u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url,
 				b.*, ((".implode(' + ', $titleSQL).") + (".implode(' + ', $sumSQL).") + (".implode(' + ', $docSQL).") + (".implode(' + ', $categorySQL).") + (".implode(' + ', $urlSQL).")) as Relevance 
 			FROM bike_items b 
 			INNER JOIN users u ON u.id = b.user_id
 		GROUP BY b.id 
 			HAVING Relevance > 0 
-		ORDER BY b.added DESC, b.updated DESC";
+		ORDER BY b.updated DESC";
 
 		// debug($sql, 1);
 		$data = $ci->db->query($sql);

@@ -39,9 +39,9 @@
 				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
 					<div class="mtb-item-model-parent">
 						<div class="mtb-item-model-inner">
-							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image image-cropped cover">
+							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
 							<div class="modelItemLabelBox">
-								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="GT Force Full Suspension">
+								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="<?php echo ucwords($bike['bike_model']);?>">
 								<span class="compare-search-icon"><i class="fa fa-search"></i></span>
 								<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?> (Posted: <?php echo date('M Y', strtotime($bike['added']));?>)</small></p>
 							</div>
@@ -58,7 +58,7 @@
 				<!-- LOOP here -->
 				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
 					<?php foreach ($bike as $field => $value): ?>
-						<?php if (!in_array($field, ['id','user_id','bike_url','store_name','feat_photo','spec_from','price','view_count','compare_count','added','updated'])): ?>
+						<?php if (!in_array($field, ['id','user_id','bike_model','bike_url','store_name','feat_photo','spec_from','price','view_count','compare_count','added','updated'])): ?>
 							<div class="mtb-item-specs-parent">
 								<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
 									<small class="color-theme mtb-item-spec-label-text"><?php echo str_replace('_', ' ', $field);?></small>
@@ -77,6 +77,7 @@
 							</div>
 						<?php endif ?>
 					<?php endforeach ?>
+					<?php break; ?>
 				<?php endforeach ?>
 				<!-- LOOP here -->
 

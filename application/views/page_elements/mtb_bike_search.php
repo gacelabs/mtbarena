@@ -9,7 +9,7 @@
 						<a id="compare-<?php echo $bike['id'];?>" href="<?php echo $bike['bike_url'];?>">
 							<div class="grid-column column-100">
 								<div class="mtb-item-model-inner">
-									<img src="<?php echo base_url($bike['feat_photo']); ?>" class="mtb-item-image image-cropped cover">
+									<img src="<?php echo base_url($bike['feat_photo']); ?>" class="mtb-item-image image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
 									<div class="text-center" style="padding:5px 0;">
 										<p class="color-theme text-ellipsis" style="margin-bottom:5px;"><b><?php echo $bike['bike_model'];?></b></p>
 										<button type="button" class="btn btn-xs btn-sq">

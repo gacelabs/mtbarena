@@ -54,13 +54,13 @@ class Custom_Model extends MY_Model {
 					");
 					if (isset($bike_data[0])) {
 						$compares[$key]['bike_data'][] = $bike_data[0];
-						// $url .= 'bike_'.($index+1).'='.urlencode($bike_data[0]['bike_model']).'&';
-						$url .= strtolower(preg_replace('/\s+/', '-', $bike_data[0]['bike_model'])).($index == 0 ? '-and-' : '');
+						$url .= 'bike_'.($index+1).'='.urlencode(str_replace("'", '', strtolower($bike_data[0]['bike_model']))).'&';
+						// $url .= strtolower(preg_replace('/\s+/', '-', $bike_data[0]['bike_model'])).($index == 0 ? '-and-' : '');
 					}
 				}
 				// $compares[$key]['bike_data'] = array_chunk($bike_data, 2);
-				// $compares[$key]['compare_url'] = $url.'_ref='.base64_encode(serialize(json_encode($bikes->id)));
-				$compares[$key]['compare_url'] = $row['id'].'-'.$row['user_id'].'/compare/'.str_replace("'", '', $url);
+				$compares[$key]['compare_url'] = 'compare?'.$url.'ref='.base64_encode($row['id']);
+				// $compares[$key]['compare_url'] = $row['id'].'-'.$row['user_id'].'/compare/'.str_replace("'", '', $url);
 			}
 			// debug($compares, 1);
 			return $compares;
