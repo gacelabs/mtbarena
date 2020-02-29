@@ -5,9 +5,9 @@ class Compare extends MY_Controller {
 	public function index()
 	{
 		$this->load->model('custom_model');
-		$post = $this->input->get();
-		if ($post) {
-			debug($post, 1);
+		$get = $this->input->get();
+		if ($get) {
+			debug($get, 1);
 		} else {
 			$structure = array(
 				'metas' => array(

@@ -7,7 +7,7 @@
 			<div class="box-item">
 				<div class="box-item-body">
 					<?php foreach ($page_data['compares'] as $key => $compare): ?>
-						<a id="compare-<?php echo $compare['id'];?>" href="/compare/?bike_1=<?php echo $compare['bike_data'][0]['bike_model'];?>&bike_2=<?php echo $compare['bike_data'][1]['bike_model'];?>">
+						<a id="compare-<?php echo $compare['id'];?>" href="<?php echo $compare['compare_url'];?>">
 							<div class="grid-column column-50-50">
 								<?php foreach ($compare['bike_data'] as $index => $bike): ?>
 									<div class="mtb-item-model-inner">
