@@ -78,7 +78,7 @@ class Compare extends MY_Controller {
 					'assets/css/mtb-compare-bike-tiles',
 					'assets/css/mediaquery',
 				),
-				'title' => 'Bike Model 1 VS. Bike Model 2',
+				'title' => 'Compare | MTB Arena',
 				'body_id' => 'compare',
 				'body_class' => 'compare',
 				'page_nav' => 'page_statics/main_nav',
