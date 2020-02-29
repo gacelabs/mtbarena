@@ -52,7 +52,7 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
-				'specs' => $this->custom_model->bike_items('all'),
+				'specs' => $this->custom_model->bike_items(3),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -184,5 +184,17 @@ class Dashboard extends MY_Controller {
 		$post['user_id'] = $this->accounts->profile['id'];
 		// debug($post, 1);
 		return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
+	}
+
+	public function search($query='')
+	{
+		$this->load->model('custom_model');
+		$post = $this->input->get();
+		// $post['query'] = "se";
+		if ($post) $query = trim($post['keyword']);
+		// debug($post, 1);
+		$bike_items = $this->custom_model->bike_items(FALSE, "b.bike_model LIKE '%$query%'");
+		// debug($bike_items, 1);
+		echo json_encode($bike_items);
 	}
 }
