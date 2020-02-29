@@ -18,6 +18,7 @@ class Dashboard extends MY_Controller {
 			'css_links' => array(
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
+				'assets/css/post-bike',
 				'assets/css/bs-select.min'
 			),
 			'title' => 'MTB Arena | Post new bike',
@@ -26,7 +27,7 @@ class Dashboard extends MY_Controller {
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
-				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/menu'
 				),
@@ -58,6 +59,7 @@ class Dashboard extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-bike.js').'"></script>'
 			)
 		);
@@ -82,7 +84,7 @@ class Dashboard extends MY_Controller {
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
-				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/menu'
 				),
@@ -137,7 +139,7 @@ class Dashboard extends MY_Controller {
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
-				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/menu'
 				),

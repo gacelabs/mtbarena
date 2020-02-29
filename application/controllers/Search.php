@@ -27,6 +27,7 @@ class Search extends CI_Controller {
 				'css_links' => array(
 					'assets/css/defaults',
 					'assets/css/mtb-bike-specs',
+					'assets/css/search',
 					'assets/css/mediaquery'
 				),
 				'title' => 'MTB Arena | Search',

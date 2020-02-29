@@ -1,0 +1,18 @@
+#bike_model {
+	text-transform: capitalize;
+}
+.post-bike-parent-box {
+	min-height: .01%;
+	border: 0 none;
+}
+@media screen and (max-width: 767px) {
+	.post-bike .grid-column {
+		display: block;
+	}
+	.post-bike .grid-column>li {
+		padding: 0 !important;
+	}
+	.post-bike .grid-column>li:first-child {
+		margin-bottom: 5px;
+	}
+}

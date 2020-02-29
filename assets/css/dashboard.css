@@ -2,3 +2,8 @@
 	font-weight: bold;
 	color: #7f2496;
 }
+@media screen and (max-width: 767px) {
+	.dashboard-menu-parent {
+		margin-bottom: 15px;
+	}
+}

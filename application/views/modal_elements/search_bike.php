@@ -8,7 +8,7 @@
 			<div class="modal-body">
 				<ul class="grid-column column-50-50">
 					<li style="padding-right:10px;">
-						<?php $this->load->view('widget_elements/most_viewed_bikes'); ?>
+						<?php $this->load->view('widget_elements/most_viewed_bikes_list'); ?>
 					</li>
 					<li>
 						<form action="" method="post">

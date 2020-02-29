@@ -93,6 +93,9 @@ $(document).ready(function() {
 		}
 	});
 
+
+	
+
 });
 
 $(window).on('load resize change', function() {
@@ -166,6 +169,7 @@ $(window).on('load resize change', function() {
 $(function() {
 	window.onscroll = function() {
 		stickyFunction();
+		shrinksModelImage();
 	};
 
 	var stickMeElemArr = [],
@@ -189,4 +193,30 @@ $(function() {
 			}
 		}
 	}
+
+	// shrinks model image on scroll
+	var	scrollPosition = 100;
+
+	function shrinksModelImage() {
+
+		if (window.pageYOffset > scrollPosition) {
+			$('.mtb-item-image.shrinkMe').addClass('mtbImageShrinker');
+			$('.bikeStickyName').css('box-shadow', '0px 2px 4px 0px rgba(0,0,0,0.1)');
+			$('.changeBikeInput').val('').blur();
+			$('.inputDropdown').remove();
+		} else if (window.pageYOffset < 30) {
+			$('.changeBikeInput').val('').blur();
+			$('.inputDropdown').remove();
+			$('.bikeStickyName').css('box-shadow', '');
+		}
+
+
+		if (window.pageYOffset == 0) {
+			$(document).click($('.mtbImageShrinker'), function() {
+				$('.mtb-item-image.shrinkMe').removeClass('mtbImageShrinker');
+			});
+		}
+	};
 });
+
+

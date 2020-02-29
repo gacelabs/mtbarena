@@ -39,7 +39,7 @@
 				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
 					<div class="mtb-item-model-parent">
 						<div class="mtb-item-model-inner">
-							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
+							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image shrinkMe image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
 							<div class="modelItemLabelBox">
 								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="<?php echo ucwords($bike['bike_model']);?>" data-id="<?php echo $bike['id'];?>" data-name="<?php echo $bike['bike_model'];?>">
 								<span class="compare-search-icon"><i class="fa fa-search"></i></span>

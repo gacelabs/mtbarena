@@ -1,0 +1,19 @@
+.mtb-compare-bike-tiles-parent * {
+	text-decoration: none !important;
+}
+.mtb-compare-bike-tiles-parent a:nth-child(odd) .grid-column-item-gutter {
+	padding: 0 5px 10px 0;
+}
+.mtb-compare-bike-tiles-parent a:nth-child(even) .grid-column-item-gutter {
+	padding: 0 0 10px 5px;
+}
+.mtb-compare-bike-tiles-parent .box-item-body, .mtb-item-model-inner {
+	padding: 0;
+}
+.search .mtb-item-image {
+	object-fit: cover !important;
+}
+.mtb-compare-bike-tiles-parent .grid-column-item-gutter:hover .box-item {
+	transition: all .3s ease-in-out;
+	box-shadow: 0 3px 5px -2px rgba(0,0,0,0.15);
+}

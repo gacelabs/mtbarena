@@ -77,7 +77,5 @@
 
 		<!-- footer scripts -->
 		<?php if ($footer_scripts) {foreach ($footer_scripts as $script) {echo $script;}} ?>
-
-		<script type="text/javascript" src="<?php echo base_url('assets/js/defaults.js'); ?>"></script>
 </body>
 </html>

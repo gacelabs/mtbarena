@@ -11,10 +11,10 @@
 .grid-column.column-50-50 {
 	transition: all .3s ease-in-out;
 }
-.grid-column-item-gutter:nth-child(odd) {
+.mtb-compare-bike-tiles-parent a:nth-child(odd) .grid-column-item-gutter {
 	padding: 0 5px 10px 0;
 }
-.grid-column-item-gutter:nth-child(even) {
+.mtb-compare-bike-tiles-parent a:nth-child(even) .grid-column-item-gutter {
 	padding: 0 0 10px 5px;
 }
 .grid-column .mtb-item-model-inner:first-child {
