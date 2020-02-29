@@ -27,7 +27,7 @@
 				<div class="<?php echo(!empty($page_left_column['column_visibility_class']) ? $page_left_column['column_visibility_class'] : ''); ?>">
 					<?php
 						foreach ($page_left_column['ui_elements'] as $ui_element) {
-							$this->load->view($ui_element, $page_data);
+							$this->load->view($ui_element);
 						}
 					?>
 				</div>
