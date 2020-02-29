@@ -66,7 +66,11 @@
 								<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 									<?php for ($i=0; $i < $bikeCount; $i++): ?>
 										<div class="mtb-item-spec-desc-inner">
-											<p class="mtb-item-spec-desc-text zero-gap"><?php echo $page_data['bikes'][$i][$field];?></p>
+											<p class="mtb-item-spec-desc-text zero-gap">
+												<?php if ($field == 'external_link'): ?><a target="_blank" href="<?php echo $page_data['bikes'][$i][$field];?>"><?php endif ?>
+												<?php echo $page_data['bikes'][$i][$field];?>
+												<?php if ($field == 'external_link'): ?></a><?php endif ?>
+											</p>
 										</div>
 									<?php endfor ?>
 								</div>

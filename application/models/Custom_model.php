@@ -60,7 +60,7 @@ class Custom_Model extends MY_Model {
 				}
 				// $compares[$key]['bike_data'] = array_chunk($bike_data, 2);
 				// $compares[$key]['compare_url'] = $url.'_ref='.base64_encode(serialize(json_encode($bikes->id)));
-				$compares[$key]['compare_url'] = $row['id'].'-'.$row['user_id'].'/compare/'.$url;
+				$compares[$key]['compare_url'] = $row['id'].'-'.$row['user_id'].'/compare/'.str_replace("'", '', $url);
 			}
 			// debug($compares, 1);
 			return $compares;

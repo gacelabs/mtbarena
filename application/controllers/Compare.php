@@ -6,6 +6,7 @@ class Compare extends MY_Controller {
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
+		// debug($get, 1);
 		if ($id_user_id AND $bike_model) {
 			if ($get) {
 				$id_user_id = trim($get['id_user_id']);
@@ -74,8 +75,9 @@ class Compare extends MY_Controller {
 
 	public function add()
 	{
-		$post = $this->input->post();
-		$post['bike_data'] = json_encode(['id' => [3,1]]);
+		// $post = $this->input->post();
+		$post = [];
+		$post['bike_data'] = json_encode(['id' => [1,3]]);
 		$post['user_id'] = $this->accounts->profile['id'];
 		// debug($post, 1);
 		return $this->custom_model->add('compares', $post, 'compare'); /*redirect to compare*/
