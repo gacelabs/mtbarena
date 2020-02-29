@@ -14,9 +14,13 @@ class Custom_Model extends MY_Model {
 		");
 	}
 
-	public function compare_first_load()
+	public function compare_first_load($limit=FALSE)
 	{
-		$query = $this->db->order_by('popularity', 'DESC')->get('compares');
+		if ($limit) {
+			$query = $this->db->order_by('popularity', 'DESC')->limit($limit)->get('compares');
+		} else {
+			$query = $this->db->order_by('popularity', 'DESC')->get('compares');
+		}
 		if ($query->num_rows()) {
 			$compares = $query->result_array();
 			foreach ($compares as $key => $row) {

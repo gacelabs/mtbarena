@@ -1,5 +1,5 @@
-<?php // debug($page_data['compares']); ?>
-<?php if (isset($page_data['compares']) AND $page_data['compares']): ?>
+<?php // debug($page_data['populars']); ?>
+<?php if (isset($page_data['populars']) AND $page_data['populars']): ?>
 	<div class="stick-me">
 		<div class="box-item">
 			<div class="box-item-body-top">
@@ -9,7 +9,7 @@
 				<div class="table-responsive">
 					<table class="table table-striped zero-gap">
 						<tbody>
-							<?php foreach ($page_data['compares'] as $key => $compare): ?>
+							<?php foreach ($page_data['populars'] as $key => $compare): ?>
 								<tr id="compare-<?php echo $compare['id'];?>">
 									<td>
 										<a href="/compare/?bike_1=<?php echo $compare['bike_data'][0]['bike_model'];?>&bike_2=<?php echo $compare['bike_data'][1]['bike_model'];?>">
