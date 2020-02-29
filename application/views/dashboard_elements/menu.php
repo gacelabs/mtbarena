@@ -2,7 +2,7 @@
 	<div class="box-item">
 		<div class="box-item-body-top">
 			<p class="zero-gap color-theme"><b>Store Name</b></p>
-			<p class="zero-gap color-theme"><small>User Name Here</small></p>
+			<p class="zero-gap color-theme"><small><?php echo $current_profile['store_name'];?></small></p>
 		</div>
 		<div class="box-item-body">
 			<div class="dashboard-menu-box">

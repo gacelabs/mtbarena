@@ -3,11 +3,11 @@
 	<div class="grid-column column-50-50 mtb-compare-bike-tiles-parent">
 
 		<!-- LOOP here -->
-		<div class="grid-column-item-gutter">
-			<div class="box-item">
-				<div class="box-item-body">
-					<?php foreach ($page_data['compares'] as $key => $compare): ?>
-						<a id="compare-<?php echo $compare['id'];?>" href="<?php echo $compare['compare_url'];?>">
+		<?php foreach ($page_data['compares'] as $key => $compare): ?>
+			<a id="compare-<?php echo $compare['id'];?>" href="<?php echo $compare['compare_url'];?>">
+				<div class="grid-column-item-gutter">
+					<div class="box-item">
+						<div class="box-item-body">
 							<div class="grid-column column-50-50">
 								<?php foreach ($compare['bike_data'] as $index => $bike): ?>
 									<div class="mtb-item-model-inner">
@@ -27,11 +27,11 @@
 									<?php endif ?>
 								<?php endforeach ?>
 							</div>
-						</a>
-					<?php endforeach ?>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
+			</a>
+		<?php endforeach ?>
 		<!-- LOOP here -->
 
 	</div>

@@ -1,12 +1,22 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class SingleBike extends MY_Controller {
+class Search extends CI_Controller {
 
-	public function index($id_post_id=FALSE, $bike_model=FALSE)
+	public function index($query='')
 	{
-		if ($bike_model) {
-			$where = construct_where($id_post_id, 'b.');
+		$this->load->model('custom_model');
+		$post = $this->input->get();
+		// $post['query'] = "se";
+		// debug($post, 1);
+		if ($post) $query = trim($post['keyword']);
+		if (mb_strlen($query) === 0){
+			/*no need for empty search right?*/
+			$bike_items = $this->custom_model->bike_items('all');
+		} else {
+			$bike_items = bike_search($query);
 		}
+		// debug($bike_items, 1);
 		$structure = array(
 			'metas' => array(
 				''
@@ -16,11 +26,11 @@ class SingleBike extends MY_Controller {
 				'assets/css/mtb-bike-specs',
 				'assets/css/mediaquery'
 			),
-			'title' => fix_title($bike_model) . ' Full Specifications | MTB Arena',
-			'body_id' => 'singleBike',
-			'body_class' => 'single-bike',
+			'title' => 'MTB Arena | Search',
+			'body_id' => 'search',
+			'body_class' => 'search',
 			'page_nav' => 'page_statics/main_nav',
-			'bikes_to_compare' => 1,
+			'bikes_to_compare' => '',
 			'page_left_column' => array(
 				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
 				'ui_elements' => array(
@@ -31,7 +41,7 @@ class SingleBike extends MY_Controller {
 			'page_center_column' => array(
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
-					'page_elements/mtb_bike_specs'
+					'page_elements/mtb_bike_search'
 				)
 			),
 			'page_right_column' => array(
@@ -42,14 +52,13 @@ class SingleBike extends MY_Controller {
 			'page_footer' => array(
 				'column_visibility_class' => '',
 				'ui_elements' => array(
-
 				)
 			),
 			'modals' => array(
-				'modal_elements/search_bike'
+				'modal_elements/login'
 			),
 			'page_data' => array(
-				'bikes' => $this->custom_model->bike_items(1, $where),
+				'bikes' => $bike_items,
 				'mostviews' => $this->custom_model->bike_items(10),
 				'populars' => $this->custom_model->compare_first_load(10)
 			),
@@ -60,7 +69,6 @@ class SingleBike extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/mtb-bike-specs.js').'"></script>'
 			)
 		);
-
 		$this->load->view('page_templates/main_template', $structure);
 	}
 }

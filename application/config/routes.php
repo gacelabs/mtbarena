@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 // $route['index'] = 'home';
 // $route[''] = 'home';
+$route['search'] = 'search';
+$route['search/(:any)'] = 'search/index/$1';
 
 $route['dashboard'] = 'dashboard';
 $route['dash'] = 'dashboard';
@@ -17,10 +19,10 @@ $route['logout'] = 'profile/sign_out';
 
 // url = mtbarena.com/compare?bike=model-here&bike=model-here/
 $route['compare'] = 'compare';
-
+$route['(:any)/compare/(:any)'] = 'compare/index/$1/$2';
 
 // url = mtbarena.com/mtb/model-here-full-specifications/
-$route['mtb'] = 'singlebike';
+$route['(:any)/mtb/(:any)'] = 'singlebike/index/$1/$2';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

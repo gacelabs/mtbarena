@@ -233,3 +233,108 @@ function files_upload($_files=FALSE, $return_path=FALSE, $dir='') {
 		}
 	}
 }
+
+function construct_where($id_post_id=FALSE, $table_or_alias='') {
+	// debug($id_post_id);
+	if ($id_post_id) {
+		$data = explode('-', $id_post_id);
+		// debug($data, 1);
+		if (count($data) == 2) {
+			return $table_or_alias.'id = '.$data[1].' AND '.$table_or_alias.'user_id = '.$data[0];
+		}
+	}
+	return FALSE;
+}
+
+function fix_title($title=FALSE) {
+	if ($title) {
+		return ucwords(preg_replace('/[-]/', ' ', $title));
+	}
+	return '';
+}
+
+function bike_search($query=FALSE)
+{
+	if ($query) {
+		$ci =& get_instance();
+		/*limit words number of characters*/
+		$query = substr($query, 0, 200);
+
+		/*Weighing scores*/
+		$score_bike_model = 6;
+		$score_bike_model_keyword = 5;
+		$score_made_by = 5;
+		$score_made_by_keyword = 4;
+		$score_full_content = 4;
+		$score_content_keyword = 3;
+		$score_spec_keyword = 2;
+		$score_url_keyword = 1;
+
+		/*Remove unnecessary words from the search term and return them as an array*/
+		$query = trim(preg_replace("/(\s+)+/", " ", $query));
+		$keywords = [];
+		/*expand this list with your words.*/
+		$list = ["in","it","a","the","of","or","I","you","he","me","us","they","she","to","but","that","this","those","then","by"];
+		$c = 0;
+		$separated_spaces = explode(" ", $query);
+		if (count($separated_spaces) > 0){
+			foreach($separated_spaces as $key){
+				if (in_array($key, $list)) continue;
+				$keywords[] = $key;
+				if ($c >= 15) break;
+				$c++;
+			}
+		}
+		$escQuery = $ci->db->escape_like_str($query); /*see note above to get db object*/
+		$titleSQL = [];
+		$sumSQL = [];
+		$docSQL = [];
+		$categorySQL = [];
+		$urlSQL = [];
+
+		/** Matching full occurences **/ 
+		$full_content = "CONCAT(REPLACE(b.feat_photo, 'assets/data/files/bikes/images/', ''),' ',b.colorway,' ',b.frame,' ',b.shifter,' ',b.front_derailleur,' ',b.rear_derailleur,' ',b.cassette,' ',b.chain,' ',b.brake,' ',b.rim,' ',b.tires,' ',b.chainwheel,' ',b.hub,' ',b.saddle,' ',b.seatpost,' ',b.stem,' ',b.handlebar,' ',b.price_tag)";
+		if (count($keywords) > 1){
+			$titleSQL[] = "IF(b.bike_model LIKE '%".$escQuery."%',{$score_bike_model},0)";
+			$sumSQL[] = "IF(b.made_by LIKE '%".$escQuery."%',{$score_made_by},0)";
+			$docSQL[] = "IF($full_content LIKE '%".$escQuery."%',{$score_full_content},0)";
+		}
+
+		/** Matching Keywords **/
+		if (count($keywords) > 0){
+			foreach($keywords as $key){
+				$titleSQL[] = "IF(b.bike_model LIKE '%".$ci->db->escape_like_str($key)."%',{$score_bike_model_keyword},0)";
+				$sumSQL[] = "IF(b.made_by LIKE '%".$ci->db->escape_like_str($key)."%',{$score_made_by_keyword},0)";
+				$docSQL[] = "IF($full_content LIKE '%".$ci->db->escape_like_str($key)."%',{$score_content_keyword},0)";
+				$urlSQL[] = "IF(b.external_link LIKE '%".$ci->db->escape_like_str($key)."%',{$score_url_keyword},0)";
+				$categorySQL[] = "IF(b.spec_from LIKE '%".$ci->db->escape_like_str($key)."%',{$score_spec_keyword},0)";
+			}
+		}
+
+		/*Just incase it's empty, add 0*/
+		if (empty($titleSQL)) $titleSQL[] = 0;
+		if (empty($sumSQL)) $sumSQL[] = 0;
+		if (empty($docSQL)) $docSQL[] = 0;
+		if (empty($urlSQL)) $urlSQL[] = 0;
+		if (empty($tagSQL)) $tagSQL[] = 0;
+		if (empty($categorySQL)) $categorySQL[] = 0;
+
+		$sql = "
+		SELECT 
+				u.store_name, CONCAT(b.user_id, '-', b.id, '/mtb/', LOWER(REPLACE(b.bike_model, ' ', '-')), '-full-specifications') AS bike_url,
+				b.*, ((".implode(' + ', $titleSQL).") + (".implode(' + ', $sumSQL).") + (".implode(' + ', $docSQL).") + (".implode(' + ', $categorySQL).") + (".implode(' + ', $urlSQL).")) as Relevance 
+			FROM bike_items b 
+			INNER JOIN users u ON u.id = b.user_id
+		GROUP BY b.id 
+			HAVING Relevance > 0 
+		ORDER BY b.added DESC, b.updated DESC";
+
+		// debug($sql, 1);
+		$data = $ci->db->query($sql);
+
+		if ($data->num_rows() > 0){
+			return $data->result_array();
+		}
+		return FALSE;
+	}
+}

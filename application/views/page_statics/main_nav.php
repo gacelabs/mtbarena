@@ -11,11 +11,11 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<form class="navbar-form navbar-left">
+			<form action="/search" class="navbar-form navbar-left">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search..." id="searchInput" style="border-radius:0;box-shadow:none;">
+					<input type="text" class="form-control" placeholder="Search..." name="keyword" id="searchInput" style="border-radius:0;box-shadow:none;">
 					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="border-radius:0;box-shadow:none;outline:none;"><i class="fa fa-search"></i></button>
+						<button class="btn btn-default" type="submit" style="border-radius:0;box-shadow:none;outline:none;"><i class="fa fa-search"></i></button>
 					</span>
 				</div>
 			</form>

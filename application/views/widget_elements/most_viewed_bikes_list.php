@@ -18,7 +18,7 @@
 						<?php foreach ($page_data['mostviews'] as $key => $bike): ?>
 							<tr>
 								<th scope="row"><?php echo $key+1;?></th>
-								<td><a href=""><?php echo $bike['bike_model'];?></a></td>
+								<td><a href="<?php echo $bike['bike_url'];?>"><?php echo $bike['bike_model'];?></a></td>
 								<td><?php echo $bike['view_count'];?></td>
 							</tr>
 						<?php endforeach ?>

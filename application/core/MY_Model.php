@@ -6,6 +6,8 @@ class MY_Model extends CI_Model {
 	public function __construct()
 	{
 		parent::__construct();
+		// $ci =& get_instance();
+		// debug($ci->accounts);
 	}
 
 	public function query($string=FALSE)

@@ -29,10 +29,11 @@
 							<li style="padding-left:10px;">
 								<div class="form-group bs-select-parent">
 									<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
-										<option data-tokens="trinx x1 elite 2020" data-subtext="Trinx Official (Updated: Feb 2020)">Trinx X1 Elite 2020</option>
-										<option data-tokens="phantom 601" data-subtext="Ava Bike Shop (Posted: Dec 2019)">Phantom 601</option>
-										<option data-tokens="keysto conquest" data-subtext="Ema Margaret Cycling (Posted: May 2019)">Keysto Conquest</option>
-										<option data-tokens="cannondale carbon fiber" data-subtext="Decimal Bike Supplier (Updated: Nov 2019)">Cannondale Carbon Fiber</option>
+										<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
+											<?php foreach ($page_data['specs'] as $key => $bike): ?>
+												<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-bike="<?php echo $bike['id'];?>"><?php echo $bike['bike_model'];?></option>
+											<?php endforeach ?>
+										<?php endif ?>
 									</select>
 								</div>
 							</li>

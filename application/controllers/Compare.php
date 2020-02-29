@@ -2,7 +2,7 @@
 
 class Compare extends MY_Controller {
 
-	public function index()
+	public function index($id_user_id=FALSE, $bike_model=FALSE)
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
@@ -51,7 +51,7 @@ class Compare extends MY_Controller {
 				),
 				'page_data' => array(
 					'compares' => $this->custom_model->compare_first_load(),
-					'mostviews' => $this->custom_model->home_first_load(10),
+					'mostviews' => $this->custom_model->bike_items(10),
 					'populars' => $this->custom_model->compare_first_load(10)
 				),
 				'footer_scripts' => array(
@@ -68,7 +68,8 @@ class Compare extends MY_Controller {
 	public function add()
 	{
 		$post = $this->input->post();
-		$post['bike_data'] = json_encode(['id' => [2,1]]);
+		$post['bike_data'] = json_encode(['id' => [3,1]]);
+		$post['user_id'] = $this->accounts->profile['id'];
 		// debug($post, 1);
 		return $this->custom_model->add('compares', $post, 'compare'); /*redirect to compare*/
 	}

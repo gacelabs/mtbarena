@@ -11,6 +11,7 @@ class Accounts {
 	{
 		$this->class =& get_instance();
 		$this->has_session = $this->class->session->userdata('profile') ? TRUE : FALSE;
+		$this->profile = $this->class->session->userdata('profile');
 	}
 
 	public function check_credits($credits=FALSE, $table='users')
