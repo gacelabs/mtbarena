@@ -5,7 +5,6 @@ class Profile extends MY_Controller {
 
 	public function index()
 	{
-		redirect(base_url('login'));
 	}
 
 	public function sign_in()

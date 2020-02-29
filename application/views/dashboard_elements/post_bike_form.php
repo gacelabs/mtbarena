@@ -4,7 +4,7 @@
 	</div>
 	<div class="box-item-body" style="padding:10px 0;">
 		<div class="table-responsive post-bike-parent-box">
-			<form action="/dashboard/add_item" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<form action="<?php echo base_url('dashboard/add_item');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="bike_model">Bike Model Name</label>
@@ -31,7 +31,7 @@
 									<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
 										<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
 											<?php foreach ($page_data['specs'] as $key => $bike): ?>
-												<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-bike="<?php echo $bike['id'];?>"><?php echo $bike['bike_model'];?></option>
+												<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'><?php echo $bike['bike_model'];?></option>
 											<?php endforeach ?>
 										<?php endif ?>
 									</select>

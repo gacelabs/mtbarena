@@ -2,17 +2,17 @@
 
 class Compare extends MY_Controller {
 
-	public function index($id_user_id=FALSE, $bike_model=FALSE)
+	public function index($compare_id=FALSE, $bike_model=FALSE)
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
-		// debug($get, 1);
-		if ($id_user_id AND $bike_model) {
-			if ($get) {
-				$id_user_id = trim($get['id_user_id']);
-				$bike_model = trim($get['bike_model']);
-			}
-			$where = construct_where($id_user_id, 'compares.');
+		if ($get) {
+			$compare_id = trim(base64_decode($get['ref']));
+			$bike_model = trim($get['bike_1'].' ~and~ '.$get['bike_2']);
+			// debug("$compare_id AND $bike_model", 1);
+		}
+		if ($compare_id AND $bike_model) {
+			$where = construct_where($compare_id, 'compares.');
 			$compares = $this->custom_model->compare_first_load(FALSE, FALSE, $where);
 			// debug($compares, 1);
 		} else {
