@@ -16,7 +16,7 @@ class Custom_Model extends MY_Model {
 
 	public function compare_first_load()
 	{
-		$query = $this->db->order_by('popularity')->get('compares');
+		$query = $this->db->order_by('popularity', 'DESC')->get('compares');
 		if ($query->num_rows()) {
 			$compares = $query->result_array();
 			foreach ($compares as $key => $row) {
