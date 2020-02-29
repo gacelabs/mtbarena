@@ -23,7 +23,7 @@ class Compare extends MY_Controller {
 					'assets/css/mtb-bike-specs',
 					'assets/css/mediaquery'
 				),
-				'title' => 'Home | MTB Arena',
+				'title' => fix_title($get['bike_1']).' VS '.fix_title($get['bike_2']).' | MTB Arena',
 				'body_id' => 'landing',
 				'body_class' => 'landing',
 				'page_nav' => 'page_statics/main_nav',
