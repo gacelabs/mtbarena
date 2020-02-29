@@ -24,8 +24,8 @@ class Compare extends MY_Controller {
 					'assets/css/mediaquery'
 				),
 				'title' => fix_title($get['bike_1']).' VS '.fix_title($get['bike_2']).' | MTB Arena',
-				'body_id' => 'landing',
-				'body_class' => 'landing',
+				'body_id' => 'compare',
+				'body_class' => 'compare',
 				'page_nav' => 'page_statics/main_nav',
 				'bikes_to_compare' => 2,
 				'page_left_column' => array(
