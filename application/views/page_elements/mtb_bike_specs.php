@@ -41,7 +41,7 @@
 						<div class="mtb-item-model-inner">
 							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image image-cropped cover">
 							<div class="modelItemLabelBox">
-								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="GT Force Full Suspension">
+								<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="<?php echo $bike['bike_model'];?>">
 								<span class="compare-search-icon"><i class="fa fa-search"></i></span>
 								<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?> (Posted: <?php echo date('M Y', strtotime($bike['added']));?>)</small></p>
 							</div>

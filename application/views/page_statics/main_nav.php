@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<form action="/search" class="navbar-form navbar-left">
+			<form action="<?php echo base_url('search'); ?>" class="navbar-form navbar-left">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search..." name="keyword" id="searchInput" style="border-radius:0;box-shadow:none;">
 					<span class="input-group-btn">
