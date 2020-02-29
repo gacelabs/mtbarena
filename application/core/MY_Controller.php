@@ -17,7 +17,9 @@ class MY_Controller extends CI_Controller {
 		if ($this->accounts->has_session) {
 			/*FOR NOW ALLOW ALL PAGES WITH SESSION*/
 		} elseif ($this->shall_not_pass) {
-			redirect(base_url());
+			if (!$this->input->is_ajax_request()) {
+				redirect(base_url());
+			}
 		}
 		// debug($this->uri->segment_array());
 		// debug($this->session, 1);
