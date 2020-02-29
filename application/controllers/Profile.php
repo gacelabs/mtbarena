@@ -3,8 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profile extends MY_Controller {
 
-	public $shall_not_pass = TRUE;
-
 	public function index()
 	{
 		redirect(base_url('login'));

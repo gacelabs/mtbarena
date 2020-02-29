@@ -1,41 +1,38 @@
-<div class="grid-column column-50-50 mtb-compare-bike-tiles-parent">
+<?php // debug($page_data['compares'], 1); ?>
+<?php if (isset($page_data['compares']) AND $page_data['compares']): ?>
+	<div class="grid-column column-50-50 mtb-compare-bike-tiles-parent">
 
-	<!-- LOOP here -->
-	<div class="grid-column-item-gutter">
-		<a href="#">
+		<!-- LOOP here -->
+		<div class="grid-column-item-gutter">
 			<div class="box-item">
 				<div class="box-item-body">
-					<div class="grid-column column-50-50">
-						<div class="mtb-item-model-inner">
-							<img src="<?php echo base_url('assets/images/mtb/aeroic_tornado_x2.jpg'); ?>" class="mtb-item-image image-cropped cover">
-							<div class="text-center" style="padding:5px 0;">
-								<p class="color-theme text-ellipsis" style="margin-bottom:5px;"><b>Aeroic Tornado X2</b></p>
-								<button type="button" class="btn btn-xs btn-sq">
-									<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>123</kbd></small>
-								</button>
-								<button type="button" class="btn btn-xs btn-sq">
-									<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>123</kbd></small>
-								</button>
+					<?php foreach ($page_data['compares'] as $key => $compare): ?>
+						<a id="compare-<?php echo $compare['id'];?>" href="/compare/?bike_1=<?php echo $compare['bike_data'][0]['bike_model'];?>&bike_2=<?php echo $compare['bike_data'][1]['bike_model'];?>">
+							<div class="grid-column column-50-50">
+								<?php foreach ($compare['bike_data'] as $index => $bike): ?>
+									<div class="mtb-item-model-inner">
+										<img src="<?php echo base_url($bike['feat_photo']); ?>" class="mtb-item-image image-cropped cover">
+										<div class="text-center" style="padding:5px 0;">
+											<p class="color-theme text-ellipsis" style="margin-bottom:5px;"><b><?php echo $bike['bike_model'];?></b></p>
+											<button type="button" class="btn btn-xs btn-sq">
+												<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>123</kbd></small>
+											</button>
+											<button type="button" class="btn btn-xs btn-sq">
+												<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>123</kbd></small>
+											</button>
+										</div>
+									</div>
+									<?php if ($index == 0): ?>
+										<span class="span-versus">vs</span>
+									<?php endif ?>
+								<?php endforeach ?>
 							</div>
-						</div>
-						<span class="span-versus">vs</span>
-						<div class="mtb-item-model-inner">
-							<img src="<?php echo base_url('assets/images/mtb/gt_force_full_sus.jpg'); ?>" class="mtb-item-image image-cropped cover">
-							<div class="text-center" style="padding:5px 0;">
-								<p class="color-theme text-ellipsis" style="margin-bottom:5px;"><b>GT Force Full Suspension</b></p>
-								<button type="button" class="btn btn-xs btn-sq">
-									<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>123</kbd></small>
-								</button>
-								<button type="button" class="btn btn-xs btn-sq">
-									<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>123</kbd></small>
-								</button>
-							</div>
-						</div>
-					</div>				
+						</a>
+					<?php endforeach ?>
 				</div>
 			</div>
-		</a>
-	</div>
-	<!-- LOOP here -->
+		</div>
+		<!-- LOOP here -->
 
-</div>
+	</div>
+<?php endif ?>

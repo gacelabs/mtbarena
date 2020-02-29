@@ -2,6 +2,8 @@
 
 class Dashboard extends MY_Controller {
 
+	public $shall_not_pass = TRUE;
+
 	public function index()
 	{
 		redirect(base_url('dashboard/store'), 'refresh');
@@ -180,6 +182,6 @@ class Dashboard extends MY_Controller {
 		$filename = files_upload($_FILES, TRUE, 'bikes/images');
 		$post['feat_photo'] = $filename;
 		// debug($post, 1);
-		return $this->custom_model->add('bike_item', $post, 'dashboard'); /*redirect to dashboard*/
+		return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
 	}
 }

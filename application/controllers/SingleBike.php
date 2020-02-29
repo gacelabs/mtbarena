@@ -2,8 +2,6 @@
 
 class SingleBike extends MY_Controller {
 
-	public $shall_not_pass = TRUE;
-
 	public function index()
 	{
 		$structure = array(
