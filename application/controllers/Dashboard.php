@@ -3,6 +3,7 @@
 class Dashboard extends MY_Controller {
 
 	public $shall_not_pass = TRUE;
+	public $ajax_shall_not_pass = FALSE;
 
 	public function index()
 	{

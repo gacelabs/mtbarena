@@ -4,6 +4,7 @@ class MY_Controller extends CI_Controller {
 
 	public $device_id = FALSE;
 	public $shall_not_pass = FALSE;
+	public $ajax_shall_not_pass = TRUE;
 
 	public function __construct()
 	{
@@ -17,7 +18,7 @@ class MY_Controller extends CI_Controller {
 		if ($this->accounts->has_session) {
 			/*FOR NOW ALLOW ALL PAGES WITH SESSION*/
 		} elseif ($this->shall_not_pass) {
-			if (!$this->input->is_ajax_request()) {
+			if ($this->ajax_shall_not_pass) {
 				redirect(base_url());
 			}
 		}
