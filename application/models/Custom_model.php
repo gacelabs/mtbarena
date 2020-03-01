@@ -95,4 +95,16 @@ class Custom_Model extends MY_Model {
 		}
 		return FALSE;
 	}
+
+	public function save_count($table=FALSE, $where=FALSE, $field='like_count')
+	{
+		if ($table AND $where AND $field) {
+			/*check if the id exist*/
+			if ($data = $this->get($table, $where, FALSE, 'row')) {
+				$result = $this->save($table, [$field => $data[$field] + 1], ['id' => $data['id']]);
+				return $this->db->affected_rows();
+			}
+		}
+		return FALSE;
+	}
 }

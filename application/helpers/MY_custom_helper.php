@@ -392,3 +392,14 @@ function clean_string_name($string=FALSE, $delimiter='-')
 	}
 	return $string;
 }
+
+function get_like_count($where=FALSE, $table='bike_items')
+{
+	$ci =& get_instance();
+	if ($where) {
+		$ci->load->model('custom_model');
+		$data = $ci->custom_model->get($table, $where, 'like_count', 'row');
+		return $data['like_count'];
+	}
+	return 0;
+}

@@ -202,6 +202,10 @@ class Dashboard extends MY_Controller {
 			$query = trim($post['keyword']);
 			if (isset($post['id:not'])) {
 				$and = " AND b.id != '".$post['id:not']."'";
+			} elseif (isset($post['id:notin'])) {
+				$and = " AND b.id NOT IN (".implode(',', $post['id:notin']).")";
+			} elseif (isset($post['id:in'])) {
+				$and = " AND b.id IN (".implode(',', $post['id:in']).")";
 			} elseif (isset($post['id:is'])) {
 				$and = " AND b.id = '".$post['id:is']."'";
 			}

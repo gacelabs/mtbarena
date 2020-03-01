@@ -58,7 +58,7 @@ $(document).ready(function() {
 				var oSettings = {
 					url: '/dashboard/search',
 					dataType: 'json',
-					data: {'keyword':event.target.value, 'id:not':thisInput.data('id')},
+					data: {'keyword':event.target.value, 'id:notin':thisInput.data('ids')},
 					beforeSend: function() {
 
 					},

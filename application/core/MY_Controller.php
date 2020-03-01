@@ -2,6 +2,7 @@
 
 class MY_Controller extends CI_Controller {
 
+	public $class_name = FALSE;
 	public $device_id = FALSE;
 	public $shall_not_pass = FALSE;
 	public $ajax_shall_not_pass = TRUE;
@@ -9,7 +10,7 @@ class MY_Controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$class_name = trim(strtolower(get_called_class()));
+		$this->class_name = trim(strtolower(get_called_class()));
 		// debug($class_name, 1);
 		$this->load->library('accounts');
 		// debug($this->accounts->has_session, 1);
