@@ -164,7 +164,7 @@ function save_image($base64_string=FALSE, $file=FALSE) {
 	return FALSE;
 }
 
-function files_upload($_files=FALSE, $return_path=FALSE, $dir='') {
+function files_upload($_files=FALSE, $return_path=FALSE, $dir='', $this_name=FALSE) {
 	if ($_files) {
 		// debug($_files, 1);
 		/*create the dirs*/
@@ -202,32 +202,73 @@ function files_upload($_files=FALSE, $return_path=FALSE, $dir='') {
 		if (isset($array_index[0])) {
 			$input = $array_index[0];
 			if (is_array($_files[$input]['name'])) {
+				$result = [];
 				foreach ($_files[$input]['name'] as $key => $name) {
 					if ($_files[$input]['error'][$key] == 0) {
-						$uploadfile = $uploaddir . basename($name);
+						$ext = strtolower(pathinfo(basename($name), PATHINFO_EXTENSION));
+						if ($this_name) {
+							$pathname = clean_string_name($this_name).'.'.$ext;
+						} else {
+							$pathname = basename($name);
+						}
+						$uploadfile = $uploaddir . $pathname;
 						if (@move_uploaded_file($_files[$input]['tmp_name'][$key], $uploadfile)) {
-							$result = TRUE; // "File is valid, and was successfully uploaded.\n";
+							// "File is valid, and was successfully uploaded.\n";
+							$status = TRUE;
 						} else {
 							// "Possible file upload attack!\n";
+							$status = FALSE;
 						}
+						$result[] = [
+							'file_path' => $uploadfile,
+							'url_path' => 'assets/data/files/'.$dir.'/'.$pathname,
+							'status' => $status
+						];
 					}
 				}
 			} else {
 				if ($_files[$input]['error'] == 0) {
-					$uploadfile = $uploaddir . basename($_files[$input]['name']);
+					$ext = strtolower(pathinfo(basename($_files[$input]['name']), PATHINFO_EXTENSION));
+					if ($this_name) {
+						$pathname = clean_string_name($this_name).'.'.$ext;
+					} else {
+						$pathname = basename($_files[$input]['name']);
+					}
+					$uploadfile = $uploaddir . $pathname;
+					// debug($ext);
 					// debug($uploadfile, 1);
 					if (@move_uploaded_file($_files[$input]['tmp_name'], $uploadfile)) {
-						$result = TRUE; // "File is valid, and was successfully uploaded.\n";
+						// "File is valid, and was successfully uploaded.\n";
+						$status = TRUE;
 					} else {
 						// "Possible file upload attack!\n";
+						$status = FALSE;
 					}
+					$result = [
+						'file_path' => $uploadfile,
+						'url_path' => 'assets/data/files/'.$dir.'/'.$pathname,
+						'status' => $status
+					];
 				}
 			}
 		}
 		// debug($uploaddir, 1);
+		// debug(array_keys($result), 1);
 		// debug($_files, 1);
 		if ($return_path AND isset($input)) {
-			return 'assets/data/files/'.$dir.'/'.($_files[$input]['name'] == '' ? 'none.png' : $_files[$input]['name']);
+			$data = '';
+			$set = array_keys($result);
+			if (isset($set[0]) AND !is_string($set[0])) {
+				$data = [];
+				foreach ($result as $key => $row) {
+					if ($row['status']) {
+						$data[] = $row['url_path'];
+					}
+				}
+			} else {
+				$data = $result['url_path'];
+			}
+			return $data;
 		} else {
 			return $result;
 		}
@@ -339,4 +380,15 @@ function bike_search($query=FALSE)
 		}
 		return FALSE;
 	}
+}
+
+function clean_string_name($string=FALSE, $delimiter='-')
+{
+	if ($string) {
+		/*clean all unnecessary symbols*/
+		$string = preg_replace('/[^a-z0-9\.-]/', '', strtolower($string));
+		/*now replace the delimiter*/
+		$string = preg_replace('/'.$delimiter.'+/', $delimiter, $string);
+	}
+	return $string;
 }

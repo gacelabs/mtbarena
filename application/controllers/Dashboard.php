@@ -182,11 +182,15 @@ class Dashboard extends MY_Controller {
 	{
 		$post = $this->input->post();
 		// debug($_FILES);
-		$filename = files_upload($_FILES, TRUE, 'bikes/images');
-		$post['feat_photo'] = $filename;
-		$post['user_id'] = $this->accounts->profile['id'];
-		// debug($post, 1);
-		return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
+		if ($post) {
+			$account = $this->accounts->profile;
+			$filename = files_upload($_FILES, TRUE, 'bikes/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['bike_model']);
+			$post['feat_photo'] = $filename;
+			$post['user_id'] = $this->accounts->profile['id'];
+			// debug($post, 1);
+			return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
+		}
+		return FALSE;
 	}
 
 	public function search($query='')

@@ -9,7 +9,7 @@
 						<div class="box-item-body">
 							<div class="grid-column column-100">
 								<div class="mtb-item-model-inner">
-									<img src="<?php echo base_url($bike['feat_photo']); ?>" class="mtb-item-image image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>">
+									<img src="<?php echo base_url($bike['feat_photo']); ?>" class="mtb-item-image image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
 									<div class="text-center" style="padding:5px 5px 10px 5px;">
 										<p class="color-theme text-ellipsis" style="margin-bottom:5px;"><b><?php echo $bike['bike_model'];?></b></p>
 										<button type="button" class="btn btn-xs btn-sq">

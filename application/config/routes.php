@@ -27,7 +27,7 @@ $route['(:any)/mtb/(:any)'] = 'singlebike/index/$1/$2';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
+$route['sitemap\.xml'] = "sitemap/index";
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING

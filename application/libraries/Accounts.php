@@ -66,6 +66,7 @@ class Accounts {
 							$qry = $this->class->db->get_where($table, ['id' => $id]);
 							$user = $qry->row_array();
 							// debug($user, 1);
+							unset($user['password']);
 							$this->class->session->set_userdata('profile', $user);
 							$this->profile = $user;
 						}
@@ -94,6 +95,7 @@ class Accounts {
 			$return = $this->check_credits($credits, $table);
 			// debug($return, 1);
 			if (isset($return['allowed']) AND $return['allowed']) {
+				unset($return['profile']['password']);
 				$this->class->session->set_userdata('profile', $return['profile']);
 				$this->profile = $return['profile'];
 				if ($redirect_url != '') {
