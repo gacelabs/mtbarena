@@ -7,8 +7,10 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	// 'username' => 'root',
+	// 'password' => '',
+	'username' => 'mtbarena_user',
+	'password' => '=1]$U)w@g8Y+',
 	'database' => 'mtbarena',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

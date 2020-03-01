@@ -7,6 +7,17 @@
 
 <body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
 
+	<div id="fb-root"></div>
+	<script>
+		window.fbAsyncInit = function() {
+			FB.init({
+				xfbml: true,
+				version: 'v4.0'
+			});
+		};
+	</script>
+	<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+	</div>
 	<!-- page nav -->
 		<?php
 
