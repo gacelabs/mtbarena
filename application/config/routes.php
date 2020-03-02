@@ -13,6 +13,7 @@ $route['dashboard/post-bike'] = 'dashboard/post_bike';
 $route['dashboard/store'] = 'dashboard/store';
 $route['dashboard/profile'] = 'dashboard/profile';
 $route['dashboard/edit-bike/(:num)'] = 'dashboard/edit_bike/$1';
+$route['dashboard/edit-bike'] = 'dashboard';
 
 $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';

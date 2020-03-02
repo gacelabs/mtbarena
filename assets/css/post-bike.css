@@ -15,4 +15,14 @@
 	.post-bike .grid-column>li:first-child {
 		margin-bottom: 5px;
 	}
+
+	.edit-bike .grid-column {
+		display: block;
+	}
+	.edit-bike .grid-column>li {
+		padding: 0 !important;
+	}
+	.edit-bike .grid-column>li:first-child {
+		margin-bottom: 5px;
+	}
 }

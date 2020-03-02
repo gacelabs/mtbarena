@@ -3,7 +3,11 @@
 		<input type="hidden" id="edit-json-data" data-json='<?php echo $page_data["json"];?>'>
 	<?php endif ?>
 	<div class="box-item-body-top">
+		<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
+		<p class="zero-gap color-theme"><b>Edit bike</b></p>
+		<?php else: ?>
 		<p class="zero-gap color-theme"><b>Post new bike</b></p>
+		<?php endif ?>
 	</div>
 	<div class="box-item-body" style="padding:10px 0;">
 		<div class="table-responsive post-bike-parent-box">

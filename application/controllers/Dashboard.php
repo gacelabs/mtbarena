@@ -136,7 +136,7 @@ class Dashboard extends MY_Controller {
 			),
 			'title' => 'Edit | MTB Arena',
 			'body_id' => 'dashboard',
-			'body_class' => 'post-bike',
+			'body_class' => 'edit-bike',
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
