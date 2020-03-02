@@ -11,15 +11,20 @@ class MY_Controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->class_name = trim(strtolower(get_called_class()));
-		// debug($class_name, 1);
+		// debug($this->class_name, 1);
 		$this->load->library('accounts');
 		// debug($this->accounts->has_session, 1);
 		
 		/*CHECK ACCOUNT LOGINS HERE*/
 		if ($this->accounts->has_session) {
 			/*FOR NOW ALLOW ALL PAGES WITH SESSION*/
-		} elseif ($this->shall_not_pass) {
-			if ($this->ajax_shall_not_pass) {
+		} else {
+			/*now if ajax and ajax_shall_not_pass is TRUE redirect*/
+			if ($this->input->is_ajax_request() AND $this->ajax_shall_not_pass) {
+				redirect(base_url());
+			}
+			/*now if not ajax and shall_not_pass is TRUE redirect*/
+			if (!$this->input->is_ajax_request() AND $this->shall_not_pass) {
 				redirect(base_url());
 			}
 		}
