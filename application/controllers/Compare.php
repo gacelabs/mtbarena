@@ -141,7 +141,7 @@ class Compare extends MY_Controller {
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
-		// // $get['query'] = "se";
+		// $get['query'] = "se";
 		// if ($get) $query = trim($get['keyword']);
 		if ($get) {
 			$bike_data_1 = json_encode(['id'=>[$get['id_1'], $get['id_2']]]);

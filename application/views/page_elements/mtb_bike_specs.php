@@ -40,7 +40,7 @@
 
 				<li class="text-right">
 					<button type="button" class="btn btn-xs btn-sq" onclick="popupCenter('https://www.facebook.com/sharer.php?u=<?php echo urlencode(current_url());?>', this, 'fbShare');">
-						<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>0</kbd></small>
+						<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>SHARE</kbd></small>
 					</button>
 					<button type="button" class="btn btn-xs btn-sq" onclick='countHeart(this, "<?php echo $this->class_name;?>", <?php echo json_encode(['data'=>json_encode($ids)]);?>)'>
 						<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="hcount"><?php echo $like_count;?></kbd></small>

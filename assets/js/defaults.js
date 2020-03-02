@@ -237,7 +237,7 @@ function popupCenter(url, oThis, title, id, w, h) {
 
 var recentAjax = false;
 function countHeart(oThis, sMethod, oData) {
-	console.log($(oThis), oData);
+	// console.log($(oThis), oData);
 	var prevCount = 0;
 	var oSettings = {
 		url: 'ajax/count_heart/'+sMethod,
@@ -249,7 +249,7 @@ function countHeart(oThis, sMethod, oData) {
 		},
 		success: function(res) {
 			if (res && res.count) {
-				console.log(res);
+				// console.log(res);
 				$(oThis).find('.hcount').text(prevCount+res.count);
 				$(oThis).addClass('liked');
 			}
