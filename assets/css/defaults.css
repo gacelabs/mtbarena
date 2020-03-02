@@ -167,7 +167,7 @@ ul.spaced-list.between.half-size>li {
 	text-align: center;
 	margin: 0 0 5px 0;
 }
-.theme-kbd>kbd {
+.theme-kbd, .theme-kbd kbd {
 	font-size: 8px;
 	font-weight: normal;
 	vertical-align: text-top;
@@ -419,7 +419,20 @@ textarea {
 	top: 0;
 	bottom: 60px;
 }
+#modal_login .image-box>img {
+	height: 100%;
+	padding-right: 10px;
+	width: 100%;
+}
 .zero-gap {
 	margin: 0;
 	padding: 0;
+}
+
+.grid-item {
+	width: auto;
+	background-color: #eee;
+	padding: 2px 5px;
+	border-radius: 10px;
+	margin-bottom: 5px;
 }

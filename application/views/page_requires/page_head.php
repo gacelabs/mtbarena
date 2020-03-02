@@ -13,7 +13,7 @@
 <meta property="site_name" content="MTB Arena" />
 
 
-<link rel="icon" type="image/png" href="<?php echo base_url('assets/images/mtbarena_favicon.png'); ?>">
+<link rel="icon" type="image/png" href="<?php echo base_url('assets/images/mtbarena_favicon_theme.png'); ?>">
 <?php if ($metas) {foreach ($metas as $meta) {echo $meta;}} ?>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/font-awesome.min.css">

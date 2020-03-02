@@ -7,8 +7,10 @@
 			</div>
 			<div class="modal-body">
 				<ul class="grid-column column-50-50">
-					<li>left</li>
-					<li>
+					<li class="image-box">
+						<img src="<?php echo base_url('assets/images/login-modal.jpg'); ?>">
+					</li>
+					<li class="form-box">
 						<form action="<?php echo base_url('login'); ?>" method="post">
 							<div class="form-group">
 								<label for="email_address">Email address</label>
@@ -20,7 +22,7 @@
 							</div>
 							<ul class="spaced-list between">
 								<li>
-									<button type="submit" class="btn btn-primary">Log in</button>
+									<button type="submit" class="btn btn-info">Log in</button>
 								</li>
 								<li>
 									<a href="" class="btn">Can't login?</a>

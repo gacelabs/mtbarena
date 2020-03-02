@@ -156,10 +156,18 @@
 	#accordion .panel-body {
 		padding: 10px;
 	}
-	#accordion .panel-body>div {
+	#accordion .panel-body>div, #modal_login .image-box {
 		margin-bottom: 15px;
 	}
 	#accordion .panel-body>div:last-child {
 		margin-bottom: 0;
+	}
+	#modal_login .grid-column {
+		display: block;
+	}
+	#modal_login .image-box>img {
+		height: 100%;
+		padding-right: 0;
+		width: 100%;
 	}
 }

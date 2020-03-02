@@ -130,6 +130,11 @@
 .external-link {
 	word-wrap: break-word;
 }
+.modelItemLabelBox .fa-spinner {
+	left: 10px;
+	top: 10px;
+	position: absolute;
+}
 @media screen and (max-width: 767px) {
 	#mtbItemMainParent {
 		padding-bottom: 0;

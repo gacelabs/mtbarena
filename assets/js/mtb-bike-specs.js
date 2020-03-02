@@ -60,6 +60,11 @@ $(document).ready(function() {
 					dataType: 'json',
 					data: {'keyword':event.target.value, 'id:notin':thisInput.data('ids')},
 					beforeSend: function() {
+						var spinner = '<i class="fa fa-spinner fa-pulse fa-fw"></i>';
+
+						if ($(thisInput).parent('.modelItemLabelBox').find('.fa-spinner').length != 1) {
+							$(spinner).insertAfter(thisInput);
+						}
 
 					},
 					success: function(res) {
@@ -79,6 +84,8 @@ $(document).ready(function() {
 									inputDropdown += '</div>';
 								inputDropdown += '</div>';
 							}
+
+							$(thisInput).parent('.modelItemLabelBox').find('.fa-spinner').remove();
 						}
 					},
 					complete: function() {
@@ -97,6 +104,7 @@ $(document).ready(function() {
 			}
 		} else {
 			$(thisInput).parent('.modelItemLabelBox').find('.inputDropdown').remove();
+			$(thisInput).parent('.modelItemLabelBox').find('.fa-spinner').remove();
 		}
 	});
 
@@ -110,6 +118,6 @@ $(document).ready(function() {
 	});
 
 	$('.compare-search-icon').click(function() {
-		$(this).parent().find('.changeBikeInput').trigger('keyup');
+		$(this).parent().find('.changeBikeInput').focus()
 	});
 });
