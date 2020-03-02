@@ -210,7 +210,7 @@ $(function() {
 			$('.bikeStickyName').css('box-shadow', '');
 		}
 
-		if (window.pageYOffset < 0) {
+		if (window.pageYOffset == 0) {
 			$('.mtb-item-image.shrinkMe').removeClass('mtbImageShrinker');
 		}
 		// if (window.pageYOffset == 0) {
