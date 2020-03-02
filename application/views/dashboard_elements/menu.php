@@ -6,11 +6,11 @@
 		</div>
 		<div class="box-item-body">
 			<div class="dashboard-menu-box">
+				<a href="<?php echo base_url('dashboard'); ?>">
+					<p class="<?php echo ($body_class == "posts-list" ? 'active' : ''); ?>">Dashboard</p>
+				</a>
 				<a href="<?php echo base_url('dashboard/store'); ?>">
 					<p class="<?php echo ($body_class == "store" ? 'active' : ''); ?>">Online store</p>
-				</a>
-				<a href="<?php echo base_url('dashboard/post-bike'); ?>">
-					<p class="<?php echo ($body_class == "post-bike" ? 'active' : ''); ?>">Post bike</p>
 				</a>
 				<a href="<?php echo base_url('dashboard/profile'); ?>">
 					<p class="<?php echo ($body_class == "profile" ? 'active' : ''); ?>">Profile</p>

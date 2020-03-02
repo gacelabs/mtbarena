@@ -2,6 +2,11 @@
 	font-weight: bold;
 	color: #7f2496;
 }
+.posts-list .table>tbody>tr>td, .posts-list .table>tbody>tr>th, .posts-list .table>tfoot>tr>td, .posts-list .table>tfoot>tr>th, .posts-list .table>thead>tr>td, .posts-list .table>thead>tr>th {
+	padding: 8px !important;
+	font-size: 14px !important;
+	font-weight: normal !important;
+}
 @media screen and (max-width: 767px) {
 	.dashboard-menu-parent {
 		margin-bottom: 15px;
