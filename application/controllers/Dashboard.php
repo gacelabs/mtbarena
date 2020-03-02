@@ -75,7 +75,7 @@ class Dashboard extends MY_Controller {
 				'assets/css/post-bike',
 				'assets/css/bs-select.min'
 			),
-			'title' => 'MTB Arena | Post new bike',
+			'title' => 'Post new bike | MTB Arena',
 			'body_id' => 'dashboard',
 			'body_class' => 'post-bike',
 			'page_nav' => 'page_statics/main_nav',
@@ -108,6 +108,68 @@ class Dashboard extends MY_Controller {
 			),
 			'page_data' => array(
 				'specs' => $this->custom_model->bike_items(3),
+			),
+			'footer_scripts' => array(
+				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/post-bike.js').'"></script>'
+			)
+		);
+
+		$this->load->view('page_templates/main_template', $structure);
+	}
+
+	public function edit_bike($id=0)
+	{
+		$edit_bike = $this->custom_model->bike_items(FALSE, "b.id = '".$id."'");
+		$structure = array(
+			'metas' => array(
+				''
+			),
+			'css_links' => array(
+				'assets/css/mediaquery',
+				'assets/css/dashboard',
+				'assets/css/post-bike',
+				'assets/css/bs-select.min'
+			),
+			'title' => 'Edit | MTB Arena',
+			'body_id' => 'dashboard',
+			'body_class' => 'post-bike',
+			'page_nav' => 'page_statics/main_nav',
+			'bikes_to_compare' => '',
+			'page_left_column' => array(
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
+				'ui_elements' => array(
+					'dashboard_elements/menu'
+				),
+			),
+			'page_center_column' => array(
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'ui_elements' => array(
+					'dashboard_elements/post_bike_form'
+				)
+			),
+			'page_right_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				)
+			),
+			'page_footer' => array(
+				'column_visibility_class' => '',
+				'ui_elements' => array(
+
+				)
+			),
+			'modals' => array(
+				
+			),
+			'page_data' => array(
+				'specs' => $this->custom_model->bike_items(3),
+				'id' => $id,
+				'json' => json_encode($edit_bike),
+				'is_edit' => 1,
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -242,6 +304,23 @@ class Dashboard extends MY_Controller {
 			$post['user_id'] = $this->accounts->profile['id'];
 			// debug($post, 1);
 			return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
+		}
+		return FALSE;
+	}
+
+	public function edit_item($id=0)
+	{
+		$post = $this->input->post();
+		// debug($_FILES); exit();
+		if ($post AND $id) {
+			$account = $this->accounts->profile;
+			if (isset($_FILES['feat_photo']) AND $_FILES['feat_photo']['error'] == 0) {
+				$filename = files_upload($_FILES, TRUE, 'bikes/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['bike_model']);
+				$post['feat_photo'] = $filename;
+			}
+			$post['user_id'] = $this->accounts->profile['id'];
+			// debug($post, 1);
+			return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id); /*redirect to dashboard edit*/
 		}
 		return FALSE;
 	}

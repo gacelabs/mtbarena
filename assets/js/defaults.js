@@ -221,24 +221,24 @@ $(function() {
 });
 
 function popupCenter(url, oThis, title, id, w, h) {
-	/*if (w == undefined) w = 450;
+	if (w == undefined) w = 450;
 	if (h == undefined) h = 450;
 	var left = (screen.width/2)-(w/2);
 	var top = (screen.height/2)-(h/2);
 	var win = window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
 	// console.log(oThis, win);
-	return win;*/
-	FB.ui({
+	return win;
+	/*FB.ui({
 		method: 'share',
 		href: url
 	}, function(response){
 		console.log(response);
-	});
+	});*/
 }
 
 var recentAjax = false;
 function countHeart(oThis, sMethod, oData) {
-	console.log($(oThis), oData);
+	// console.log($(oThis), oData);
 	var prevCount = 0;
 	var oSettings = {
 		url: 'ajax/count_heart/'+sMethod,
@@ -250,7 +250,7 @@ function countHeart(oThis, sMethod, oData) {
 		},
 		success: function(res) {
 			if (res && res.count) {
-				console.log(res);
+				// console.log(res);
 				$(oThis).find('.hcount').text(prevCount+res.count);
 				$(oThis).addClass('liked');
 			}

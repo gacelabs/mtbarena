@@ -23,7 +23,7 @@ class Compare extends MY_Controller {
 					'assets/css/mtb-bike-specs',
 					'assets/css/mediaquery'
 				),
-				'title' => fix_title($get['bike_1']).' VS '.fix_title($get['bike_2']).' | MTB Arena',
+				'title' => fix_title($get['bike_1']).' ~ '.fix_title($get['bike_2']).' | MTB Arena',
 				'body_id' => 'compare',
 				'body_class' => 'compare',
 				'page_nav' => 'page_statics/main_nav',
@@ -141,7 +141,7 @@ class Compare extends MY_Controller {
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
-		// // $get['query'] = "se";
+		// $get['query'] = "se";
 		// if ($get) $query = trim($get['keyword']);
 		if ($get) {
 			$bike_data_1 = json_encode(['id'=>[$get['id_1'], $get['id_2']]]);
@@ -155,7 +155,7 @@ class Compare extends MY_Controller {
 				// debug($bike_data_1, 1);
 				$post = [];
 				$post['bike_data'] = $bike_data_1;
-				$post['user_id'] = $this->accounts->profile['id'];
+				$post['user_id'] = "'".$this->accounts->profile['id']."'";
 				$compare_id = $this->custom_model->add('compares', $post);
 			}
 			$data = $this->custom_model->compare_first_load(FALSE, FALSE, "compares.id = '".$compare_id."'");

@@ -7,13 +7,19 @@
 			<button type="button" class="navbar-toggle collapsed" id="searchButton" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 				<i class="fa fa-search"></i>
 			</button>
-			<a class="navbar-brand" href="<?php echo base_url(); ?>">MTB Arena</a>
+			<a class="navbar-brand" href="<?php echo base_url(); ?>"><img style="width: 30px; float: left; margin: -2px; margin-right: 10px;" src="<?php echo base_url('assets/images/mtbarena_favicon.png'); ?>"> MTB Arena</a>
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<?php 
+			$search_val = '';
+			if ($this->uri->segment(1) == 'search') {
+				$search_val = $this->input->get('keyword') ? $this->input->get('keyword') : ($this->uri->segment(2) ? $this->uri->segment(2) : '');
+			}
+			?>
 			<form action="<?php echo base_url('search'); ?>" class="navbar-form navbar-left">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search..." name="keyword" id="searchInput" style="border-radius:0;box-shadow:none;">
+					<input type="text" class="form-control" placeholder="Search..." name="keyword" id="searchInput" style="border-radius:0;box-shadow:none;" value="<?php echo $search_val;?>">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit" style="border-radius:0;box-shadow:none;outline:none;"><i class="fa fa-search"></i></button>
 					</span>

@@ -387,6 +387,8 @@ function clean_string_name($string=FALSE, $delimiter='-')
 	if ($string) {
 		/*clean all unnecessary symbols*/
 		$string = preg_replace('/[^a-z0-9\.-]/', '', strtolower($string));
+		$string = preg_replace('/[()]/', '', strtolower($string));
+		$string = preg_replace('/[+]/', '', strtolower($string));
 		/*now replace the delimiter*/
 		$string = preg_replace('/'.$delimiter.'+/', $delimiter, $string);
 	}
