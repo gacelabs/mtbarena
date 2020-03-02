@@ -16,20 +16,24 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">
-							<img class="image-cropped cover small" style="border:1px solid #ccc;" src="<?php echo base_url('assets/images/mtb/gt_force_full_sus.jpg') ?>">
-						</th>
-						<th>Giant Trance E+ Pro</th>
-						<td>04-01-2020 <small class="color-lightgray">(Updated)</small></td>
-						<td>569</td>
-						<td>123</td>
-						<td>
-							<a href="#">View</a> 
-							<span class="color-lightgray" style="padding:0 5px;">|</span>
-							<a href="#">Edit</a> 
-						</td>
-					</tr>
+					<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
+						<?php foreach ($page_data['specs'] as $key => $bike): ?>
+							<tr>
+								<th scope="row">
+									<img class="image-cropped cover small" style="border:1px solid #ccc;" src="<?php echo $bike['feat_photo'];?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
+								</th>
+								<th><?php echo $bike['bike_model'];?></th>
+								<td><?php echo date('M j, Y', strtotime($bike['updated']));?> <small class="color-lightgray">(Updated)</small></td>
+								<td><?php echo $bike['view_count'];?></td>
+								<td><?php echo $bike['like_count'];?></td>
+								<td>
+									<a href="<?php echo $bike['bike_url'];?>">View</a> 
+									<span class="color-lightgray" style="padding:0 5px;">|</span>
+									<a href="/dashboard/edit-bike/<?php echo $bike['id'];?>">Edit</a> 
+								</td>
+							</tr>
+						<?php endforeach ?>
+					<?php endif ?>
 				</tbody>
 			</table>
 		</div>

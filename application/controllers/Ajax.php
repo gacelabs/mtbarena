@@ -24,8 +24,6 @@ class Ajax extends MY_Controller {
 							$bike_data_1 = json_encode(['id'=>[$data[0], $data[1]]]);
 							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
 							$compares = $this->custom_model->get('compares', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
-							// $bike_data = json_encode(['id'=>$data]);
-							// $compares = $this->custom_model->get('compares', ['bike_data'=>$bike_data], 'id', 'row');
 							// debug($compares, 1);
 							$where = "is_compare != 0 AND user_id = '$user_id' AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 							if ($this->custom_model->get('likes_map', $where) == FALSE) {

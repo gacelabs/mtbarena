@@ -14,7 +14,7 @@ class Search extends CI_Controller {
 			/*no need for empty search right?*/
 			$bike_items = $this->custom_model->bike_items('all');
 		} else {
-			$bike_items = bike_search($query);
+			$bike_items = bike_search(urldecode($query));
 		}
 		// debug($bike_items, 1);
 		if ($this->input->is_ajax_request()) {

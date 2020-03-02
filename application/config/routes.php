@@ -12,6 +12,7 @@ $route['dash'] = 'dashboard';
 $route['dashboard/post-bike'] = 'dashboard/post_bike';
 $route['dashboard/store'] = 'dashboard/store';
 $route['dashboard/profile'] = 'dashboard/profile';
+$route['dashboard/edit-bike/(:num)'] = 'dashboard/edit_bike/$1';
 
 $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';
@@ -19,10 +20,10 @@ $route['logout'] = 'profile/sign_out';
 
 // url = mtbarena.com/compare?bike=model-here&bike=model-here/
 $route['compare'] = 'compare';
-$route['(:any)/compare/(:any)'] = 'compare/index/$1/$2';
+$route['(:any)/compare/(:any)'] = 'Compare/index/$1/$2';
 
 // url = mtbarena.com/mtb/model-here-full-specifications/
-$route['(:any)/mtb/(:any)'] = 'singlebike/index/$1/$2';
+$route['(:any)/mtb/(:any)'] = 'SingleBike/index/$1/$2';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

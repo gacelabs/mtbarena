@@ -11,9 +11,15 @@
 		</div>
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<?php 
+			$search_val = '';
+			if ($this->uri->segment(1) == 'search') {
+				$search_val = $this->input->get('keyword') ? $this->input->get('keyword') : ($this->uri->segment(2) ? $this->uri->segment(2) : '');
+			}
+			?>
 			<form action="<?php echo base_url('search'); ?>" class="navbar-form navbar-left">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search..." name="keyword" id="searchInput" style="border-radius:0;box-shadow:none;">
+					<input type="text" class="form-control" placeholder="Search..." name="keyword" id="searchInput" style="border-radius:0;box-shadow:none;" value="<?php echo $search_val;?>">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="submit" style="border-radius:0;box-shadow:none;outline:none;"><i class="fa fa-search"></i></button>
 					</span>

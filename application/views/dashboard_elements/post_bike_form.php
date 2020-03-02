@@ -1,10 +1,17 @@
 <div class="box-item">
+	<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
+		<input type="hidden" id="edit-json-data" data-json='<?php echo $page_data["json"];?>'>
+	<?php endif ?>
 	<div class="box-item-body-top">
 		<p class="zero-gap color-theme"><b>Post new bike</b></p>
 	</div>
 	<div class="box-item-body" style="padding:10px 0;">
 		<div class="table-responsive post-bike-parent-box">
-			<form action="<?php echo base_url('dashboard/add_item');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
+				<form action="<?php echo base_url('dashboard/edit_item/'.$page_data['id']);?>" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<?php else: ?>
+				<form action="<?php echo base_url('dashboard/add_item');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<?php endif ?>
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="bike_model">Bike Model Name</label>
