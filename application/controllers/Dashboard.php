@@ -123,7 +123,13 @@ class Dashboard extends MY_Controller {
 
 	public function edit_bike($id=0)
 	{
+
 		$edit_bike = $this->custom_model->bike_items(FALSE, "b.id = '".$id."'");
+
+		if ($id==0 || $id=='' || empty($edit_bike)) {
+			redirect(base_url('dashboard'), 'refresh');
+		}
+
 		$structure = array(
 			'metas' => array(
 				''
