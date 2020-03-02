@@ -23,7 +23,7 @@
 	background-color: #f7f7f7;
 }
 .mtb-item-spec-desc-inner {
-	padding: 10px;
+	padding: 10px 10px 20px 10px;
 }
 .mtb-item-model-parent:nth-child(2), .mtb-item-model-parent:nth-child(3) {
 	border-left: 0 none;
@@ -195,7 +195,10 @@
 	.compare-search-icon {
 		display: none;
 	}
-	.box-item-body-top, .mtb-item-model-inner, .mtb-item-spec-desc-inner {
+	.box-item-body-top, .mtb-item-model-inner {
 		padding: 5px !important;
+	}
+	.mtb-item-spec-desc-inner {
+		padding: 5px 5px 10px 5px !important;
 	}
 }

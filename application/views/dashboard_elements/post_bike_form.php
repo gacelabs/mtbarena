@@ -45,7 +45,7 @@
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						<div class="panel panel-default">
 							<div class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								<h4 class="panel-title">Manufacturer, Colorway and Frame</h4>
+								<h4 class="panel-title">Manufacturer, Colorway, Frame and Fork</h4>
 							</div>
 							<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 								<div class="panel-body">
@@ -84,8 +84,22 @@
 												<p class="zero-gap" style="font-size:10px;">Materials used, size and features.<br>Example: Alloy Tri-Butted Smooth Welding 16/18 27.5</p>
 											</li>
 											<li style="padding-left:10px;">
-												<div class="form-group" style="margin-bottom: 0;">
+												<div class="form-group">
 													<textarea rows="2" class="form-control" name="frame" id="frame" required></textarea>
+												</div>
+											</li>
+										</ul>
+									</div>
+
+									<div>
+										<ul class="grid-column column-30-70">
+											<li>
+												<p class="zero-gap"><b>Fork:</b></p>
+												<p class="zero-gap" style="font-size:10px;">Brand, materials used, wheel size, shock type and features.<br>Example: Rockshox 35 Gold RL, DebonAir, Offset 44mm, aluminium, Gloss Black/ Diffusion Black</p>
+											</li>
+											<li style="padding-left:10px;">
+												<div class="form-group" style="margin-bottom: 0;">
+													<textarea rows="2" class="form-control" name="fork" id="fork" required></textarea>
 												</div>
 											</li>
 										</ul>

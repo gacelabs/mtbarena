@@ -17,7 +17,7 @@ class Dashboard extends MY_Controller {
 				'assets/css/post-bike',
 				'assets/css/bs-select.min'
 			),
-			'title' => 'MTB Arena | Post new bike',
+			'title' => 'MTB Arena | Dashboard',
 			'body_id' => 'dashboard',
 			'body_class' => 'posts-list',
 			'page_nav' => 'page_statics/main_nav',

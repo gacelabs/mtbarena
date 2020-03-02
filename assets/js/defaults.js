@@ -210,12 +210,13 @@ $(function() {
 			$('.bikeStickyName').css('box-shadow', '');
 		}
 
-
-		if (window.pageYOffset == 0) {
-			$(document).click($('.mtbImageShrinker'), function() {
-				$('.mtb-item-image.shrinkMe').removeClass('mtbImageShrinker');
-			});
+		if (window.pageYOffset < 0) {
+			$('.mtb-item-image.shrinkMe').removeClass('mtbImageShrinker');
 		}
+		// if (window.pageYOffset == 0) {
+		// 	$(document).click($('.mtbImageShrinker'), function() {
+		// 	});
+		// }
 	};
 });
 

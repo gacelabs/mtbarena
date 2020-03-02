@@ -32,7 +32,7 @@
 				<?php if ($bikeCount == 1) { ?>
 					<p class="zero-gap color-theme"><b>Bike Model Full Specifications</b></p>
 				<?php } elseif ($bikeCount == 2) { ?>
-					<p class="zero-gap color-theme"><b>Head-To-Head Bike Full Specifications</b></p>
+					<p class="zero-gap color-theme"><b><?php echo $body_id == "landing"? "Today's Match Up!" : "Head-To-Head Bike Full Specifications"; ?></b></p>
 				<?php } elseif ($bikeCount == 3) { ?>
 					<p class="zero-gap color-theme"><b>Triple Match Up Bike Full Specifications</b></p>
 				<?php } ?>
