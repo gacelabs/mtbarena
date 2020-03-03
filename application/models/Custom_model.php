@@ -37,6 +37,7 @@ class Custom_Model extends MY_Model {
 		if ($clause) {
 			$this->db->where($clause);
 		}
+		$this->db->order_by('updated', 'DESC');
 		$query = $this->db->get('compares');
 		if ($query->num_rows()) {
 			$compares = $query->result_array();
