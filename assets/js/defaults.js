@@ -1,14 +1,14 @@
 $(document).ready(function() {
 
-	$('.grid').masonry({
-		// options
-		itemSelector: '.grid-item',
-		isAnimated: true,
-		gutter: 5,
-		fitWidth: true,
-		columnWidth: 0,
-		horizontalOrder: true
-	});
+	// $('.grid').masonry({
+	// 	// options
+	// 	itemSelector: '.grid-item',
+	// 	isAnimated: true,
+	// 	gutter: 5,
+	// 	fitWidth: true,
+	// 	columnWidth: 0,
+	// 	horizontalOrder: true
+	// });
 
 	// bootstrap tooltip
 	$('[data-toggle="tooltip"]').tooltip();

@@ -53,7 +53,6 @@ class Home extends MY_Controller {
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/masonry.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/mtb-bike-specs.js').'"></script>'
 			)
