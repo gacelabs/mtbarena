@@ -135,6 +135,9 @@
 	top: 10px;
 	position: absolute;
 }
+#mtbItemMainParent {
+	transition: all .3s ease-in-out;
+}
 @media screen and (max-width: 767px) {
 	.mtb-bike-specs-main-parent {
 		margin-bottom: 15px !important;
