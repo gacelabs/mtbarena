@@ -10,6 +10,7 @@ class MY_Controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		// debug($this, 1);
 		$this->class_name = trim(strtolower(get_called_class()));
 		// debug($this->class_name, 1);
 		$this->load->library('accounts');

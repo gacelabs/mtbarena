@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ajax extends MY_Controller {
+	
+	public $ajax_shall_not_pass = FALSE;
 
 	public function count_heart($method=FALSE)
 	{
