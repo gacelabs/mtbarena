@@ -32,13 +32,13 @@ class MY_Model extends CI_Model {
 		return FALSE;
 	}
 
-	public function query($string=FALSE)
+	public function query($string=FALSE, $func='result')
 	{
 		if ($string) {
 			$data = $this->db->query($string);
 			// debug($data);
 			if ($data->num_rows()) {
-				return $data->result_array();
+				return $data->{$func.'_array'}();
 			}
 		}
 		return FALSE;

@@ -49,7 +49,7 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
-				'specs' => $this->custom_model->bike_items(3),
+				'specs' => $this->custom_model->bike_items('all'),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -123,7 +123,6 @@ class Dashboard extends MY_Controller {
 
 	public function edit_bike($id=0)
 	{
-
 		$edit_bike = $this->custom_model->bike_items(FALSE, "b.id = '".$id."'");
 
 		if ($id==0 || $id=='' || empty($edit_bike)) {
@@ -349,7 +348,8 @@ class Dashboard extends MY_Controller {
 			}
 		}
 		// debug($post, 1);
-		$bike_items = $this->custom_model->bike_items(FALSE, "b.bike_model LIKE '%$query%'".$and);
+		// $bike_items = $this->custom_model->bike_items(FALSE, "b.bike_model LIKE '%$query%'".$and);
+		$bike_items = bike_search(urldecode($query), $and);
 		// debug($bike_items, 1);
 		echo json_encode($bike_items);
 	}

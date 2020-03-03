@@ -40,29 +40,30 @@ class Custom_Model extends MY_Model {
 		$query = $this->db->get('compares');
 		if ($query->num_rows()) {
 			$compares = $query->result_array();
+			// debug($compares, 1);
+			$results = [];
 			foreach ($compares as $key => $row) {
 				$bikes = json_decode($row['bike_data'], TRUE);
+				// debug($bikes, 1);
 				$compares[$key]['bike_data'] = [];
 				$url = '';
-				$bike_data = $this->query("
-				SELECT DISTINCT 
-						u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
-					FROM bike_items b 
-						INNER JOIN users u ON u.id = b.user_id 
-					WHERE b.id IN (".implode(',', $bikes['id']).")
-				");
-				// debug($bike_data, 1);
-				if ($bike_data) {
-					$compares[$key]['bike_data'] = $bike_data;
-					foreach ($bike_data as $index => $bike) {
-						$url .= 'bike_'.($index+1).'='.urlencode(preg_replace("/['-]/", '', strtolower($bike['bike_model']))).'&';
+				foreach ($bikes['id'] as $index => $id) {
+					$bike = $this->query("
+					SELECT DISTINCT 
+							u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
+						FROM bike_items b 
+							INNER JOIN users u ON u.id = b.user_id 
+						WHERE b.id = '$id'
+					", 'row');
+					// debug($bike, 1);
+					if ($bike) {
+						// debug($compares[$key]['bike_data'], 1);
+						$compares[$key]['bike_data'][] = $bike;
+						$url .= 'bike_'.($index+1).'='.clean_string_name($bike['bike_model']).'&';
 					}
-					// $url .= strtolower(preg_replace('/\s+/', '-', $bike_data[0]['bike_model'])).($index == 0 ? '-and-' : '');
 				}
-				// $compares[$key]['bike_data'] = array_chunk($bike_data, 2);
 				$compares[$key]['compare_url'] = 'compare/?'.$url.'&ref='.base64_encode($row['id']);
 				$compares[$key]['ids'] = $bikes['id'];
-				// $compares[$key]['compare_url'] = $row['id'].'-'.$row['user_id'].'/compare/'.str_replace("'", '', $url);
 			}
 			// debug($compares, 1);
 			return $compares;
@@ -79,15 +80,15 @@ class Custom_Model extends MY_Model {
 				$bikes = [];
 				foreach ($compares as $key => $row) {
 					$data = json_decode($row['bike_data'], TRUE);
-					$bike_data = $this->query("
-					SELECT DISTINCT 
-							u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
-						FROM bike_items b 
-							INNER JOIN users u ON u.id = b.user_id 
-						WHERE b.id IN (".implode(',', $data['id']).")
-					");
-					if ($bike_data) {
-						$bikes = $bike_data;
+					foreach ($data['id'] as $index => $id) {
+						$bike = $this->query("
+						SELECT DISTINCT 
+								u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
+							FROM bike_items b 
+								INNER JOIN users u ON u.id = b.user_id 
+							WHERE b.id = '$id'
+						", 'row');
+						$bikes[] = $bike;
 					}
 				}
 				// debug($bikes, 1);

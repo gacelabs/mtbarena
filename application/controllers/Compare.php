@@ -144,8 +144,12 @@ class Compare extends MY_Controller {
 		// $get['query'] = "se";
 		// if ($get) $query = trim($get['keyword']);
 		if ($get) {
-			$bike_data_1 = json_encode(['id'=>[$get['id_1'], $get['id_2']]]);
-			$bike_data_2 = json_encode(['id'=>[$get['id_2'], $get['id_1']]]);
+			// debug($get, 1);
+			$proper = $reverse = ['id'=>[]];
+			foreach ($get as $key => $id) $proper['id'][] = $id;
+			foreach (array_reverse($get) as $key => $id) $reverse['id'][] = $id;
+			$bike_data_1 = json_encode($proper);
+			$bike_data_2 = json_encode($reverse);
 			$compare = $this->custom_model->get('compares', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
 			// debug($compare, 1);
 			if ($compare) {

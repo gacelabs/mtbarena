@@ -296,101 +296,100 @@ function fix_title($title=FALSE) {
 	return '';
 }
 
-function bike_search($query=FALSE)
+function bike_search($query='', $and_clause='')
 {
-	if ($query) {
-		$ci =& get_instance();
-		/*limit words number of characters*/
-		$query = substr($query, 0, 200);
+	$ci =& get_instance();
+	/*limit words number of characters*/
+	$query = substr($query, 0, 200);
 
-		/*Weighing scores*/
-		$score_bike_model = 6;
-		$score_bike_model_keyword = 5;
-		$score_made_by = 5;
-		$score_made_by_keyword = 4;
-		$score_full_content = 4;
-		$score_content_keyword = 3;
-		$score_spec_keyword = 2;
-		$score_url_keyword = 1;
+	/*Weighing scores*/
+	$score_bike_model = 6;
+	$score_bike_model_keyword = 5;
+	$score_made_by = 5;
+	$score_made_by_keyword = 4;
+	$score_full_content = 4;
+	$score_content_keyword = 3;
+	$score_spec_keyword = 2;
+	$score_url_keyword = 1;
 
-		/*Remove unnecessary words from the search term and return them as an array*/
-		$query = trim(preg_replace("/(\s+)+/", " ", $query));
-		$keywords = [];
-		/*expand this list with your words.*/
-		$list = ["in","it","a","the","of","or","I","you","he","me","us","they","she","to","but","that","this","those","then","by"];
-		$c = 0;
-		$separated_spaces = explode(" ", $query);
-		if (count($separated_spaces) > 0){
-			foreach($separated_spaces as $key){
-				if (in_array($key, $list)) continue;
-				$keywords[] = $key;
-				if ($c >= 15) break;
-				$c++;
-			}
+	/*Remove unnecessary words from the search term and return them as an array*/
+	$query = trim(preg_replace("/(\s+)+/", " ", $query));
+	$keywords = [];
+	/*expand this list with your words.*/
+	$list = ["in","it","a","the","of","or","I","you","he","me","us","they","she","to","but","that","this","those","then","by"];
+	$c = 0;
+	$separated_spaces = explode(" ", $query);
+	if (count($separated_spaces) > 0){
+		foreach($separated_spaces as $key){
+			if (in_array($key, $list)) continue;
+			$keywords[] = $key;
+			if ($c >= 15) break;
+			$c++;
 		}
-		$escQuery = $ci->db->escape_like_str($query); /*see note above to get db object*/
-		$titleSQL = [];
-		$sumSQL = [];
-		$docSQL = [];
-		$categorySQL = [];
-		$urlSQL = [];
-
-		/** Matching full occurences **/ 
-		$full_content = "CONCAT(REPLACE(b.feat_photo, 'assets/data/files/bikes/images/', ''),' ',b.colorway,' ',b.frame,' ',b.shifter,' ',b.front_derailleur,' ',b.rear_derailleur,' ',b.cassette,' ',b.chain,' ',b.brake,' ',b.rim,' ',b.tires,' ',b.chainwheel,' ',b.hub,' ',b.saddle,' ',b.seatpost,' ',b.stem,' ',b.handlebar,' ',b.price_tag)";
-		if (count($keywords) > 1){
-			$titleSQL[] = "IF(b.bike_model LIKE '%".$escQuery."%',{$score_bike_model},0)";
-			$sumSQL[] = "IF(b.made_by LIKE '%".$escQuery."%',{$score_made_by},0)";
-			$docSQL[] = "IF($full_content LIKE '%".$escQuery."%',{$score_full_content},0)";
-		}
-
-		/** Matching Keywords **/
-		if (count($keywords) > 0){
-			foreach($keywords as $key){
-				$titleSQL[] = "IF(b.bike_model LIKE '%".$ci->db->escape_like_str($key)."%',{$score_bike_model_keyword},0)";
-				$sumSQL[] = "IF(b.made_by LIKE '%".$ci->db->escape_like_str($key)."%',{$score_made_by_keyword},0)";
-				$docSQL[] = "IF($full_content LIKE '%".$ci->db->escape_like_str($key)."%',{$score_content_keyword},0)";
-				$urlSQL[] = "IF(b.external_link LIKE '%".$ci->db->escape_like_str($key)."%',{$score_url_keyword},0)";
-				$categorySQL[] = "IF(b.spec_from LIKE '%".$ci->db->escape_like_str($key)."%',{$score_spec_keyword},0)";
-			}
-		}
-
-		/*Just incase it's empty, add 0*/
-		if (empty($titleSQL)) $titleSQL[] = 0;
-		if (empty($sumSQL)) $sumSQL[] = 0;
-		if (empty($docSQL)) $docSQL[] = 0;
-		if (empty($urlSQL)) $urlSQL[] = 0;
-		if (empty($tagSQL)) $tagSQL[] = 0;
-		if (empty($categorySQL)) $categorySQL[] = 0;
-
-		$sql = "
-		SELECT 
-				u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url,
-				b.*, ((".implode(' + ', $titleSQL).") + (".implode(' + ', $sumSQL).") + (".implode(' + ', $docSQL).") + (".implode(' + ', $categorySQL).") + (".implode(' + ', $urlSQL).")) as Relevance 
-			FROM bike_items b 
-			INNER JOIN users u ON u.id = b.user_id
-		GROUP BY b.id 
-			HAVING Relevance > 0 
-		ORDER BY b.updated DESC";
-
-		// debug($sql, 1);
-		$data = $ci->db->query($sql);
-
-		if ($data->num_rows() > 0){
-			return $data->result_array();
-		}
-		return FALSE;
 	}
+	$escQuery = $ci->db->escape_like_str($query); /*see note above to get db object*/
+	$titleSQL = [];
+	$sumSQL = [];
+	$docSQL = [];
+	$categorySQL = [];
+	$urlSQL = [];
+
+	/** Matching full occurences **/ 
+	$full_content = "CONCAT(REPLACE(b.feat_photo, 'assets/data/files/bikes/images/', ''),' ',b.colorway,' ',b.frame,' ',b.shifter,' ',b.front_derailleur,' ',b.rear_derailleur,' ',b.cassette,' ',b.chain,' ',b.brake,' ',b.rim,' ',b.tires,' ',b.chainwheel,' ',b.hub,' ',b.saddle,' ',b.seatpost,' ',b.stem,' ',b.handlebar,' ',b.price_tag)";
+	if (count($keywords) > 1){
+		$titleSQL[] = "IF(b.bike_model LIKE '%".$escQuery."%',{$score_bike_model},0)";
+		$sumSQL[] = "IF(b.made_by LIKE '%".$escQuery."%',{$score_made_by},0)";
+		$docSQL[] = "IF($full_content LIKE '%".$escQuery."%',{$score_full_content},0)";
+	}
+
+	/** Matching Keywords **/
+	if (count($keywords) > 0){
+		foreach($keywords as $key){
+			$titleSQL[] = "IF(b.bike_model LIKE '%".$ci->db->escape_like_str($key)."%',{$score_bike_model_keyword},0)";
+			$sumSQL[] = "IF(b.made_by LIKE '%".$ci->db->escape_like_str($key)."%',{$score_made_by_keyword},0)";
+			$docSQL[] = "IF($full_content LIKE '%".$ci->db->escape_like_str($key)."%',{$score_content_keyword},0)";
+			$urlSQL[] = "IF(b.external_link LIKE '%".$ci->db->escape_like_str($key)."%',{$score_url_keyword},0)";
+			$categorySQL[] = "IF(b.spec_from LIKE '%".$ci->db->escape_like_str($key)."%',{$score_spec_keyword},0)";
+		}
+	}
+
+	/*Just incase it's empty, add 0*/
+	if (empty($titleSQL)) $titleSQL[] = 0;
+	if (empty($sumSQL)) $sumSQL[] = 0;
+	if (empty($docSQL)) $docSQL[] = 0;
+	if (empty($urlSQL)) $urlSQL[] = 0;
+	if (empty($tagSQL)) $tagSQL[] = 0;
+	if (empty($categorySQL)) $categorySQL[] = 0;
+
+	$sql = "
+	SELECT 
+			u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url,
+			b.*, ((".implode(' + ', $titleSQL).") + (".implode(' + ', $sumSQL).") + (".implode(' + ', $docSQL).") + (".implode(' + ', $categorySQL).") + (".implode(' + ', $urlSQL).")) as Relevance 
+		FROM bike_items b 
+		INNER JOIN users u ON u.id = b.user_id
+		WHERE 1=1 $and_clause
+	GROUP BY b.id 
+		HAVING Relevance > 0 
+	ORDER BY b.updated DESC";
+
+	// debug($sql, 1);
+	$data = $ci->db->query($sql);
+
+	if ($data->num_rows() > 0){
+		return $data->result_array();
+	}
+	return [];
 }
 
 function clean_string_name($string=FALSE, $delimiter='-')
 {
 	if ($string) {
+		/*now replace the delimiter*/
+		$string = preg_replace('/\s/', $delimiter, $string);
 		/*clean all unnecessary symbols*/
 		$string = preg_replace('/[^a-z0-9\.-]/', '', strtolower($string));
 		$string = preg_replace('/[()]/', '', strtolower($string));
 		$string = preg_replace('/[+]/', '', strtolower($string));
-		/*now replace the delimiter*/
-		$string = preg_replace('/'.$delimiter.'+/', $delimiter, $string);
 	}
 	return $string;
 }
