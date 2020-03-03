@@ -136,6 +136,9 @@
 	position: absolute;
 }
 @media screen and (max-width: 767px) {
+	.mtb-bike-specs-main-parent {
+		margin-bottom: 15px !important;
+	}
 	#mtbItemMainParent {
 		padding-bottom: 0;
 	}
@@ -204,6 +207,6 @@
 		padding: 5px !important;
 	}
 	.mtb-item-spec-desc-inner {
-		padding: 5px 5px 10px 5px !important;
+		padding: 5px 5px 15px 5px !important;
 	}
 }

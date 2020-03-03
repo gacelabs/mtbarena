@@ -38,8 +38,10 @@ class Home extends MY_Controller {
 				)
 			),
 			'page_footer' => array(
-				'column_visibility_class' => '',
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm',
 				'ui_elements' => array(
+					'widget_elements/most_viewed_bikes_list',
+					'widget_elements/popular_comparison_list'
 				)
 			),
 			'modals' => array(

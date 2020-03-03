@@ -63,16 +63,13 @@
 		</div>
 
 		<!-- page footer -->
+		<div class="<?php echo(!empty($page_footer['column_visibility_class']) ? $page_footer['column_visibility_class'] : ''); ?>">
 		<?php
-
-			if ($page_footer)
-			{
-
-				foreach ($page_footer['ui_elements'] as $ui_element) {
-					$this->load->view($ui_element);
-				}
+			foreach ($page_footer['ui_elements'] as $ui_element) {
+				$this->load->view($ui_element);
 			}
 		?>
+		</div>
 
 		<!-- modals -->
 		<?php

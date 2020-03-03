@@ -25,7 +25,7 @@
 			}
 		}
 	?>
-	<div class="box-item">
+	<div class="box-item mtb-bike-specs-main-parent">
 		<div class="box-item-body-top" id="mtbCompareSpecs">
 			<ul class="spaced-list between">
 				<li class="text-left">

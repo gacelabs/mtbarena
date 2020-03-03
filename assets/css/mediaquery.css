@@ -22,6 +22,7 @@
 @media screen and (max-width: 767px) {
 	body {
 		padding-top: 50px;
+		padding-bottom: 0 !important;
 	}
 	.navbar {
 		min-height: 40px;
@@ -169,5 +170,9 @@
 		height: 100%;
 		padding-right: 0;
 		width: 100%;
+	}
+	.landing .table-responsive {
+		border: 0 none !important;
+		margin-bottom: 0 !important;
 	}
 }
