@@ -402,6 +402,7 @@ textarea {
 	right: 0;
 }
 .span-versus {
+	color: #ec4141 !important;
 	position: absolute;
 	box-shadow: 0 2px 3px 0 rgba(0,0,0,0.6);
 	background-color: #fff;
