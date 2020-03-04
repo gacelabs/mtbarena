@@ -68,6 +68,7 @@ class Custom_Model extends MY_Model {
 			}
 			// debug($compares, 1);
 			return $compares;
+
 		}
 		return FALSE;
 	}

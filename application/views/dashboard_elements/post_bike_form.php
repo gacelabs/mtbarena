@@ -1,7 +1,8 @@
-<div class="box-item">
+<div class="box-item" style="margin-bottom: 15px;">
 	<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
-		<input type="hidden" id="edit-json-data" data-json='<?php echo $page_data["json"];?>'>
+	<input type="hidden" id="edit-json-data" data-json='<?php echo $page_data["json"];?>'>
 	<?php endif ?>
+
 	<div class="box-item-body-top">
 		<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
 		<p class="zero-gap color-theme"><b>Edit bike</b></p>
@@ -9,12 +10,13 @@
 		<p class="zero-gap color-theme"><b>Post new bike</b></p>
 		<?php endif ?>
 	</div>
+	
 	<div class="box-item-body" style="padding:10px 0;">
 		<div class="table-responsive post-bike-parent-box">
 			<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
-				<form action="<?php echo base_url('dashboard/edit_item/'.$page_data['id']);?>" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<form action="<?php echo base_url('dashboard/edit_item/'.$page_data['id']);?>" method="post" enctype="multipart/form-data" id="postBikeForm">
 			<?php else: ?>
-				<form action="<?php echo base_url('dashboard/add_item');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
+			<form action="<?php echo base_url('dashboard/add_item');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
 			<?php endif ?>
 				<div class="col-lg-6">
 					<div class="form-group">
@@ -22,7 +24,7 @@
 						<input type="text" class="form-control" name="bike_model" id="bike_model" required>
 					</div>
 				</div>
-				
+					
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label for="feat_photo">Featured Photo</label>
@@ -31,25 +33,23 @@
 				</div>
 
 				<div class="col-lg-12">
-					<div>
-						<ul class="grid-column column-30-70">
-							<li>
-								<p class="zero-gap"><b>Specs from:</b></p>
-								<p class="zero-gap" style="font-size:10px;">Automatically fills in all the specs according to the bike model selected.</p>
-							</li>
-							<li style="padding-left:10px;">
-								<div class="form-group bs-select-parent">
-									<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
-										<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
-											<?php foreach ($page_data['specs'] as $key => $bike): ?>
-												<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'><?php echo $bike['bike_model'];?></option>
-											<?php endforeach ?>
-										<?php endif ?>
-									</select>
-								</div>
-							</li>
-						</ul>
-					</div>
+					<ul class="grid-column column-30-70">
+						<li>
+							<p class="zero-gap"><b>Specs from:</b></p>
+							<p class="zero-gap" style="font-size:10px;">Automatically fills in all the specs according to the bike model selected.</p>
+						</li>
+						<li style="padding-left:10px;">
+							<div class="form-group bs-select-parent">
+								<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
+									<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
+										<?php foreach ($page_data['specs'] as $key => $bike): ?>
+											<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'><?php echo $bike['bike_model'];?></option>
+										<?php endforeach ?>
+									<?php endif ?>
+								</select>
+							</div>
+						</li>
+					</ul>
 				</div>
 
 				<div class="col-lg-12" style="margin-top:15px;">
@@ -395,7 +395,7 @@
 					</div>
 
 					<button type="submit" class="btn btn-info">Save</button>
-				<div>
+				</div>
 			</form>
 		</div>
 	</div>

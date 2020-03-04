@@ -147,18 +147,19 @@ class Dashboard extends MY_Controller {
 			'page_left_column' => array(
 				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
 				'ui_elements' => array(
-					'dashboard_elements/menu'
+					'dashboard_elements/menu',
 				),
 			),
 			'page_center_column' => array(
-				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'column_visibility_class' => 'col-lg-6 col-md-6 col-sm-6 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/post_bike_form'
 				)
 			),
 			'page_right_column' => array(
-				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
 				'ui_elements' => array(
+					'dashboard_elements/post_props'
 				)
 			),
 			'page_footer' => array(
