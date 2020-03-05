@@ -9,7 +9,7 @@ $(document).ready(function() {
 			var excludedIds = thisInput.data('ids'), currentID = thisInput.data('id');
 			var isRightSide = excludedIds.indexOf(currentID.toString());
 			var oSettings = {
-				url: '/dashboard/search',
+				url: 'dashboard/search',
 				dataType: 'json',
 				data: {'keyword':event.target.value, 'id:notin':excludedIds},
 				beforeSend: function() {
@@ -26,13 +26,13 @@ $(document).ready(function() {
 							if (excludedIds.length == 2) { /*is in compare page*/
 								if (isRightSide) {
 									var stayID = excludedIds[0];
-									inputDropdown += '<a href="/compare/check/?id_1='+stayID+'&id_2='+oItem.id+'">';
+									inputDropdown += '<a href="compare/check/?id_1='+stayID+'&id_2='+oItem.id+'">';
 								} else {
 									var stayID = excludedIds[1];
-									inputDropdown += '<a href="/compare/check/?id_1='+oItem.id+'&id_2='+stayID+'">';
+									inputDropdown += '<a href="compare/check/?id_1='+oItem.id+'&id_2='+stayID+'">';
 								}
 							} else { /*in single bike page*/
-								inputDropdown += '<a href="/compare/check/?id_1='+currentID+'&id_2='+oItem.id+'">';
+								inputDropdown += '<a href="compare/check/?id_1='+currentID+'&id_2='+oItem.id+'">';
 							}
 								inputDropdown += '<div class="media result-bike-item">';
 									inputDropdown += '<div class="media-left">';

@@ -3,8 +3,9 @@
 	<?php
 		// debug($page_data['bikes'], 1);
 		// total number of bikes in comparison
-		// value comes from bikes_to_compare in controller
-		$bikeCount = $bikes_to_compare;
+		// value comes from $page_data['bikes'] array, counting keys within the said array
+		// this prevents error on $page_data['bikes'] index if there is only 1 data in the bike_item table
+		$bikeCount = count($page_data['bikes']);
 		// parse the class along .grid-column according to $bikeCount value
 		$gridCountArr = ['column-100', 'column-50-50', 'column-33-33-33'];
 

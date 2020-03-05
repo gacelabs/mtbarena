@@ -3,15 +3,37 @@
 <meta name="theme-color" content="#5d0274">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="MTB Arena compares bike full specifications such as mountain bikes, road bikes, rough road bikes, electronic bikes and more."  />
+<?php
+	$metaOgEnabledPagesArr = ['landing', 'compare', 'singleBike'];
 
-<meta property="og:url" content="" /> <!-- the URL of the page -->
+	$bikeOne = empty($page_data['bikes'][0]) ? '' : $page_data['bikes'][0];
+	$bikeTwo = empty($page_data['bikes'][1]) ? '' : $page_data['bikes'][1];
+	$bikeCompareUrl = empty($page_data['populars'][0]) ? '' : $page_data['populars'][0]['compare_url']; 
+
+	// prevents Search Engines to crawl
+	$noIndexPagesArr = ['dashboard'];
+?>
+<?php if (in_array($body_id, $metaOgEnabledPagesArr) && !empty($bikeOne)) { ?>
+<!-- facebook opengraph -->
+<meta property="og:url" content="<?php echo empty($bikeTwo['bike_model']) ? base_url('/').$bikeOne['bike_url'] : base_url('/').$bikeCompareUrl; ?>" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="" /> <!-- bike1 VS bike2 -->
+<meta property="og:title" content="<?php echo empty($bikeTwo['bike_model']) ? 'MTB '.$bikeOne['bike_model'].' - Full Specifications' : 'MTB Match Up: '.$bikeOne['bike_model'].' VS. '.$bikeTwo['bike_model'];?>" />
 <meta property="og:description" content="What do you ride?" />
-<meta property="og:image" content="" /> <!-- bike1 VS bike2 screenshot -->
-<meta property="site_name" content="MTB Arena" />
+<?php if (empty($bikeTwo)) { ?>
+<meta property="og:image" content="<?php echo base_url('/').$bikeOne['feat_photo'] ?>" />
+<?php } else { ?>
+<meta property="og:image" content="<?php echo base_url('/').$bikeOne['feat_photo'] ?>" />
+<meta property="og:image" content="<?php echo base_url('/').$bikeTwo['feat_photo'] ?>" />
+<?php } ?>
+<meta name="og:site_name" content="MTB Arena" />
+<!-- facebook opengraph -->
+<?php } else { ?>
+<meta name="description" content="MTB Arena | Bike Specifications Comparison Site"  />
+<?php } ?>
 
+<?php if (in_array($body_id, $noIndexPagesArr)) { ?>
+<meta name="robots" content="noindex">
+<?php } ?>
 
 <link rel="icon" type="image/png" href="<?php echo base_url('assets/images/mtbarena_favicon_theme.png'); ?>">
 <?php if ($metas) {foreach ($metas as $meta) {echo $meta;}} ?>
