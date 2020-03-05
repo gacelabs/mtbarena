@@ -57,7 +57,7 @@ class Compare extends MY_Controller {
 				'page_data' => array(
 					'bikes' => $bikes,
 					'mostviews' => $this->custom_model->bike_items(10),
-					'populars' => $this->custom_model->compare_first_load(10)
+					'populars' => $this->custom_model->compare_items(10)
 				),
 				'footer_scripts' => array(
 					'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -68,7 +68,7 @@ class Compare extends MY_Controller {
 			);
 			$this->load->view('page_templates/main_template', $structure);
 		} else {
-			$compares = $this->custom_model->compare_first_load();
+			$compares = $this->custom_model->compare_items();
 			$structure = array(
 				'metas' => array(
 					''
@@ -112,7 +112,7 @@ class Compare extends MY_Controller {
 				'page_data' => array(
 					'compares' => $compares,
 					'mostviews' => $this->custom_model->bike_items(10),
-					'populars' => $this->custom_model->compare_first_load(10)
+					'populars' => $this->custom_model->compare_items(10)
 				),
 				'footer_scripts' => array(
 					'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -162,7 +162,7 @@ class Compare extends MY_Controller {
 				$post['user_id'] = "'".$this->accounts->profile['id']."'";
 				$compare_id = $this->custom_model->add('compares', $post);
 			}
-			$data = $this->custom_model->compare_first_load(FALSE, FALSE, "compares.id = '".$compare_id."'");
+			$data = $this->custom_model->compare_items(FALSE, FALSE, "compares.id = '".$compare_id."'");
 			// debug($data, 1);
 			foreach ($data as $key => $row) {
 				$count = (int)$row['popularity'] + 1;

@@ -23,7 +23,7 @@ class Custom_Model extends MY_Model {
 		");
 	}
 
-	public function compare_first_load($limit=FALSE, $offset=FALSE, $clause=FALSE)
+	public function compare_items($limit=FALSE, $offset=FALSE, $clause=FALSE)
 	{
 		if ($limit) {
 			if ($offset) {

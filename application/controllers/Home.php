@@ -50,7 +50,7 @@ class Home extends MY_Controller {
 			'page_data' => array(
 				'bikes' => $this->custom_model->bike_items(),
 				'mostviews' => $this->custom_model->bike_items(10),
-				'populars' => $this->custom_model->compare_first_load(10)
+				'populars' => $this->custom_model->compare_items(10)
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
