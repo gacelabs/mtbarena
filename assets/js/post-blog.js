@@ -10,7 +10,6 @@ $(function() {
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
-
 			reader.onload = function(e) {
 				$('#imagePreview').attr('src', e.target.result);
 				$('#blog_feat_photo').val(e.target.result);
@@ -25,7 +24,7 @@ $(function() {
 
 	$("#blog_title").keyup(function() {
 		var sTitle = $(this).val();
-		sTitle = cleanTitle(sTitle);
+		sTitle = cleanString(sTitle);
 		$('#basic-url').val(sTitle);
 	}).blur(function() {
 		var sTitle = $(this).val();
@@ -36,7 +35,6 @@ $(function() {
 		var oJson = $('#edit-json-data').data('json');
 		if (Object.keys(oJson[0]).length) {
 			// console.log(oJson);
-			const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			for(var field in oJson[0]) {
 				var sVal = oJson[0][field];
 				if ($('#post-blog-form [name='+field+']:not(:file)').attr('type') == 'radio') {
@@ -60,7 +58,7 @@ $(function() {
 	}
 });
 
-function cleanTitle(string) {
+function cleanString(string) {
 	string = string.replace(new RegExp(/\s/, 'g'), '-');
 	string = string.replace(new RegExp(/[^a-z0-9\._-]/, 'g'), '');
 	string = string.replace(new RegExp(/[()]/, 'g'), '');
@@ -68,8 +66,10 @@ function cleanTitle(string) {
 	return string.toLowerCase();
 }
 
-function formatDatetime(sDate) {
-	var options = {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'};
+function formatDatetime(sDate, options) {
+	if (options == undefined) {
+		options = {month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit'};
+	}
 	var date  = new Date(sDate);
 	return date.toLocaleDateString("en-US", options);
 }
