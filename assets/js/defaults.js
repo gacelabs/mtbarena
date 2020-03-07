@@ -103,9 +103,37 @@ $(document).ready(function() {
 		}
 	});
 
-
-	
-
+	if ($.inArray(ClassName, ['singlebike']) >= 0) {
+		var seq = 1;
+		var i = setInterval(function() {
+			// console.log(seq);
+			if (seq == VIEW_COUNT_TIME) {
+				clearInterval(i);
+				if (ClassName == 'singlebike') {
+					console.log('time: set 1 view count to this bike');
+					var path = window.location.pathname.split('/mtb/')[0].replace(new RegExp('/', 'g'), '');
+					var data = path.split('-');
+					var oData = {post_id:data[0], user_id:data[1], class:ClassName};
+				}
+				if (typeof oData != 'undefined') {
+					oSettings = {
+						url: 'ajax/view_count',
+						dataType: 'json',
+						type: 'GET',
+						data: {'data': oData},
+						success: function(data){
+							console.log(data);
+						},
+						error: function(data){
+							console.log(data); 
+						}
+					};
+					$.ajax(oSettings);
+				}
+			}
+			seq++;
+		}, 1000);
+	}
 });
 
 $(window).on('load resize change', function() {
@@ -173,7 +201,6 @@ $(window).on('load resize change', function() {
 			adjTop = 50;
 		}
 	});
-
 });
 
 $(function() {
@@ -275,7 +302,7 @@ function countHeart(oThis, sMethod, oData) {
 				prevCount = parseInt($(oThis).find('.hcount').text());
 			},
 			success: function(res) {
-				console.log(res);
+				// console.log(res);
 				if (res && res.count) {
 					$(oThis).find('.hcount').text(prevCount+res.count);
 					$(oThis).addClass('liked');
