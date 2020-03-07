@@ -30,7 +30,7 @@
 					<a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> <span class="hidden-sm">Home</span></a>
 				</li>
 				<li class="<?php if (!empty($body_id) && $body_id == 'compare') {echo 'active';} ?> nav-border">
-					<a href="<?php echo base_url('compare'); ?>"><i class="fa fa-clone"></i> <span class="hidden-sm">Compare</span></a>
+					<a href="<?php echo base_url('compare'); ?>"><i class="fa fa-clone"></i> <span class="hidden-sm">Compares</span></a>
 				</li>
 			<!-- 	<li class="<?php if (!empty($body_id) && $body_id == 'marketplace') {echo 'active';} ?>">
 					<a href="<?php echo base_url('marketplace'); ?>"><i class="fa fa-shopping-bag"></i> <span class="hidden-sm">Marketplace</span></a>

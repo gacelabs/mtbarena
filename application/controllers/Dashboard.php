@@ -159,7 +159,7 @@ class Dashboard extends MY_Controller {
 			'page_right_column' => array(
 				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
 				'ui_elements' => array(
-					'dashboard_elements/post_props'
+					'dashboard_elements/post_bike_props'
 				)
 			),
 			'page_footer' => array(

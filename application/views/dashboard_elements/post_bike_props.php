@@ -2,7 +2,7 @@
 <div class="stick-me" style="margin-bottom:15px;">
 	<div class="box-item">
 		<div class="box-item-body-top">
-			<p class="zero-gap color-theme"><b>Post Properties</b></p>
+			<p class="zero-gap color-theme"><b>Properties</b></p>
 		</div>
 		<div class="box-item-body">
 			<div style="margin-bottom:10px;">

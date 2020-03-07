@@ -36,11 +36,55 @@
 								<td>
 									<a href="<?php echo $bike['bike_url'];?>">Link</a> 
 									<span class="color-lightgray" style="padding:0 5px;">|</span>
-									<a href="<?php echo base_url('/dashboard/edit-bike/') ?><?php echo $bike['id'];?>">Edit</a> 
+									<a href="<?php echo base_url('dashboard/edit-bike/') ?><?php echo $bike['id'];?>">Edit</a> 
 								</td>
 							</tr>
 						<?php endforeach ?>
 					<?php endif ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class="box-item">
+	<div class="box-item-body-top">
+		<a href="<?php echo base_url('dashboard/post-blog'); ?>" class="btn btn-info btn-sm">New Blog</a>
+	</div>
+	<div class="box-item-body">
+		<div class="table-responsive zero-gap">
+			<table class="table table-striped zero-gap">
+				<thead>
+					<tr>
+						<th><small>Photo</small></th>
+						<th><small>Blog Title</small></th>
+						<th><small>Updated</small></th>
+						<th><small>Views</small></th>
+						<th><small>Likes</small></th>
+						<th><small>Actions</small></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">
+							<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo base_url('assets/images/mtb/aeroic_tornado_x2.jpg'); ?>" alt="" title="">
+						</th>
+						<th>
+							10 Budget Bikes Below 10K
+							<br>
+							<small class="color-lightgray">Feb 22, 2020</small>		
+						</th>
+						<td>
+							March 1, 2020
+						</td>
+						<td>231</td>
+						<td>763</td>
+						<td>
+							<a href="">Link</a> 
+							<span class="color-lightgray" style="padding:0 5px;">|</span>
+							<a href="<?php echo base_url('dashboard/edit-blog/'); ?>">Edit</a>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
