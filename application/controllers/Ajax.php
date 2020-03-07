@@ -89,16 +89,15 @@ class Ajax extends MY_Controller {
 		if ($get) {
 			$data = $get['data'];
 			if (count($data)) {
-				if (is_null($this->accounts->profile)) {
-					$user_id = 0;
-				} else {
+				$data['user_id'] = 0;
+				if ($this->accounts->profile) {
 					$data['user_id'] = $this->accounts->profile['id'];
 				}
 				$class_name = $data['class'];
 				unset($data['class']);
 				$data['ip_address'] = $_SERVER['REMOTE_ADDR'];
 				// debug($data, 1);
-				$has_counted = FALSE;
+				$result = FALSE;
 				if (isset($class_name)) {
 					switch (strtolower($class_name)) {
 						case 'compare':
@@ -109,13 +108,13 @@ class Ajax extends MY_Controller {
 							if ($this->custom_model->get('views_map', $data) == FALSE) {
 								$this->custom_model->save_count('bike_items', ['id'=>$data['post_id']], 'view_count');
 								$this->custom_model->add('views_map', $data);
-								$has_counted = TRUE;
+								$result = $this->custom_model->get('bike_items', ['id'=>$data['post_id']], 'view_count', 'row');
 							}
 							break;
 					}
 				}
-				if ($has_counted) {
-					echo 1;
+				if ($result) {
+					echo $result['view_count'];
 				} else {
 					echo 0;
 				}

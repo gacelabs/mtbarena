@@ -178,6 +178,7 @@ class Compare extends MY_Controller {
 				$count = (int)$row['popularity'] + 1;
 				/*before that add count to the popularity*/
 				$this->custom_model->save('compares', ['popularity'=>$count], ['id'=>$compare_id]);
+				// debug($row, 1);
 				redirect(base_url($row['compare_url']));
 			}
 		}

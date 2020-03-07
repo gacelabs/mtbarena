@@ -18,7 +18,7 @@ class Custom_Model extends MY_Model {
 			FROM bike_items b 
 				INNER JOIN users u ON u.id = b.user_id 
 			$where_clause
-			ORDER BY b.view_count DESC, b.updated DESC 
+			ORDER BY b.view_count DESC/*, b.updated DESC */
 		$limit_by
 		");
 	}

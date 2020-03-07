@@ -103,17 +103,18 @@ $(document).ready(function() {
 		}
 	});
 
-	if ($.inArray(ClassName, ['singlebike']) >= 0) {
+	if ($.inArray(className, ['singlebike']) >= 0) {
 		var seq = 1;
 		var i = setInterval(function() {
 			// console.log(seq);
-			if (seq == VIEW_COUNT_TIME) {
+			if (seq == viewCountThreshold) {
 				clearInterval(i);
-				if (ClassName == 'singlebike') {
+				if (className == 'singlebike') {
 					console.log('time: set 1 view count to this bike');
 					var path = window.location.pathname.split('/mtb/')[0].replace(new RegExp('/', 'g'), '');
 					var data = path.split('-');
-					var oData = {post_id:data[0], user_id:data[1], class:ClassName};
+					var oData = {post_id:data[0], class:className};
+					var uiElem = $('#bike-vcnt-'+oData.post_id), sTableID = 'most-viewed-bikes', iCol = 1, sDir = 'desc';
 				}
 				if (typeof oData != 'undefined') {
 					oSettings = {
@@ -121,8 +122,11 @@ $(document).ready(function() {
 						dataType: 'json',
 						type: 'GET',
 						data: {'data': oData},
-						success: function(data){
-							console.log(data);
+						success: function(count){
+							if (count) {
+								uiElem.text(count);
+								sortTable(sTableID, iCol, sDir);	
+							}
 						},
 						error: function(data){
 							console.log(data); 
@@ -314,5 +318,49 @@ function countHeart(oThis, sMethod, oData) {
 		};
 		if (recentAjax != false) recentAjax.abort();
 		recentAjax = $.ajax(oSettings);
+	}
+}
+
+function sortTable(ID, iCol, Dir) {
+	var table, rows, switching, i, x, y, shouldSwitch;
+	table = document.getElementById(ID);
+	console.log($(table))
+	if ($(table).length) {
+		if (iCol == undefined) iCol = 0;
+		if (Dir == undefined) Dir = 'asc';
+		switching = true;
+		/*Make a loop that will continue until no switching has been done:*/
+		while (switching) {
+			/*start by saying: no switching is done:*/
+			switching = false;
+			rows = table.rows;
+			/*Loop through all table rows (except the first, which contains table headers):*/
+			for (i = 1; i < (rows.length - 1); i++) {
+				/*start by saying there should be no switching:*/
+				shouldSwitch = false;
+				/*Get the two elements you want to compare, one from current row and one from the next:*/
+				x = rows[i].getElementsByTagName("TD")[iCol];
+				y = rows[i + 1].getElementsByTagName("TD")[iCol];
+				/*check if the two rows should switch place:*/
+				if (Dir == 'asc') {
+					if (Number(x.innerHTML) > Number(y.innerHTML)) {
+						/*if so, mark as a switch and break the loop:*/
+						shouldSwitch = true;
+						break;
+					}
+				} else if (Dir == 'desc') {
+					if (Number(x.innerHTML) < Number(y.innerHTML)) {
+						/*if so, mark as a switch and break the loop:*/
+						shouldSwitch = true;
+						break;
+					}
+				}
+			}
+			if (shouldSwitch) {
+				/*If a switch has been marked, make the switch and mark that a switch has been done:*/
+				rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+				switching = true;
+			}
+		}
 	}
 }

@@ -21,9 +21,9 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 
-		const VIEW_COUNT_TIME = <?php echo VIEW_COUNT_TIME;?>;
-		const User = <?php echo $this->session->userdata('profile') ? json_encode($this->session->userdata('profile')) : '{}';?>;
-		const ClassName = '<?php echo $this->class_name;?>';
+		const viewCountThreshold = <?php echo VIEW_COUNT_THRESHOLD;?>;
+		const user = <?php echo $this->session->userdata('profile') ? json_encode($this->session->userdata('profile')) : '{}';?>;
+		const className = '<?php echo $this->class_name;?>';
 	</script>
 </head>
 

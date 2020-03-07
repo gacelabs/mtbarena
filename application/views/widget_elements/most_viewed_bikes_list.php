@@ -6,23 +6,17 @@
 		</div>
 		<div class="box-item-body">
 			<div class="table-responsive">
-				<table class="table table-striped zero-gap">
-					<thead>
+				<table class="table table-striped zero-gap" id="most-viewed-bikes">
+					<tr>
+						<th><small>Bike Model</small></th>
+						<th><small>Views</small></th>
+					</tr>
+					<?php foreach ($page_data['mostviews'] as $key => $bike): ?>
 						<tr>
-							<th><small>#</small></th>
-							<th><small>Bike Model</small></th>
-							<th><small>Views</small></th>
+							<td><a href="<?php echo $bike['bike_url'];?>"><?php echo $bike['bike_model'];?></a></td>
+							<td align="center" id="bike-vcnt-<?php echo $bike['id'];?>"><?php echo $bike['view_count'];?></td>
 						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($page_data['mostviews'] as $key => $bike): ?>
-							<tr>
-								<th scope="row"><?php echo $key+1;?></th>
-								<td><a href="<?php echo $bike['bike_url'];?>"><?php echo $bike['bike_model'];?></a></td>
-								<td><?php echo $bike['view_count'];?></td>
-							</tr>
-						<?php endforeach ?>
-					</tbody>
+					<?php endforeach ?>
 				</table>
 			</div>
 		</div>

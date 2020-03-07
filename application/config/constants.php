@@ -88,4 +88,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 defined('APPID') OR define('APPID', '489158908632449');
 defined('FBTOKEN') OR define('FBTOKEN', '489158908632449|eea3208574301632162bb4d9256018b4');
 
-defined('VIEW_COUNT_TIME') OR define('VIEW_COUNT_TIME', 5); /*in seconds*/
+defined('VIEW_COUNT_THRESHOLD') OR define('VIEW_COUNT_THRESHOLD', 5); /*in seconds*/
