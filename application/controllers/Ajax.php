@@ -27,7 +27,7 @@ class Ajax extends MY_Controller {
 							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
 							$compares = $this->custom_model->get('compares', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
 							// debug($compares, 1);
-							$where = "is_compare != 0 AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
+							$where = "is_compare = 1 AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 							if ($this->custom_model->get('likes_map', $where) == FALSE) {
 								$this->custom_model->save_count('compares', $compares);
 								$this->custom_model->add('likes_map', ['is_compare'=>1, 'user_id'=>$user_id, 'post_id'=>$compares['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
@@ -76,6 +76,49 @@ class Ajax extends MY_Controller {
 						break;
 				}
 				echo json_encode($body);
+			}
+		}
+		exit();
+	}
+
+	public function view_count()
+	{
+		// debug($_SERVER['REMOTE_ADDR'], 1);
+		$get = $this->input->get();
+		// debug($get, 1);
+		if ($get) {
+			$data = $get['data'];
+			if (count($data)) {
+				if (is_null($this->accounts->profile)) {
+					$user_id = 0;
+				} else {
+					$data['user_id'] = $this->accounts->profile['id'];
+				}
+				$class_name = $data['class'];
+				unset($data['class']);
+				$data['ip_address'] = $_SERVER['REMOTE_ADDR'];
+				// debug($data, 1);
+				$has_counted = FALSE;
+				if (isset($class_name)) {
+					switch (strtolower($class_name)) {
+						case 'compare':
+							break;
+						
+						default:
+							/*check map if already have counted*/
+							if ($this->custom_model->get('views_map', $data) == FALSE) {
+								$this->custom_model->save_count('bike_items', ['id'=>$data['post_id']], 'view_count');
+								$this->custom_model->add('views_map', $data);
+								$has_counted = TRUE;
+							}
+							break;
+					}
+				}
+				if ($has_counted) {
+					echo 1;
+				} else {
+					echo 0;
+				}
 			}
 		}
 		exit();
