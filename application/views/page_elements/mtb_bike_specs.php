@@ -16,14 +16,23 @@
 				$like_count++;
 			}
 		}
+		$id = $share_count = 0;
 		if (in_array($this->class_name, ['singlebike'])) {
+			$id = $page_data['bikes'][0]['id'];
 			$like_count = $page_data['bikes'][0]['like_count'];
+			$share_count = $page_data['bikes'][0]['share_count'];
 		} elseif (in_array($this->class_name, ['compare'])) {
 			$ref = $this->input->get('ref');
 			if ($ref) {
-				$id = base64_decode($ref);
-				$like_count = get_like_count(['id'=>$id], 'compares');
+				$id = $ref;
+			} else {
+				$id = $page_data['id'];
 			}
+			$share_count = $page_data['share_count'];
+			$like_count = get_like_count(['id'=>$id], 'compares');
+		}
+		if (in_array($this->class_name, ['home', 'compare']) AND $like_count > 0) {
+			$like_count = floor($like_count / $like_count);
 		}
 	?>
 	<div class="box-item mtb-bike-specs-main-parent">
@@ -40,8 +49,8 @@
 				</li>
 
 				<li class="text-right">
-					<button type="button" class="btn btn-xs btn-sq" onclick="popupCenter('https://www.facebook.com/sharer.php?u=<?php echo urlencode(current_url());?>', this, 'fbShare');">
-						<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd>SHARE</kbd></small>
+					<button type="button" class="btn btn-xs btn-sq" onclick="popupSharer(this, '<?php echo current_full_url();?>', <?php echo $id;?>, '<?php echo $this->class_name;?>');">
+						<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="shcount"><?php echo $share_count;?></kbd></small>
 					</button>
 					<button type="button" class="btn btn-xs btn-sq" onclick='countHeart(this, "<?php echo $this->class_name;?>", <?php echo json_encode(['data'=>json_encode($ids)]);?>)'>
 						<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="hcount"><?php echo $like_count;?></kbd></small>

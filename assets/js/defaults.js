@@ -230,42 +230,62 @@ $(function() {
 	};
 });
 
-function popupCenter(url, oThis, title, id, w, h) {
-	if (w == undefined) w = 450;
-	if (h == undefined) h = 450;
-	var left = (screen.width/2)-(w/2);
-	var top = (screen.height/2)-(h/2);
-	var win = window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-	// console.log(oThis, win);
-	return win;
-	/*FB.ui({
+function popupSharer(oThis, url, id, classname) {
+	var prevCount = parseInt($(oThis).find('.shcount').text());
+	$(oThis).find('.shcount').text(prevCount+1);
+	FB.ui({
+		display: 'popup',
 		method: 'share',
 		href: url
 	}, function(response){
-		console.log(response);
-	});*/
+		if (response != undefined) {
+			oSettings = {
+				url: 'ajax/fbshare',
+				dataType: 'json',
+				type: 'GET',
+				data: {id: id, url: url, class:classname},
+				success: function(data){
+					// console.log(data);
+					var share_count = data.engagement.share_count > 0 ? data.engagement.share_count : 1;
+					$(oThis).find('.shcount').text(share_count);
+					$(oThis).addClass('shared');
+				},
+				error: function(data){
+					console.log(data); 
+				}
+			};
+			$.ajax(oSettings);
+		} else {
+			$(oThis).find('.shcount').text(prevCount);
+		}
+	});
 }
 
-var recentAjax = false;
+var recentAjax = false, stopAjax = false;
 function countHeart(oThis, sMethod, oData) {
 	// console.log($(oThis), oData);
-	var prevCount = 0;
-	var oSettings = {
-		url: 'ajax/count_heart/'+sMethod,
-		type: 'post',
-		dataType: 'json',
-		data: oData,
-		beforeSend: function() {
-			prevCount = parseInt($(oThis).find('.hcount').text());
-		},
-		success: function(res) {
-			if (res && res.count) {
-				// console.log(res);
-				$(oThis).find('.hcount').text(prevCount+res.count);
-				$(oThis).addClass('liked');
+	if (stopAjax == false) {
+		var prevCount = 0;
+		var oSettings = {
+			url: 'ajax/count_heart/'+sMethod,
+			type: 'post',
+			dataType: 'json',
+			data: oData,
+			beforeSend: function() {
+				prevCount = parseInt($(oThis).find('.hcount').text());
+			},
+			success: function(res) {
+				console.log(res);
+				if (res && res.count) {
+					$(oThis).find('.hcount').text(prevCount+res.count);
+					$(oThis).addClass('liked');
+					stopAjax = true;
+				} else if (res == false) {
+					stopAjax = true;
+				}
 			}
-		}
-	};
-	if (recentAjax != false) recentAjax.abort();
-	recentAjax = $.ajax(oSettings);
+		};
+		if (recentAjax != false) recentAjax.abort();
+		recentAjax = $.ajax(oSettings);
+	}
 }

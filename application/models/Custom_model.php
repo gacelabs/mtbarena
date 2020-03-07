@@ -23,7 +23,7 @@ class Custom_Model extends MY_Model {
 		");
 	}
 
-	public function compare_first_load($limit=FALSE, $offset=FALSE, $clause=FALSE)
+	public function compare_items($limit=FALSE, $offset=FALSE, $clause=FALSE)
 	{
 		if ($limit) {
 			if ($offset) {
@@ -60,10 +60,11 @@ class Custom_Model extends MY_Model {
 					if ($bike) {
 						// debug($compares[$key]['bike_data'], 1);
 						$compares[$key]['bike_data'][] = $bike;
-						$url .= 'bike_'.($index+1).'='.clean_string_name($bike['bike_model']).'&';
+						$url .= 'bike'.($index+1).'_'.clean_string_name($bike['bike_model']).':';
 					}
 				}
-				$compares[$key]['compare_url'] = 'compare/?'.$url.'&ref='.base64_encode($row['id']);
+				// $compares[$key]['compare_url'] = 'compare/?'.$url.'&ref='.base64_encode($row['id']);
+				$compares[$key]['compare_url'] = 'compare/'.$url.'ref_'.$row['id'];
 				$compares[$key]['ids'] = $bikes['id'];
 			}
 			// debug($compares, 1);
@@ -100,15 +101,47 @@ class Custom_Model extends MY_Model {
 		return FALSE;
 	}
 
-	public function save_count($table=FALSE, $where=FALSE, $field='like_count')
+	public function save_count($table=FALSE, $where=FALSE, $field='like_count', $count=FALSE)
 	{
 		if ($table AND $where AND $field) {
 			/*check if the id exist*/
 			if ($data = $this->get($table, $where, FALSE, 'row')) {
-				$result = $this->save($table, [$field => $data[$field] + 1], ['id' => $data['id']]);
+				$post = [$field => $data[$field] + 1];
+				if ($count) $post = [$field => $count];
+				$result = $this->save($table, $post, ['id' => $data['id']]);
 				return $this->db->affected_rows();
 			}
 		}
 		return FALSE;
+	}
+
+	public function bike_paginate($id=0)
+	{
+		$return = $this->query("SELECT DISTINCT b.id,
+			CONCAT('dashboard/edit-bike/', b.id) AS edit_url, 
+			CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url
+			FROM bike_items b 
+			ORDER BY b.view_count DESC, b.updated DESC
+		");
+		$result = [];
+		if ($return) {
+			foreach ($return as $key => $row) {
+				if ($row['id'] == $id) {
+					if ($key != 0) {
+						$result['prev'] = $return[$key-1]['edit_url'];
+					} else {
+						$result['prev'] = 0;
+					}
+					// $result[] = $row['edit_url'];
+					if (isset($return[$key+1])) {
+						$result['next'] = $return[$key+1]['edit_url'];
+					} else {
+						$result['next'] = 0;
+					}
+				}
+			}
+		}
+		// debug($result); exit();
+		return $result;
 	}
 }

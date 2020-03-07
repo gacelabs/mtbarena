@@ -24,6 +24,7 @@ $route['logout'] = 'profile/sign_out';
 
 // url = mtbarena.com/compare?bike=model-here&bike=model-here/
 $route['compare'] = 'compare';
+$route['compare/(:any)'] = 'compare/index/$1';
 $route['(:any)/compare/(:any)'] = 'Compare/index/$1/$2';
 
 // url = mtbarena.com/mtb/model-here-full-specifications/

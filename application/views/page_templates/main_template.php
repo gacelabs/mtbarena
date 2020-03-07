@@ -3,20 +3,27 @@
 <html lang="en">
 <head>
 	<?php $this->load->view('page_requires/page_head'); ?>
-</head>
-
-<body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
-
-	<!-- <div id="fb-root"></div>
 	<script>
 		window.fbAsyncInit = function() {
 			FB.init({
-				xfbml: true,
-				version: 'v4.0'
+				appId      : '<?php echo APPID;?>',
+				cookie     : true,
+				xfbml      : true,
+				version    : 'v6.0'
 			});
+			FB.AppEvents.logPageView();   
 		};
+		(function(d, s, id){
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) {return;}
+			js = d.createElement(s); js.id = id;
+			js.src = "https://connect.facebook.net/en_US/sdk.js";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 	</script>
-	<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script> -->
+</head>
+
+<body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
 	</div>
 	<!-- page nav -->
 		<?php
