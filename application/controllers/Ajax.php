@@ -55,4 +55,27 @@ class Ajax extends MY_Controller {
 		}
 		exit();
 	}
+
+	public function fbshare()
+	{
+		$get = $this->input->get();
+		if ($get) {
+			$body = curl_get_shares($get['url']);
+			// debug($body, 1);
+			if (isset($body['engagement'])) {
+				$share_count = $body['engagement']['share_count'];
+				switch (strtolower($get['class'])) {
+					case 'compare':
+						$this->custom_model->save_count('compares', ['id'=>$get['id']], 'share_count', $share_count);
+						break;
+					
+					default:
+						$this->custom_model->save_count('bike_items', ['id'=>$get['id']], 'share_count', $share_count);
+						break;
+				}
+				echo json_encode($body);
+			}
+		}
+		exit();
+	}
 }

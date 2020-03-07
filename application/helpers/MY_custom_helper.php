@@ -25,8 +25,11 @@ function debug($data=NULL, $exit=FALSE)
 					} else {
 						if (is_object($data) OR is_null($data)) echo "<b>DATA TYPE:</b> OBJECT<br />";
 						if (is_array($data)) echo "<b>DATA TYPE:</b> ARRAY<br />";
-						if (is_string($data)) echo "<b>DATA TYPE:</b> STRING<br />";
-						if (is_numeric($data)) echo "<b>DATA TYPE:</b> NUMBER<br />";
+						if (is_numeric($data)) {
+							echo "<b>DATA TYPE:</b> NUMBER<br />";
+						} elseif (is_string($data)) {
+							echo "<b>DATA TYPE:</b> STRING<br />";
+						}
 						if (empty($data) AND $data != 0) {
 							if (is_object($data) OR is_null($data)) echo "<b>DATA:</b> NULL<br />";
 							if (is_array($data)) echo "<b>DATA:</b> EMPTY<br />";
@@ -384,9 +387,10 @@ function bike_search($query='', $and_clause='')
 function clean_string_name($string=FALSE, $delimiter='-')
 {
 	if ($string) {
-		/*now replace the delimiter*/
+		/*now replace space and underscores with the delimiter*/
 		$string = preg_replace('/\s/', $delimiter, $string);
-		/*clean all unnecessary symbols*/
+		$string = preg_replace('/_/', $delimiter, $string);
+		/*clean all unnecessary symbols and characters*/
 		$string = preg_replace('/[^a-z0-9\.-]/', '', strtolower($string));
 		$string = preg_replace('/[()]/', '', strtolower($string));
 		$string = preg_replace('/[+]/', '', strtolower($string));
@@ -403,4 +407,95 @@ function get_like_count($where=FALSE, $table='bike_items')
 		return $data['like_count'];
 	}
 	return 0;
+}
+
+function curl_get_shares( $url )
+{
+	$access_token = FBTOKEN;
+	$api_url = 'https://graph.facebook.com/v6.0/?id=' . urlencode( $url ) . '&fields=engagement&access_token=' . $access_token;
+	$fb_connect = curl_init(); // initializing
+	curl_setopt( $fb_connect, CURLOPT_URL, $api_url );
+	curl_setopt( $fb_connect, CURLOPT_RETURNTRANSFER, 1 ); // return the result, do not print
+	curl_setopt( $fb_connect, CURLOPT_TIMEOUT, 20 );
+	$json_return = curl_exec( $fb_connect ); // connect and get json data
+	curl_close( $fb_connect ); // close connection
+	
+	return json_decode( $json_return, TRUE );
+}
+
+function in_str($string='', $search='')
+{
+	return (bool)strstr($string, $search);
+}
+
+function is_url_parsable()
+{
+	return (in_str(current_full_url(), '_') OR in_str(current_full_url(), '~')) AND in_str(current_full_url(), ':');
+}
+
+function current_full_url()
+{
+	$CI =& get_instance();
+	$url = $CI->config->site_url($CI->uri->uri_string());
+	// debug($url); debug($_SERVER); exit();
+	if ($_SERVER['QUERY_STRING']) {
+		$url .= $url.'?'.$_SERVER['QUERY_STRING'];
+	}
+	return $url;
+}
+
+function parse_mtb_query($uri=FALSE)
+{
+	$parsed = [];
+	if ($uri) {
+		$separate = explode(':', $uri);
+		foreach ($separate as $key => $string) {
+			$col_val = explode('_', $string);
+			$num = $col_val[0][strlen($col_val[0])-1];
+			$column = is_numeric($num) ? remove_in_str($col_val[0], $num).'_'.$num : $col_val[0];
+			$value = $col_val[1];
+			if (!isset($parsed[$column])) {
+				$parsed[$column] = get_col_val($value);
+			} else {
+				if (is_array($parsed[$column])) {
+					$parsed[$column][] = get_col_val($value);
+				} else {
+					$parsed[$column] = [$parsed[$column]];
+					$parsed[$column][] = get_col_val($value);
+				}
+			}
+		}
+		// debug($parsed, 1);
+	}
+	return $parsed;
+}
+
+function remove_in_str($string=FALSE, $remove='')
+{
+	if ($string) {
+		return preg_replace('/'.$remove.'/', '', $string);
+	}
+}
+
+function get_col_val($string=FALSE, $delimiter='~')
+{
+	$parsed = $string;
+	if ($string AND in_str($string, $delimiter)) {
+		$parsed = [];
+		$col_val = explode($delimiter, $string);
+		// debug($col_val, 1);
+		$column = $col_val[0];
+		$value = $col_val[1];
+		if (!isset($parsed[$column])) {
+			$parsed[$column] = $value;
+		} else {
+			if (is_array($parsed[$column])) {
+				$parsed[$column][] = $value;
+			} else {
+				$parsed[$column] = [$parsed[$column]];
+				$parsed[$column][] = $value;
+			}
+		}
+	}
+	return $parsed;
 }

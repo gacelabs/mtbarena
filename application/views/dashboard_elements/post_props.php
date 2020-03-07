@@ -23,6 +23,18 @@
 					<small><?php echo date('M j, Y', strtotime(json_decode($page_data["json"])[0]->updated)); ?></small>
 				</div>
 			</div>
+			<div class="grid-column column-50-50" style="margin-bottom:10px;display:grid;">
+				<?php if ($page_data['paginate']['prev']): ?>
+					<a href="<?php echo $page_data['paginate']['prev'];?>" class="btn btn-xs btn-default">Prev</a>				
+				<?php else: ?>
+					<div>&nbsp;</div>
+				<?php endif ?>
+				<?php if ($page_data['paginate']['next']): ?>
+					<a href="<?php echo $page_data['paginate']['next'];?>" class="btn btn-xs btn-default">Next</a>				
+				<?php else: ?>
+					<div>&nbsp;</div>
+				<?php endif ?>
+			</div>
 		</div>
 	</div>
 </div>

@@ -6,14 +6,22 @@ class Compare extends MY_Controller {
 	{
 		$this->load->model('custom_model');
 		$get = $this->input->get();
+		// debug(is_url_parsable(), 1);
 		if ($get) {
-			$compare_id = trim(base64_decode($get['ref']));
+			// $compare_id = trim(base64_decode($get['ref']));
+			$compare_id = trim($get['ref']);
 			$bike_model = trim($get['bike_1'].' ~and~ '.$get['bike_2']);
+		} elseif (is_url_parsable()) {
+			$get = parse_mtb_query($compare_id);
+			$compare_id = trim($get['ref']);
+			$bike_model = trim($get['bike_1'].' ~and~ '.$get['bike_2']);
+			// debug($bike_model, 1);
 		}
 		if ($compare_id AND $bike_model) {
 			$where = construct_where($compare_id, 'compares.');
-			$bikes = $this->custom_model->compared_bikes($where, 'compares.bike_data');
-			// debug($bikes, 1);
+			$bikes = $this->custom_model->compared_bikes($where);
+			$compares = $this->custom_model->get('compares', $where, 'share_count', 'row');
+			// debug($compares, 1);
 			$structure = array(
 				'metas' => array(
 					''
@@ -56,6 +64,8 @@ class Compare extends MY_Controller {
 				),
 				'page_data' => array(
 					'bikes' => $bikes,
+					'id' => $compare_id,
+					'share_count' => $compares['share_count'],
 					'mostviews' => $this->custom_model->bike_items(10),
 					'populars' => $this->custom_model->compare_items(10)
 				),

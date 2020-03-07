@@ -49,7 +49,7 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
-				'specs' => $this->custom_model->bike_items('all'),
+				'specs' => $this->custom_model->bike_items(10),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -176,6 +176,7 @@ class Dashboard extends MY_Controller {
 				'id' => $id,
 				'json' => json_encode($edit_bike),
 				'is_edit' => 1,
+				'paginate' => $this->custom_model->bike_paginate($id)
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
