@@ -29,7 +29,6 @@
 								</th>
 								<td>
 									<?php echo date('M j, Y', strtotime($bike['updated']));?> <small class="color-lightgray"></small>
-									
 								</td>
 								<td><?php echo $bike['view_count'];?></td>
 								<td><?php echo $bike['like_count'];?></td>
@@ -65,26 +64,30 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<th scope="row">
-							<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo base_url('assets/images/mtb/aeroic_tornado_x2.jpg'); ?>" alt="" title="">
-						</th>
-						<th>
-							10 Budget Bikes Below 10K
-							<br>
-							<small class="color-lightgray">Feb 22, 2020</small>		
-						</th>
-						<td>
-							March 1, 2020
-						</td>
-						<td>231</td>
-						<td>763</td>
-						<td>
-							<a href="">Link</a> 
-							<span class="color-lightgray" style="padding:0 5px;">|</span>
-							<a href="<?php echo base_url('dashboard/edit-blog/'); ?>">Edit</a>
-						</td>
-					</tr>
+					<?php if (isset($page_data['blogs']) AND $page_data['blogs']): ?>
+						<?php foreach ($page_data['blogs'] as $key => $blog): ?>
+							<tr>
+								<th scope="row">
+									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $blog['blog_feat_photo']; ?>" alt="" title="">
+								</th>
+								<th>
+									<?php echo $blog['blog_title']; ?>
+									<br>
+									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($blog['added']));?></small>		
+								</th>
+								<td>
+									<?php echo date('F j, Y', strtotime($blog['updated']));?>
+								</td>
+								<td><?php echo $blog['view_count']; ?></td>
+								<td><?php echo $blog['like_count']; ?></td>
+								<td>
+									<a href="<?php echo base_url($blog['blog_url']); ?>">Link</a> 
+									<span class="color-lightgray" style="padding:0 5px;">|</span>
+									<a href="<?php echo base_url('dashboard/edit-blog/'.$blog['id']); ?>">Edit</a>
+								</td>
+							</tr>
+						<?php endforeach ?>
+					<?php endif ?>
 				</tbody>
 			</table>
 		</div>

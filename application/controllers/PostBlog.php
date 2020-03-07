@@ -64,8 +64,14 @@ class PostBlog extends MY_Controller {
 		$this->load->view('page_templates/main_template', $structure);
 	}
 
-	public function edit_blog()
+	public function edit_blog($id=0)
 	{
+		$blog_post = $this->custom_model->blog_posts(FALSE, FALSE, "id = '".$id."'");
+
+		if ($id==0 || $id=='' || empty($blog_post)) {
+			redirect(base_url('post-blog'), 'refresh');
+		}
+
 		$structure = array(
 			'metas' => array(
 				''
@@ -73,6 +79,7 @@ class PostBlog extends MY_Controller {
 			'css_links' => array(
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
+				'assets/css/post-blog',
 				'assets/css/edit-blog'
 			),
 			'title' => 'Edit blog | MTB Arena',
@@ -109,6 +116,10 @@ class PostBlog extends MY_Controller {
 			),
 			'page_data' => array(
 				'specs' => $this->custom_model->bike_items(3),
+				'id' => $id,
+				'json' => json_encode($blog_post),
+				'is_edit' => 1,
+				'paginate' => $this->custom_model->bike_paginate($id)
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -122,5 +133,49 @@ class PostBlog extends MY_Controller {
 		);
 
 		$this->load->view('page_templates/main_template', $structure);
+	}
+
+	public function add_item()
+	{
+		$post = $this->input->post();
+		// debug($post, 1);
+		if ($post) {
+			$account = $this->accounts->profile;
+			$file_path = 'blog/images/'.clean_string_name($account['store_name'].$account['id']);
+			$file = clean_string_name($post['blog_segment']).'.png';
+			$filename = save_image($post['blog_feat_photo'], $file_path, $file);
+			// debug($filename, 1);
+			$post['blog_feat_photo'] = $filename;
+			$post['user_id'] = $this->accounts->profile['id'];
+			$post['blog_url'] = $account['id'].'/blogs/'.$post['blog_segment'];
+			// debug($post, 1);
+			return $this->custom_model->add('blog_posts', $post, 'dashboard'); /*redirect to dashboard*/
+		}
+		return FALSE;
+	}
+
+	public function edit_item($id=0)
+	{
+		$post = $this->input->post();
+		// debug($_FILES); exit();
+		if ($post AND $id) {
+			$account = $this->accounts->profile;
+			/*check if the post is yours*/
+			if ($blog_post = $this->custom_model->get('blog_posts', ['id'=>$id, 'user_id'=>$account['id']], FALSE, 'row')) {
+				if (isset($post['blog_feat_photo']) AND strlen(trim($post['blog_feat_photo'])) > 0) {
+					$file_path = 'blog/images/'.clean_string_name($account['store_name'].$account['id']);
+					$file = clean_string_name($post['blog_segment']).'.png';
+					$filename = save_image($post['blog_feat_photo'], $file_path, $file);
+					// debug($filename, 1);
+					$post['blog_feat_photo'] = $filename;
+				} else {
+					unset($post['blog_feat_photo']);
+				}
+				$post['user_id'] = $this->accounts->profile['id'];
+				// debug($post, 1);
+				return $this->custom_model->save('blog_posts', $post, ['id'=>$id], 'dashboard/edit-blog/'.$id); /*redirect to dashboard edit*/
+			}
+		}
+		return FALSE;
 	}
 }

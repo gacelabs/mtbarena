@@ -144,4 +144,26 @@ class Custom_Model extends MY_Model {
 		// debug($result); exit();
 		return $result;
 	}
+
+	public function blog_posts($limit=FALSE, $offset=FALSE, $clause=FALSE)
+	{
+		if ($limit) {
+			if ($offset) {
+				$this->db->limit($limit, $offset);
+			} else {
+				$this->db->limit($limit);
+			}
+		}
+		if ($clause) {
+			$this->db->where($clause);
+		}
+		$this->db->order_by('updated', 'DESC');
+		$query = $this->db->get('blog_posts');
+
+		if ($query->num_rows()) {
+			$blog_posts = $query->result_array();
+			return $blog_posts;
+		}
+		return FALSE;
+	}
 }

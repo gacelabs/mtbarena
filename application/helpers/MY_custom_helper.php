@@ -144,13 +144,14 @@ function get_root_path($path='', $is_doc_path=TRUE)
 	}
 }
 
-function save_image($base64_string=FALSE, $file=FALSE) {
+function save_image($base64_string=FALSE, $dir='', $file=FALSE) {
 	if ($base64_string) {
 		if ($file == FALSE) {
 			$output_file = get_root_path('assets/data/photos/'.random_string().'.jpg');
 		} else {
-			$output_file = get_root_path($file);
+			$output_file = create_dirs($dir).$file;
 		}
+		// debug($output_file, 1);
 		/*open the output file for writing*/
 		$ifp = fopen($output_file, 'wb'); 
 		/*split the string on commas*/
@@ -162,7 +163,7 @@ function save_image($base64_string=FALSE, $file=FALSE) {
 		/*clean up the file resource*/
 		fclose($ifp); 
 		// return get_root_path($file, FALSE); 
-		return $file; 
+		return 'assets/data/files/'.$dir.'/'.$file; 
 	}
 	return FALSE;
 }
@@ -170,33 +171,7 @@ function save_image($base64_string=FALSE, $file=FALSE) {
 function files_upload($_files=FALSE, $return_path=FALSE, $dir='', $this_name=FALSE) {
 	if ($_files) {
 		// debug($_files, 1);
-		/*create the dirs*/
-		$folder_chunks = explode('/', 'assets/data/files/');
-		if (count($folder_chunks)) {
-			$uploaddir = get_root_path();
-			foreach ($folder_chunks as $key => $folder) {
-				$uploaddir .= $folder.'/';
-				// debug($uploaddir);
-				@mkdir($uploaddir);
-			}
-		}
-		@mkdir(get_root_path('assets/data/files/'));
-		$uploaddir = get_root_path('assets/data/files/'.$dir);
-		
-		if ($dir != '') {
-			/*create the dirs*/
-			$folder_chunks = explode('/', str_replace(' ', '_', $dir));
-			// debug($folder_chunks);
-			if (count($folder_chunks)) {
-				$uploaddir = get_root_path('assets/data/files/');
-				foreach ($folder_chunks as $key => $folder) {
-					$uploaddir .= $folder.'/';
-					// debug($uploaddir);
-					@mkdir($uploaddir);
-				}
-			}
-		}
-		@chmod($uploaddir, 0755);
+		$uploaddir = create_dirs($dir);
 		// debug($uploaddir, 1);
 
 		$array_index = array_keys($_files);
@@ -276,6 +251,39 @@ function files_upload($_files=FALSE, $return_path=FALSE, $dir='', $this_name=FAL
 			return $result;
 		}
 	}
+}
+
+function create_dirs($dir='')
+{
+	/*create the dirs*/
+	$folder_chunks = explode('/', 'assets/data/files/');
+	if (count($folder_chunks)) {
+		$uploaddir = get_root_path();
+		foreach ($folder_chunks as $key => $folder) {
+			$uploaddir .= $folder.'/';
+			// debug($uploaddir);
+			@mkdir($uploaddir);
+		}
+	}
+	@mkdir(get_root_path('assets/data/files/'));
+	$uploaddir = get_root_path('assets/data/files/'.$dir);
+	
+	if ($dir != '') {
+		/*create the dirs*/
+		$folder_chunks = explode('/', str_replace(' ', '_', $dir));
+		// debug($folder_chunks);
+		if (count($folder_chunks)) {
+			$uploaddir = get_root_path('assets/data/files/');
+			foreach ($folder_chunks as $key => $folder) {
+				$uploaddir .= $folder.'/';
+				// debug($uploaddir);
+				@mkdir($uploaddir);
+			}
+		}
+	}
+	@chmod($uploaddir, 0755);
+
+	return $uploaddir;
 }
 
 function construct_where($id_post_id=FALSE, $table_or_alias='') {
@@ -409,18 +417,18 @@ function get_like_count($where=FALSE, $table='bike_items')
 	return 0;
 }
 
-function curl_get_shares( $url )
+function curl_get_shares($url)
 {
 	$access_token = FBTOKEN;
-	$api_url = 'https://graph.facebook.com/v6.0/?id=' . urlencode( $url ) . '&fields=engagement&access_token=' . $access_token;
+	$api_url = 'https://graph.facebook.com/v6.0/?id=' . urlencode($url) . '&fields=engagement&access_token=' . $access_token;
 	$fb_connect = curl_init(); // initializing
-	curl_setopt( $fb_connect, CURLOPT_URL, $api_url );
-	curl_setopt( $fb_connect, CURLOPT_RETURNTRANSFER, 1 ); // return the result, do not print
-	curl_setopt( $fb_connect, CURLOPT_TIMEOUT, 20 );
-	$json_return = curl_exec( $fb_connect ); // connect and get json data
-	curl_close( $fb_connect ); // close connection
+	curl_setopt($fb_connect, CURLOPT_URL, $api_url);
+	curl_setopt($fb_connect, CURLOPT_RETURNTRANSFER, 1); // return the result, do not print
+	curl_setopt($fb_connect, CURLOPT_TIMEOUT, 20);
+	$json_return = curl_exec($fb_connect); // connect and get json data
+	curl_close($fb_connect); // close connection
 	
-	return json_decode( $json_return, TRUE );
+	return json_decode($json_return, TRUE);
 }
 
 function in_str($string='', $search='')

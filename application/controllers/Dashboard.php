@@ -50,6 +50,7 @@ class Dashboard extends MY_Controller {
 			),
 			'page_data' => array(
 				'specs' => $this->custom_model->bike_items(10),
+				'blogs' => $this->custom_model->blog_posts(10),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -321,13 +322,15 @@ class Dashboard extends MY_Controller {
 		// debug($_FILES); exit();
 		if ($post AND $id) {
 			$account = $this->accounts->profile;
-			if (isset($_FILES['feat_photo']) AND $_FILES['feat_photo']['error'] == 0) {
-				$filename = files_upload($_FILES, TRUE, 'bikes/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['bike_model']);
-				$post['feat_photo'] = $filename;
+			if ($bike_item = $this->custom_model->get('bike_items', ['id'=>$id, 'user_id'=>$account['id']], FALSE, 'row')) {
+				if (isset($_FILES['feat_photo']) AND $_FILES['feat_photo']['error'] == 0) {
+					$filename = files_upload($_FILES, TRUE, 'bikes/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['bike_model']);
+					$post['feat_photo'] = $filename;
+				}
+				$post['user_id'] = $this->accounts->profile['id'];
+				// debug($post, 1);
+				return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id); /*redirect to dashboard edit*/
 			}
-			$post['user_id'] = $this->accounts->profile['id'];
-			// debug($post, 1);
-			return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id); /*redirect to dashboard edit*/
 		}
 		return FALSE;
 	}

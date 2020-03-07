@@ -1,40 +1,39 @@
 
-<?php if (isset($page_data['bikes']) AND $page_data['bikes']): ?>
-	<?php
-		// debug($page_data['bikes'], 1);
-		// total number of bikes in comparison
-		// value comes from $page_data['bikes'] array, counting keys within the said array
-		// this prevents error on $page_data['bikes'] index if there is only 1 data in the bike_item table
-		$bikeCount = count($page_data['bikes']);
-		// parse the class along .grid-column according to $bikeCount value
-		$gridCountArr = ['column-100', 'column-50-50', 'column-33-33-33'];
+<?php if (isset($page_data['bikes']) AND $page_data['bikes']): 
+	// debug($page_data['bikes'], 1);
+	// total number of bikes in comparison
+	// value comes from $page_data['bikes'] array, counting keys within the said array
+	// this prevents error on $page_data['bikes'] index if there is only 1 data in the bike_item table
+	$bikeCount = count($page_data['bikes']);
+	// parse the class along .grid-column according to $bikeCount value
+	$gridCountArr = ['column-100', 'column-50-50', 'column-33-33-33'];
 
-		$ids = []; $like_count = 0;
-		foreach ($page_data['bikes'] as $key => $bike) {
-			$ids[] = $bike['id'];
-			if ($bike['like_count'] > 0) {
-				$like_count++;
-			}
+	$ids = []; $like_count = 0;
+	foreach ($page_data['bikes'] as $key => $bike) {
+		$ids[] = $bike['id'];
+		if ($bike['like_count'] > 0) {
+			$like_count++;
 		}
-		$id = $share_count = 0;
-		if (in_array($this->class_name, ['singlebike'])) {
-			$id = $page_data['bikes'][0]['id'];
-			$like_count = $page_data['bikes'][0]['like_count'];
-			$share_count = $page_data['bikes'][0]['share_count'];
-		} elseif (in_array($this->class_name, ['compare'])) {
-			$ref = $this->input->get('ref');
-			if ($ref) {
-				$id = $ref;
-			} else {
-				$id = $page_data['id'];
-			}
-			$share_count = $page_data['share_count'];
-			$like_count = get_like_count(['id'=>$id], 'compares');
+	}
+	$id = $share_count = 0;
+	if (in_array($this->class_name, ['singlebike'])) {
+		$id = $page_data['bikes'][0]['id'];
+		$like_count = $page_data['bikes'][0]['like_count'];
+		$share_count = $page_data['bikes'][0]['share_count'];
+	} elseif (in_array($this->class_name, ['compare'])) {
+		$ref = $this->input->get('ref');
+		if ($ref) {
+			$id = $ref;
+		} else {
+			$id = $page_data['id'];
 		}
-		if (in_array($this->class_name, ['home', 'compare']) AND $like_count > 0) {
-			$like_count = floor($like_count / $like_count);
-		}
-	?>
+		$like_count = get_like_count(['id'=>$id], 'compares');
+	}
+
+	if (in_array($this->class_name, ['home', 'compare'])) {
+		$share_count = $page_data['share_count'];
+	}
+?>
 	<div class="box-item mtb-bike-specs-main-parent">
 		<div class="box-item-body-top" id="mtbCompareSpecs">
 			<ul class="spaced-list between">
