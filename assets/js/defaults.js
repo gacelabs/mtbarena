@@ -231,6 +231,8 @@ $(function() {
 });
 
 function popupSharer(oThis, url, id, classname) {
+	var prevCount = parseInt($(oThis).find('.shcount').text());
+	$(oThis).find('.shcount').text(prevCount+1);
 	FB.ui({
 		display: 'popup',
 		method: 'share',
@@ -253,30 +255,37 @@ function popupSharer(oThis, url, id, classname) {
 				}
 			};
 			$.ajax(oSettings);
+		} else {
+			$(oThis).find('.shcount').text(prevCount);
 		}
 	});
 }
 
-var recentAjax = false;
+var recentAjax = false, stopAjax = false;
 function countHeart(oThis, sMethod, oData) {
 	// console.log($(oThis), oData);
-	var prevCount = 0;
-	var oSettings = {
-		url: 'ajax/count_heart/'+sMethod,
-		type: 'post',
-		dataType: 'json',
-		data: oData,
-		beforeSend: function() {
-			prevCount = parseInt($(oThis).find('.hcount').text());
-		},
-		success: function(res) {
-			if (res && res.count) {
-				// console.log(res);
-				$(oThis).find('.hcount').text(prevCount+res.count);
-				$(oThis).addClass('liked');
+	if (stopAjax == false) {
+		var prevCount = 0;
+		var oSettings = {
+			url: 'ajax/count_heart/'+sMethod,
+			type: 'post',
+			dataType: 'json',
+			data: oData,
+			beforeSend: function() {
+				prevCount = parseInt($(oThis).find('.hcount').text());
+			},
+			success: function(res) {
+				console.log(res);
+				if (res && res.count) {
+					$(oThis).find('.hcount').text(prevCount+res.count);
+					$(oThis).addClass('liked');
+					stopAjax = true;
+				} else if (res == false) {
+					stopAjax = true;
+				}
 			}
-		}
-	};
-	if (recentAjax != false) recentAjax.abort();
-	recentAjax = $.ajax(oSettings);
+		};
+		if (recentAjax != false) recentAjax.abort();
+		recentAjax = $.ajax(oSettings);
+	}
 }
