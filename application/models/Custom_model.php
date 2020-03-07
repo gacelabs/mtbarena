@@ -10,7 +10,19 @@ class Custom_Model extends MY_Model {
 			$limit_by = 'LIMIT '.$limit;
 		}
 		if ($clause) {
-			$where_clause = 'WHERE '.$clause;
+			if (is_array($clause)) {
+				// debug($clause, 1);
+				$where_clause = 'WHERE ';
+				foreach ($clause as $field => $value) {
+					if (count($clause) > 1) {
+						$where_clause .= "AND ".$field." = '".$value."'";
+					} else {
+						$where_clause .= $field." = '".$value."'";
+					}
+				}
+			} else {
+				$where_clause = 'WHERE '.$clause;
+			}
 		}
 		return $this->query("
 		SELECT DISTINCT 

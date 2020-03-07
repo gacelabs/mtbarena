@@ -35,7 +35,7 @@ $(function() {
 	if ($('#edit-json-data').length) {
 		var oJson = $('#edit-json-data').data('json');
 		if (Object.keys(oJson[0]).length) {
-			console.log(oJson);
+			// console.log(oJson);
 			const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 			for(var field in oJson[0]) {
 				var sVal = oJson[0][field];
@@ -50,6 +50,10 @@ $(function() {
 				}
 				if ($.inArray(field, ['added', 'updated']) >= 0) {
 					$('#blog-'+field).text(formatDatetime(sVal));
+				}
+				if (field == 'blog_url') {
+					$('#blog_url-link').text(window.location.protocol+'//'+window.location.hostname+'/'+sVal);
+					$('#blog_url-href').attr('href', window.location.protocol+'//'+window.location.hostname+'/'+sVal);
 				}
 			}
 		}

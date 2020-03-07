@@ -49,8 +49,8 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
-				'specs' => $this->custom_model->bike_items(10),
-				'blogs' => $this->custom_model->blog_posts(10),
+				'specs' => $this->custom_model->bike_items(10, ['user_id'=>$this->accounts->profile['id']]),
+				'blogs' => $this->custom_model->blog_posts(10, FALSE, ['user_id'=>$this->accounts->profile['id']]),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
