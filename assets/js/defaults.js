@@ -96,11 +96,26 @@ $(document).ready(function() {
 
 	// text limiter
 	$(function() {
-		var txt = $('.text-limiter').text();
+		var maxLength = 180;
+		$(".text-limiter").each(function() {
+			var myStr = $(this).text();
+			if($.trim(myStr).length > maxLength){
+				var newStr = myStr.substring(0, maxLength);
+				var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
 
-		if(txt.length > 90) {
-			$('.text-limiter').text(txt.substring(0,87) + '...');
-		}
+				$(this).empty().html(newStr);
+				$(this).append(' <span class="read-more">...</span>');
+			}
+		});
+		$(".read-more").click(function() {
+			$(this).siblings(".more-text").contents().unwrap();
+			$(this).remove();
+		});
+		// var txt = $('.text-limiter').text();
+
+		// if(txt.length > 90) {
+		// 	$('.text-limiter').text(txt.substring(0,200) + '...');
+		// }
 	});
 
 	if ($.inArray(className, ['singlebike']) >= 0) {

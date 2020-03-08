@@ -51,10 +51,12 @@
 	text-transform: uppercase;
 }
 .mtb-item-image {
-	height: 200px;
 	transition: all .3s ease-in-out;
 	width: 100%;
 	margin-bottom: 2px;
+}
+#landing .mtb-item-image, #compare .mtb-item-image {
+	height: 200px;
 }
 .mtbImageShrinker {
 	height: 25px !important;
@@ -65,9 +67,9 @@
 	width: 25px !important;
 	z-index: 9;
 }
-.column-100 .mtb-item-image {
+/*.column-100 .mtb-item-image {
 	object-fit: contain !important;
-}
+}*/
 .changeBikeInput {
 	border-radius: 0;
 }
@@ -137,6 +139,9 @@
 }
 #mtbItemMainParent {
 	transition: all .3s ease-in-out;
+}
+#singleBike .mtb-item-image {
+	max-height: 400px;
 }
 @media screen and (max-width: 767px) {
 	.mtb-bike-specs-main-parent {

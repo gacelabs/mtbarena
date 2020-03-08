@@ -2,9 +2,10 @@ $(function() {
 	tinymce.init({
 		selector: '#textEditor',
 		branding: false,
+		height: 300,
 		menubar: false ,
-		plugins: "image link wordcount",
-		toolbar: 'h1 h2 h3 h4 h5 italic bold alignleft aligncenter alignright blockquote link image',
+		plugins: "image code link wordcount",
+		toolbar: 'h1 h2 h3 italic bold alignleft aligncenter alignright blockquote link image',
 	});
 
 	function readURL(input) {
@@ -32,6 +33,8 @@ $(function() {
 		$(this).val($.trim(sTitle)).trigger('keyup');
 	});
 
+	var baseUrl = $('base').attr('href');
+
 	if ($('#edit-json-data').length) {
 		var oJson = $('#edit-json-data').data('json');
 		if (Object.keys(oJson[0]).length) {
@@ -52,8 +55,8 @@ $(function() {
 					$('#blog-'+field).text(formatDatetime(sVal));
 				}
 				if (field == 'blog_url') {
-					$('#blog_url-link').text(window.location.protocol+'//'+window.location.hostname+'/'+sVal);
-					$('#blog_url-href').attr('href', window.location.protocol+'//'+window.location.hostname+'/'+sVal);
+					$('#blog_url-link').text(baseUrl+sVal);
+					$('#blog_url-href').attr('href', baseUrl+sVal);
 				}
 			}
 		}

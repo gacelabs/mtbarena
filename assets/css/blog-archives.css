@@ -1,0 +1,24 @@
+#blog_archives .news-feed-list-parent {
+	background-color: #fff;
+	margin-bottom: 10px;
+}
+#blog_archives .news-feed-item-image-column {
+	padding-right: 10px;
+}
+#blog_archives .news-feed-item-image-column img {
+	width: 125px;
+}
+#blog_archives .news-feed-item-story-column {
+	padding: 5px 0;
+}
+#blog_archives .news-feed-item-story-column {
+	white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

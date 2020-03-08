@@ -20,6 +20,7 @@ $route['dashboard/edit-blog/(:num)'] = 'PostBlog/edit_blog/$1';
 
 $route['postblog/add_item'] = 'PostBlog/add_item';
 $route['postblog/edit_item/(:num)'] = 'PostBlog/edit_item/$1';
+$route['(:num)/blogs/(:any)'] = 'PostBlog/view_blog/$1/$2';
 
 $route['sign_up'] = 'profile/sign_up';
 $route['login'] = 'profile/sign_in';

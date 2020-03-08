@@ -5,6 +5,9 @@
 	min-height: .01%;
 	border: 0 none;
 }
+.padding-x {
+	padding: 0 10px;
+}
 @media screen and (max-width: 767px) {
 	.post-bike .grid-column {
 		display: block;
