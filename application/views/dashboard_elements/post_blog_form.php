@@ -21,11 +21,8 @@
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon3"><?php echo base_url($current_profile['id'].'/blogs/');?></span>
 							<input type="text" class="form-control" id="basic-url" name="blog_segment" aria-describedby="basic-addon3" required>
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">Save</button>
-							</span>
 						</div>
-						<small class="color-lightgray">Note: Letters, numbers, underscores and dashes only.</small>
+						<small class="color-lightgray">NOTE: Letters, numbers, underscores and dashes only.</small>
 					</div>
 					<div class="form-group">
 						<label for="blog_title">Title</label>

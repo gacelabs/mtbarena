@@ -7,9 +7,21 @@
 		<div class="table-responsive post-blog-props-parent-box">
 			<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
 				<!-- show only on edit blog page -->
-				<div class="padding-x" style="margin-bottom:10px;">
-					<p class="zero-gap"><b><a id="blog_url-href" href="">View <i class="fa fa-external-link"></i></a></b></p>
-					<small class="color-lightgray" id="blog_url-link" style="word-break:break-all;"><?php echo base_url($current_profile['id'].'/blogs/blog-title-goes-here'); ?></small>
+				<div class="padding-x">
+					<div style="margin-bottom:10px;">
+						<p class="zero-gap"><b><a id="blog_url-href" href="">View <i class="fa fa-external-link"></i></a></b></p>
+						<small class="color-lightgray" id="blog_url-link" style="word-break:break-all;"><?php echo base_url($current_profile['id'].'/blogs/blog-title-goes-here'); ?></small>
+					</div>
+					<div class="grid-column column-50-50">
+						<div>
+							<small class="color-lightgray">Posted</small><br>
+							<small id="blog-added"></small>
+						</div>
+						<div>
+							<small class="color-lightgray">Updated</small><br>
+							<small id="blog-updated"></small>
+						</div>
+					</div>
 				</div>
 				<!-- show only on edit blog page -->
 			<hr>
@@ -20,22 +32,6 @@
 				<img src="<?php echo base_url('assets/images/image-placeholder.jpg'); ?>" class="image-cropped cover elem-block" id="imagePreview" style="margin:10px 0;border:1px solid #eee;max-height:300px;">
 				<input type="file" class="form-control" id="imageInput">
 			</div>
-			
-			<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
-			<hr>
-				<!-- show only on edit blog page -->
-				<div class="padding-x grid-column column-50-50" style="margin-bottom:10px;display:grid;">
-					<div>
-						<small class="color-lightgray">Posted</small><br>
-						<small id="blog-added"></small>
-					</div>
-					<div>
-						<small class="color-lightgray">Updated</small><br>
-						<small id="blog-updated"></small>
-					</div>
-				</div>
-				<!-- show only on edit blog page -->
-			<?php endif ?>
 		</div>
 	</div>
 </div>

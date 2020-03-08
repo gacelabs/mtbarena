@@ -14,6 +14,7 @@ class Home extends MY_Controller {
 			'css_links' => array(
 				'assets/css/defaults',
 				'assets/css/mtb-bike-specs',
+				'assets/css/news-feed-box',
 				'assets/css/mediaquery'
 			),
 			'title' => 'Home | MTB Arena',
@@ -31,7 +32,8 @@ class Home extends MY_Controller {
 			'page_center_column' => array(
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
-					'page_elements/mtb_bike_specs'
+					'page_elements/mtb_bike_specs',
+					'page_elements/news_feed_box'
 				)
 			),
 			'page_right_column' => array(
@@ -53,7 +55,8 @@ class Home extends MY_Controller {
 				'bikes' => $this->custom_model->bike_items(),
 				'share_count' => isset($home['engagement']) ? $home['engagement']['share_count'] : 0,
 				'mostviews' => $this->custom_model->bike_items(10),
-				'populars' => $this->custom_model->compare_items(10)
+				'populars' => $this->custom_model->compare_items(10),
+				'feed' => $this->custom_model->blog_posts(10, FALSE, FALSE),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
