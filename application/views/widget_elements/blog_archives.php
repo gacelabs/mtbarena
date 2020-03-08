@@ -17,8 +17,8 @@
 									<p class="text-ellipsis zero-gap"><?php echo ucwords($feed['blog_title']);?></p>
 									<p class="text-ellipsis zero-gap"><small><?php echo trim(strip_tags($feed['blog_content']));?></small></p>
 								</div>
-								<small><i class="fa fa-calendar"></i> <?php echo date('M j, Y', strtotime($feed['updated'])); ?></small>
-								<small><i class="fa fa-calendar"></i> <?php echo $feed['store_name']; ?></small>
+								<small><i class="fa fa-calendar"></i> <?php echo date('M j, Y', strtotime($feed['updated'])); ?> | </small>
+								<small><i class="fa fa-user"></i> <?php echo $feed['store_name']; ?></small>
 							</div>
 						</li>
 					</ul>

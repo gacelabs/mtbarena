@@ -46,7 +46,7 @@ class SingleBike extends MY_Controller {
 				)
 			),
 			'modals' => array(
-				'modal_elements/search_bike'
+				'modal_elements/login'
 			),
 			'page_data' => array(
 				'bikes' => $this->custom_model->bike_items(1, $where),
