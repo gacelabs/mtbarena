@@ -125,7 +125,7 @@ $(document).ready(function() {
 			if (seq == viewCountThreshold) {
 				clearInterval(i);
 				if (className == 'singlebike') {
-					console.log('time: set 1 view count to this bike');
+					/*console.log('time: set 1 view count to this bike');*/
 					var path = window.location.pathname.split('/mtb/')[0].replace(new RegExp('/', 'g'), '');
 					var data = path.split('-');
 					var oData = {post_id:data[0], class:className};

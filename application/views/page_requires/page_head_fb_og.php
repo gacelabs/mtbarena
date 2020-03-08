@@ -38,8 +38,9 @@
 <?php if (in_array($body_id, $noIndexPagesArr)) { ?>
 <meta name="description" content="MTB Arena | Bike Specifications Comparison Site"  />
 <?php } else { ?>
+<meta property="fb:app_id" content="'<?php echo APPID;?>'" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="<?php echo $ogUrl;?>" />
+<meta property="og:url" content="<?php echo current_full_url();?>" />
 <meta property="og:title" content="<?php echo $ogTitle;?>" />
 <meta property="og:description" content="<?php echo $ogDescription;?>" />
 <meta name="og:site_name" content="MTB Arena" />

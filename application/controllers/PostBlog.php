@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class PostBlog extends MY_Controller {
-	public $shall_not_pass = TRUE;
+
 	public $ajax_shall_not_pass = FALSE;
 
 	public function post_blog()
