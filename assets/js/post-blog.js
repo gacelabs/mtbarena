@@ -4,7 +4,33 @@ $(function() {
 		branding: false,
 		menubar: false ,
 		plugins: "image link wordcount",
-		toolbar: 'h1 h2 h3 h4 h5 italic bold alignleft aligncenter alignright blockquote link image',
+		toolbar: 'undo redo | h1 h2 h3 h4 h5 | italic bold alignleft aligncenter alignright blockquote link image code',
+		// without images_upload_url set, Upload tab won't show up
+		images_upload_url: 'ajax/upload_image',
+		// override default upload handler to simulate successful upload
+		images_upload_handler: function (blobInfo, success, failure) {
+			var xhr, formData;
+			xhr = new XMLHttpRequest();
+			xhr.withCredentials = false;
+			xhr.open('POST', 'ajax/upload_image');
+			xhr.onload = function() {
+				var json;
+				if (xhr.status != 200) {
+					failure('HTTP Error: ' + xhr.status);
+					return;
+				}
+				// console.log(xhr.responseText)
+				json = $.parseJSON(xhr.responseText);
+				if (!json || typeof json.location != 'string') {
+					failure('Invalid JSON: ' + xhr.responseText);
+					return;
+				}
+				success(json.location);
+			};
+			formData = new FormData();
+			formData.append('file', blobInfo.blob(), blobInfo.filename());
+			xhr.send(formData);
+		},
 	});
 
 	function readURL(input) {

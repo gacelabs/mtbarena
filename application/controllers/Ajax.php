@@ -122,4 +122,11 @@ class Ajax extends MY_Controller {
 		}
 		exit();
 	}
+
+	public function upload_image()
+	{
+		$file_dir = 'blog/images/'.clean_string_name($this->accounts->profile['store_name'].$this->accounts->profile['id'].'_posts');
+		// debug($file_dir, 1);
+		echo tinymce_upload($file_dir); exit();
+	}
 }
