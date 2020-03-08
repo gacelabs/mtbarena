@@ -169,6 +169,7 @@ class Custom_Model extends MY_Model {
 		if ($clause) {
 			$this->db->where($clause);
 		}
+		$this->db->select("(SELECT store_name FROM users WHERE id = blog_posts.user_id) AS store_name, blog_posts.*");
 		$this->db->order_by('updated', 'DESC');
 		$query = $this->db->get('blog_posts');
 
