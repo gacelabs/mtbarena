@@ -5,7 +5,7 @@
 		<div class="box-item-body news-feed-list-parent">
 			<div class="news-feed-item">
 				<a href="<?php echo base_url('/').$feed['blog_url']; ?>" class="news-feed-item-body">
-					<ul class="spaced-list between">
+					<ul style="display: flex;">
 						<li class="news-feed-item-image-column">
 							<div>
 								<img class="image-cropped" src="<?php echo $feed['blog_feat_photo'];?>" alt="<?php echo $feed['blog_segment'];?>" title="<?php echo $feed['blog_title'];?>">
