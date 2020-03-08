@@ -18,6 +18,7 @@
 									<p class="text-ellipsis zero-gap"><small><?php echo trim(strip_tags($feed['blog_content']));?></small></p>
 								</div>
 								<small><i class="fa fa-calendar"></i> <?php echo date('M j, Y', strtotime($feed['updated'])); ?></small>
+								<small><i class="fa fa-calendar"></i> <?php echo $feed['store_name']; ?></small>
 							</div>
 						</li>
 					</ul>
