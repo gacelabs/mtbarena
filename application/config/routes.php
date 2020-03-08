@@ -39,6 +39,9 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['sitemap\.xml'] = "sitemap/index";
+
+$route['privacy'] = "home/privacy";
+$route['terms'] = "home/terms";
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
