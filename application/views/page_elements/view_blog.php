@@ -22,10 +22,10 @@
 				<li>
 					<ul class="inline-list">
 						<li>
-							<button type="button" class="btn btn-xs btn-sq">
+							<button type="button" class="btn btn-xs btn-sq" onclick="popupSharer(this, '<?php echo current_full_url();?>', <?php echo $blog['id'];?>, '<?php echo $this->class_name;?>');">
 								<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="shcount"><?php echo $blog['share_count'];?></kbd></small>
 							</button>
-							<button type="button" class="btn btn-xs btn-sq">
+							<button type="button" class="btn btn-xs btn-sq" onclick='countHeart(this, "<?php echo $this->class_name;?>", <?php echo json_encode(['data'=>json_encode([$blog['id']])]);?>)'>
 								<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="hcount"><?php echo $blog['like_count'];?></kbd></small>
 							</button>
 						</li>

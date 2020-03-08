@@ -27,22 +27,27 @@ class Ajax extends MY_Controller {
 							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
 							$compares = $this->custom_model->get('compares', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
 							// debug($compares, 1);
-							$where = "is_compare = 1 AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
+							$where = "class = '$method' AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 							if ($this->custom_model->get('likes_map', $where) == FALSE) {
 								$this->custom_model->save_count('compares', $compares);
-								$this->custom_model->add('likes_map', ['is_compare'=>1, 'user_id'=>$user_id, 'post_id'=>$compares['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
+								$this->custom_model->add('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$compares['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
 								$was_counted = TRUE;
 							}
 							break;
 						
 						default:
-							foreach ($data as $key => $id) {
-								/*check map if already have counted*/
-								$where = "is_compare = 0 AND post_id = $id AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
-								if ($this->custom_model->get('likes_map', $where) == FALSE) {
-									$this->custom_model->save_count('bike_items', ['id'=>$id]);
-									$this->custom_model->add('likes_map', ['user_id'=>$user_id, 'post_id'=>$id, 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
-									$was_counted = TRUE;
+							if ($method == 'postblog') $table = 'blog_posts';
+							if (in_array($method, ['home', 'singlebike'])) $table = 'bike_items';
+
+							if (isset($table)) {
+								foreach ($data as $key => $id) {
+									/*check map if already have counted*/
+									$where = "class = '$method' AND post_id = $id AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
+									if ($this->custom_model->get('likes_map', $where) == FALSE) {
+										$this->custom_model->save_count($table, ['id'=>$id]);
+										$this->custom_model->add('likes_map', ['user_id'=>$user_id, 'class'=>$method, 'post_id'=>$id, 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
+										$was_counted = TRUE;
+									}
 								}
 							}
 							break;
@@ -68,13 +73,16 @@ class Ajax extends MY_Controller {
 				$share_count = $body['engagement']['share_count'];
 				switch (strtolower($get['class'])) {
 					case 'compare':
-						$this->custom_model->save_count('compares', ['id'=>$get['id']], 'share_count', $share_count);
-						break;
-					
+						$table = 'compares';
+					break;
+					case 'postblog':
+						$table = 'blog_posts';
+					break;
 					default:
-						$this->custom_model->save_count('bike_items', ['id'=>$get['id']], 'share_count', $share_count);
-						break;
+						$table = 'bike_items';
+					break;
 				}
+				$this->custom_model->save_count($table, ['id'=>$get['id']], 'share_count', $share_count);
 				echo json_encode($body);
 			}
 		}
