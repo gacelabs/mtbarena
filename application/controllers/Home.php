@@ -26,6 +26,7 @@ class Home extends MY_Controller {
 				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
 				'ui_elements' => array(
 					'widget_elements/most_viewed_bikes_list',
+					'widget_elements/bike_finder',
 					'widget_elements/popular_comparison_list'
 				),
 			),

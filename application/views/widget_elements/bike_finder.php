@@ -8,18 +8,11 @@
 	</div>
 	<div class="box-item-body">
 		<div class="grid">
+			<!-- LOOP here -->
 			<div class="grid-item">
-				<a href="<?php echo base_url('search?keyword=trinx'); ?>" style="text-decoration:none;"><p class="zero-gap">Trinx <small><kbd class="theme-kbd">123</kbd></small></p></a>
+				<a href="<?php echo base_url('search/trinx'); ?>" style="text-decoration:none;"><p class="zero-gap">Trinx <small><kbd class="theme-kbd">123</kbd></small></p></a>
 			</div>
-			<div class="grid-item">
-				<a href="<?php echo base_url('search?keyword=trinx'); ?>" style="text-decoration:none;"><p class="zero-gap">Keysto <small><kbd class="theme-kbd">23</kbd></small></p></a>
-			</div>
-			<div class="grid-item">
-				<a href="<?php echo base_url('search?keyword=trinx'); ?>" style="text-decoration:none;"><p class="zero-gap">Giant <small><kbd class="theme-kbd">32</kbd></small></p></a>
-			</div>
-			<div class="grid-item">
-				<a href="<?php echo base_url('search?keyword=trinx'); ?>" style="text-decoration:none;"><p class="zero-gap">Cannondale <small><kbd class="theme-kbd">123</kbd></small></p></a>
-			</div>
+			<!-- LOOP here -->
 		</div>
 	</div>
 </div>
