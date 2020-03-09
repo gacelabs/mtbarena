@@ -37,6 +37,7 @@
 								<label>Content</label>
 							</li>
 							<li>
+								<a id="reset-blogpost" class="btn btn-sm btn-danger">Reset</a>
 								<button class="btn btn-sm btn-info">Post</button>
 							</li>
 						</ul>
