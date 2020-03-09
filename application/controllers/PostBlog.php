@@ -54,9 +54,9 @@ class PostBlog extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery.tinymce.min.js').'" referrerpolicy="origin"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.image.plugin.min').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.code.plugin.min').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.link.plugin.min').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.image.plugin.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.code.plugin.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.link.plugin.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.wordcount.plugin.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-blog.js').'"></script>'
 			)
@@ -126,9 +126,9 @@ class PostBlog extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery.tinymce.min.js').'" referrerpolicy="origin"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.image.plugin.min').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.code.plugin.min').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.link.plugin.min').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.image.plugin.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.code.plugin.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.link.plugin.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/tinymce.wordcount.plugin.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-blog.js').'"></script>'
 			)

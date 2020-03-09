@@ -37,7 +37,9 @@
 								<label>Content</label>
 							</li>
 							<li>
-								<a id="reset-blogpost" class="btn btn-sm btn-danger">Reset</a>
+								<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
+									<a id="reset-blogpost" class="btn btn-sm btn-danger">Reset</a>
+								<?php endif ?>
 								<button class="btn btn-sm btn-info">Post</button>
 							</li>
 						</ul>
