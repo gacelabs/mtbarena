@@ -4,7 +4,7 @@
 	<div class="news-feed-title-divider" id="blog_archives">
 		<div class="news-feed-list-parent">
 			<div class="news-feed-item">
-				<a href="<?php echo base_url('/').$feed['blog_url']; ?>" class="news-feed-item-body">
+				<a href="<?php echo base_url('/').$feed['blog_url']; ?>">
 					<ul style="display: flex;">
 						<li class="news-feed-item-image-column">
 							<div>
@@ -13,12 +13,14 @@
 						</li>
 						<li class="news-feed-item-story-column">
 							<div>
-								<div class="text-left zero-gap">
-									<p class="text-ellipsis zero-gap"><?php echo ucwords($feed['blog_title']);?></p>
+								<div class="text-left zero-gap" style="padding-bottom: 15px;">
+									<p class="blog-title text-ellipsis zero-gap"><?php echo ucwords($feed['blog_title']);?></p>
 									<p class="text-ellipsis zero-gap"><small><?php echo trim(strip_tags($feed['blog_content']));?></small></p>
 								</div>
-								<small><i class="fa fa-calendar"></i> <?php echo date('M j, Y', strtotime($feed['updated'])); ?> | </small>
-								<small><i class="fa fa-user"></i> <?php echo $feed['store_name']; ?></small>
+								<div class="text-ellipsis">
+									<small><i class="fa fa-calendar color-lightgray"></i> <?php echo date('M j, Y', strtotime($feed['updated'])); ?> | </small>
+									<small><i class="fa fa-user color-lightgray"></i> <?php echo $feed['store_name']; ?></small>
+								</div>
 							</div>
 						</li>
 					</ul>

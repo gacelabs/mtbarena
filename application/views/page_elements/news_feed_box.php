@@ -11,18 +11,17 @@
 								<img class="image-cropped" src="<?php echo $feed['blog_feat_photo'];?>" alt="<?php echo $feed['blog_segment'];?>" title="<?php echo $feed['blog_title'];?>">
 							</div>
 						</li>
-						<li class="news-feed-item-story-column">
+						<li class="news-feed-item-story-column flex-to-ellipsis">
 							<div class="text-left zero-gap">
-								<h3><?php echo ucwords($feed['blog_title']);?></h3>
-								<p class="color-black"><?php echo $feed['blog_subtitle'];?></p>
+								<h3 class="blog-title text-ellipsis"><?php echo ucwords($feed['blog_title']);?></h3>
+								<p class="color-black text-ellipsis"><?php echo $feed['blog_subtitle'];?></p>
 							</div>
 							<div class="news-feed-item-story-body">
-								<span class="text-limiter"><?php echo trim(strip_tags($feed['blog_content']));?></span>
+								<span class="text-limiter" style="white-space:normal;"><?php echo trim(strip_tags($feed['blog_content']));?></span>
 							</div>
-							<div class="news-feed-item-footer-body">
-								<ul class="inline-list text-right">
-									<li><small class="color-lightgray"><i class="fa fa-clock-o"></i> <?php echo date('M j', strtotime($feed['updated']));?></small></li>
-								</ul>
+							<div class="text-ellipsis">
+								<small class="color-lightgray"><i class="fa fa-clock-o"></i> <?php echo date('M j', strtotime($feed['updated']));?> | </small>
+								<small class="color-lightgray"><i class="fa fa-user"></i> <?php echo $feed['store_name'];?></small>
 							</div>
 						</li>
 					</ul>

@@ -84,7 +84,8 @@ p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 	border-color: #7f32d4;
 }
 .nav-border {
-	border-right: 1px solid #cb3fef;
+	/*border-right: 1px solid #cb3fef;*/
+	border-right: 1px solid #990abd;
 }
 .box-absolute {
 	position: relative;
@@ -435,6 +436,18 @@ textarea {
 .img-align.center {
 	text-align: center;
 	margin: 0 auto;
+}
+.flex-to-ellipsis {
+	white-space: nowrap;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 1;
+	justify-content: left;
+	box-sizing: border-box;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 100%;
 }
 .zero-gap {
 	margin: 0;

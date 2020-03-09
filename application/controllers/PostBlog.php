@@ -45,7 +45,7 @@ class PostBlog extends MY_Controller {
 				)
 			),
 			'modals' => array(
-				
+				'modal_elements/login'
 			),
 			'page_data' => array(
 				'specs' => $this->custom_model->bike_items(3),

@@ -1,3 +1,4 @@
+<?php if (!$current_profile) { ?>
 <div class="modal fade" tabindex="-1" role="dialog" id="modal_login">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -35,3 +36,4 @@
 		</div>
 	</div>
 </div>
+<?php } ?>

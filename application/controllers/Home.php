@@ -71,11 +71,101 @@ class Home extends MY_Controller {
 
 	public function privacy()
 	{
-		# code...
+		$structure = array(
+			'metas' => array(
+				''
+			),
+			'css_links' => array(
+				'assets/css/defaults'
+			),
+			'title' => 'Home | MTB Arena',
+			'body_id' => 'landing',
+			'body_class' => 'landing',
+			'page_nav' => 'page_statics/main_nav',
+			'bikes_to_compare' => 2,
+			'page_left_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				),
+			),
+			'page_center_column' => array(
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'ui_elements' => array(
+					'page_elements/privacy_content',
+				)
+			),
+			'page_right_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				)
+			),
+			'page_footer' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm',
+				'ui_elements' => array(
+				)
+			),
+			'modals' => array(
+				'modal_elements/login'
+			),
+			'page_data' => array(
+				
+			),
+			'footer_scripts' => array(
+				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>'
+			)
+		);
+
+		$this->load->view('page_templates/main_template', $structure);
 	}
 
 	public function terms()
 	{
-		# code...
+		$structure = array(
+			'metas' => array(
+				''
+			),
+			'css_links' => array(
+				'assets/css/defaults'
+			),
+			'title' => 'Home | MTB Arena',
+			'body_id' => 'landing',
+			'body_class' => 'landing',
+			'page_nav' => 'page_statics/main_nav',
+			'bikes_to_compare' => 2,
+			'page_left_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				),
+			),
+			'page_center_column' => array(
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'ui_elements' => array(
+					'page_elements/terms_content',
+				)
+			),
+			'page_right_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				)
+			),
+			'page_footer' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm',
+				'ui_elements' => array(
+				)
+			),
+			'modals' => array(
+				'modal_elements/login'
+			),
+			'page_data' => array(
+				
+			),
+			'footer_scripts' => array(
+				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>'
+			)
+		);
+
+		$this->load->view('page_templates/main_template', $structure);
 	}
 }
