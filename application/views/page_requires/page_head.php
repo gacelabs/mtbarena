@@ -1,3 +1,5 @@
+<?php $this->load->view('page_requires/page_head_google_analytics'); ?>
+
 <base href="<?php echo base_url(); ?>">
 <meta charset="utf-8">
 <meta name="theme-color" content="#5d0274">

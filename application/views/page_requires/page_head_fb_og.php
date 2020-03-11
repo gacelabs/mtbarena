@@ -54,5 +54,7 @@
 <!-- facebook opengraph -->
 
 <?php if (in_array($body_id, $noIndexPagesArr)) { ?>
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex,nofollow">
+<?php } else { ?>
+<meta name="robots" content="index,follow">
 <?php } ?>
