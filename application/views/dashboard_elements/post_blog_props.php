@@ -9,7 +9,7 @@
 				<!-- show only on edit blog page -->
 				<div class="padding-x">
 					<div style="margin-bottom:10px;">
-						<p class="zero-gap"><b><a id="blog_url-href" href="">View <i class="fa fa-external-link"></i></a></b></p>
+						<p class="zero-gap"><b><a target="_blank" id="blog_url-href" href="">View <i class="fa fa-external-link"></i></a></b></p>
 						<small class="color-lightgray" id="blog_url-link" style="word-break:break-all;"><?php echo base_url($current_profile['id'].'/blogs/blog-title-goes-here'); ?></small>
 					</div>
 					<div class="grid-column column-50-50">
