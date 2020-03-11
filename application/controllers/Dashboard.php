@@ -311,7 +311,7 @@ class Dashboard extends MY_Controller {
 			$post['feat_photo'] = $filename;
 			$post['user_id'] = $this->accounts->profile['id'];
 			// debug($post, 1);
-			return $this->custom_model->add('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
+			return $this->custom_model->new('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
 		}
 		return FALSE;
 	}

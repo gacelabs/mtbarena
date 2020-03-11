@@ -44,9 +44,13 @@ class MY_Model extends CI_Model {
 		return FALSE;
 	}
 
-	public function add($table=FALSE, $post=FALSE, $redirect_url='')
+	public function new($table=FALSE, $post=FALSE, $redirect_url='')
 	{
 		if ($table AND $post) {
+			if ($this->db->field_exists('version', $table)) {
+				$post = (array)$post;
+				$post['version'] = 1;
+			}
 			$this->db->insert($table, $post);
 			if ($redirect_url != '') {
 				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
@@ -60,6 +64,11 @@ class MY_Model extends CI_Model {
 	public function save($table=FALSE, $set=FALSE, $where=FALSE, $redirect_url='')
 	{
 		if ($table AND $set AND $where) {
+			if ($this->db->field_exists('version', $table)) {
+				$data = $this->get($table, $where, 'version', 'row');
+				$set = (array)$set;
+				$set['version'] = (int)$data['version'] + 1;
+			}
 			$this->db->update($table, $set, $where);
 			if ($redirect_url != '') {
 				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
