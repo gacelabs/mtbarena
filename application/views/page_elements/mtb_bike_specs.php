@@ -105,7 +105,7 @@
 														<i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
 													<?php endif ?>
 												<?php else: ?>
-													<?php echo $page_data['bikes'][$i][$field] ? $page_data['bikes'][$i][$field] : 'N/A';?>
+													<?php echo $page_data['bikes'][$i][$field] ? nl2br($page_data['bikes'][$i][$field]) : 'N/A';?>
 												<?php endif ?>
 												<?php if ($field == 'external_link'): ?></a><?php endif ?>
 											</p>
