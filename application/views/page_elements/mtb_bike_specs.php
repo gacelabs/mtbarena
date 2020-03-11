@@ -85,7 +85,7 @@
 				<!-- LOOP here -->
 				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
 					<?php foreach ($bike as $field => $value): ?>
-						<?php if (!in_array($field, ['id','user_id','bike_model','bike_url','store_name','feat_photo','spec_from','price','view_count','share_count','like_count','added','updated'])): ?>
+						<?php if (in_array($field, ['made_by','colorway','frame','fork','shifter','front_derailleur','rear_derailleur','cassette','chain','brake','rim','tires','chainwheel','hub','saddle','seatpost','stem','handlebar','external_link','price_tag'])): ?>
 							<div class="mtb-item-specs-parent">
 								<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
 									<small class="color-theme mtb-item-spec-label-text"><?php echo str_replace('_', ' ', $field);?></small>
