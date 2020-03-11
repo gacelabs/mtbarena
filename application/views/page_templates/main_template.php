@@ -28,7 +28,7 @@
 </head>
 
 <body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
-
+	<?php $googleAnalyticsPages = ['landing', 'compare', 'singleBike']; ?>
 	<?php if (in_array($body_id, $googleAnalyticsPages)) { ?>
 
 	<!-- Google Tag Manager (noscript) -->
