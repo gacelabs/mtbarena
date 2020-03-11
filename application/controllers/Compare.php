@@ -145,7 +145,7 @@ class Compare extends MY_Controller {
 			$post['user_id'] = $this->accounts->profile['id'];
 		}
 		debug($post, 1);
-		return $this->custom_model->add('compares', $post, 'compare'); /*redirect to compare*/
+		return $this->custom_model->new('compares', $post, 'compare'); /*redirect to compare*/
 	}
 
 	public function check()
@@ -171,7 +171,7 @@ class Compare extends MY_Controller {
 				$post = [];
 				$post['bike_data'] = $bike_data_1;
 				$post['user_id'] = "'".$this->accounts->profile['id']."'";
-				$compare_id = $this->custom_model->add('compares', $post);
+				$compare_id = $this->custom_model->new('compares', $post);
 			}
 			$data = $this->custom_model->compare_items(FALSE, FALSE, "compares.id = '".$compare_id."'");
 			// debug($data, 1);

@@ -569,3 +569,39 @@ function tinymce_upload($dir='', $filename='upload')
 		header("HTTP/1.1 500 Server Error");
 	}
 }
+
+function calculate($data=FALSE, $mode=FALSE)
+{
+	$result = FALSE;
+	if ($data AND $mode) {
+		$data = (object)$data;
+		switch (strtolower($mode)) {
+			case 'frequency':
+				$now = date('Y-m-d H:i:s');
+				$added = $data->added;
+				$version = $data->version;
+				$timediff = strtotime($now) - strtotime($added);
+				// Check how many revisions have been made over the lifetime of the Page for a rough estimate of it's changing frequency.
+				$period = $timediff / ($version + 1);
+				if ($period > 60 * 60 * 24 * 365) {
+					$result = 'yearly';
+				} elseif ($period > 60 * 60 * 24 * 30) {
+					$result = 'monthly';
+				} elseif ($period > 60 * 60 * 24 * 7) {
+					$result = 'weekly';
+				} elseif ($period > 60 * 60 * 24) {
+					$result = 'daily';
+				} elseif ($period > 60 * 60) {
+					$result = 'hourly';
+				} else {
+					$result = 'always';
+				}
+				break;
+			
+			default: /**/
+				# code...
+				break;
+		}
+	}
+	return $result;
+}

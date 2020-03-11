@@ -4,6 +4,45 @@ class Sitemap extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->model('custom_model');
+		$data = [[
+			'loc' => base_url(),
+			'lastmod' => date('c'),
+			'changefreq' => 'always'
+		]];
+		$bikes = $this->custom_model->bike_items('all');
+		if ($bikes) {
+			foreach ($bikes as $key => $bike) {
+				$data[] = [
+					'loc' => base_url($bike['bike_url']),
+					'lastmod' => date('c', strtotime($bike['updated'])),
+					'changefreq' => calculate($bike, 'frequency'),
+					'images' => [['url' => base_url($bike['feat_photo'])]]
+				];
+			}
+		}
+		$compares = $this->custom_model->compare_items();
+		if ($compares) {
+			foreach ($compares as $key => $compare) {
+				$images = [];
+				foreach ($compare['bike_data'] as $bike) {
+					$images[] = ['url' => base_url($bike['feat_photo'])];
+				}
+				$data[] = [
+					'loc' => base_url($compare['compare_url']),
+					'lastmod' => date('c', strtotime($compare['updated'])),
+					'changefreq' => calculate($compare, 'frequency'),
+					'images' => count($images) ? $images : FALSE
+				];
+			}
+		}
+
+		// debug($data, 1);
+		$this->load->view('page_statics/sitemap', ['items'=>$data]);
+	}
+
+	/*public function index()
+	{
 		$data = ['items'=>[]];
 		$var = $this->fread_url(base_url());
 		preg_match_all("/a[\s]+[^>]*?href[\s]?=[\s\"\']+"."(.*?)[\"\']+.*?>"."([^<]+|.*?)?<\/a>/", $var, $matches);
@@ -52,5 +91,5 @@ class Sitemap extends CI_Controller {
 			}
 		}
 		return $html;
-	}
+	}*/
 }

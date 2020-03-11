@@ -30,7 +30,7 @@ class Ajax extends MY_Controller {
 							$where = "class = '$method' AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 							if ($this->custom_model->get('likes_map', $where) == FALSE) {
 								$this->custom_model->save_count('compares', $compares);
-								$this->custom_model->add('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$compares['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
+								$this->custom_model->new('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$compares['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
 								$was_counted = TRUE;
 							}
 							break;
@@ -45,7 +45,7 @@ class Ajax extends MY_Controller {
 									$where = "class = '$method' AND post_id = $id AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 									if ($this->custom_model->get('likes_map', $where) == FALSE) {
 										$this->custom_model->save_count($table, ['id'=>$id]);
-										$this->custom_model->add('likes_map', ['user_id'=>$user_id, 'class'=>$method, 'post_id'=>$id, 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
+										$this->custom_model->new('likes_map', ['user_id'=>$user_id, 'class'=>$method, 'post_id'=>$id, 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
 										$was_counted = TRUE;
 									}
 								}
@@ -115,7 +115,7 @@ class Ajax extends MY_Controller {
 							/*check map if already have counted*/
 							if ($this->custom_model->get('views_map', $data) == FALSE) {
 								$this->custom_model->save_count('bike_items', ['id'=>$data['post_id']], 'view_count');
-								$this->custom_model->add('views_map', $data);
+								$this->custom_model->new('views_map', $data);
 								$result = $this->custom_model->get('bike_items', ['id'=>$data['post_id']], 'view_count', 'row');
 							}
 							break;
