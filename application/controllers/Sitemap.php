@@ -7,7 +7,7 @@ class Sitemap extends CI_Controller {
 		$this->load->model('custom_model');
 		$data = [[
 			'loc' => base_url(),
-			'lastmod' => date('c'),
+			'lastmod' => date('Y-m-d'),
 			'changefreq' => 'always'
 		]];
 		$bikes = $this->custom_model->bike_items('all');
@@ -15,7 +15,7 @@ class Sitemap extends CI_Controller {
 			foreach ($bikes as $key => $bike) {
 				$data[] = [
 					'loc' => base_url($bike['bike_url']),
-					'lastmod' => date('c', strtotime($bike['updated'])),
+					'lastmod' => date('Y-m-d', strtotime($bike['updated'])),
 					'changefreq' => calculate($bike, 'frequency'),
 					'images' => [['url' => base_url($bike['feat_photo'])]]
 				];
@@ -30,7 +30,7 @@ class Sitemap extends CI_Controller {
 				}
 				$data[] = [
 					'loc' => base_url($compare['compare_url']),
-					'lastmod' => date('c', strtotime($compare['updated'])),
+					'lastmod' => date('Y-m-d', strtotime($compare['updated'])),
 					'changefreq' => calculate($compare, 'frequency'),
 					'images' => count($images) ? $images : FALSE
 				];
