@@ -74,6 +74,7 @@ class Dashboard extends MY_Controller {
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
+				'assets/css/post-bike-checkbox',
 				'assets/css/bs-select.min'
 			),
 			'title' => 'Post new bike | MTB Arena',
@@ -90,7 +91,8 @@ class Dashboard extends MY_Controller {
 			'page_center_column' => array(
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
-					'dashboard_elements/post_bike_form'
+					// 'dashboard_elements/post_bike_form'
+					'dashboard_elements/post_bike_form_checkbox'
 				)
 			),
 			'page_right_column' => array(

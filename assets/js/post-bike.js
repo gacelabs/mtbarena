@@ -1,5 +1,20 @@
 $(document).ready(function() {
-	
+
+	$('.capsule-checkbox [type="checkbox"]').on('change', function() {
+
+		if ($(this).hasClass('check-one')) {
+			$('.capsule-checkbox [type="checkbox"].check-one').not(this).prop('checked', false);
+			
+			$(this).parent().parent().find('.capsule-checkbox').removeClass('checked');
+			if ($(this).prop('checked') == true) {
+				$(this).parent('.capsule-checkbox').addClass('checked');
+			}
+		} else {
+			$(this).parent('.capsule-checkbox').toggleClass('checked');
+		}
+
+	});
+
 	$('.selectpicker').selectpicker();
 
 	var recentAjax = false;

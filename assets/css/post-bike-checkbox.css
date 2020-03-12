@@ -1,0 +1,88 @@
+.post-bike-form-checkbox-item {
+	margin-top: 10px;
+}
+.post-bike-form-checkbox-item:first-child {
+	margin-top: 0;
+}
+.post-bike-form-checkbox-item .mtb-item-spec-label {
+	background-color: #e5d6f5;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.post-bike-form-checkbox-item .grid-column {
+	margin-bottom: 15px;
+}
+.post-bike-form-checkbox-item .grid-column:last-child {
+	margin-bottom: 0;
+}
+.post-bike-form-checkbox-item .list-label {
+	padding: 0 10px 0 0;
+}
+.main-label-text {
+	color: #333 !important;
+}
+.sub-label-text {
+	font-size: 10px;
+	color: #aaa;
+	margin-bottom: 0;
+}
+.no-border[type="file"] {
+	border: 0 none;
+	padding: 5px 0;
+	box-shadow: none !important;
+	outline: none !important;
+}
+.post-bike-form-checkbox-item .form-group {
+	margin-bottom: 0;
+}
+.post-bike-form-checkbox-item .form-group input {
+	border-radius: 0;
+	border-left: 0 none;
+	border-right: 0 none;
+	border-top: 0 none;
+	text-transform: capitalize !important;
+}
+.capsule-checkbox {
+	display: inline-block;
+	background-color: #ccc;
+	padding: 0 8px;
+	border-radius: 20px;
+	margin-top: 4px;
+	margin-right: 3px;
+	transition: all .3s ease-in-out;
+}
+.capsule-checkbox:last-child {
+	margin-right: 0;
+}
+.capsule-checkbox [type="checkbox"], .capsule-checkbox [type="radio"] {
+	margin: 0;
+	vertical-align: middle;
+}
+.capsule-checkbox label {
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 2;
+	margin-left: 3px;
+	margin-bottom: 0;
+	color: #7f2496;
+}
+.capsule-checkbox:hover {
+	background-color: #aaa;
+}
+.capsule-checkbox:hover label {
+	color: #fff;
+}
+.capsule-checkbox.checked {
+	background-color: #7f2496;
+}
+.capsule-checkbox.checked label {
+	color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+	.post-bike-form-checkbox-item>ul>li {
+		text-align: left !important;
+		margin-bottom: 0 !important;
+	}
+}

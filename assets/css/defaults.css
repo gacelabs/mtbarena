@@ -347,6 +347,9 @@ small {
 .grid-column.column-30-70 {
 	grid-template-columns: 30% 70%;
 }
+.grid-column.column-20-80 {
+	grid-template-columns: 20% 80%;
+}
 .date-photo-sched-column, .date-photo-item-image-column {
 	height: 80px;
 }
