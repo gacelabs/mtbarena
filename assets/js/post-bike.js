@@ -15,6 +15,14 @@ $(document).ready(function() {
 
 	});
 
+	$('.typeAheadInput').tagsinput({
+		typeahead: {
+			source: ['Trinx', 'Cannondale', 'Giant', 'Foxter', 'Pinewood']
+		},
+		maxTags: 1,
+		freeInput: true
+	});
+
 	$('.selectpicker').selectpicker();
 
 	var recentAjax = false;

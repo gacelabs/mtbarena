@@ -79,7 +79,40 @@
 .capsule-checkbox.checked label {
 	color: #fff;
 }
-
+.form-step-block {
+	margin: 10px 0;
+	padding: 20px 0;
+	border-bottom: 1px solid #ccc;
+}
+.form-step-block-label {
+	text-align: right;
+}
+.bootstrap-tagsinput {
+	max-height: 75px;
+	overflow-y: auto;
+	width: 100%;
+	box-shadow: none;
+	border: 0 none;
+	border-radius: 0;
+	border-bottom: 2px solid #ccc;
+	padding-top: 0;
+}
+.typeAheadInput {
+	border: 0 none;
+}
+.bootstrap-tagsinput input, .bootstrap-tagsinput .label-info {
+	text-transform: capitalize;
+}
+.bootstrap-tagsinput .label-info {
+	font-size: 14px !important;
+	font-weight: normal;
+	line-height: 2 !important;
+}
+.bootstrap-tagsinput [data-role="remove"] {
+	font-size: 12px !important;
+	font-weight: bold;
+	vertical-align: middle;
+}
 @media screen and (max-width: 767px) {
 	.post-bike-form-checkbox-item>ul>li {
 		text-align: left !important;

@@ -71,6 +71,7 @@ class Dashboard extends MY_Controller {
 				''
 			),
 			'css_links' => array(
+				'assets/css/bootstrap-tagsinput',
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
@@ -92,7 +93,7 @@ class Dashboard extends MY_Controller {
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
 					// 'dashboard_elements/post_bike_form'
-					'dashboard_elements/post_bike_form_checkbox'
+					'dashboard_elements/post_bike_form_typeahead'
 				)
 			),
 			'page_right_column' => array(
@@ -116,6 +117,8 @@ class Dashboard extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap-tagsinput.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/typeahead.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-bike.js').'"></script>'
 			)

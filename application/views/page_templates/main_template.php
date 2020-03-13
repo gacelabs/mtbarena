@@ -30,12 +30,7 @@
 <body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
 	<?php $googleAnalyticsPages = ['landing', 'compare', 'singleBike']; ?>
 	<?php if (in_array($body_id, $googleAnalyticsPages)) { ?>
-
-	<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSTM2RN"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSTM2RN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	<?php } ?>
 
 

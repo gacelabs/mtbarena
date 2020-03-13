@@ -30,6 +30,7 @@ p, h1, h2, h3, h4, h5, small, label, textarea, input, th, td {
 }
 .color-link:hover {
 	color: #337ab7;
+	cursor: pointer;
 }
 .color-theme {
 	color: #7f2496;
