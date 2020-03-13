@@ -59,7 +59,7 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+								<input type="text" name="brand" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
@@ -74,7 +74,7 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+								<input type="text" name="brand" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
@@ -90,7 +90,7 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+								<input type="text" name="brand" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
@@ -105,7 +105,7 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+								<input type="text" name="brand" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
@@ -120,7 +120,7 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+								<input type="text" name="brand" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
@@ -135,7 +135,7 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+								<input type="text" name="brand" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
