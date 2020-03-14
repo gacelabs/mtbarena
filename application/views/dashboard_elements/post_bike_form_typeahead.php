@@ -59,11 +59,15 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
+<<<<<<< HEAD
 								<input type="text" name="brand" data-role="tagsinput" class="typeAheadInput form-control" />
+=======
+								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
+>>>>>>> 7d05abd2b07ca5b227a57ecee97bf8fc9d4afb98
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Brands</span>
+							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -74,11 +78,11 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" class="typeAheadInput form-control" />
+								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Sizes</span>
+							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -90,11 +94,11 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" class="typeAheadInput form-control" />
+								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Materials</span>
+							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -105,11 +109,11 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" class="typeAheadInput form-control" />
+								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Types</span>
+							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -120,11 +124,11 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" class="typeAheadInput form-control" />
+								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Features</span>
+							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -135,11 +139,11 @@
 						</div>
 						<div class="col-lg-6 form-step-block-input">
 							<div class="form-group">
-								<input type="text" name="brand" class="typeAheadInput form-control" />
+								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Colours</span>
+							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 				</div>

@@ -15,6 +15,7 @@ $(document).ready(function() {
 
 	});
 
+<<<<<<< HEAD
 	/*$('.typeAheadInput').tagsinput({
 		typeahead: {
 			source: ['Trinx', 'Cannondale', 'Giant', 'Foxter', 'Pinewood']
@@ -43,6 +44,8 @@ $(document).ready(function() {
 		// freeInput: true
 	});
 
+=======
+>>>>>>> 7d05abd2b07ca5b227a57ecee97bf8fc9d4afb98
 	$('.selectpicker').selectpicker();
 
 	var recentAjax = false;
