@@ -11,7 +11,7 @@
 			<form action="<?php echo base_url('dashboard/save_fields');?>" method="post" enctype="multipart/form-data" id="postBikeForm">
 				<?php 
 					$key = 0;
-					if (isset($page_data['fields'])): ?>
+					if (isset($page_data['fields']) AND $page_data['fields']): ?>
 					<?php foreach ($page_data['fields'] as $key => $field): ?>
 						<input type="hidden" name="fields_data[<?php echo $key;?>][id]" value="<?php echo $field['id'];?>">
 						<div class="clearfix form-step-block mainset" id="<?php echo $field['base'];?>">
