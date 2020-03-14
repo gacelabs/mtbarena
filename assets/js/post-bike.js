@@ -30,7 +30,7 @@ $(document).ready(function() {
 	});
 	frames.initialize();
 
-	$('.typeAheadInput:first').tagsinput({
+	$('.typeAheadInput').typeahead({
 		itemValue: 'value',
 		itemText: 'text',
 		typeaheadjs: {
