@@ -458,7 +458,7 @@ class Dashboard extends MY_Controller {
 										$value[$idx]['column'] = strtolower($value[$idx]['column']);
 										if (isset($value[$idx]['data']) AND count($value[$idx]['data'])) {
 											$json_data[$key][$value[$idx]['column']]['whitelist'] = explode(',', $value[$idx]['data']);
-											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
+											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'] ? $value[$idx]['max'] : 3;
 										}
 									}
 									if (count($variable) == $empty_cnt) {
