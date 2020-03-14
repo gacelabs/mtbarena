@@ -71,9 +71,6 @@
 											<?php endif ?>
 										</div>
 									</div>
-									<div class="col-lg-3 form-step-block-values">
-										<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
-									</div>
 								</div>
 							<?php endforeach ?>
 						</div>

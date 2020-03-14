@@ -84,7 +84,7 @@
 	padding: 20px 0;
 	border-bottom: 1px solid #ccc;
 }
-.form-step-block-label {
+.form-step-block-label, .form-step-block-label input {
 	text-align: right;
 }
 .bootstrap-tagsinput {
@@ -103,6 +103,11 @@
 	text-transform: capitalize;
 	border-radius: 0;
 	transition: all .3s ease-in-out;
+	height: auto;
+	padding: 0 5px 0 5px;
+}
+.tagify__tag {
+	margin: 5px 5px 0 0;
 }
 .bootstrap-tagsinput input, .bootstrap-tagsinput .label-info {
 	text-transform: capitalize;
@@ -116,6 +121,12 @@
 	font-size: 12px !important;
 	font-weight: bold;
 	vertical-align: middle;
+}
+.form-step-body {
+	margin-bottom: 20px;
+}
+.post-bike-parent-box {
+	overflow: unset;
 }
 @media screen and (max-width: 767px) {
 	.post-bike-form-checkbox-item>ul>li {

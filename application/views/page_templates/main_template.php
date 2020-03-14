@@ -28,11 +28,20 @@
 </head>
 
 <body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">
-	<?php $googleAnalyticsPages = ['landing', 'compare', 'singleBike']; ?>
-	<?php if (in_array($body_id, $googleAnalyticsPages)) { ?>
-		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSTM2RN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-	<?php } ?>
+	<?php
+		$whitelist = array(
+			'127.0.0.1',
+			'::1'
+		);
+		if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+			$googleAnalyticsPages = ['landing', 'compare', 'singleBike'];
+	
+			if (in_array($body_id, $googleAnalyticsPages)) {
+				echo '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSTM2RN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
+			}
+		}
 
+	?>
 
 	</div>
 	<!-- page nav -->
