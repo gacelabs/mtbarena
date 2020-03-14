@@ -63,7 +63,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+							<span class="btn btn-xs text-info">Brands <i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -78,7 +78,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+							<span class="btn btn-xs text-info">Sizes <i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -94,7 +94,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+							<span class="btn btn-xs text-info">Materials <i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -109,7 +109,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+							<span class="btn btn-xs text-info">Types <i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -124,7 +124,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+							<span class="btn btn-xs text-info">Features <i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 
@@ -139,7 +139,7 @@
 							</div>
 						</div>
 						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+							<span class="btn btn-xs text-info">Colours <i class="fa fa-angle-down"></i></span>
 						</div>
 					</div>
 				</div>

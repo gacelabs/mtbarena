@@ -99,6 +99,10 @@
 }
 .typeAheadInput {
 	border: 0 none;
+	border-bottom: 2px solid #ccc;
+	text-transform: capitalize;
+	border-radius: 0;
+	transition: all .3s ease-in-out;
 }
 .bootstrap-tagsinput input, .bootstrap-tagsinput .label-info {
 	text-transform: capitalize;
