@@ -473,11 +473,11 @@ class Dashboard extends MY_Controller {
 							} else {
 								if ($index == 'path') {
 									if (!empty($row['base']) AND $value == 'assets/data/jsons/') {
-										$value .= strtolower($row['base']).'.json';
+										$value .= clean_string_name($row['base']).'.json';
 									} elseif (empty($row['base']) AND $value == 'assets/data/jsons/') {
 										$value = FALSE;
 									} else {
-										$value = strtolower($value);
+										$value = 'assets/data/jsons/'.clean_string_name($row['base']).'.json';
 									}
 								} elseif ($index == 'base') {
 									$value = strtolower($value);

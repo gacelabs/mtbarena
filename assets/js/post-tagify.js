@@ -24,76 +24,78 @@ $(document).ready(function() {
 		runTagsInput();
 });
 var bFirstLoad = true;
-function runTagsInput(uiInput) {
+function runTagsInput(uiFieldData) {
 	bFirstLoad = false;
-	if (uiInput == undefined) uiInput = $('input.typeAheadInput');
-	uiInput.each(function(i, elem){
+	if (uiFieldData == undefined) uiFieldData = $('.field-data');
+	uiFieldData.each(function(i, elem){
+		var sSelector = $(elem).data('selector'), uiInput = $(elem).find(sSelector);
 		var oSettings = {
 			url: $(elem).data('url'),
 			success: function(data) {
-				// console.log(data)
-				var input = elem,
-				oTagsSettings = {
-					whitelist : data[input.name].whitelist,
-					dropdown: {
-						position: "manual",
-						maxItems: Infinity,
-						enabled: 0,
-						classname: "customSuggestionsList",
+				// console.log(data, uiInput)
+				uiInput.each(function(x, input) {
+					var oTagsSettings = {
+						whitelist : data[input.name].whitelist,
+						dropdown: {
+							position: "manual",
+							maxItems: Infinity,
+							enabled: 0,
+							classname: "customSuggestionsList",
+						},
+						enforceWhitelist: true,
+						editTags: false,
+						maxTags: data[input.name].max,
 					},
-					enforceWhitelist: true,
-					editTags: false,
-					maxTags: data[input.name].max,
-				},
-				tagify = new Tagify(input, oTagsSettings);
+					tagify = new Tagify(input, oTagsSettings);
 
-				tagify
-					.on("focus", function (e){
-						// console.log(e.type, e.detail);
-						$(tagify.DOM.dropdown).show();
-						$(input).parents('.form-step-body').find('.form-step-block-values')
-						.find('i').removeClass('fa fa-angle-down').addClass('fa fa-angle-up');
-					})
-					.on("dropdown:show", function (e){
-						// console.log(e.type, e.detail);
-					})
-					.on("dropdown:hide", function (e){
-						console.log(e.type, e.detail);
-					})
-					.on('dropdown:scroll', function (e){
-						// console.log(e.type, e.detail);
-					})
-					.on('keydown', function(e) {
-						// console.log(e.type, e.detail, e.detail.originalEvent.code);
-						if (e.detail.originalEvent.code == 'Backspace') {
-							tagify.removeTag();
-						}
-						if (e.detail.originalEvent.code == 'Escape') {
-							tagify.trigger('blur');
-						}
-					})
-					.on('dropdown:select', function (e){
-						// console.log(e.type, e.detail);
-					})
-					.on('add', function (e){
-						// console.log(e.type, e.detail);
-					})
-					.on('remove', function (e){
-						// console.log(e.type, e.detail);
-					})
-					.on('blur', function(e) {
-						// console.log(e.type, e.detail);
-						$(tagify.DOM.dropdown).hide();
-						$(input).parents('.form-step-body').find('.form-step-block-values')
-						.find('i').removeClass('fa fa-angle-up').addClass('fa fa-angle-down');
-					});
+					tagify
+						.on("focus", function (e){
+							// console.log(e.type, e.detail);
+							$(tagify.DOM.dropdown).show();
+							$(input).parents('.form-step-body').find('.form-step-block-values')
+							.find('i').removeClass('fa fa-angle-down').addClass('fa fa-angle-up');
+						})
+						.on("dropdown:show", function (e){
+							// console.log(e.type, e.detail);
+						})
+						.on("dropdown:hide", function (e){
+							console.log(e.type, e.detail);
+						})
+						.on('dropdown:scroll', function (e){
+							// console.log(e.type, e.detail);
+						})
+						.on('keydown', function(e) {
+							// console.log(e.type, e.detail, e.detail.originalEvent.code);
+							if (e.detail.originalEvent.code == 'Backspace') {
+								tagify.removeTag();
+							}
+							if (e.detail.originalEvent.code == 'Escape') {
+								tagify.trigger('blur');
+							}
+						})
+						.on('dropdown:select', function (e){
+							// console.log(e.type, e.detail);
+						})
+						.on('add', function (e){
+							// console.log(e.type, e.detail);
+						})
+						.on('remove', function (e){
+							// console.log(e.type, e.detail);
+						})
+						.on('blur', function(e) {
+							// console.log(e.type, e.detail);
+							$(tagify.DOM.dropdown).hide();
+							$(input).parents('.form-step-body').find('.form-step-block-values')
+							.find('i').removeClass('fa fa-angle-up').addClass('fa fa-angle-down');
+						});
 
-				tagify.dropdown.show.call(tagify);
-				tagify.DOM.scope.parentNode.appendChild(tagify.DOM.dropdown);
+					tagify.dropdown.show.call(tagify);
+					tagify.DOM.scope.parentNode.appendChild(tagify.DOM.dropdown);
 
-				$(tagify.DOM.dropdown).hide();
-				arrALlTags.push(tagify);
-				// tagify.addTags('Trinx,Cannondale,Giant,Foxter,Pinewood')
+					$(tagify.DOM.dropdown).hide();
+					arrALlTags.push(tagify);
+					// tagify.addTags('Trinx,Cannondale,Giant,Foxter,Pinewood')
+				});
 			}
 		};
 		$.ajax(oSettings);

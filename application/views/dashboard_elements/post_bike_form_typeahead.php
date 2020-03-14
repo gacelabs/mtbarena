@@ -52,7 +52,7 @@
 
 				<?php if (isset($page_data['fields']) AND $page_data['fields']): ?>
 					<?php foreach ($page_data['fields'] as $key => $fields): ?>
-						<div class="clearfix form-step-block" id="frame">
+						<div class="clearfix form-step-block field-data" id="<?php echo $fields['id'];?>" data-url="<?php echo $fields['path'];?>" data-selector="input.typeAheadInput">
 							<div class="col-lg-12">
 								<h4 style="margin-top: 0"><b class="color-theme"><?php echo ucfirst($fields['base']);?></b></h4>
 							</div>
@@ -64,7 +64,11 @@
 									</div>
 									<div class="col-lg-6 form-step-block-input">
 										<div class="form-group">
-											<input type="text" name="<?php echo $field['column'];?>" data-url="<?php echo $fields['path'];?>" class="typeAheadInput form-control" data-values="<?php echo $field['data'];?>" />
+											<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
+												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" data-values="<?php echo $field['data'];?>" />
+											<?php else: ?>
+												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" />
+											<?php endif ?>
 										</div>
 									</div>
 									<div class="col-lg-3 form-step-block-values">
@@ -79,80 +83,3 @@
 		</div>
 	</div>
 </div>
-
-
-						<!-- <div class="form-step-body clearfix">
-							<div class="col-lg-3 form-step-block-label">
-								<label class="zero-gap" for="">Sizes</label>
-								<p class="sub-label-text">Frame's dimension.</p>
-							</div>
-							<div class="col-lg-6 form-step-block-input">
-								<div class="form-group">
-									<input type="text" name="size" data-url="assets/data/jsons/frame.json" class="typeAheadInput form-control" />
-								</div>
-							</div>
-							<div class="col-lg-3 form-step-block-values">
-								<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
-							</div>
-						</div>
-
-
-						<div class="form-step-body clearfix">
-							<div class="col-lg-3 form-step-block-label">
-								<label class="zero-gap" for="">Built</label>
-								<p class="sub-label-text">Materials used.</p>
-							</div>
-							<div class="col-lg-6 form-step-block-input">
-								<div class="form-group">
-									<input type="text" name="built" data-url="assets/data/jsons/frame.json" class="typeAheadInput form-control" />
-								</div>
-							</div>
-							<div class="col-lg-3 form-step-block-values">
-								<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
-							</div>
-						</div>
-
-						<div class="form-step-body clearfix">
-							<div class="col-lg-3 form-step-block-label">
-								<label class="zero-gap" for="">Type</label>
-								<p class="sub-label-text">Frame built type.</p>
-							</div>
-							<div class="col-lg-6 form-step-block-input">
-								<div class="form-group">
-									<input type="text" name="brand" data-url="assets/data/jsons/frame.json" class="typeAheadInput form-control" />
-								</div>
-							</div>
-							<div class="col-lg-3 form-step-block-values">
-								<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
-							</div>
-						</div>
-
-						<div class="form-step-body clearfix">
-							<div class="col-lg-3 form-step-block-label">
-								<label class="zero-gap" for="">Features</label>
-								<p class="sub-label-text">Additional specs.</p>
-							</div>
-							<div class="col-lg-6 form-step-block-input">
-								<div class="form-group">
-									<input type="text" name="brand" data-url="assets/data/jsons/frame.json" class="typeAheadInput form-control" />
-								</div>
-							</div>
-							<div class="col-lg-3 form-step-block-values">
-								<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
-							</div>
-						</div>
-
-						<div class="form-step-body clearfix">
-							<div class="col-lg-3 form-step-block-label">
-								<label class="zero-gap" for="">Colorway</label>
-								<p class="sub-label-text">Frame color combinations.</p>
-							</div>
-							<div class="col-lg-6 form-step-block-input">
-								<div class="form-group">
-									<input type="text" name="brand" data-url="assets/data/jsons/frame.json" class="typeAheadInput form-control" />
-								</div>
-							</div>
-							<div class="col-lg-3 form-step-block-values">
-								<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
-							</div>
-						</div> -->
