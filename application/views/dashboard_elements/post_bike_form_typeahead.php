@@ -1,3 +1,6 @@
+<?php 
+	// debug($page_data['fields']);
+?>
 <div class="box-item" style="margin-bottom: 15px;">
 	<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
 	<input type="hidden" id="edit-json-data" data-json='<?php echo $page_data["json"];?>'>
@@ -47,102 +50,35 @@
 					</div>
 				</div>
 
-				<div class="clearfix form-step-block" id="">
-					<div class="col-lg-12">
-						<h4 style="margin-top: 0"><b class="color-theme">Frame</b></h4>
-					</div>
-					
-					<div class="form-step-body clearfix">
-						<div class="col-lg-3 form-step-block-label">
-							<label class="zero-gap" for="">Brand</label>
-							<p class="sub-label-text">Manufacturer's name.</p>
-						</div>
-						<div class="col-lg-6 form-step-block-input">
-							<div class="form-group">
-								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
+				<?php if (isset($page_data['fields']) AND $page_data['fields']): ?>
+					<?php foreach ($page_data['fields'] as $key => $fields): ?>
+						<div class="clearfix form-step-block field-data" id="<?php echo $fields['id'];?>" data-url="<?php echo $fields['path'];?>" data-selector="input.typeAheadInput">
+							<div class="col-lg-12">
+								<h4 style="margin-top: 0"><b class="color-theme"><?php echo ucfirst($fields['base']);?></b></h4>
 							</div>
+							<?php foreach ($fields['values'] as $index => $field): ?>
+								<div class="form-step-body clearfix">
+									<div class="col-lg-3 form-step-block-label">
+										<label class="zero-gap" for=""><?php echo ucfirst($field['column']);?></label>
+										<p class="sub-label-text"><?php echo ucfirst($field['description']);?></p>
+									</div>
+									<div class="col-lg-6 form-step-block-input">
+										<div class="form-group">
+											<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
+												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" data-values="<?php echo $field['data'];?>" />
+											<?php else: ?>
+												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" />
+											<?php endif ?>
+										</div>
+									</div>
+									<div class="col-lg-3 form-step-block-values">
+										<span class="btn btn-xs text-info"><i class="fa fa-angle-down"></i></span>
+									</div>
+								</div>
+							<?php endforeach ?>
 						</div>
-						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Brands <i class="fa fa-angle-down"></i></span>
-						</div>
-					</div>
-
-					<div class="form-step-body clearfix">
-						<div class="col-lg-3 form-step-block-label">
-							<label class="zero-gap" for="">Sizes</label>
-							<p class="sub-label-text">Frame's dimension.</p>
-						</div>
-						<div class="col-lg-6 form-step-block-input">
-							<div class="form-group">
-								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
-							</div>
-						</div>
-						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Sizes <i class="fa fa-angle-down"></i></span>
-						</div>
-					</div>
-
-
-					<div class="form-step-body clearfix">
-						<div class="col-lg-3 form-step-block-label">
-							<label class="zero-gap" for="">Built</label>
-							<p class="sub-label-text">Materials used.</p>
-						</div>
-						<div class="col-lg-6 form-step-block-input">
-							<div class="form-group">
-								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
-							</div>
-						</div>
-						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Materials <i class="fa fa-angle-down"></i></span>
-						</div>
-					</div>
-
-					<div class="form-step-body clearfix">
-						<div class="col-lg-3 form-step-block-label">
-							<label class="zero-gap" for="">Type</label>
-							<p class="sub-label-text">Frame built type.</p>
-						</div>
-						<div class="col-lg-6 form-step-block-input">
-							<div class="form-group">
-								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
-							</div>
-						</div>
-						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Types <i class="fa fa-angle-down"></i></span>
-						</div>
-					</div>
-
-					<div class="form-step-body clearfix">
-						<div class="col-lg-3 form-step-block-label">
-							<label class="zero-gap" for="">Features</label>
-							<p class="sub-label-text">Additional specs.</p>
-						</div>
-						<div class="col-lg-6 form-step-block-input">
-							<div class="form-group">
-								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
-							</div>
-						</div>
-						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Features <i class="fa fa-angle-down"></i></span>
-						</div>
-					</div>
-
-					<div class="form-step-body clearfix">
-						<div class="col-lg-3 form-step-block-label">
-							<label class="zero-gap" for="">Colorway</label>
-							<p class="sub-label-text">Frame color combinations.</p>
-						</div>
-						<div class="col-lg-6 form-step-block-input">
-							<div class="form-group">
-								<input type="text" name="brand" data-url="assets/data/jsons/frames2.json" class="typeAheadInput form-control" />
-							</div>
-						</div>
-						<div class="col-lg-3 form-step-block-values">
-							<span class="btn btn-xs text-info">Colours <i class="fa fa-angle-down"></i></span>
-						</div>
-					</div>
-				</div>
+					<?php endforeach ?>
+				<?php endif ?>
 			</form>
 		</div>
 	</div>

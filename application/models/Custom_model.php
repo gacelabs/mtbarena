@@ -179,4 +179,19 @@ class Custom_Model extends MY_Model {
 		}
 		return FALSE;
 	}
+
+	public function fields_data($clause=FALSE, $field=FALSE, $method='result')
+	{
+		$fields_data = $this->get('fields_data', $clause, $field, $method);
+		// debug($fields_data, 1);
+		if ($fields_data) {
+			foreach ($fields_data as $key => $row) {
+				$data = json_decode($row['values'], TRUE);
+				$fields_data[$key]['values'] = $data;
+			}
+			// debug($fields_data, 1);
+			return $fields_data;
+		}
+		return FALSE;
+	}
 }
