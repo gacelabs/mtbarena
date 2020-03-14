@@ -12,3 +12,12 @@
 		margin-bottom: 15px;
 	}
 }
+.customSuggestionsList {
+    left: 15px !important; 
+    top: 30px !important; 
+    position: absolute !important;
+    z-index: 2;
+}
+.tagify {
+	border: 1px solid #DDD !important;
+}

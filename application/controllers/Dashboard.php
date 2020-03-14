@@ -111,7 +111,7 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
-				'specs' => $this->custom_model->bike_items(3),
+				'fields' => $this->custom_model->fields_data(),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -141,9 +141,11 @@ class Dashboard extends MY_Controller {
 				''
 			),
 			'css_links' => array(
+				'assets/css/tagify',
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
+				'assets/css/post-bike-checkbox',
 				'assets/css/bs-select.min'
 			),
 			'title' => 'Edit | MTB Arena',
@@ -189,7 +191,10 @@ class Dashboard extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tagify.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/typeahead.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/post-tagify.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-bike.js').'"></script>'
 			)
 		);
@@ -363,5 +368,151 @@ class Dashboard extends MY_Controller {
 		$bike_items = bike_search(urldecode($query), $and);
 		// debug($bike_items, 1);
 		echo json_encode($bike_items);
+	}
+
+	public function settings()
+	{
+		$structure = array(
+			'metas' => array(
+				''
+			),
+			'css_links' => array(
+				'assets/css/mediaquery',
+				'assets/css/dashboard',
+				'assets/css/post-bike',
+				'assets/css/post-bike-checkbox',
+				'assets/css/bs-select.min'
+			),
+			'title' => 'Post fields | MTB Arena',
+			'body_id' => 'dashboard',
+			'body_class' => 'post-fields',
+			'page_nav' => 'page_statics/main_nav',
+			'bikes_to_compare' => '',
+			'page_left_column' => array(
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
+				'ui_elements' => array(
+					'dashboard_elements/menu'
+				),
+			),
+			'page_center_column' => array(
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'ui_elements' => array(
+					// 'dashboard_elements/post_bike_form'
+					'dashboard_elements/post_bike_field_values'
+				)
+			),
+			'page_right_column' => array(
+				'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+				'ui_elements' => array(
+				)
+			),
+			'page_footer' => array(
+				'column_visibility_class' => '',
+				'ui_elements' => array(
+
+				)
+			),
+			'modals' => array(
+				
+			),
+			'page_data' => array(
+				'fields' => $this->custom_model->fields_data(),
+			),
+			'footer_scripts' => array(
+				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/post-fields.js').'"></script>'
+			)
+		);
+
+		$this->load->view('page_templates/main_template', $structure);
+	}
+
+	public function save_fields()
+	{
+		$post = $this->input->post();
+		// debug($post);
+		$result = [];
+		if ($post) {
+			$account = $this->accounts->profile;
+			$save_data = $json_data = [];
+			foreach ($post as $table => $data) {
+				foreach ($data as $key => $row) {
+					foreach ($row as $index => $value) {
+						if (is_string($value)) $value = trim($value);
+						if (!empty($value)) {
+							if (is_array($value) AND $index == 'values') {
+								// debug($value);
+								foreach ($value as $idx => $var) {
+									$empty_cnt = 0;
+									$variable = array_values($var);
+									foreach ($variable as $val) {
+										if (empty(trim($val))) $empty_cnt++;
+									}
+									if (!isset($save_data[$key])) {
+										$save_data[$key] = [];
+									}
+									if (isset($value[$idx]) AND isset($value[$idx]['column']) AND strlen(trim($value[$idx]['column']))) {
+										$value[$idx]['column'] = strtolower($value[$idx]['column']);
+										if (isset($value[$idx]['data']) AND count($value[$idx]['data'])) {
+											$json_data[$key][$value[$idx]['column']]['whitelist'] = explode(',', $value[$idx]['data']);
+											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
+										}
+									}
+									if (count($variable) == $empty_cnt) {
+										unset($value[$idx]);
+									}
+								}
+
+								if (count($value)) {
+									$save_data[$key][$index] = json_encode($value);
+									// $save_data[$key][$index] = $value;
+								}
+							} else {
+								if ($index == 'path') {
+									if (!empty($row['base']) AND $value == 'assets/data/jsons/') {
+										$value .= strtolower($row['base']).'.json';
+									} elseif (empty($row['base']) AND $value == 'assets/data/jsons/') {
+										$value = FALSE;
+									} else {
+										$value = strtolower($value);
+									}
+								} elseif ($index == 'base') {
+									$value = strtolower($value);
+								}
+								if ($value) {
+									$save_data[$key][$index] = $value;
+								}
+							}
+						}
+					}
+				}
+				if (count($json_data)) {
+					$json_file = [];
+					foreach ($json_data as $key => $json) {
+						$json_file[] = json_encode($json);
+					}
+					// debug($json_file);
+				}
+				// debug($save_data, 1);
+				if (count($save_data)) {
+					foreach ($save_data as $key => $save) {
+						if (isset($save['id'])) {
+							$this->custom_model->save($table, $save, ['id' => $save['id']]);
+						} else {
+							$this->custom_model->new($table, $save);
+						}
+						@file_put_contents(get_root_path($save['path']), $json_file[$key]);
+					}
+					$result[] = TRUE;
+				}
+			}
+			if (count($result)) {
+				return redirect(base_url('dashboard/settings'));
+			}
+		}
+		return FALSE;
 	}
 }

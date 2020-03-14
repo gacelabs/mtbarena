@@ -86,8 +86,37 @@ function check_instance($obj=FALSE, $class=NULL)
 
 function format_ip($ip='')
 {
-	$ip = substr(md5($ip), 0, 7);
-	return 'MTBA-'.$ip;
+	$ci =& get_instance();
+	$ID = '0'.'no-email@mtbarena.com'.$ip;
+	if ($ci->accounts->has_session) {
+		$ID = $ci->accounts->profile['id'].$ci->accounts->profile['email_address'].$ip;
+	}
+	// $DEVICE = substr(md5($ID), 0, 7);
+	$DEVICE = substr(md5($ID), 0, 7);
+	if (get_mac_address()) {
+		$DEVICE = substr(md5(get_mac_address()), 0, 7);
+	}
+	// debug($DEVICE, 1);
+	$ci->device_id = strtoupper('mtba-'.$DEVICE);
+	return $ci->device_id;
+}
+
+function get_mac_address()
+{
+	// Turn on output buffering  
+	ob_start();  
+	// Get the ipconfig details using system commond  
+	@system('ipconfig /all');  
+	// Capture the output into a variable  
+	$mycomsys = ob_get_contents();  
+	// Clean (erase) the output buffer  
+	ob_clean();  
+	$find_mac = "Physical"; // Find the "Physical" & Find the position of Physical text  
+	$pmac = strpos($mycomsys, $find_mac);  
+	// Get Physical Address  
+	$macaddress = substr($mycomsys, ($pmac+36), 17);  
+	// Display Mac Address  
+	return $macaddress;
 }
 
 function time_diff($past=FALSE, $future=FALSE, $diff='minutes', $want='5', $get_elapsed=FALSE)

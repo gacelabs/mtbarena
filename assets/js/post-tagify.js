@@ -1,63 +1,101 @@
-var arrALlTags = []
-$('input.typeAheadInput').each(function(i, elem){
-	var oSettings = {
-		url: $(elem).data('url'),
-		success: function(data) {
-			// console.log(data)
-			var input = elem,
-			tagify = new Tagify(input, {
-				whitelist : data.whitelist,
-				dropdown: {
-					position: "manual",
-					maxItems: 3,
-					enabled: 0,
-					classname: "customSuggestionsList",
-				},
-				editTags: false,
-				maxTags: data.max,
-			});
 
-			arrALlTags.push(tagify);
-
-			tagify
-				.on("dropdown:show", function (e){
-					console.log("dropdown:show", e.detail);
-				})
-				.on("dropdown:hide", function (e){
-					console.log("dropdown:hide", e.detail);
-				})
-				.on('dropdown:scroll', function (e){
-					console.log('dropdown:scroll', e.detail);
-				})
-				.on('keydown', function(e) {
-					console.log('keydown', e.detail);
-					if (e.detail.originalEvent.code == 'Backspace') {
-						tagify.removeTag();
-					}
-				})
-				.on('add', function (e){
-					console.log('add', e.detail);
-				})
-				.on('blur', function(e) {
-					console.log('blur', e.detail);
-					$(e.detail.tagify.DOM.dropdown).hide()
-				})
-
-			tagify.dropdown.show.call(tagify);
-			tagify.DOM.scope.parentNode.appendChild(tagify.DOM.dropdown);
-
-			$(elem).parents('.form-step-body').find('.form-step-block-values').click(function(e) {
-				if ($(tagify.DOM.dropdown).is(':visible')) {
-					$(tagify.DOM.dropdown).hide();
-					$(this).find('i').removeClass('fa fa-angle-up').addClass('fa fa-angle-down');
+var arrALlTags = [];
+$(document).ready(function() {
+	/*var clickOnce = false;
+	if ($('#edit-json-data').length) {
+		var oJson = $('#edit-json-data').data('json');
+		if (Object.keys(oJson[0]).length) {
+			// console.log(oJson);
+			if (clickOnce == false) {
+				$('.panel-heading[data-toggle]:not(:first):not(.collapsed)').click();
+				clickOnce = true;
+			}
+			for(var field in oJson[0]) {
+				var sVal = oJson[0][field];
+				if ($('#postBikeForm [name='+field+']:not(:file)').attr('type') == 'radio') {
+					$('#postBikeForm [name='+field+'][value='+sVal+']').prop('checked', true).attr('data-values', sVal);
 				} else {
-					tagify.dropdown.show.call(tagify);
-					$(this).find('i').removeClass('fa fa-angle-down').addClass('fa fa-angle-up');
+					$('#postBikeForm [name='+field+']:not(:file)').attr('data-values', sVal);
 				}
-			});
-			/*now hide the tag list*/
-			$(tagify.DOM.dropdown).hide();
+			}
 		}
-	};
-	$.ajax(oSettings);
+	} else {
+	}*/
+		runTagsInput();
 });
+var bFirstLoad = true;
+function runTagsInput(uiInput) {
+	bFirstLoad = false;
+	if (uiInput == undefined) uiInput = $('input.typeAheadInput');
+	uiInput.each(function(i, elem){
+		var oSettings = {
+			url: $(elem).data('url'),
+			success: function(data) {
+				// console.log(data)
+				var input = elem,
+				oTagsSettings = {
+					whitelist : data[input.name].whitelist,
+					dropdown: {
+						position: "manual",
+						maxItems: Infinity,
+						enabled: 0,
+						classname: "customSuggestionsList",
+					},
+					enforceWhitelist: true,
+					editTags: false,
+					maxTags: data[input.name].max,
+				},
+				tagify = new Tagify(input, oTagsSettings);
+
+				tagify
+					.on("focus", function (e){
+						// console.log(e.type, e.detail);
+						$(tagify.DOM.dropdown).show();
+						$(input).parents('.form-step-body').find('.form-step-block-values')
+						.find('i').removeClass('fa fa-angle-down').addClass('fa fa-angle-up');
+					})
+					.on("dropdown:show", function (e){
+						// console.log(e.type, e.detail);
+					})
+					.on("dropdown:hide", function (e){
+						console.log(e.type, e.detail);
+					})
+					.on('dropdown:scroll', function (e){
+						// console.log(e.type, e.detail);
+					})
+					.on('keydown', function(e) {
+						// console.log(e.type, e.detail, e.detail.originalEvent.code);
+						if (e.detail.originalEvent.code == 'Backspace') {
+							tagify.removeTag();
+						}
+						if (e.detail.originalEvent.code == 'Escape') {
+							tagify.trigger('blur');
+						}
+					})
+					.on('dropdown:select', function (e){
+						// console.log(e.type, e.detail);
+					})
+					.on('add', function (e){
+						// console.log(e.type, e.detail);
+					})
+					.on('remove', function (e){
+						// console.log(e.type, e.detail);
+					})
+					.on('blur', function(e) {
+						// console.log(e.type, e.detail);
+						$(tagify.DOM.dropdown).hide();
+						$(input).parents('.form-step-body').find('.form-step-block-values')
+						.find('i').removeClass('fa fa-angle-up').addClass('fa fa-angle-down');
+					});
+
+				tagify.dropdown.show.call(tagify);
+				tagify.DOM.scope.parentNode.appendChild(tagify.DOM.dropdown);
+
+				$(tagify.DOM.dropdown).hide();
+				arrALlTags.push(tagify);
+				// tagify.addTags('Trinx,Cannondale,Giant,Foxter,Pinewood')
+			}
+		};
+		$.ajax(oSettings);
+	});
+}

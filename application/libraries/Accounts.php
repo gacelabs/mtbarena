@@ -5,7 +5,8 @@ class Accounts {
 
 	private $class = FALSE; 
 	public $has_session = FALSE; 
-	public $profile = FALSE; 
+	public $profile = FALSE;
+	public $device_id = FALSE;
 
 	public function __construct()
 	{
@@ -120,4 +121,18 @@ class Accounts {
 		redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
 	}
 
+	public function refetch()
+	{
+		$user = $this->class->db->get_where('users', ['id' => $this->profile['id']]);
+		if ($user->num_rows()) {
+			$request = $user->row_array();
+			unset($request['password']);
+			$this->class->session->set_userdata('profile', $request);
+			$this->profile = $request;
+			$this->device_id = format_ip();
+			// debug($this, 1);
+			return $this->profile;
+		}
+		return FALSE;
+	}
 }

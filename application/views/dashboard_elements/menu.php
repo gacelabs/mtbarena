@@ -15,6 +15,9 @@
 				<a href="dashboard/profile">
 					<p class="<?php echo ($body_class == "profile" ? 'active' : ''); ?>">Profile</p>
 				</a>
+				<a href="dashboard/settings">
+					<p class="<?php echo ($body_class == "settings" ? 'active' : ''); ?>">Settings</p>
+				</a>
 			</div>
 		</div>
 	</div>
