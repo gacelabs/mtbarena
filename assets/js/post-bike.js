@@ -15,34 +15,6 @@ $(document).ready(function() {
 
 	});
 
-	/*$('.typeAheadInput').tagsinput({
-		typeahead: {
-			source: ['Trinx', 'Cannondale', 'Giant', 'Foxter', 'Pinewood']
-		},
-		maxTags: 1,
-		freeInput: true
-	});*/
-
-	var frames = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('text'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		prefetch: 'assets/data/jsons/frames.json'
-	});
-	frames.initialize();
-
-	$('.typeAheadInput:first').tagsinput({
-		itemValue: 'value',
-		itemText: 'text',
-		typeaheadjs: {
-			name: 'frames',
-			displayKey: 'text',
-			valueKey: 'value',
-			source: frames.ttAdapter()
-		},
-		// maxTags: 1,
-		// freeInput: true
-	});
-
 	$('.selectpicker').selectpicker();
 
 	var recentAjax = false;

@@ -71,7 +71,7 @@ class Dashboard extends MY_Controller {
 				''
 			),
 			'css_links' => array(
-				'assets/css/bootstrap-tagsinput',
+				'assets/css/tagify',
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
@@ -117,9 +117,10 @@ class Dashboard extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap-tagsinput.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tagify.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/typeahead.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/post-tagify.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-bike.js').'"></script>'
 			)
 		);
