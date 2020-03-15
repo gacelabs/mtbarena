@@ -24,7 +24,7 @@ class Custom_Model extends MY_Model {
 				$where_clause = 'WHERE '.$clause;
 			}
 		}
-		return $this->query("
+		$return = $this->query("
 		SELECT DISTINCT 
 				u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
 			FROM bike_items b 
@@ -32,7 +32,38 @@ class Custom_Model extends MY_Model {
 			$where_clause
 			ORDER BY b.view_count DESC/*, b.updated DESC */
 		$limit_by
-		");
+		", ($limit == 1 ? 'row' : 'result'));
+
+		if ($return) {
+			$result = [];
+			if ($limit == 1) {
+				$return = [$return];
+			}
+			foreach ($return as $key => $row) {
+				foreach ($row as $field => $value) {
+					if ($field == 'fields_data') {
+						$data = json_decode($value, TRUE);
+						// debug($data);
+						if ($data) {
+							foreach ($data as $column => $json) {
+								if (!isset($result[$key]['fields_data'][$column])) {
+									$result[$key]['fields_data'][$column] = '';
+								}
+								$result[$key]['fields_data'][$column] = json_encode($json);
+							}
+						}
+					} else {
+						$result[$key][$field] = $value;
+					}
+				}
+			}
+			if ($limit == 1) {
+				$result = $result[0];
+			}
+			// debug($result, 1);
+			return $result;
+		}
+		return FALSE;
 	}
 
 	public function compare_items($limit=FALSE, $offset=FALSE, $clause=FALSE)

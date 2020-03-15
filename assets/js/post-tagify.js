@@ -45,57 +45,18 @@ function runTagsInput(uiFieldData) {
 						editTags: false,
 						maxTags: 1
 					};
-
 					// console.log(data[input.name]);
 					if (data[input.name].max == 1) {
 						oTagsSettings.maxTags = Infinity;
 					}
-
-					var tagify = new Tagify(input, oTagsSettings);
-					/*tagify
-						.on("focus", function (e){
-							// console.log(e.type, e.detail);
-							$(tagify.DOM.dropdown).show();
-						})
-						.on("dropdown:show", function (e){
-							// console.log(e.type, e.detail);
-						})
-						.on("dropdown:hide", function (e){
-							console.log(e.type, e.detail);
-						})
-						.on('dropdown:scroll', function (e){
-							// console.log(e.type, e.detail);
-						})
-						.on('keydown', function(e) {
-							console.log(e.type, e.detail, e.detail.originalEvent);
-							if (e.detail.originalEvent.code == 'Backspace') {
-								tagify.removeTag();
-							}
-							if (e.detail.originalEvent.code == 'Escape') {
-								tagify.trigger('blur');
-							}
-						})
-						.on('dropdown:select', function (e){
-							// console.log(e.type, e.detail);
-						})
-						.on('add', function (e){
-							// console.log(e.type, e.detail);
-						})
-						.on('remove', function (e){
-							// console.log(e.type, e.detail);
-						})
-						.on('blur', function(e) {
-							// console.log(e.type, e.detail);
-							$(tagify.DOM.dropdown).hide();
-						});
-
-					tagify.dropdown.show.call(tagify);
-					tagify.DOM.scope.parentNode.appendChild(tagify.DOM.dropdown);
-					// tagify.dropdown.hide.call(tagify);
-					$(tagify.DOM.dropdown).hide();*/
-
+					// var tagify = new Tagify(input, oTagsSettings);
+					$(input).tagify(oTagsSettings);
+					var tagify = $(input).data('tagify');
 					arrAllTags.push(tagify);
-					// tagify.addTags('Trinx,Cannondale,Giant,Foxter,Pinewood')
+
+					if ($(input).data('values')) {
+						tagify.addTags($(input).data('values'));
+					}
 				});
 			}
 		};

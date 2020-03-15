@@ -35,7 +35,7 @@
 				<div class="col-lg-4">
 					<div class="form-group bs-select-parent zero-gap">
 						<label>Preset Specs <a class="color-lightgray" tabindex="0" role="button" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-content="Automatically fills in all the specs according to the bike selected."><i class="fa fa-info-circle"></i></a></label>
-						<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
+						<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4">
 							<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
 								<?php foreach ($page_data['specs'] as $key => $bike): ?>
 									<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'><?php echo $bike['bike_model'];?></option>

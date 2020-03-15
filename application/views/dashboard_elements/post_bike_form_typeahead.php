@@ -39,10 +39,10 @@
 					<div class="col-lg-4">
 						<div class="form-group bs-select-parent zero-gap">
 							<label>Preset Specs <a class="color-lightgray" tabindex="0" role="button" data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-content="Automatically fills in all the specs according to the bike selected."><i class="fa fa-info-circle"></i></a></label>
-							<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
+							<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4">
 								<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
 									<?php foreach ($page_data['specs'] as $key => $bike): ?>
-										<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'><?php echo $bike['bike_model'];?></option>
+										<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'data-selector="input.typeAheadInput"><?php echo $bike['bike_model'];?></option>
 									<?php endforeach ?>
 								<?php endif ?>
 							</select>
@@ -64,8 +64,10 @@
 									</div>
 									<div class="col-lg-6 form-step-block-input">
 										<div class="form-group">
-											<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
-												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" data-values="<?php echo $field['data'];?>" />
+											<?php if ((isset($page_data['is_edit']) AND $page_data['is_edit']) AND 
+											((isset($page_data["fields_data"]) AND $page_data["fields_data"]) AND 
+											isset($page_data["fields_data"][$field["column"]]))): ?>
+												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" data-values='<?php echo $page_data["fields_data"][$field["column"]];?>' />
 											<?php else: ?>
 												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" />
 											<?php endif ?>
@@ -77,6 +79,53 @@
 					<?php endforeach ?>
 				<?php endif ?>
 
+				<div style="margin-bottom:15px;">
+					<ul class="grid-column column-30-70">
+						<li>
+							<p class="zero-gap"><b>Price tag:</b></p>
+							<p class="zero-gap" style="font-size:10px;">The estimated price of the bike on the market.<br>Legend: Affordable, Mid, Premium </p>
+						</li>
+						<li style="padding-left:10px;">
+							<ul class="inline-list">
+								<li style="margin-right: 15px;">
+									<div class="radio">
+										<label>
+											<input type="radio" name="price_tag" value="affordable"><i class="fa fa-tags"></i>
+										</label>
+									</div>
+								</li>
+								<li style="margin-right: 15px;">
+									<div class="radio">
+										<label>
+											<input type="radio" name="price_tag" value="mid"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+										</label>
+									</div>
+								</li>
+								<li>
+									<div class="radio">
+										<label>
+											<input type="radio" name="price_tag" value="premium"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+										</label>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div style="margin-bottom:15px;">
+					<ul class="grid-column column-30-70">
+						<li>
+							<p class="zero-gap"><b>Exteral link:</b></p>
+							<p class="zero-gap" style="font-size:10px;">A link that goes to your own website or social media page. One link only.<br>Example: facebook.com/your-bike-shop</p>
+						</li>
+						<li style="padding-left:10px;" style="margin-bottom: 0;">
+							<div class="form-group">
+								<input rows="2" class="form-control" name="external_link" id="external_link">
+							</div>
+						</li>
+					</ul>
+				</div>
 				<div style="padding: 10px;">
 					<button class="btn btn-info">Save</button>
 				</div>

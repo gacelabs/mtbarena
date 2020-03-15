@@ -7,24 +7,24 @@
 		<div class="box-item-body" style="padding:10px 0;">
 			<div class="padding-x">
 				<div style="margin-bottom:10px;">
-					<p class="zero-gap"><b><a href="<?php echo base_url().json_decode($page_data["json"])[0]->bike_url; ?>">View <i class="fa fa-external-link"></i></a></b></p>
-					<small class="color-lightgray"><?php echo json_decode($page_data["json"])[0]->bike_url; ?></small>
+					<p class="zero-gap"><b><a href="<?php echo base_url().json_decode($page_data["json"])->bike_url; ?>">View <i class="fa fa-external-link"></i></a></b></p>
+					<small class="color-lightgray"><?php echo json_decode($page_data["json"])->bike_url; ?></small>
 				</div>
 				<div class="grid-column column-50-50">
 					<div>
 						<small class="color-lightgray">Posted</small><br>
-						<small><?php echo date('M j, Y', strtotime(json_decode($page_data["json"])[0]->added)); ?></small>
+						<small><?php echo date('M j, Y', strtotime(json_decode($page_data["json"])->added)); ?></small>
 					</div>
 					<div>
 						<small class="color-lightgray">Updated</small><br>
-						<small><?php echo date('M j, Y', strtotime(json_decode($page_data["json"])[0]->updated)); ?></small>
+						<small><?php echo date('M j, Y', strtotime(json_decode($page_data["json"])->updated)); ?></small>
 					</div>
 				</div>
 			</div>
 			<hr>
 				<div class="padding-x">
 					<small class="color-lightgray">Featured Photo</small>
-					<img src="<?php echo base_url("/").json_decode($page_data["json"])[0]->feat_photo ?>" class="image-cropped cover elem-block" style="margin-top:10px;">
+					<img src="<?php echo base_url("/").json_decode($page_data["json"])->feat_photo ?>" class="image-cropped cover elem-block" style="margin-top:10px;">
 				</div>
 			<hr>
 			<div class="padding-x">

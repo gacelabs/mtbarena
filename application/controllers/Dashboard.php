@@ -111,13 +111,14 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
+				'specs' => $this->custom_model->bike_items(3),
 				'fields' => $this->custom_model->fields_data(),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tagify.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/jQuery.tagify.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/typeahead.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-tagify.js').'"></script>',
@@ -130,8 +131,10 @@ class Dashboard extends MY_Controller {
 
 	public function edit_bike($id=0)
 	{
-		$edit_bike = $this->custom_model->bike_items(FALSE, "b.id = '".$id."'");
-
+		$edit_bike = $this->custom_model->bike_items(1, "b.id = '".$id."'");
+		// debug($edit_bike, 1);
+		$fields_data = isset($edit_bike['fields_data']) ? $edit_bike['fields_data'] : FALSE;
+		unset($edit_bike['fields_data']);
 		if ($id==0 || $id=='' || empty($edit_bike)) {
 			redirect(base_url('dashboard'), 'refresh');
 		}
@@ -162,7 +165,8 @@ class Dashboard extends MY_Controller {
 			'page_center_column' => array(
 				'column_visibility_class' => 'col-lg-6 col-md-6 col-sm-6 col-xs-padding',
 				'ui_elements' => array(
-					'dashboard_elements/post_bike_form'
+					// 'dashboard_elements/post_bike_form'
+					'dashboard_elements/post_bike_form_typeahead'
 				)
 			),
 			'page_right_column' => array(
@@ -185,13 +189,15 @@ class Dashboard extends MY_Controller {
 				'id' => $id,
 				'json' => json_encode($edit_bike),
 				'is_edit' => 1,
-				'paginate' => $this->custom_model->bike_paginate($id)
+				'paginate' => $this->custom_model->bike_paginate($id),
+				'fields' => $this->custom_model->fields_data(),
+				'fields_data' => $fields_data
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tagify.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/jQuery.tagify.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/typeahead.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-tagify.js').'"></script>',
@@ -321,6 +327,14 @@ class Dashboard extends MY_Controller {
 			$filename = files_upload($_FILES, TRUE, 'bikes/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['bike_model']);
 			$post['feat_photo'] = $filename;
 			$post['user_id'] = $this->accounts->profile['id'];
+			$fields_data = [];
+			foreach ($post as $field => $value) {
+				if (!in_array($field, ['bike_model', 'feat_photo', 'user_id', 'price_tag', 'external_link'])) {
+					$fields_data[$field] = json_decode($value, TRUE);
+					unset($post[$field]);
+				}
+			}
+			$post['fields_data'] = json_encode($fields_data);
 			// debug($post, 1);
 			return $this->custom_model->new('bike_items', $post, 'dashboard'); /*redirect to dashboard*/
 		}
@@ -339,6 +353,14 @@ class Dashboard extends MY_Controller {
 					$post['feat_photo'] = $filename;
 				}
 				$post['user_id'] = $this->accounts->profile['id'];
+				$fields_data = [];
+				foreach ($post as $field => $value) {
+					if (!in_array($field, ['bike_model', 'feat_photo', 'user_id', 'price_tag', 'external_link'])) {
+						$fields_data[$field] = json_decode($value, TRUE);
+						unset($post[$field]);
+					}
+				}
+				$post['fields_data'] = json_encode($fields_data);
 				// debug($post, 1);
 				return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id); /*redirect to dashboard edit*/
 			}
@@ -467,7 +489,7 @@ class Dashboard extends MY_Controller {
 											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
 										}
 									}
-									if (count($variable) == $empty_cnt) {
+									if ($empty_cnt == count($variable)-1) {
 										unset($value[$idx]);
 									}
 								}
@@ -480,10 +502,10 @@ class Dashboard extends MY_Controller {
 								if ($index == 'path') {
 									if (!empty($row['base']) AND $value == 'assets/data/jsons/') {
 										$value .= clean_string_name($row['base']).'.json';
-									} elseif (empty($row['base']) AND $value == 'assets/data/jsons/') {
-										$value = FALSE;
-									} else {
+									} elseif (!empty($row['base'])) {
 										$value = 'assets/data/jsons/'.clean_string_name($row['base']).'.json';
+									} else {
+										$value = FALSE;
 									}
 								} elseif ($index == 'base') {
 									$value = strtolower($value);

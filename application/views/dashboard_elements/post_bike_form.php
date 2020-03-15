@@ -40,7 +40,7 @@
 						</li>
 						<li style="padding-left:10px;">
 							<div class="form-group bs-select-parent">
-								<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4" name="spec_from">
+								<select class="selectpicker show-tick form-control" data-live-search="true" title="Select Preset Specs" data-width="100%" data-size="4">
 									<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
 										<?php foreach ($page_data['specs'] as $key => $bike): ?>
 											<option data-tokens="<?php echo strtolower($bike['bike_model']);?>" data-subtext="<?php echo $bike['store_name'];?> (Updated: <?php echo date('M Y', strtotime($bike['updated']));?>)" data-id="<?php echo $bike['id'];?>" data-json='<?php echo preg_replace("/'/", '', json_encode($bike));?>'><?php echo $bike['bike_model'];?></option>

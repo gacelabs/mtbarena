@@ -48,18 +48,33 @@ $(document).ready(function() {
 	var clickOnce = false;
 	$('.selectpicker').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
 		var data = $(e.target).find('option:eq('+clickedIndex+')').data();
-		// console.log(data.json);
+		console.log(data.json);
 		if (Object.keys(data.json).length) {
 			if (clickOnce == false) {
 				$('.panel-heading[data-toggle]:not(:first):not(.collapsed)').click();
 				clickOnce = true;
 			}
+			$('#postBikeForm '+data.selector).each(function(i, elem) {
+				$(elem).data('tagify').removeAllTags();
+			});
 			for(var field in data.json) {
-				var sVal = data.json[field];
+				var oVal = data.json[field];
 				if ($('#postBikeForm [name='+field+']:not(:file)').attr('type') == 'radio') {
-					$('#postBikeForm [name='+field+'][value='+sVal+']').prop('checked', true);
+					$('#postBikeForm [name='+field+'][value='+oVal+']').prop('checked', true);
 				} else {
-					$('#postBikeForm [name='+field+']:not(:file)').val(sVal);
+					$('#postBikeForm [name='+field+']:not(:file)').val(oVal);
+				}
+			}
+			if (data.json.fields_data != undefined) {
+				var oItems = data.json.fields_data;
+				for (var name in oItems) {
+					var oTags = $.parseJSON(oItems[name]);
+					var arr = [];
+					$.each(oTags, function(i, obj){
+						arr.push(obj.value);
+					});
+					// console.log(name, arr.toString());
+					$('#postBikeForm [name='+name+']:not(:file)').data('tagify').addTags(arr.toString());
 				}
 			}
 		}
@@ -67,14 +82,14 @@ $(document).ready(function() {
 
 	if ($('#edit-json-data').length) {
 		var oJson = $('#edit-json-data').data('json');
-		if (Object.keys(oJson[0]).length) {
+		if (Object.keys(oJson).length) {
 			// console.log(oJson);
 			if (clickOnce == false) {
 				$('.panel-heading[data-toggle]:not(:first):not(.collapsed)').click();
 				clickOnce = true;
 			}
-			for(var field in oJson[0]) {
-				var sVal = oJson[0][field];
+			for(var field in oJson) {
+				var sVal = oJson[field];
 				if ($('#postBikeForm [name='+field+']:not(:file)').attr('type') == 'radio') {
 					$('#postBikeForm [name='+field+'][value='+sVal+']').prop('checked', true);
 				} else {
