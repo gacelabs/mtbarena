@@ -10,16 +10,6 @@
 .form-step-block-input, .post-bike .form-group  {
 	position: relative;
 }
-.tagify {
-	border: 1px solid #ccc !important;
-}
-.tagify {
-	--tag-bg: #ffa41d;
-	--tag-text-color: #fff;
-}
-.tagify:focus {
-	border-color: red;
-}
 .tagify__dropdown__wrapper {
 	/*border-top: 3px solid #3595f6;*/
 }
