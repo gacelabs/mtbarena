@@ -88,7 +88,7 @@ function format_ip($ip='')
 {
 	$ci =& get_instance();
 	$ID = '0'.'no-email@mtbarena.com'.$ip;
-	if ($ci->accounts->has_session) {
+	if (isset($ci->accounts) AND $ci->accounts->has_session) {
 		$ID = $ci->accounts->profile['id'].$ci->accounts->profile['email_address'].$ip;
 	}
 	// $DEVICE = substr(md5($ID), 0, 7);
@@ -375,10 +375,10 @@ function bike_search($query='', $and_clause='')
 	$urlSQL = [];
 
 	/** Matching full occurences **/ 
-	$full_content = "CONCAT(REPLACE(b.feat_photo, 'assets/data/files/bikes/images/', ''),' ',b.colorway,' ',b.frame,' ',b.shifter,' ',b.front_derailleur,' ',b.rear_derailleur,' ',b.cassette,' ',b.chain,' ',b.brake,' ',b.rim,' ',b.tires,' ',b.chainwheel,' ',b.hub,' ',b.saddle,' ',b.seatpost,' ',b.stem,' ',b.handlebar,' ',b.price_tag)";
+	$full_content = "CONCAT(REPLACE(b.feat_photo, 'assets/data/files/bikes/images/', ''),' ',b.fields_data,' ',b.price_tag)";
 	if (count($keywords) > 1){
 		$titleSQL[] = "IF(b.bike_model LIKE '%".$escQuery."%',{$score_bike_model},0)";
-		$sumSQL[] = "IF(b.made_by LIKE '%".$escQuery."%',{$score_made_by},0)";
+		// $sumSQL[] = "IF(b.made_by LIKE '%".$escQuery."%',{$score_made_by},0)";
 		$docSQL[] = "IF($full_content LIKE '%".$escQuery."%',{$score_full_content},0)";
 	}
 
@@ -386,22 +386,33 @@ function bike_search($query='', $and_clause='')
 	if (count($keywords) > 0){
 		foreach($keywords as $key){
 			$titleSQL[] = "IF(b.bike_model LIKE '%".$ci->db->escape_like_str($key)."%',{$score_bike_model_keyword},0)";
-			$sumSQL[] = "IF(b.made_by LIKE '%".$ci->db->escape_like_str($key)."%',{$score_made_by_keyword},0)";
+			// $sumSQL[] = "IF(b.made_by LIKE '%".$ci->db->escape_like_str($key)."%',{$score_made_by_keyword},0)";
 			$docSQL[] = "IF($full_content LIKE '%".$ci->db->escape_like_str($key)."%',{$score_content_keyword},0)";
 			$urlSQL[] = "IF(b.external_link LIKE '%".$ci->db->escape_like_str($key)."%',{$score_url_keyword},0)";
-			$categorySQL[] = "IF(b.spec_from LIKE '%".$ci->db->escape_like_str($key)."%',{$score_spec_keyword},0)";
+			// $categorySQL[] = "IF(b.spec_from LIKE '%".$ci->db->escape_like_str($key)."%',{$score_spec_keyword},0)";
 		}
 	}
 
 	/*Just incase it's empty, add 0*/
 	if (empty($titleSQL)) $titleSQL[] = 0;
-	if (empty($sumSQL)) $sumSQL[] = 0;
+	// if (empty($sumSQL)) $sumSQL[] = 0;
 	if (empty($docSQL)) $docSQL[] = 0;
 	if (empty($urlSQL)) $urlSQL[] = 0;
 	if (empty($tagSQL)) $tagSQL[] = 0;
-	if (empty($categorySQL)) $categorySQL[] = 0;
+	// if (empty($categorySQL)) $categorySQL[] = 0;
 
 	$sql = "
+	SELECT 
+			u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url,
+			b.*, ((".implode(' + ', $titleSQL).") + (".implode(' + ', $docSQL).") + (".implode(' + ', $urlSQL).")) as Relevance 
+		FROM bike_items b 
+		INNER JOIN users u ON u.id = b.user_id
+		WHERE 1=1 $and_clause
+	GROUP BY b.id 
+		HAVING Relevance > 0 
+	ORDER BY b.updated DESC";
+
+	/*$sql = "
 	SELECT 
 			u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url,
 			b.*, ((".implode(' + ', $titleSQL).") + (".implode(' + ', $sumSQL).") + (".implode(' + ', $docSQL).") + (".implode(' + ', $categorySQL).") + (".implode(' + ', $urlSQL).")) as Relevance 
@@ -410,7 +421,7 @@ function bike_search($query='', $and_clause='')
 		WHERE 1=1 $and_clause
 	GROUP BY b.id 
 		HAVING Relevance > 0 
-	ORDER BY b.updated DESC";
+	ORDER BY b.updated DESC";*/
 
 	// debug($sql, 1);
 	$data = $ci->db->query($sql);
