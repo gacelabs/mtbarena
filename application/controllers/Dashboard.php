@@ -458,6 +458,9 @@ class Dashboard extends MY_Controller {
 		// debug($post);
 		$result = [];
 		if ($post) {
+			function sortByOrder($a, $b) {
+				return $a['sort'] - $b['sort'];
+			}
 			$account = $this->accounts->profile;
 			$save_data = $json_data = [];
 			foreach ($post as $table => $data) {
@@ -489,14 +492,18 @@ class Dashboard extends MY_Controller {
 											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
 										}
 									}
+									if (isset($value[$idx]) AND isset($value[$idx]['sort'])) {
+										$value[$idx]['sort'] = trim($value[$idx]['sort']) == '' ? 0 : trim($value[$idx]['sort']);
+									}
 									if ($empty_cnt == count($variable)-1) {
 										unset($value[$idx]);
 									}
 								}
 
 								if (count($value)) {
-									$save_data[$key][$index] = json_encode($value);
+									usort($value, 'sortByOrder');
 									// $save_data[$key][$index] = $value;
+									$save_data[$key][$index] = json_encode($value);
 								}
 							} else {
 								if ($index == 'path') {

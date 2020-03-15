@@ -26,7 +26,7 @@
 								foreach ($field['values'] as $column => $row): ?>
 								<div class="form-step-body clearfix fieldset">
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-step-block-label">
-										<label class="zero-gap">Sort<input type="text" class="form-control" name="" value=""></label>
+										<label class="zero-gap">Sort<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][sort]" value="<?php echo ucfirst($row['sort']);?>"></label>
 									</div>
 									<div class="col-lg-3 col-md-3 col-sm-3 form-step-block-label">
 										<label class="zero-gap">Spec label<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][column]" value="<?php echo ucfirst($row['column']);?>"></label>
@@ -76,7 +76,7 @@
 					</div>
 					<div class="form-step-body clearfix fieldset" id="field_template">
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-step-block-label">
-							<label class="zero-gap">Sort<input type="text" class="form-control" name="" value=""></label>
+							<label class="zero-gap">Sort<input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][sort]" value=""></label>
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 form-step-block-label">
 							<div class="form-group">
