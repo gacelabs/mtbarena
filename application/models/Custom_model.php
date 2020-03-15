@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Custom_Model extends MY_Model {
 
-	public function bike_items($limit=2, $clause=FALSE)
+	public function bike_items($limit=2, $clause=FALSE, $func='result')
 	{
 		$limit_by = $where_clause = '';
 		if (is_numeric($limit) AND $limit > 0) {
@@ -32,11 +32,11 @@ class Custom_Model extends MY_Model {
 			$where_clause
 			ORDER BY b.view_count DESC/*, b.updated DESC */
 		$limit_by
-		", ($limit == 1 ? 'row' : 'result'));
+		", $func);
 
 		if ($return) {
 			$result = [];
-			if ($limit == 1) {
+			if ($func == 'row') {
 				$return = [$return];
 			}
 			foreach ($return as $key => $row) {
@@ -57,7 +57,7 @@ class Custom_Model extends MY_Model {
 					}
 				}
 			}
-			if ($limit == 1) {
+			if ($func == 'row') {
 				$result = $result[0];
 			}
 			// debug($result, 1);

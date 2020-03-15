@@ -131,7 +131,7 @@ class Dashboard extends MY_Controller {
 
 	public function edit_bike($id=0)
 	{
-		$edit_bike = $this->custom_model->bike_items(1, "b.id = '".$id."'");
+		$edit_bike = $this->custom_model->bike_items(1, "b.id = '".$id."'", 'row');
 		// debug($edit_bike, 1);
 		$fields_data = isset($edit_bike['fields_data']) ? $edit_bike['fields_data'] : FALSE;
 		unset($edit_bike['fields_data']);
