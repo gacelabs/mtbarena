@@ -111,6 +111,13 @@
 .tagify__tag {
 	margin: 5px 5px 0 0;
 }
+.tagify {
+	--tag-bg: #ffa41d;
+	--tag-text-color: #fff;
+}
+.tagify:focus {
+	border-color: red;
+}
 .bootstrap-tagsinput input, .bootstrap-tagsinput .label-info {
 	text-transform: capitalize;
 }
@@ -130,6 +137,7 @@
 .post-bike-parent-box {
 	overflow: unset;
 }
+
 @media screen and (max-width: 767px) {
 	.post-bike .table-responsive {
 		margin-bottom: 10px;

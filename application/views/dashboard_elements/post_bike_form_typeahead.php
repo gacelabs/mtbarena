@@ -58,11 +58,11 @@
 							</div>
 							<?php foreach ($fields['values'] as $index => $field): ?>
 								<div class="form-step-body clearfix">
-									<div class="col-lg-3 form-step-block-label">
+									<div class="col-lg-3 col-md-3 form-step-block-label">
 										<label class="zero-gap" for=""><?php echo ucfirst($field['column']);?></label>
 										<p class="sub-label-text"><?php echo ucfirst($field['description']);?></p>
 									</div>
-									<div class="col-lg-6 form-step-block-input">
+									<div class="col-lg-7 col-md-7 form-step-block-input">
 										<div class="form-group">
 											<?php if ((isset($page_data['is_edit']) AND $page_data['is_edit']) AND 
 											((isset($page_data["fields_data"]) AND $page_data["fields_data"]) AND 
@@ -79,54 +79,54 @@
 					<?php endforeach ?>
 				<?php endif ?>
 
-				<div style="margin-bottom:15px;">
-					<ul class="grid-column column-30-70">
-						<li>
-							<p class="zero-gap"><b>Price tag:</b></p>
-							<p class="zero-gap" style="font-size:10px;">The estimated price of the bike on the market.<br>Legend: Affordable, Mid, Premium </p>
-						</li>
-						<li style="padding-left:10px;">
-							<ul class="inline-list">
-								<li style="margin-right: 15px;">
-									<div class="radio">
-										<label>
-											<input type="radio" name="price_tag" value="affordable"><i class="fa fa-tags"></i>
-										</label>
-									</div>
-								</li>
-								<li style="margin-right: 15px;">
-									<div class="radio">
-										<label>
-											<input type="radio" name="price_tag" value="mid"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
-										</label>
-									</div>
-								</li>
-								<li>
-									<div class="radio">
-										<label>
-											<input type="radio" name="price_tag" value="premium"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
-										</label>
-									</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
+				<div style="margin-bottom:15px;clear: both;">
+					<div class="col-lg-3 col-md-3 form-step-block-label">
+						<p class="zero-gap"><b>Price tag:</b></p>
+						<p class="zero-gap" style="font-size:10px;">The estimated price of the bike on the market.<br>Legend: Affordable, Mid, Premium </p>
+					</div>
+					<div class="col-lg-7 col-md-7 form-step-block-input">
+						<ul class="inline-list">
+							<li style="margin-right: 15px;">
+								<div class="radio">
+									<label>
+										<input type="radio" name="price_tag" value="affordable"><i class="fa fa-tags"></i>
+									</label>
+								</div>
+							</li>
+							<li style="margin-right: 15px;">
+								<div class="radio">
+									<label>
+										<input type="radio" name="price_tag" value="mid"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="radio">
+									<label>
+										<input type="radio" name="price_tag" value="premium"><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+									</label>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="col-lg-12">&nbsp;</div>
+
+				<div style="margin-bottom:15px;clear: both;">
+					<div class="col-lg-3 col-md-3 form-step-block-label">
+						<p class="zero-gap"><b>Exteral link:</b></p>
+						<p class="zero-gap" style="font-size:10px;">A link that goes to your own website or social media page. One link only.<br>Example: facebook.com/your-bike-shop</p>
+					</div>
+					<div class="col-lg-7 col-md-7 form-step-block-input">
+						<div class="form-group">
+							<input rows="2" class="form-control" name="external_link" id="external_link">
+						</div>
+					</div>
 				</div>
 
-				<div style="margin-bottom:15px;">
-					<ul class="grid-column column-30-70">
-						<li>
-							<p class="zero-gap"><b>Exteral link:</b></p>
-							<p class="zero-gap" style="font-size:10px;">A link that goes to your own website or social media page. One link only.<br>Example: facebook.com/your-bike-shop</p>
-						</li>
-						<li style="padding-left:10px;" style="margin-bottom: 0;">
-							<div class="form-group">
-								<input rows="2" class="form-control" name="external_link" id="external_link">
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div style="padding: 10px;">
+				<div style="padding: 10px;clear: both;">
+					<hr>
 					<button class="btn btn-info">Save</button>
 				</div>
 			</form>

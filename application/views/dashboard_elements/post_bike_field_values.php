@@ -25,20 +25,23 @@
 								$cnt = 0;
 								foreach ($field['values'] as $column => $row): ?>
 								<div class="form-step-body clearfix fieldset">
-									<div class="col-lg-3 form-step-block-label">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-step-block-label">
+										<label class="zero-gap">Sort<input type="text" class="form-control" name="" value=""></label>
+									</div>
+									<div class="col-lg-3 col-md-3 col-sm-3 form-step-block-label">
 										<label class="zero-gap">Spec label<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][column]" value="<?php echo ucfirst($row['column']);?>"></label>
 										<div>&nbsp;</div>
 										<label class="zero-gap">Label info</label>
 										<p class="sub-label-text text-left"><input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][description]" value="<?php echo $row['description'];?>"></p>
 									</div>
-									<div class="col-lg-6 form-step-block-input">
+									<div class="col-lg-6 col-md-6 col-sm-6 form-step-block-input">
 										<div class="form-group">
 										<label class="zero-gap">Values</label>
 											<textarea placeholder="Comma separated value. Value1,Value2,Value3..." name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][data]" class="form-control"><?php echo $row['data'];?></textarea>
 										</div>
 									</div>
-									<div class="col-lg-3 form-step-block-input">
-										<label class="zero-gap">Multiple select</label>
+									<div class="col-lg-2 col-md-2 col-sm-2 form-step-block-input">
+										<label class="zero-gap">Multiple</label>
 										<select class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][max]">
 											<option value="1"<?php echo $row['max'] == 1 ? ' selected' : '';?>>Yes</option>
 											<option value="0"<?php echo $row['max'] == 0 ? ' selected' : '';?>>No</option>
@@ -72,7 +75,10 @@
 						</div>
 					</div>
 					<div class="form-step-body clearfix fieldset" id="field_template">
-						<div class="col-lg-3 form-step-block-label">
+						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 form-step-block-label">
+							<label class="zero-gap">Sort<input type="text" class="form-control" name="" value=""></label>
+						</div>
+						<div class="col-lg-3 col-md-3 col-sm-3 form-step-block-label">
 							<div class="form-group">
 								<label class="zero-gap">Spec label<input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][column]" value="" placeholder="Brand, Sizes, Types, etc..."></label>
 							</div>
@@ -81,14 +87,14 @@
 								<p class="sub-label-text text-left"><input type="text" class="form-control" id="" name="fields_data[CHANGEKEY][values][CHANGECOL][description]" value=""></p>
 							</div>
 						</div>
-						<div class="col-lg-6 form-step-block-input">
+						<div class="col-lg-6 col-md-6 col-sm-6 form-step-block-input">
 							<div class="form-group">
 								<label class="zero-gap">Values</label>
 								<textarea placeholder="Comma separated value. Value1,Value2,Value3..." name="fields_data[CHANGEKEY][values][CHANGECOL][data]" class="form-control"></textarea>
 							</div>
 						</div>
-						<div class="col-lg-3 form-step-block-input">
-							<label class="zero-gap">Multiple select</label>
+						<div class="col-lg-2 col-md-2 col-sm-2 form-step-block-input">
+							<label class="zero-gap">Multiple</label>
 							<select class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][max]">
 								<option value="1">Yes</option>
 								<option value="0">No</option>
