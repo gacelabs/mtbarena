@@ -1,5 +1,5 @@
 
-var arrALlTags = [];
+var arrAllTags = [];
 $(document).ready(function() {
 	/*var clickOnce = false;
 	if ($('#edit-json-data').length) {
@@ -32,28 +32,30 @@ function runTagsInput(uiFieldData) {
 		var oSettings = {
 			url: $(elem).data('url'),
 			success: function(data) {
-				// console.log(data, uiInput)
+				// console.log(data, uiInput);
 				uiInput.each(function(x, input) {
 					var oTagsSettings = {
 						whitelist : data[input.name].whitelist,
 						dropdown: {
-							position: "manual",
 							maxItems: Infinity,
 							enabled: 0,
-							classname: "customSuggestionsList",
+							classname: "suggestion-list"
 						},
 						enforceWhitelist: true,
 						editTags: false,
-						maxTags: data[input.name].max,
-					},
-					tagify = new Tagify(input, oTagsSettings);
+						maxTags: 1
+					};
 
-					tagify
+					// console.log(data[input.name]);
+					if (data[input.name].max == 1) {
+						oTagsSettings.maxTags = Infinity;
+					}
+
+					var tagify = new Tagify(input, oTagsSettings);
+					/*tagify
 						.on("focus", function (e){
 							// console.log(e.type, e.detail);
 							$(tagify.DOM.dropdown).show();
-							$(input).parents('.form-step-body').find('.form-step-block-values')
-							.find('i').removeClass('fa fa-angle-down').addClass('fa fa-angle-up');
 						})
 						.on("dropdown:show", function (e){
 							// console.log(e.type, e.detail);
@@ -65,7 +67,7 @@ function runTagsInput(uiFieldData) {
 							// console.log(e.type, e.detail);
 						})
 						.on('keydown', function(e) {
-							// console.log(e.type, e.detail, e.detail.originalEvent.code);
+							console.log(e.type, e.detail, e.detail.originalEvent);
 							if (e.detail.originalEvent.code == 'Backspace') {
 								tagify.removeTag();
 							}
@@ -85,15 +87,14 @@ function runTagsInput(uiFieldData) {
 						.on('blur', function(e) {
 							// console.log(e.type, e.detail);
 							$(tagify.DOM.dropdown).hide();
-							$(input).parents('.form-step-body').find('.form-step-block-values')
-							.find('i').removeClass('fa fa-angle-up').addClass('fa fa-angle-down');
 						});
 
 					tagify.dropdown.show.call(tagify);
 					tagify.DOM.scope.parentNode.appendChild(tagify.DOM.dropdown);
+					// tagify.dropdown.hide.call(tagify);
+					$(tagify.DOM.dropdown).hide();*/
 
-					$(tagify.DOM.dropdown).hide();
-					arrALlTags.push(tagify);
+					arrAllTags.push(tagify);
 					// tagify.addTags('Trinx,Cannondale,Giant,Foxter,Pinewood')
 				});
 			}
