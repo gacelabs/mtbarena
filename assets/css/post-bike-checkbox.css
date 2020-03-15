@@ -131,6 +131,22 @@
 	overflow: unset;
 }
 @media screen and (max-width: 767px) {
+	.post-bike .table-responsive {
+		margin-bottom: 10px;
+	}
+	.post-bike #postBikeForm .btn-info {
+		width: 100%;
+	}
+	.post-bike #postBikeForm .form-step-block:first-child .form-group {
+		margin-bottom: 15px;
+	}
+	.post-bike .box-item-body {
+		padding: 0 !important;
+	}
+	.post-bike .form-step-block {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 	.post-bike-form-checkbox-item>ul>li {
 		text-align: left !important;
 		margin-bottom: 0 !important;

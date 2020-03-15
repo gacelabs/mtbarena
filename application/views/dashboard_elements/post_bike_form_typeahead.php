@@ -14,7 +14,7 @@
 		<?php endif ?>
 	</div>
 	
-	<div class="box-item-body" style="padding:0;">
+	<div class="box-item-body" style="padding:0 !important;">
 		<div class="table-responsive post-bike-parent-box">
 			<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
 			<form action="<?php echo base_url('dashboard/edit_item/'.$page_data['id']);?>" method="post" enctype="multipart/form-data" id="postBikeForm">
