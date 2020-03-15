@@ -645,3 +645,50 @@ function calculate($data=FALSE, $mode=FALSE)
 	}
 	return $result;
 }
+
+function manipulate_bike_display_data($items_data=FALSE)
+{
+	if ($items_data) {
+		$bike_items = [];
+		foreach ($items_data as $key => $bike) {
+			foreach ($bike as $field => $data) {
+				if (in_array($field, ['store_name','bike_url','id','user_id','bike_model','feat_photo','view_count','share_count','like_count','added','updated','version'])) {
+					if (in_array($field, ['id','view_count','share_count','like_count'])) {
+						if ($field == 'id') {
+							$bike_items['structured']['ids'][] = $data;
+							$bike_items['structured']['id'] = $data;
+							$bike_items['info'][$key]['id'] = $data;
+						} else {
+							$bike_items['structured'][$field] = $data;
+						}
+					} else {
+						$bike_items['info'][$key][$field] = $data;
+					}
+				} else {
+					if ($field == 'fields_data') {
+						if (!is_array($data)) $data = json_decode($data, TRUE);
+						if ($data) {
+							// debug($data);
+							foreach ($data as $column => $json) {
+								$parsed = $json;
+								if (!is_array($json)) {
+									$parsed = json_decode($json, TRUE);
+								}
+								$mapped = [];
+								foreach ($parsed as $col => $row) {
+									$mapped[] = $row['value'];
+								}
+								$bike_items['fields'][$key][$column] = implode(', ', $mapped);
+							}
+						}
+					} else {
+						$bike_items['fields'][$key][$field] = $data;
+					}
+				}
+			}
+		}
+		// debug($bike_items, 1);
+		return $bike_items;
+	}
+	return FALSE;
+}

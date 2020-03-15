@@ -1,31 +1,10 @@
 
 var arrAllTags = [];
 $(document).ready(function() {
-	/*var clickOnce = false;
-	if ($('#edit-json-data').length) {
-		var oJson = $('#edit-json-data').data('json');
-		if (Object.keys(oJson[0]).length) {
-			// console.log(oJson);
-			if (clickOnce == false) {
-				$('.panel-heading[data-toggle]:not(:first):not(.collapsed)').click();
-				clickOnce = true;
-			}
-			for(var field in oJson[0]) {
-				var sVal = oJson[0][field];
-				if ($('#postBikeForm [name='+field+']:not(:file)').attr('type') == 'radio') {
-					$('#postBikeForm [name='+field+'][value='+sVal+']').prop('checked', true).attr('data-values', sVal);
-				} else {
-					$('#postBikeForm [name='+field+']:not(:file)').attr('data-values', sVal);
-				}
-			}
-		}
-	} else {
-	}*/
-		runTagsInput();
+	runTagsInput();
 });
-var bFirstLoad = true;
+
 function runTagsInput(uiFieldData) {
-	bFirstLoad = false;
 	if (uiFieldData == undefined) uiFieldData = $('.field-data');
 	uiFieldData.each(function(i, elem){
 		var sSelector = $(elem).data('selector'), uiInput = $(elem).find(sSelector);

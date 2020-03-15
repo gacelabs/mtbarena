@@ -7,6 +7,11 @@ class Home extends MY_Controller {
 		$this->load->model('custom_model');
 		$home = curl_get_shares(current_full_url());
 		// debug($home, 1);
+		$items_data = $this->custom_model->bike_items();
+		// debug($items_data, 1);
+		$bike_items = manipulate_bike_display_data($items_data);
+		// debug($bike_items, 1);
+
 		$structure = array(
 			'metas' => array(
 				''
@@ -53,7 +58,7 @@ class Home extends MY_Controller {
 				'modal_elements/login'
 			),
 			'page_data' => array(
-				'bikes' => $this->custom_model->bike_items(),
+				'bikes' => $bike_items,
 				'share_count' => isset($home['engagement']) ? $home['engagement']['share_count'] : 0,
 				'mostviews' => $this->custom_model->bike_items(10),
 				'populars' => $this->custom_model->compare_items(10),

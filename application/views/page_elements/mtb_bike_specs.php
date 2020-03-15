@@ -1,35 +1,27 @@
 
-<?php if (isset($page_data['bikes']) AND $page_data['bikes']): 
-	// debug($page_data['bikes'], 1);
+<?php 
+	// debug($page_data, 1);
+	
+	if (isset($page_data['bikes']) AND $page_data['bikes']): 
 	// total number of bikes in comparison
 	// value comes from $page_data['bikes'] array, counting keys within the said array
 	// this prevents error on $page_data['bikes'] index if there is only 1 data in the bike_item table
-	$bikeCount = count($page_data['bikes']);
+	$infos = $page_data['bikes']['info'];
+	$fields_data = $page_data['bikes']['fields'];
+
+	$bikeCount = count($infos);
 	// parse the class along .grid-column according to $bikeCount value
 	$gridCountArr = ['column-100', 'column-50-50', 'column-33-33-33'];
 
-	$ids = []; $like_count = 0;
-	foreach ($page_data['bikes'] as $key => $bike) {
-		$ids[] = $bike['id'];
-		if ($bike['like_count'] > 0) {
-			$like_count++;
-		}
-	}
-	$id = $share_count = 0;
-	if (in_array($this->class_name, ['singlebike'])) {
-		$id = $page_data['bikes'][0]['id'];
-		$like_count = $page_data['bikes'][0]['like_count'];
-		$share_count = $page_data['bikes'][0]['share_count'];
-	} elseif (in_array($this->class_name, ['compare'])) {
-		$ref = $this->input->get('ref');
-		if ($ref) {
-			$id = $ref;
-		} else {
-			$id = $page_data['id'];
-		}
+	$ids = $page_data['bikes']['structured']['ids'];
+	$id = $page_data['bikes']['structured']['id'];
+	$like_count = $page_data['bikes']['structured']['like_count'];
+	$share_count = $page_data['bikes']['structured']['share_count'];
+
+	if (in_array($this->class_name, ['compare'])) {
+		$id = $page_data['id'];
 		$like_count = get_like_count(['id'=>$id], 'compares');
 	}
-
 	if (in_array($this->class_name, ['home', 'compare'])) {
 		$share_count = $page_data['share_count'];
 	}
@@ -63,7 +55,7 @@
 				<div class="grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 
 				<!-- LOOP here -->
-				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
+				<?php foreach ($infos as $key => $bike): ?>
 					<div class="mtb-item-model-parent">
 						<div class="mtb-item-model-inner">
 							<img src="<?php echo base_url($bike['feat_photo']);?>" class="mtb-item-image shrinkMe image-cropped cover" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
@@ -83,29 +75,29 @@
 			<div class="mtb-main-parent" id="mtbMainParent">
 
 				<!-- LOOP here -->
-				<?php foreach ($page_data['bikes'] as $key => $bike): ?>
-					<?php foreach ($bike as $field => $value): ?>
-						<?php if (in_array($field, ['made_by','colorway','frame','fork','shifter','front_derailleur','rear_derailleur','cassette','chain','brake','rim','tires','chainwheel','hub','saddle','seatpost','stem','handlebar','external_link','price_tag'])): ?>
+				<?php
+					foreach ($fields_data as $key => $bike_fields) {
+						foreach ($bike_fields as $field => $data) {?>
 							<div class="mtb-item-specs-parent">
-								<div class="mtb-item-spec-label <?php if ($bikeCount > 1) {echo "text-center";} ?>">
+								<div class="mtb-item-spec-label<?php echo $bikeCount > 1 ? ' text-center' : '' ?>">
 									<small class="color-theme mtb-item-spec-label-text"><?php echo str_replace('_', ' ', $field);?></small>
 								</div>
 								<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 									<?php for ($i=0; $i < $bikeCount; $i++): ?>
 										<div class="mtb-item-spec-desc-inner">
 											<p class="mtb-item-spec-desc-text zero-gap">
-												<?php if ($field == 'external_link'): ?><a class="external-link" target="_blank" href="<?php echo $page_data['bikes'][$i][$field];?>">
-													<?php echo nl2br($page_data['bikes'][$i][$field]);?>
+												<?php if ($field == 'external_link'): ?><a class="external-link" target="_blank" href="<?php echo $fields_data[$i][$field];?>">
+													<?php echo nl2br($fields_data[$i][$field]);?>
 												<?php elseif ($field == 'price_tag'): ?>
-													<?php if ($page_data['bikes'][$i][$field] == 'affordable'): ?>
+													<?php if ($fields_data[$i][$field] == 'affordable'): ?>
 														<i class="fa fa-tags"></i>
-													<?php elseif ($page_data['bikes'][$i][$field] == 'mid'): ?>
+													<?php elseif ($fields_data[$i][$field] == 'mid'): ?>
 														<i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
 													<?php else: ?>
 														<i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
 													<?php endif ?>
 												<?php else: ?>
-													<?php echo $page_data['bikes'][$i][$field] ? nl2br($page_data['bikes'][$i][$field]) : 'N/A';?>
+													<?php echo $fields_data[$i][$field] ? nl2br($fields_data[$i][$field]) : 'N/A';?>
 												<?php endif ?>
 												<?php if ($field == 'external_link'): ?></a><?php endif ?>
 											</p>
@@ -113,10 +105,11 @@
 									<?php endfor ?>
 								</div>
 							</div>
-						<?php endif ?>
-					<?php endforeach ?>
-					<?php break; ?>
-				<?php endforeach ?>
+							<?php
+						}
+						break;
+					}
+				?>
 				<!-- LOOP here -->
 
 			</div>

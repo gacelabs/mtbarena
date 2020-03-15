@@ -7,19 +7,17 @@ class Compare extends MY_Controller {
 		$this->load->model('custom_model');
 		$get = $this->input->get();
 		// debug(is_url_parsable(), 1);
-		if ($get) {
-			// $compare_id = trim(base64_decode($get['ref']));
-			$compare_id = trim($get['ref']);
-			$bike_model = trim($get['bike_1'].' ~and~ '.$get['bike_2']);
-		} elseif (is_url_parsable()) {
+		if (is_url_parsable()) {
 			$get = parse_mtb_query($compare_id);
 			$compare_id = trim($get['ref']);
 			$bike_model = trim($get['bike_1'].' ~and~ '.$get['bike_2']);
 			// debug($bike_model, 1);
 		}
-		if ($compare_id AND $bike_model) {
+		if ($compare_id AND $bike_model AND $get) {
 			$where = construct_where($compare_id, 'compares.');
-			$bikes = $this->custom_model->compared_bikes($where);
+			$items_data = $this->custom_model->compared_bikes($where);
+			$bikes = manipulate_bike_display_data($items_data);
+			// debug($bikes, 1);
 			$compares = $this->custom_model->get('compares', $where, 'share_count', 'row');
 			// debug($compares, 1);
 			$structure = array(

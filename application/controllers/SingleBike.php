@@ -4,8 +4,12 @@ class SingleBike extends MY_Controller {
 
 	public function index($id_user_id=FALSE, $bike_model=FALSE)
 	{
+		$bike_items = FALSE;
 		if ($bike_model) {
 			$where = construct_where($id_user_id, 'b.');
+			$items_data = $this->custom_model->bike_items(1, $where);
+			$bike_items = manipulate_bike_display_data($items_data);
+			// debug($bike_items, 1);
 		}
 		$structure = array(
 			'metas' => array(
@@ -49,7 +53,7 @@ class SingleBike extends MY_Controller {
 				'modal_elements/login'
 			),
 			'page_data' => array(
-				'bikes' => $this->custom_model->bike_items(1, $where),
+				'bikes' => $bike_items,
 				'mostviews' => $this->custom_model->bike_items(10),
 				'populars' => $this->custom_model->compare_items(10)
 			),
