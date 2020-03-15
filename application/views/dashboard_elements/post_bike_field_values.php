@@ -39,9 +39,9 @@
 									</div>
 									<div class="col-lg-3 form-step-block-input">
 										<label class="zero-gap">Multiple select</label>
-										<select class="form-control">
-											<option>Yes</option>
-											<option>No</option>
+										<select class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][max]">
+											<option value="1"<?php echo $row['max'] == 1 ? ' selected' : '';?>>Yes</option>
+											<option value="0"<?php echo $row['max'] == 0 ? ' selected' : '';?>>No</option>
 										</select>
 									</div>
 								</div>
@@ -89,9 +89,9 @@
 						</div>
 						<div class="col-lg-3 form-step-block-input">
 							<label class="zero-gap">Multiple select</label>
-							<select class="form-control">
-								<option>Yes</option>
-								<option>No</option>
+							<select class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][max]">
+								<option value="1">Yes</option>
+								<option value="0">No</option>
 							</select>
 						</div>
 					</div>

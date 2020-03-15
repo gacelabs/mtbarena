@@ -10,16 +10,9 @@
 .form-step-block-input, .post-bike .form-group  {
 	position: relative;
 }
-.customSuggestionsList {
-	left: 0 !important; 
-	bottom: inherit !important; 
-	top: inherit !important;
-	position: absolute !important;
-	z-index: 2;
-}
-/*.tagify {
+.tagify {
 	border: 1px solid #ccc !important;
-}*/
+}
 .tagify {
 	--tag-bg: #ffa41d;
 	--tag-text-color: #fff;

@@ -117,7 +117,7 @@ class Dashboard extends MY_Controller {
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
-				'<script type="text/javascript" src="'.base_url('assets/js/tagify.min.js').'"></script>',
+				'<script type="text/javascript" src="'.base_url('assets/js/tagify.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/typeahead.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				'<script type="text/javascript" src="'.base_url('assets/js/post-tagify.js').'"></script>',
@@ -457,8 +457,14 @@ class Dashboard extends MY_Controller {
 									if (isset($value[$idx]) AND isset($value[$idx]['column']) AND strlen(trim($value[$idx]['column']))) {
 										$value[$idx]['column'] = strtolower($value[$idx]['column']);
 										if (isset($value[$idx]['data']) AND count($value[$idx]['data'])) {
-											$json_data[$key][$value[$idx]['column']]['whitelist'] = explode(',', $value[$idx]['data']);
-											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'] ? $value[$idx]['max'] : 3;
+											$values = []; $exploded = explode(',', $value[$idx]['data']);
+											foreach ($exploded as $dataValue) {
+												if (trim($dataValue) != '') {
+													$values[] = ['value' => trim($dataValue)];
+												}
+											}
+											$json_data[$key][$value[$idx]['column']]['whitelist'] = $values;
+											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
 										}
 									}
 									if (count($variable) == $empty_cnt) {
