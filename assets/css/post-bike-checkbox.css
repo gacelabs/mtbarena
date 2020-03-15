@@ -98,7 +98,9 @@
 	padding-top: 0;
 }
 .typeAheadInput {
-	border: 0 none;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 	border-bottom: 2px solid #ccc;
 	text-transform: capitalize;
 	border-radius: 0;
@@ -133,4 +135,14 @@
 		text-align: left !important;
 		margin-bottom: 0 !important;
 	}
+	.form-step-block-label {
+		margin-bottom: 5px;
+	}
+	.form-step-block-label, .form-step-block-label input {
+		text-align: left;
+	}
+	.form-step-body {
+		margin-bottom: 0;
+	}
+
 }

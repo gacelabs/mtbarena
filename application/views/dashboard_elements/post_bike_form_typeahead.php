@@ -76,6 +76,10 @@
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
+
+				<div style="padding: 10px;">
+					<button class="btn btn-info">Save</button>
+				</div>
 			</form>
 		</div>
 	</div>
