@@ -646,20 +646,27 @@ function calculate($data=FALSE, $mode=FALSE)
 	return $result;
 }
 
-function manipulate_bike_display_data($items_data=FALSE)
+function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE)
 {
 	if ($items_data) {
+		$ci =& get_instance();
+		$ci->load->model('custom_model');
+
 		$bike_items = [];
 		foreach ($items_data as $key => $bike) {
 			foreach ($bike as $field => $data) {
-				if (in_array($field, ['store_name','bike_url','id','user_id','bike_model','feat_photo','view_count','share_count','like_count','added','updated','version'])) {
+				if (in_array($field, ['id','user_id','bike_model','feat_photo','view_count','share_count','like_count','added','updated','version','store_name','bike_url'])) {
 					if (in_array($field, ['id','view_count','share_count','like_count'])) {
 						if ($field == 'id') {
-							$bike_items['structured']['ids'][] = $data;
-							$bike_items['structured']['id'] = $data;
-							$bike_items['info'][$key]['id'] = $data;
+							$bike_items['other']['id'] = $id;
+							$bike_items['other']['bike_ids'][] = $data;
+							$bike_items['info'][$key]['id'] = $id;
 						} else {
-							$bike_items['structured'][$field] = $data;
+							if ($id) {
+								$data = $ci->custom_model->get($table, ['id'=>$id], $field, 'row');
+								$data = $data[$field];
+							}
+							$bike_items['other'][$field] = $data;
 						}
 					} else {
 						$bike_items['info'][$key][$field] = $data;
@@ -691,4 +698,28 @@ function manipulate_bike_display_data($items_data=FALSE)
 		return $bike_items;
 	}
 	return FALSE;
+}
+
+function check_and_save_matchup($items_data=FALSE)
+{
+	if ($items_data) {
+		$ci =& get_instance();
+		$today = date('Y-m-d');
+		$ci->load->model('custom_model');
+		$ids = ['id' => []];
+
+		foreach ($items_data as $key => $row) {
+			$ids['id'][] = $row['id'];
+		}
+		$json = json_encode($ids);
+
+		$data = $ci->custom_model->get('match_ups', ['bike_data' => $json, 'today' => $today], FALSE, 'row');
+		// debug($data, 1);
+
+		if ($data == FALSE) {
+			return $ci->custom_model->new('match_ups', ['bike_data' => $json, 'today' => $today]);
+		} else {
+			return $data['id'];
+		}
+	}
 }

@@ -8,7 +8,8 @@ class SingleBike extends MY_Controller {
 		if ($bike_model) {
 			$where = construct_where($id_user_id, 'b.');
 			$items_data = $this->custom_model->bike_items(1, $where);
-			$bike_items = manipulate_bike_display_data($items_data);
+			// debug($items_data, 1);
+			$bike_items = manipulate_bike_display_data($items_data, $items_data[0]['id'], 'bike_items');
 			// debug($bike_items, 1);
 		}
 		$structure = array(

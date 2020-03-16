@@ -17,7 +17,7 @@
 										<div class="text-center" style="padding:5px;">
 											<p class="color-theme text-ellipsis" style="margin-bottom:5px;"><b><?php echo $bike['bike_model'];?></b></p>
 											<button type="button" class="btn btn-xs btn-sq">
-												<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd><?php echo $bike['view_count'];?></kbd></small>
+												<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd><?php echo $bike['share_count'];?></kbd></small>
 											</button>
 											<button type="button" class="btn btn-xs btn-sq">
 												<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd><?php echo $bike['like_count'];?></kbd></small>

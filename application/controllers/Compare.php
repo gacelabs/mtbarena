@@ -16,7 +16,8 @@ class Compare extends MY_Controller {
 		if ($compare_id AND $bike_model AND $get) {
 			$where = construct_where($compare_id, 'compares.');
 			$items_data = $this->custom_model->compared_bikes($where);
-			$bikes = manipulate_bike_display_data($items_data);
+			// debug($items_data);
+			$bikes = manipulate_bike_display_data($items_data, $compare_id, 'compares');
 			// debug($bikes, 1);
 			$compares = $this->custom_model->get('compares', $where, 'share_count', 'row');
 			// debug($compares, 1);
@@ -64,7 +65,6 @@ class Compare extends MY_Controller {
 				'page_data' => array(
 					'bikes' => $bikes,
 					'id' => $compare_id,
-					'share_count' => $compares['share_count'],
 					'mostviews' => $this->custom_model->bike_items(10),
 					'populars' => $this->custom_model->compare_items(10)
 				),

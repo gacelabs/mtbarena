@@ -35,12 +35,18 @@
 							<a href="<?php echo $page_data['paginate']['prev'];?>" class="btn btn-xs btn-default"><i class="fa fa-angle-left"></i> Prev</a>				
 						</li>
 					<?php else: ?>
+						<li>
+							<a href="javascript:;" disabled class="btn btn-xs btn-default"><i class="fa fa-angle-left"></i> Prev</a>				
+						</li>
 					<?php endif ?>
 					<?php if ($page_data['paginate']['next']): ?>
 						<li>
 							<a href="<?php echo $page_data['paginate']['next'];?>" class="btn btn-xs btn-default">Next <i class="fa fa-angle-right"></i></a>
 						</li>
 					<?php else: ?>
+						<li>
+							<a href="javascript:;" disabled class="btn btn-xs btn-default">Next <i class="fa fa-angle-right"></i></a>
+						</li>
 					<?php endif ?>
 				</ul>
 			</div>

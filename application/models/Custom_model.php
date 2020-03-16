@@ -169,6 +169,9 @@ class Custom_Model extends MY_Model {
 		$result = [];
 		if ($return) {
 			foreach ($return as $key => $row) {
+				if ($key == 0) {
+					$result['first'] = $return[$key]['edit_url'];
+				}
 				if ($row['id'] == $id) {
 					if ($key != 0) {
 						$result['prev'] = $return[$key-1]['edit_url'];
@@ -181,6 +184,9 @@ class Custom_Model extends MY_Model {
 					} else {
 						$result['next'] = 0;
 					}
+				}
+				if (count($return)-1 == $key) {
+					$result['last'] = $return[$key]['edit_url'];
 				}
 			}
 		}
@@ -222,6 +228,33 @@ class Custom_Model extends MY_Model {
 			}
 			// debug($fields_data, 1);
 			return $fields_data;
+		}
+		return FALSE;
+	}
+
+	public function matchup_bikes($clause=FALSE, $field=FALSE, $method='result')
+	{
+		if ($clause) {
+			$match_ups = $this->get('match_ups', $clause, $field, $method);
+			// debug($match_ups, 1);
+			if ($match_ups) {
+				$bikes = [];
+				foreach ($match_ups as $key => $row) {
+					$data = json_decode($row['bike_data'], TRUE);
+					foreach ($data['id'] as $index => $id) {
+						$bike = $this->query("
+						SELECT DISTINCT 
+								u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
+							FROM bike_items b 
+								INNER JOIN users u ON u.id = b.user_id 
+							WHERE b.id = '$id'
+						", 'row');
+						$bikes[] = $bike;
+					}
+				}
+				// debug($bikes, 1);
+				return $bikes;
+			}
 		}
 		return FALSE;
 	}

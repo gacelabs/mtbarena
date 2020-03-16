@@ -8,8 +8,11 @@ class Home extends MY_Controller {
 		$home = curl_get_shares(current_full_url());
 		// debug($home, 1);
 		$items_data = $this->custom_model->bike_items();
+		$match_id = check_and_save_matchup($items_data);
+		$where = construct_where($match_id, 'match_ups.');
+		$items_data = $this->custom_model->matchup_bikes($where);
 		// debug($items_data, 1);
-		$bike_items = manipulate_bike_display_data($items_data);
+		$bike_items = manipulate_bike_display_data($items_data, $match_id, 'match_ups');
 		// debug($bike_items, 1);
 
 		$structure = array(
