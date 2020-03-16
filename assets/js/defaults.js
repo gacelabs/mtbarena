@@ -319,6 +319,7 @@ function countHeart(oThis, sMethod, oData) {
 			data: oData,
 			beforeSend: function() {
 				prevCount = parseInt($(oThis).find('.hcount').text());
+				$(oThis).find('.hcount').text(prevCount+1);
 			},
 			success: function(res) {
 				// console.log(res);
@@ -327,8 +328,12 @@ function countHeart(oThis, sMethod, oData) {
 					$(oThis).addClass('liked');
 					stopAjax = true;
 				} else if (res == false) {
+					$(oThis).find('.hcount').text(prevCount);
 					stopAjax = true;
 				}
+			},
+			error: function() {
+				$(oThis).find('.hcount').text(prevCount);
 			}
 		};
 		if (recentAjax != false) recentAjax.abort();

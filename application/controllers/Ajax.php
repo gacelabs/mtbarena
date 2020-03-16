@@ -35,6 +35,19 @@ class Ajax extends MY_Controller {
 							}
 							break;
 						
+						case 'home':
+							$bike_data_1 = json_encode(['id'=>[$data[0], $data[1]]]);
+							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
+							$match_ups = $this->custom_model->get('match_ups', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
+							// debug($match_ups, 1);
+							$where = "class = '$method' AND post_id = ".$match_ups['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
+							if ($this->custom_model->get('likes_map', $where) == FALSE) {
+								$this->custom_model->save_count('match_ups', $match_ups);
+								$this->custom_model->new('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$match_ups['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
+								$was_counted = TRUE;
+							}
+							break;
+						
 						default:
 							if ($method == 'postblog') $table = 'blog_posts';
 							if (in_array($method, ['home', 'singlebike'])) $table = 'bike_items';
