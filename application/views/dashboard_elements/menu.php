@@ -15,9 +15,11 @@
 				<a href="dashboard/profile">
 					<p class="<?php echo ($body_class == "profile" ? 'active' : ''); ?>">Profile</p>
 				</a>
-				<a href="dashboard/settings">
-					<p class="<?php echo ($body_class == "settings" ? 'active' : ''); ?>">Settings</p>
-				</a>
+				<?php if ($current_profile['is_admin']): ?>
+					<a href="dashboard/settings">
+						<p class="<?php echo ($body_class == "settings" ? 'active' : ''); ?>">Settings</p>
+					</a>
+				<?php endif ?>
 			</div>
 		</div>
 	</div>
