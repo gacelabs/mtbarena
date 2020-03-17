@@ -51,8 +51,8 @@
 							<?php 
 								$cnt++;
 								endforeach ?>
-							<div class="add_fieldset" data-key="<?php echo $key;?>">
-								<span class="btn btn-xs text-info"><i class="fa fa-plus"></i> Add Fields</span>
+							<div class="add_fieldset" data-key="<?php echo $key;?>" style="padding:0 10px;">
+								<span class="btn btn-xs text-info"><i class="fa fa-plus"></i> Add a Spec</span>
 							</div>
 							<input type="hidden" name="fields_data[<?php echo $key;?>][path]" value="assets/data/jsons/<?php echo $field['base'];?>.json">
 						</div>
@@ -62,6 +62,7 @@
 					<div class="form-step-footer clearfix add_mainset" data-key="<?php echo $key;?>" style="padding:10px 0;">
 						<span class="btn btn-xs text-info"><i class="fa fa-plus"></i> New Bike part</span>
 					</div>
+					<hr>
 					<button type="submit" class="btn btn-info">Save</button>
 				</div>
 			</form>
@@ -102,7 +103,7 @@
 						</div>
 					</div>
 					<div class="add_fieldset" data-key="MAINCHANGEKEY">
-						<span class="btn btn-xs text-info"><i class="fa fa-plus"></i> Add Fields</span>
+						<span class="btn btn-xs text-info"><i class="fa fa-plus"></i> Add a Spec</span>
 					</div>
 					<input type="hidden" name="fields_data[CHANGEKEY][path]" value="assets/data/jsons/">
 				</div>

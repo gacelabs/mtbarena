@@ -19,10 +19,16 @@
 .mtb-item-model-inner {
 	padding: 10px;
 }
-.mtb-item-model-parent:nth-child(2) .mtb-item-model-inner, .mtb-item-spec-desc .mtb-item-spec-desc-inner:nth-child(2) {
+.mtb-item-model-parent:nth-child(2) .mtb-item-model-inner, .mtb-item-spec-column .mtb-item-spec-desc-inner:nth-child(2) {
 	background-color: #f7f7f7;
 }
-.mtb-item-spec-desc-inner {
+/*.mtb-item-spec-desc-inner {
+	padding: 10px 10px 20px 10px;
+}*/
+.mtb-item-spec-desc-inner>.mtb-item-spec-label {
+	background-color: #eee;
+}
+.mtb-item-spec-desc-inner>.mtb-item-spec-label, .mtb-item-spec-desc-inner>.mtb-item-desc-label {
 	padding: 10px 10px 20px 10px;
 }
 .mtb-item-model-parent:nth-child(2), .mtb-item-model-parent:nth-child(3) {
@@ -33,7 +39,10 @@
 	height: 200px;
 	margin-bottom: 10px;
 }
-.mtb-item-spec-desc-inner p {
+.mtb-item-spec-label-text {
+	color: #888;	
+}
+.mtb-item-spec-desc-text {
 	color: #333;
 }
 .modelItemLabelBox {
@@ -45,10 +54,11 @@
     margin: 0;
     text-align: center;
 }
-.mtb-item-spec-label {
+.mtb-item-part-label {
 	background-color: #e5d6f5;
 	padding: 2px 10px;
 	text-transform: uppercase;
+	text-align: center;
 }
 .mtb-item-image {
 	transition: all .3s ease-in-out;
@@ -143,6 +153,16 @@
 #singleBike .mtb-item-image {
 	max-height: 400px;
 }
+.mtb-spec-column, .mtb-desc-column {
+	padding: 10px;
+}
+.mtb-spec-column {
+	background-color: #e5d6f5;
+}
+.mtb-desc-column {
+	border-bottom: 1px solid #e5d6f5;
+	border-right: 1px solid #e5d6f5;
+}
 @media screen and (max-width: 767px) {
 	.mtb-bike-specs-main-parent {
 		margin-bottom: 15px !important;
@@ -214,7 +234,20 @@
 	.box-item-body-top, .mtb-item-model-inner {
 		padding: 5px !important;
 	}
-	.mtb-item-spec-desc-inner {
+	/*.mtb-item-spec-desc-inner {
 		padding: 5px 5px 15px 5px !important;
+	}*/
+	.mtb-item-spec-desc-inner {
+		display: block;
+	}
+	.mtb-item-part-label-text {
+		font-size: 16px !important;
+		font-weight: bold;
+	}
+	.mtb-item-spec-desc-inner>.mtb-item-spec-label {
+		font-size: 10px;
+	}
+	.mtb-item-spec-desc-inner>.mtb-item-spec-label, .mtb-item-spec-desc-inner>.mtb-item-desc-label {
+		padding: 5px;
 	}
 }

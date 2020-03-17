@@ -63,16 +63,18 @@
 			<div class="mtb-main-parent" id="mtbMainParent">
 				<!-- LOOP here -->
 				<div class="mtb-item-specs-parent">
-					<div class="mtb-item-part-label <?php echo $bikeCount > 1 ? 'text-center' : '' ?>">
-						<small class="color-theme mtb-item-part-label-text">FORK</small>
+					<div class="mtb-item-spec-label<?php echo $bikeCount > 1 ? ' text-center' : '' ?>">
+						<small class="color-theme mtb-item-spec-label-text">FRAME</small>
 					</div>
 					<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
-						<div class="mtb-item-spec-desc-inner grid-column column-20-80">
-							<div class="mtb-item-spec-label">
-								<p class="mtb-item-spec-label-text zero-gap">Sizes</p>
-							</div>
-							<div class="mtb-item-desc-label">
-								<p class="mtb-item-spec-desc-text zero-gap">S 15" - 16", M 17" - 18"</p>
+						<div class="mtb-item-spec-desc-inner">
+							<div class="grid-column column-20-80">
+								<div class="mtb-spec-column">
+									<p class="zero-gap">Brand</p>
+								</div>
+								<div class="mtb-desc-column">
+									<p class="zero-gap">Trinx</p>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -44,6 +44,7 @@
 <meta property="og:title" content="<?php echo $ogTitle;?>" />
 <meta property="og:description" content="<?php echo $ogDescription;?>" />
 <meta name="og:site_name" content="MTB Arena" />
+<link rel="canonical" href="<?php echo current_full_url();?>" />
 	<?php foreach ($ogImageArr as $image) { ?>
 		<?php if (empty($image)) { ?>
 			<?php continue; ?>
