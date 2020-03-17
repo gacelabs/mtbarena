@@ -330,7 +330,13 @@ class Dashboard extends MY_Controller {
 			$fields_data = [];
 			foreach ($post as $field => $value) {
 				if (!in_array($field, ['bike_model', 'feat_photo', 'user_id', 'price_tag', 'external_link'])) {
-					$fields_data[$field] = json_decode($value, TRUE);
+					foreach ($row as $base => $fields) {
+						$fields_data[$base] = [];
+						foreach ($fields as $column => $value) {
+							$fields_data[$base][$column] = json_decode($value, TRUE);
+						}
+					}
+					// debug($fields_data, 1);
 					unset($post[$field]);
 				}
 			}
@@ -354,9 +360,15 @@ class Dashboard extends MY_Controller {
 				}
 				$post['user_id'] = $this->accounts->profile['id'];
 				$fields_data = [];
-				foreach ($post as $field => $value) {
+				foreach ($post as $field => $row) {
 					if (!in_array($field, ['bike_model', 'feat_photo', 'user_id', 'price_tag', 'external_link'])) {
-						$fields_data[$field] = json_decode($value, TRUE);
+						foreach ($row as $base => $fields) {
+							$fields_data[$base] = [];
+							foreach ($fields as $column => $value) {
+								$fields_data[$base][$column] = json_decode($value, TRUE);
+							}
+						}
+						// debug($fields_data, 1);
 						unset($post[$field]);
 					}
 				}
@@ -488,6 +500,7 @@ class Dashboard extends MY_Controller {
 													$values[] = ['value' => trim($dataValue)];
 												}
 											}
+											$json_data[$key][$value[$idx]['column']]['base'] = $row['base'];
 											$json_data[$key][$value[$idx]['column']]['whitelist'] = $values;
 											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
 										}
@@ -524,13 +537,14 @@ class Dashboard extends MY_Controller {
 						}
 					}
 				}
+				// debug($json_data);
 				if (count($json_data)) {
 					$json_file = [];
 					foreach ($json_data as $key => $json) {
 						$json_file[] = json_encode($json);
 					}
-					// debug($json_file);
 				}
+				// debug($json_file);
 				// debug($save_data, 1);
 				if (count($save_data)) {
 					foreach ($save_data as $key => $save) {

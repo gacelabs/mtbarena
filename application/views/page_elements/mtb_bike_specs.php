@@ -62,21 +62,69 @@
 
 			<div class="mtb-main-parent" id="mtbMainParent">
 				<!-- LOOP here -->
-				<div class="mtb-item-specs-parent">
-					<div class="mtb-item-part-label <?php echo $bikeCount > 1 ? 'text-center' : '' ?>">
-						<small class="color-theme mtb-item-part-label-text">FORK</small>
-					</div>
-					<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
-						<div class="mtb-item-spec-desc-inner grid-column column-20-80">
-							<div class="mtb-item-spec-label">
-								<p class="mtb-item-spec-label-text zero-gap">Sizes</p>
+				<?php foreach ($fields_data as $base => $fields): ?>
+					<div class="mtb-item-specs-parent">
+						<div class="mtb-item-part-label <?php echo $bikeCount > 1 ? 'text-center' : '' ?>">
+							<small class="color-theme mtb-item-part-label-text"><?php echo $base;?></small>
+						</div>
+						<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
+						<?php foreach ($fields as $key => $field): ?>
+							<div class="mtb-item-spec-desc-inner grid-column column-20-80">
+							<?php if (is_array($field)): ?>
+								<?php foreach ($field as $column => $value): ?>
+									<div class="mtb-item-spec-label">
+										<p class="mtb-item-spec-label-text zero-gap"><?php echo ucwords($column);?></p>
+									</div>
+									<div class="mtb-item-desc-label">
+										<p class="mtb-item-spec-desc-text zero-gap"><?php echo $value;?></p>
+									</div>
+								<?php endforeach ?>
+							<?php elseif ($base == 'external link'): ?>
+								<div class="mtb-item-spec-label">
+									<p class="mtb-item-spec-label-text zero-gap">&nbsp;</p>
+								</div>
+								<div class="mtb-item-desc-label">
+									<p class="mtb-item-spec-desc-text zero-gap">
+										<a href="<?php echo $field;?>"><?php echo $field;?></a>
+									</p>
+								</div>
+							<?php elseif ($base == 'price tag'): ?>
+								<div class="mtb-item-spec-label">
+									<p class="mtb-item-spec-label-text zero-gap">&nbsp;</p>
+								</div>
+								<div class="mtb-item-desc-label">
+									<p class="mtb-item-spec-desc-text zero-gap">
+										<ul class="inline-list">
+											<li style="margin-right: 15px;">
+												<div class="radio">
+													<label>
+														<input type="radio" name="price_tag" value="affordable"<?php echo $field == 'affordable' ? ' checked' : '';?>><i class="fa fa-tags"></i>
+													</label>
+												</div>
+											</li>
+											<li style="margin-right: 15px;">
+												<div class="radio">
+													<label>
+														<input type="radio" name="price_tag" value="mid"<?php echo $field == 'mid' ? ' checked' : '';?>><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+													</label>
+												</div>
+											</li>
+											<li>
+												<div class="radio">
+													<label>
+														<input type="radio" name="price_tag" value="premium"<?php echo $field == 'premium' ? ' checked' : '';?>><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
+													</label>
+												</div>
+											</li>
+										</ul>
+									</p>
+								</div>
+							<?php endif ?>
 							</div>
-							<div class="mtb-item-desc-label">
-								<p class="mtb-item-spec-desc-text zero-gap">S 15" - 16", M 17" - 18"</p>
-							</div>
+						<?php endforeach ?>
 						</div>
 					</div>
-				</div>
+				<?php endforeach ?>
 				<!-- LOOP here -->
 			</div>
 		</div>

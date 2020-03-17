@@ -32,6 +32,7 @@ $(document).ready(function() {
 					if (Object.keys(res).length) {
 						for(x in res) {
 							var oItem = res[x];
+							oItem.fields_data = $.parseJSON(oItem.fields_data);
 							var d = new Date(oItem.updated), monthYear = monthNames[d.getMonth()]+' '+d.getFullYear();
 							var jsonString = JSON.stringify(oItem).replace(/[']/g, "");
 							$(e.target).append("<option data-tokens='"+oItem.bike_model.toLowerCase()+"' data-subtext='"+oItem.store_name+" (Updated: "+monthYear+")' data-id='' data-selector='input.typeAheadInput' data-json='"+jsonString+"'>"+oItem.bike_model+"</option>");
@@ -76,17 +77,23 @@ $(document).ready(function() {
 				if (typeof oItems == 'string') {
 					oItems = $.parseJSON(oItems);
 				}
-				for (var name in oItems) {
-					var oTags = oItems[name];
-					if (typeof oTags == 'string') {
-						oTags = $.parseJSON(oTags);
+				for (var base in oItems) {
+					var oNames = oItems[base];
+					if (typeof oNames == 'string') {
+						oNames = $.parseJSON(oNames);
 					}
-					var arr = [];
-					$.each(oTags, function(i, obj){
-						arr.push(obj.value);
+					$.each(oNames, function(name, obj){
+						var arr = [];
+						if (typeof obj == 'string') {
+							obj = $.parseJSON(obj);
+						}
+						for (var x in obj) {
+							arr.push(obj[x].value);
+						}
+						// console.log(obj);
+						$('#postBikeForm [data-name='+name+']:not(:file)').data('tagify').addTags(arr.toString());
 					});
-					// console.log(name, arr.toString());
-					$('#postBikeForm [name='+name+']:not(:file)').data('tagify').addTags(arr.toString());
+					// // console.log(name, arr.toString());
 				}
 			}
 		}

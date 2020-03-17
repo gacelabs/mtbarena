@@ -13,8 +13,9 @@ function runTagsInput(uiFieldData) {
 			success: function(data) {
 				// console.log(data, uiInput);
 				uiInput.each(function(x, input) {
+					var inputData = $(input).data();
 					var oTagsSettings = {
-						whitelist : data[input.name].whitelist,
+						whitelist : data[inputData.name].whitelist,
 						dropdown: {
 							maxItems: Infinity,
 							enabled: 0,
@@ -25,16 +26,16 @@ function runTagsInput(uiFieldData) {
 						maxTags: 1
 					};
 					// console.log(data[input.name]);
-					if (data[input.name].max == 1) {
+					if (data[inputData.name].max == 1) {
 						oTagsSettings.maxTags = Infinity;
 					}
 					// var tagify = new Tagify(input, oTagsSettings);
 					$(input).tagify(oTagsSettings);
-					var tagify = $(input).data('tagify');
+					var tagify = inputData.tagify;
 					arrAllTags.push(tagify);
 
-					if ($(input).data('values')) {
-						tagify.addTags($(input).data('values'));
+					if (inputData.values) {
+						tagify.addTags(inputData.values);
 					}
 				});
 			}

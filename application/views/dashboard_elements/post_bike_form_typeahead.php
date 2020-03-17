@@ -1,5 +1,5 @@
 <?php 
-	// debug($page_data['fields']);
+	// debug($page_data['fields_data'], 1);
 ?>
 <div class="box-item" style="margin-bottom: 15px;">
 	<?php if (isset($page_data['is_edit']) AND $page_data['is_edit']): ?>
@@ -53,6 +53,7 @@
 				<?php if (isset($page_data['fields']) AND $page_data['fields']): ?>
 					<?php foreach ($page_data['fields'] as $key => $fields): ?>
 						<div class="clearfix form-step-block field-data" id="<?php echo $fields['id'];?>" data-url="<?php echo $fields['path'];?>" data-selector="input.typeAheadInput">
+							<input type="hidden" name="fields_data[<?php echo ucfirst($fields['base']);?>]" value="<?php echo ucfirst($fields['base']);?>">
 							<div class="col-lg-12">
 								<h4 style="margin-top: 0"><b class="color-theme"><?php echo ucfirst($fields['base']);?></b></h4>
 							</div>
@@ -66,10 +67,10 @@
 										<div class="form-group">
 											<?php if ((isset($page_data['is_edit']) AND $page_data['is_edit']) AND 
 											((isset($page_data["fields_data"]) AND $page_data["fields_data"]) AND 
-											isset($page_data["fields_data"][$field["column"]]))): ?>
-												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" data-values='<?php echo $page_data["fields_data"][$field["column"]];?>' />
+											isset($page_data["fields_data"][ucfirst($fields['base'])]))): ?>
+												<input type="text" data-name="<?php echo $field['column'];?>" name="fields_data[<?php echo ucfirst($fields['base']);?>][<?php echo $field['column'];?>]" class="typeAheadInput form-control" data-values='<?php echo $page_data["fields_data"][ucfirst($fields["base"])][$field["column"]];?>' />
 											<?php else: ?>
-												<input type="text" name="<?php echo $field['column'];?>" class="typeAheadInput form-control" />
+												<input type="text" data-name="<?php echo $field['column'];?>" name="fields_data[<?php echo ucfirst($fields['base']);?>][<?php echo $field['column'];?>]" class="typeAheadInput form-control" />
 											<?php endif ?>
 										</div>
 									</div>

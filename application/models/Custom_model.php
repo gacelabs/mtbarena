@@ -39,17 +39,23 @@ class Custom_Model extends MY_Model {
 			if ($func == 'row') {
 				$return = [$return];
 			}
+			// debug($return);
 			foreach ($return as $key => $row) {
 				foreach ($row as $field => $value) {
 					if ($field == 'fields_data') {
 						$data = json_decode($value, TRUE);
 						// debug($data);
 						if ($data) {
-							foreach ($data as $column => $json) {
-								if (!isset($result[$key]['fields_data'][$column])) {
-									$result[$key]['fields_data'][$column] = '';
+							foreach ($data as $base => $fields) {
+								if (!empty($fields)) {
+									// debug($fields);
+									foreach ($fields as $column => $json) {
+										if (!isset($result[$key]['fields_data'][$base][$column])) {
+											$result[$key]['fields_data'][$base][$column] = '';
+										}
+										$result[$key]['fields_data'][$base][$column] = json_encode($json);
+									}
 								}
-								$result[$key]['fields_data'][$column] = json_encode($json);
 							}
 						}
 					} else {

@@ -675,21 +675,19 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 					if ($field == 'fields_data') {
 						if (!is_array($data)) $data = json_decode($data, TRUE);
 						if ($data) {
-							// debug($data);
-							foreach ($data as $column => $json) {
-								$parsed = $json;
-								if (!is_array($json)) {
-									$parsed = json_decode($json, TRUE);
+							// debug($data, 1);
+							foreach ($data as $base => $row) {
+								foreach ($row as $column => $json) {
+									$mapped = [];
+									$parsed = $json;
+									if (!is_array($json)) $parsed = json_decode($json, TRUE);
+									foreach ($parsed as $idx => $tags) $mapped[] = $tags['value'];
+									$bike_items['fields'][$base][$key][$column] = implode(', ', $mapped);
 								}
-								$mapped = [];
-								foreach ($parsed as $col => $row) {
-									$mapped[] = $row['value'];
-								}
-								$bike_items['fields'][$key][$column] = implode(', ', $mapped);
 							}
 						}
 					} else {
-						$bike_items['fields'][$key][$field] = $data;
+						$bike_items['fields'][str_replace('_', ' ', $field)][$key] = $data;
 					}
 				}
 			}
@@ -706,14 +704,17 @@ function check_and_save_matchup($items_data=FALSE)
 		$ci =& get_instance();
 		$today = date('Y-m-d');
 		$ci->load->model('custom_model');
-		$ids = ['id' => []];
-
+		$ids = [];
 		foreach ($items_data as $key => $row) {
-			$ids['id'][] = $row['id'];
+			$ids[] = $row['id'];
 		}
+		// debug($ids, 1);
 		$json = json_encode($ids);
 
-		$data = $ci->custom_model->get('match_ups', ['bike_data' => $json, 'today' => $today], FALSE, 'row');
+		// $data = $ci->custom_model->get('match_ups', ['bike_data' => $json, 'today' => $today], FALSE, 'row');
+		$bike_data_1 = json_encode(['id'=>[$ids[0], $ids[1]]]);
+		$bike_data_2 = json_encode(['id'=>[$ids[1], $ids[0]]]);
+		$data = $ci->custom_model->get('match_ups', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", FALSE, 'row');
 		// debug($data, 1);
 
 		if ($data == FALSE) {

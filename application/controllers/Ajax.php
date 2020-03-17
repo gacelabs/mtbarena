@@ -20,30 +20,25 @@ class Ajax extends MY_Controller {
 				}
 				// debug($data, 1);
 				$was_counted = FALSE;
+				$method = strtolower($method);
 				if ($method) {
 					switch ($method) {
-						case 'compare':
+						case 'home': case 'compare':
 							$bike_data_1 = json_encode(['id'=>[$data[0], $data[1]]]);
 							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
-							$compares = $this->custom_model->get('compares', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
-							// debug($compares, 1);
-							$where = "class = '$method' AND post_id = ".$compares['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
-							if ($this->custom_model->get('likes_map', $where) == FALSE) {
-								$this->custom_model->save_count('compares', $compares);
-								$this->custom_model->new('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$compares['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
-								$was_counted = TRUE;
+
+							if ($method == 'compare') {
+								$table = 'compares';
+							} else {
+								$table = 'match_ups';
 							}
-							break;
-						
-						case 'home':
-							$bike_data_1 = json_encode(['id'=>[$data[0], $data[1]]]);
-							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
-							$match_ups = $this->custom_model->get('match_ups', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
-							// debug($match_ups, 1);
-							$where = "class = '$method' AND post_id = ".$match_ups['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
+
+							$result = $this->custom_model->get($table, "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
+							// debug($result, 1);
+							$where = "class = '$method' AND post_id = ".$result['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 							if ($this->custom_model->get('likes_map', $where) == FALSE) {
-								$this->custom_model->save_count('match_ups', $match_ups);
-								$this->custom_model->new('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$match_ups['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
+								$this->custom_model->save_count($table, $result);
+								$this->custom_model->new('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$result['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);
 								$was_counted = TRUE;
 							}
 							break;
