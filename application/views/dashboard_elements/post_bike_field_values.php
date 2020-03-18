@@ -22,7 +22,7 @@
 									</div>
 								</div>
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3">
-									<input type="text" class="form-control" name="" value="" placeholder="#">
+									<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][sort]" value="<?php echo $field['sort'];?>" placeholder="#">
 								</div>
 							</div>
 							<?php 
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3">
-							<input type="text" class="form-control" name="" value="" placeholder="#">
+							<input type="text" class="form-control" name="fields_data[CHANGEKEY][sort]" value="" placeholder="#">
 						</div>
 					</div>
 
