@@ -165,8 +165,11 @@
 	.form-step-block-label, .form-step-block-label input {
 		text-align: left;
 	}
-	.form-step-body {
+	.form-step-body, .post-bike-parent-box {
 		margin-bottom: 0;
+	}
+	.spec-desc-box {
+		float: right;
 	}
 
 }
