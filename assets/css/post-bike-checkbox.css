@@ -131,8 +131,15 @@
 	font-weight: bold;
 	vertical-align: middle;
 }
-.form-step-body {
-	margin-bottom: 20px;
+#postBikeForm .form-step-block {
+	margin-bottom: 30px;
+	padding-bottom: 60px;
+}
+#postBikeForm .form-step-body {
+	padding: 20px 0;
+}
+#postBikeForm .form-step-body:nth-child(even) {
+	background-color: #ececec;
 }
 .post-bike-parent-box {
 	overflow: unset;
@@ -165,11 +172,15 @@
 	.form-step-block-label, .form-step-block-label input {
 		text-align: left;
 	}
-	.form-step-body, .post-bike-parent-box {
+	.post-bike-parent-box {
 		margin-bottom: 0;
 	}
 	.spec-desc-box {
 		float: right;
+	}
+	#postBikeForm .form-step-block {
+		margin-bottom: 20px;
+		padding-bottom: 40px;
 	}
 
 }

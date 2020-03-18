@@ -128,7 +128,7 @@
 
 				<div style="padding: 10px;clear: both;">
 					<hr>
-					<button class="btn btn-info">Save</button>
+					<button class="btn btn-info"><i class="fa fa-floppy-o"></i> Save Bike</button>
 				</div>
 			</form>
 		</div>
