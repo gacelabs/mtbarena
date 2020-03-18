@@ -124,9 +124,9 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
-	#dashboard .box-item-body {
+	/*#dashboard .box-item-body {
 		padding: 10px !important;
-	}
+	}*/
 	.panel-default>.panel-heading>.panel-title {
 		font-size: 14px;
 	}
