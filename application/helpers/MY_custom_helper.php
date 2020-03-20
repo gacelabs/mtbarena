@@ -660,7 +660,7 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 						if ($field == 'id') {
 							$bike_items['other']['id'] = $id;
 							$bike_items['other']['bike_ids'][] = $data;
-							$bike_items['info'][$key]['id'] = $id;
+							$bike_items['info'][$key]['id'] = $data;
 						} else {
 							if ($id) {
 								$data = $ci->custom_model->get($table, ['id'=>$id], $field, 'row');
