@@ -40,12 +40,12 @@
 											<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][description]" value="<?php echo $row['description'];?>" placeholder="Label description." />
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-9 form-step-block-input">
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-step-block-input">
 										<div class="form-group zero-gap">
 											<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][data]" rows="3" class="form-control"><?php echo $row['data'];?></textarea>
 										</div>
 									</div>
-									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-step-block-input">
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-step-block-input">
 										<select class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][max]">
 											<option disabled>Multi select?</option>
 											<option value="1"<?php echo $row['max'] == 1 ? ' selected' : '';?>>Yes</option>
@@ -101,12 +101,12 @@
 								</p>
 							</div>
 						</div>
-						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-9 form-step-block-input">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-step-block-input">
 							<div class="form-group zero-gap">
 								<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[CHANGEKEY][values][CHANGECOL][data]" rows="3" class="form-control"></textarea>
 							</div>
 						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 form-step-block-input">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-step-block-input">
 							<select class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][max]">
 								<option disabled>Multi select?</option>
 								<option value="1">Yes</option>
