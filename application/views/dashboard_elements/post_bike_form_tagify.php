@@ -130,7 +130,7 @@
 					</div>
 				</div>
 				
-				<div style="padding: 10px;clear: both;">
+				<div style="padding: 0 10px 10px 10px;clear: both;">
 					<hr>
 					<button class="btn btn-info"><i class="fa fa-floppy-o"></i> Save Bike</button>
 				</div>
