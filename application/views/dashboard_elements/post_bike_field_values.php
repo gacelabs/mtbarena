@@ -106,7 +106,7 @@
 								<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[CHANGEKEY][values][CHANGECOL][data]" rows="3" class="form-control"></textarea>
 							</div>
 						</div>
-						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-step-block-input">
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 form-step-block-input">
 							<select class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][max]">
 								<option disabled>Multi select?</option>
 								<option value="1">Yes</option>

@@ -75,7 +75,7 @@ class Dashboard extends MY_Controller {
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
-				'assets/css/post-bike-checkbox',
+				'assets/css/post-bike-tagify',
 				'assets/css/bs-select.min'
 			),
 			'title' => 'Post new bike | MTB Arena',
@@ -93,7 +93,7 @@ class Dashboard extends MY_Controller {
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
 					// 'dashboard_elements/post_bike_form'
-					'dashboard_elements/post_bike_form_typeahead'
+					'dashboard_elements/post_bike_form_tagify'
 				)
 			),
 			'page_right_column' => array(
@@ -148,7 +148,7 @@ class Dashboard extends MY_Controller {
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
-				'assets/css/post-bike-checkbox',
+				'assets/css/post-bike-tagify',
 				'assets/css/bs-select.min'
 			),
 			'title' => 'Edit | MTB Arena',
@@ -166,7 +166,7 @@ class Dashboard extends MY_Controller {
 				'column_visibility_class' => 'col-lg-6 col-md-6 col-sm-6 col-xs-padding',
 				'ui_elements' => array(
 					// 'dashboard_elements/post_bike_form'
-					'dashboard_elements/post_bike_form_typeahead'
+					'dashboard_elements/post_bike_form_tagify'
 				)
 			),
 			'page_right_column' => array(
@@ -420,7 +420,7 @@ class Dashboard extends MY_Controller {
 				'assets/css/mediaquery',
 				'assets/css/dashboard',
 				'assets/css/post-bike',
-				'assets/css/post-bike-checkbox',
+				'assets/css/post-bike-tagify',
 				'assets/css/bs-select.min'
 			),
 			'title' => 'Post fields | MTB Arena',
