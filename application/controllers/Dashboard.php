@@ -373,8 +373,14 @@ class Dashboard extends MY_Controller {
 					}
 				}
 				$post['fields_data'] = json_encode($fields_data);
-				// debug($post, 1);
-				return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id); /*redirect to dashboard edit*/
+				$assembled_data = assemble_fields_data($fields_data);
+				// debug($this->save_fields($assembled_data), 1);
+				if ($assembled_data) {
+					if ($this->save_fields($assembled_data)) {
+						return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id);
+						/*redirect to dashboard edit*/
+					}
+				}
 			}
 		}
 		return FALSE;
@@ -464,10 +470,15 @@ class Dashboard extends MY_Controller {
 		$this->load->view('page_templates/main_template', $structure);
 	}
 
-	public function save_fields()
+	public function save_fields($passpost=FALSE)
 	{
 		$post = $this->input->post();
-		// debug($post);
+		$passed = FALSE;
+		if ($passpost) {
+			$passed = TRUE;
+			$post = $passpost;
+		}
+		// debug($post, 1);
 		$result = [];
 		if ($post) {
 			function sortByOrder($a, $b) {
@@ -558,8 +569,12 @@ class Dashboard extends MY_Controller {
 					$result[] = TRUE;
 				}
 			}
-			if (count($result)) {
-				return redirect(base_url('dashboard/settings'));
+			if ($passed == FALSE) {
+				if (count($result)) {
+					return redirect(base_url('dashboard/settings'));
+				}
+			} else {
+				return TRUE;
 			}
 		}
 		return FALSE;

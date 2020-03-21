@@ -724,3 +724,38 @@ function check_and_save_matchup($items_data=FALSE)
 		}
 	}
 }
+
+function assemble_fields_data($data=FALSE)
+{
+	if ($data) {
+		// debug($data, 1);
+		$result = [];
+		$ci =& get_instance();
+		$ci->load->model('custom_model');
+
+		foreach ($data as $base => $fields) {
+			$field_data = $ci->custom_model->get('fields_data', ['base' => $base], FALSE, 'row');
+			// debug($fields, 1);
+			$field_data['values'] = json_decode($field_data['values'], TRUE);
+			foreach ($fields as $column => $values) {
+				// debug(array_values($values), 1);
+				foreach ($field_data['values'] as $key => $row) {
+					if ($row['column'] === $column) {
+						$column_values = [];
+						foreach ($values as $index => $input) {
+							$column_values[] = $input['value'];
+						}
+						$field_data['values'][$key]['data'] = implode(',', $column_values);
+					}
+				}
+			}
+			// debug($field_data, 1);
+			unset($field_data['added']);
+			unset($field_data['updated']);
+			$result[] = $field_data;
+		}
+		// debug(['fields_data' => $result], 1);
+		return ['fields_data' => $result];
+	}
+	return FALSE;
+}
