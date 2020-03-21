@@ -79,7 +79,7 @@
 .capsule-checkbox.checked label {
 	color: #fff;
 }
-.form-step-block {
+.form-step-block, .post-bike-form-footer {
 	margin: 10px 0;
 	padding: 20px 0;
 }
@@ -146,7 +146,7 @@
 	margin-bottom: 0;
 }
 .post-bike-form-footer {
-	margin-bottom:15px;
+	margin-top: 0;
 	clear: both;
 }
 .form-tagify-parent .form-tagify-entry {

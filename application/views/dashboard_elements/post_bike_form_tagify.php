@@ -132,7 +132,7 @@
 				
 				<div style="padding: 0 10px 10px 10px;clear: both;">
 					<hr>
-					<button class="btn btn-info"><i class="fa fa-floppy-o"></i> Save Bike</button>
+					<button class="btn btn-info"><?php echo(isset($page_data['is_edit']) AND $page_data['is_edit']) ? "Update Bike" : "Post Bike"; ?></button>
 				</div>
 			</form>
 		</div>
