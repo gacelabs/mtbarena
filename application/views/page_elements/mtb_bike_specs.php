@@ -94,29 +94,16 @@
 								</div>
 								<div class="mtb-item-desc-label">
 									<p class="mtb-item-spec-desc-text zero-gap">
-										<ul class="inline-list">
-											<li style="margin-right: 15px;">
-												<div class="radio">
-													<label>
-														<input type="radio" name="price_tag" value="affordable"<?php echo $field == 'affordable' ? ' checked' : '';?>><i class="fa fa-tags"></i>
-													</label>
-												</div>
-											</li>
-											<li style="margin-right: 15px;">
-												<div class="radio">
-													<label>
-														<input type="radio" name="price_tag" value="mid"<?php echo $field == 'mid' ? ' checked' : '';?>><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
-													</label>
-												</div>
-											</li>
-											<li>
-												<div class="radio">
-													<label>
-														<input type="radio" name="price_tag" value="premium"<?php echo $field == 'premium' ? ' checked' : '';?>><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i><i class="fa fa-tags"></i>
-													</label>
-												</div>
-											</li>
-										</ul>
+										<?php if ($field == 'mid'): ?>
+											<i class="fa fa-tags"></i>
+											<i class="fa fa-tags"></i>
+										<?php elseif ($field == 'premium'): ?>
+											<i class="fa fa-tags"></i>
+											<i class="fa fa-tags"></i>
+											<i class="fa fa-tags"></i>
+											<i class="fa fa-tags"></i>
+										<?php endif ?>
+										<i class="fa fa-tags"></i>
 									</p>
 								</div>
 							<?php endif ?>
