@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	$('#static-instance').remove(); /*remove main static script instances for console security*/
 	// $('.grid').masonry({
 	// 	// options
 	// 	itemSelector: '.grid-item',

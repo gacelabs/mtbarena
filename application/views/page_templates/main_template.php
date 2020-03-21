@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<?php $this->load->view('page_requires/page_head'); ?>
-	<script>
+	<script id="static-instance">
 		window.fbAsyncInit = function() {
 			FB.init({
 				appId      : '<?php echo APPID;?>',

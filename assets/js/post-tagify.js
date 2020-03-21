@@ -13,24 +13,33 @@ function runTagsInput(uiFieldData) {
 			success: function(data) {
 				// console.log(data, uiInput);
 				uiInput.each(function(x, input) {
-					var inputData = $(input).data();
+					var inputData = $(input).data(),
+					oData = data[inputData.name];
+
+					// console.log(oData);
 					var oTagsSettings = {
-						whitelist : data[inputData.name].whitelist,
+						whitelist : oData.whitelist,
 						dropdown: {
 							maxItems: Infinity,
 							enabled: 0,
 							classname: "suggestion-list"
 						},
-						enforceWhitelist: true,
-						editTags: false,
+						enforceWhitelist: false,
+						editTags: true,
 						maxTags: 1
 					};
-					// console.log(data[input.name]);
-					if (data[inputData.name].max == 1) {
+
+					if (oData.max == 1) {
 						oTagsSettings.maxTags = Infinity;
 					}
+					if (!user.is_admin) { /*if not admin*/
+						oTagsSettings.enforceWhitelist = true;
+						oTagsSettings.editTags = false;
+					}
+
 					// var tagify = new Tagify(input, oTagsSettings);
 					$(input).tagify(oTagsSettings);
+
 					var tagify = inputData.tagify;
 					arrAllTags.push(tagify);
 
