@@ -150,6 +150,9 @@
 	clear: both;
 }
 .form-tagify-parent .form-tagify-entry {
+	border-bottom: 1px solid #ccc;
+}
+/*.form-tagify-parent .form-tagify-entry {
 	transition: all .3s ease-in-out;
 	height: 0;
 	overflow: hidden;
@@ -162,7 +165,7 @@
 	height: auto;
 	margin: 20px 0;
 	padding-bottom: 20px;
-}
+}*/
 .form-tagify-parent .form-tagify-entry.active {
 	overflow: unset;
 	height: auto;
