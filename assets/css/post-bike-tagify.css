@@ -82,7 +82,6 @@
 .form-step-block {
 	margin: 10px 0;
 	padding: 20px 0;
-	border-bottom: 1px solid #ccc;
 }
 .form-step-block-label, .form-step-block-label input {
 	text-align: right;
@@ -131,9 +130,8 @@
 	font-weight: bold;
 	vertical-align: middle;
 }
-#postBikeForm .form-step-block {
-	margin-bottom: 30px;
-	padding-bottom: 60px;
+#postBikeForm .form-step-block:first-child {
+	border-bottom: 1px solid #ccc;
 }
 #postBikeForm .form-step-body {
 	padding: 20px 0;
@@ -144,8 +142,37 @@
 .post-bike-parent-box {
 	overflow: unset;
 }
-
+.form-tagify-parent .form-group {
+	margin-bottom: 0;
+}
+.post-bike-form-footer {
+	margin-bottom:15px;
+	clear: both;
+}
+.form-tagify-parent .form-tagify-entry {
+	transition: all .3s ease-in-out;
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	border-bottom: 0 none;
+}
+.form-tagify-parent .form-tagify-entry:first-child {
+	overflow: unset;
+	height: auto;
+	margin: 20px 0;
+	padding-bottom: 20px;
+}
+.form-tagify-parent .form-tagify-entry.active {
+	overflow: unset;
+	height: auto;
+	margin-bottom: 20px;
+	padding-bottom: 40px;
+}
 @media screen and (max-width: 767px) {
+	.dashboard-menu-box {
+		padding: 10px 10px 0 10px;
+	}
 	.post-bike .table-responsive {
 		margin-bottom: 10px;
 	}
@@ -182,8 +209,8 @@
 		padding: 0 !important;
 	}
 	.post-bike .form-step-block {
-		margin-bottom: 20px;
-		padding-bottom: 40px;
+		margin-bottom: 0 !important;
+		padding-bottom: 0 !important;
 		padding-left: 0 !important;
 		padding-right: 0 !important;
 	}
@@ -193,5 +220,9 @@
 	}
 	textarea {
 		margin-bottom: 5px;
+	}
+	.post-bike-form-footer {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
 	}
 }
