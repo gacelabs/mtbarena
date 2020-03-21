@@ -78,4 +78,17 @@ class MY_Model extends CI_Model {
 		}
 		return FALSE;
 	}
+
+	public function remove($table=FALSE, $where=FALSE, $redirect_url='')
+	{
+		if ($table AND $where) {
+			$this->db->delete($table, $where);
+			if ($redirect_url != '') {
+				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
+			} else {
+				return $this->db->affected_rows();
+			}
+		}
+		return FALSE;
+	}
 }

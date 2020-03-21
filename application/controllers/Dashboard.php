@@ -373,13 +373,15 @@ class Dashboard extends MY_Controller {
 					}
 				}
 				$post['fields_data'] = json_encode($fields_data);
-				$assembled_data = assemble_fields_data($fields_data);
-				// debug($this->save_fields($assembled_data), 1);
+				$assembled_data = TRUE;
+				if ($account['is_admin']) {
+					$assembled_data = assemble_fields_data($fields_data);
+					// debug($this->save_fields($assembled_data), 1);
+					$this->save_fields($assembled_data);
+				}
 				if ($assembled_data) {
-					if ($this->save_fields($assembled_data)) {
-						return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id);
-						/*redirect to dashboard edit*/
-					}
+					return $this->custom_model->save('bike_items', $post, ['id'=>$id], 'dashboard/edit-bike/'.$id);
+					/*redirect to dashboard edit*/
 				}
 			}
 		}
@@ -479,7 +481,7 @@ class Dashboard extends MY_Controller {
 			$post = $passpost;
 		}
 		// debug($post, 1);
-		$result = [];
+		$result = $to_remove = [];
 		if ($post) {
 			function sortByOrder($a, $b) {
 				return $a['sort'] - $b['sort'];
@@ -496,6 +498,7 @@ class Dashboard extends MY_Controller {
 								foreach ($value as $idx => $var) {
 									$empty_cnt = 0;
 									$variable = array_values($var);
+									// debug($variable);
 									foreach ($variable as $val) {
 										if (empty(trim($val))) $empty_cnt++;
 									}
@@ -519,8 +522,13 @@ class Dashboard extends MY_Controller {
 									if (isset($value[$idx]) AND isset($value[$idx]['sort'])) {
 										$value[$idx]['sort'] = trim($value[$idx]['sort']) == '' ? 0 : trim($value[$idx]['sort']);
 									}
-									if ($empty_cnt == count($variable)-1) {
+									// echo "$idx - $empty_cnt == ".(count($variable)-1)." <br>";
+									if ($empty_cnt >= count($variable)-1) {
+										$record = $this->custom_model->get('fields_data', ['id' => $row['id']], FALSE, 'row');
+										$to_remove[$record['path']] = $record['id'];
 										unset($value[$idx]);
+										if (isset($save_data[$key])) unset($save_data[$key]);
+										if (isset($json_data[$key])) unset($json_data[$key]);
 									}
 								}
 
@@ -552,10 +560,11 @@ class Dashboard extends MY_Controller {
 				if (count($json_data)) {
 					$json_file = [];
 					foreach ($json_data as $key => $json) {
-						$json_file[] = json_encode($json);
+						$json_file[$key] = json_encode($json);
 					}
 				}
 				// debug($json_file);
+				// debug($to_remove);
 				// debug($save_data, 1);
 				if (count($save_data)) {
 					foreach ($save_data as $key => $save) {
@@ -564,9 +573,15 @@ class Dashboard extends MY_Controller {
 						} else {
 							$this->custom_model->new($table, $save);
 						}
-						@file_put_contents(get_root_path($save['path']), $json_file[$key]);
+						file_put_contents(get_root_path($save['path']), $json_file[$key]);
 					}
 					$result[] = TRUE;
+				}
+				if (count($to_remove)) {
+					foreach ($to_remove as $file => $id) {
+						$this->custom_model->remove($table, ['id' => $id]);
+						unlink(get_root_path($file));
+					}
 				}
 			}
 			if ($passed == FALSE) {

@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('.add_mainset').on('click', function() {
 		var uiTemplate = $('#main_template').clone(),
 		iKey = $('.mainset').length;
-		uiTemplate.removeClass('hide').removeAttr('id');
+		uiTemplate.removeClass('hide').removeAttr('id').find('#field_template').removeAttr('id');
 		var newUI = uiTemplate.html().replace(new RegExp('MAINCHANGEKEY', 'g'), (iKey-1));
 		newUI = newUI.replace(new RegExp('CHANGEKEY', 'g'), (iKey-1));
 		newUI = newUI.replace(new RegExp('id="field_template"', 'g'), '');
@@ -15,7 +15,7 @@ $(document).ready(function() {
 });
 
 function addFields() {
-	$('.add_fieldset').on('click', function() {
+	$('.add_fieldset').off('click').on('click', function() {
 		var uiTemplate = $('#field_template').clone();
 		uiTemplate.removeClass('hide').removeAttr('id');
 		var newUI = uiTemplate.get(0).outerHTML.replace(new RegExp('CHANGEKEY', 'g'), $(this).data('key'));
