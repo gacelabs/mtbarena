@@ -1,13 +1,3 @@
-<?php
-	$whitelist = array(
-		'127.0.0.1',
-		'::1'
-	);
-	if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
-		$this->load->view('page_requires/page_head_google_analytics');
-	}
-?>
-
 <base href="<?php echo base_url(); ?>">
 <meta charset="utf-8">
 <meta name="theme-color" content="#5d0274">

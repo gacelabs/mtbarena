@@ -16,8 +16,8 @@
 					<p class="<?php echo ($body_class == "profile" ? 'active' : ''); ?>">Profile</p>
 				</a>
 				<?php if ($current_profile['is_admin']): ?>
-					<a href="dashboard/settings">
-						<p class="<?php echo ($body_class == "settings" ? 'active' : ''); ?>">Settings</p>
+					<a href="dashboard/specs_template">
+						<p class="<?php echo ($body_class == "specs-template" ? 'active' : ''); ?>">Specs Template</p>
 					</a>
 				<?php endif ?>
 			</div>

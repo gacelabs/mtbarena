@@ -412,7 +412,7 @@ class Dashboard extends MY_Controller {
 		echo json_encode($bike_items);
 	}
 
-	public function settings()
+	public function specs_template()
 	{
 		$structure = array(
 			'metas' => array(
@@ -427,7 +427,7 @@ class Dashboard extends MY_Controller {
 			),
 			'title' => 'Post fields | MTB Arena',
 			'body_id' => 'dashboard',
-			'body_class' => 'post-fields',
+			'body_class' => 'post-fields specs-template',
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
@@ -586,7 +586,7 @@ class Dashboard extends MY_Controller {
 			}
 			if ($passed == FALSE) {
 				if (count($result)) {
-					return redirect(base_url('dashboard/settings'));
+					return redirect(base_url('dashboard/specs-template'));
 				}
 			} else {
 				return TRUE;
