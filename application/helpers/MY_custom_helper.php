@@ -753,6 +753,9 @@ function assemble_fields_data($data=FALSE)
 					}
 				}
 			}
+			if (!isset($field_data['path'])) {
+				$field_data['path'] = "assets/data/jsons/".clean_string_name($base).".json";
+			}
 			// debug($field_data, 1);
 			unset($field_data['added']);
 			unset($field_data['updated']);
