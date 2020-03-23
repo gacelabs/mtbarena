@@ -568,6 +568,9 @@ class Dashboard extends MY_Controller {
 				// debug($save_data, 1);
 				if (count($save_data)) {
 					foreach ($save_data as $key => $save) {
+						if (!isset($save['path'])) {
+							$save['path'] = "assets/data/jsons/".clean_string_name($save['base']).".json";
+						}
 						if (isset($save['id'])) {
 							$this->custom_model->save($table, $save, ['id' => $save['id']]);
 						} else {

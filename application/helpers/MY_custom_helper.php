@@ -772,7 +772,6 @@ function csv_to_array($filename='', $delimiter=',')
 	if(!file_exists(get_root_path($filename)) OR !is_readable(get_root_path($filename))) {
 		return FALSE;
 	}
-
 	$header = NULL;
 	$data = array();
 	if (($handle = fopen($filename, 'r')) !== FALSE) {
