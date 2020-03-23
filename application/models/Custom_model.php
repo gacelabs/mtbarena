@@ -251,7 +251,8 @@ class Custom_Model extends MY_Model {
 				$bikes = [];
 				foreach ($match_ups as $key => $row) {
 					$data = json_decode($row['bike_data'], TRUE);
-					foreach ($data['id'] as $index => $id) {
+					$bike_data = isset($data['id']) ? $data['id'] : $data;
+					foreach ($bike_data as $index => $id) {
 						$bike = $this->query("
 						SELECT DISTINCT 
 								u.store_name, CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url, b.*
