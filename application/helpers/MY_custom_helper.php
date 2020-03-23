@@ -681,8 +681,10 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 									$mapped = [];
 									$parsed = $json;
 									if (!is_array($json)) $parsed = json_decode($json, TRUE);
-									foreach ($parsed as $idx => $tags) $mapped[] = $tags['value'];
-									$bike_items['fields'][$base][$key][$column] = implode(', ', $mapped);
+									if ($parsed) {
+										foreach ($parsed as $idx => $tags) $mapped[] = $tags['value'];
+										$bike_items['fields'][$base][$key][$column] = implode(', ', $mapped);
+									}
 								}
 							}
 						}
@@ -740,7 +742,7 @@ function assemble_fields_data($data=FALSE)
 			foreach ($fields as $column => $values) {
 				// debug(array_values($values), 1);
 				foreach ($field_data['values'] as $key => $row) {
-					if ($row['column'] === $column) {
+					if ($row['column'] === $column AND is_array($values)) {
 						$column_values = [];
 						foreach ($values as $index => $input) {
 							$column_values[] = $input['value'];
