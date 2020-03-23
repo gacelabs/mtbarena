@@ -743,9 +743,11 @@ function assemble_fields_data($data=FALSE)
 				// debug(array_values($values), 1);
 				foreach ($field_data['values'] as $key => $row) {
 					if ($row['column'] === $column AND is_array($values)) {
-						$column_values = [];
+						$column_values = strlen(trim($row['data'])) ? explode(',', $row['data']) : [];
 						foreach ($values as $index => $input) {
-							$column_values[] = $input['value'];
+							if (!in_array($input['value'], $column_values)) {
+								$column_values[] = $input['value'];
+							}
 						}
 						$field_data['values'][$key]['data'] = implode(',', $column_values);
 					}

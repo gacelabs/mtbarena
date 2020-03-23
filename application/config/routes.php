@@ -17,6 +17,7 @@ $route['dashboard/edit-bike/(:num)'] = 'dashboard/edit_bike/$1';
 
 $route['dashboard/post-blog'] = 'PostBlog/post_blog';
 $route['dashboard/edit-blog/(:num)'] = 'PostBlog/edit_blog/$1';
+$route['dashboard/specs-template'] = 'dashboard/specs_template';
 
 $route['postblog/add_item'] = 'PostBlog/add_item';
 $route['postblog/edit_item/(:num)'] = 'PostBlog/edit_item/$1';
