@@ -65,7 +65,7 @@
 				<?php foreach ($fields_data as $base => $fields): ?>
 					<div class="mtb-item-specs-parent">
 						<div class="mtb-item-part-label <?php echo $bikeCount > 1 ? 'text-center' : '' ?>">
-							<small class="color-theme mtb-item-part-label-text"><?php echo $base;?></small>
+							<small class="color-theme mtb-item-part-label-text"><?php echo clean_string_name($base, ' ');?></small>
 						</div>
 						<div class="mtb-item-spec-desc grid-column <?php echo $gridCountArr[$bikeCount-1]; ?>">
 						<?php foreach ($fields as $key => $field): ?>

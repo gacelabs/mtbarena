@@ -328,7 +328,7 @@ class Dashboard extends MY_Controller {
 			$post['feat_photo'] = $filename;
 			$post['user_id'] = $this->accounts->profile['id'];
 			$fields_data = [];
-			foreach ($post as $field => $value) {
+			foreach ($post as $field => $row) {
 				if (!in_array($field, ['bike_model', 'feat_photo', 'user_id', 'price_tag', 'external_link'])) {
 					foreach ($row as $base => $fields) {
 						$fields_data[$base] = [];
@@ -363,16 +363,17 @@ class Dashboard extends MY_Controller {
 				foreach ($post as $field => $row) {
 					if (!in_array($field, ['bike_model', 'feat_photo', 'user_id', 'price_tag', 'external_link'])) {
 						foreach ($row as $base => $fields) {
-							$fields_data[$base] = [];
+							$fields_data[clean_string_name($base, '_')] = [];
 							foreach ($fields as $column => $value) {
-								$fields_data[$base][$column] = json_decode($value, TRUE);
+								$fields_data[clean_string_name($base, '_')][clean_string_name($column, '_')] = json_decode($value, TRUE);
 							}
 						}
-						// debug($fields_data, 1);
+						// debug($fields_data);
 						unset($post[$field]);
 					}
 				}
 				$post['fields_data'] = json_encode($fields_data);
+				// debug($post, 1);
 				$assembled_data = TRUE;
 				if ($account['is_admin']) {
 					$assembled_data = assemble_fields_data($fields_data);
@@ -539,10 +540,10 @@ class Dashboard extends MY_Controller {
 								}
 							} else {
 								if ($index == 'path') {
-									if (!empty($row['base']) AND $value == 'assets/data/jsons/') {
+									if (!empty($row['base']) AND $value == 'assets/data/jsons/spec_template/') {
 										$value .= clean_string_name($row['base']).'.json';
 									} elseif (!empty($row['base'])) {
-										$value = 'assets/data/jsons/'.clean_string_name($row['base']).'.json';
+										$value = 'assets/data/jsons/spec_template/'.clean_string_name($row['base']).'.json';
 									} else {
 										$value = FALSE;
 									}
@@ -569,21 +570,21 @@ class Dashboard extends MY_Controller {
 				if (count($save_data)) {
 					foreach ($save_data as $key => $save) {
 						if (!isset($save['path'])) {
-							$save['path'] = "assets/data/jsons/".clean_string_name($save['base']).".json";
+							$save['path'] = "assets/data/jsons/spec_template/".clean_string_name($save['base']).".json";
 						}
 						if (isset($save['id'])) {
 							$this->custom_model->save($table, $save, ['id' => $save['id']]);
 						} else {
 							$this->custom_model->new($table, $save);
 						}
-						file_put_contents(get_root_path($save['path']), $json_file[$key]);
+						@file_put_contents(get_root_path($save['path']), $json_file[$key]);
 					}
 					$result[] = TRUE;
 				}
 				if (count($to_remove)) {
 					foreach ($to_remove as $file => $id) {
 						$this->custom_model->remove($table, ['id' => $id]);
-						unlink(get_root_path($file));
+						@unlink(get_root_path($file));
 					}
 				}
 			}

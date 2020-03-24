@@ -59,7 +59,7 @@
 							<div class="col-lg-12 clearfix add_fieldset" data-key="<?php echo $key;?>" style="margin-top:15px;">
 								<span class="btn btn-xs btn-default text-info"><i class="fa fa-plus"></i> Specs field</span>
 							</div>
-							<input type="hidden" name="fields_data[<?php echo $key;?>][path]" value="assets/data/jsons/<?php echo $field['base'];?>.json">
+							<input type="hidden" name="fields_data[<?php echo $key;?>][path]" value="assets/data/jsons/spec_template/<?php echo $field['base'];?>.json">
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
@@ -118,7 +118,7 @@
 						<div class="col-lg-12 add_fieldset" data-key="MAINCHANGEKEY" style="margin-top:15px;">
 							<span class="btn btn-xs btn-default text-info"><i class="fa fa-plus"></i> Specs field</span>
 						</div>
-						<input type="hidden" name="fields_data[CHANGEKEY][path]" value="assets/data/jsons/">
+						<input type="hidden" name="fields_data[CHANGEKEY][path]" value="assets/data/jsons/spec_template/">
 					</div>
 				</div>
 			</div>

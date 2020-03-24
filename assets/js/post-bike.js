@@ -91,9 +91,10 @@ $(document).ready(function() {
 							arr.push(obj[x].value);
 						}
 						// console.log(obj);
-						$('#postBikeForm [data-name='+name+']:not(:file)').data('tagify').addTags(arr.toString());
+						var uiBikePart = $('#postBikeForm').find('[id*=field_'+base+']');
+						uiBikePart.find('[data-name='+name+']:not(:file)').data('tagify').addTags(arr.toString());
 					});
-					// // console.log(name, arr.toString());
+					// console.log(name, arr.toString());
 				}
 			}
 		}

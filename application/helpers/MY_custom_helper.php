@@ -432,7 +432,7 @@ function bike_search($query='', $and_clause='')
 	return [];
 }
 
-function clean_string_name($string=FALSE, $delimiter='-')
+function clean_string_name($string=FALSE, $replaced=FALSE, $delimiter='-')
 {
 	if ($string) {
 		/*now replace space and underscores with the delimiter*/
@@ -442,6 +442,9 @@ function clean_string_name($string=FALSE, $delimiter='-')
 		$string = preg_replace('/[^a-z0-9\.-]/', '', strtolower($string));
 		$string = preg_replace('/[()]/', '', strtolower($string));
 		$string = preg_replace('/[+]/', '', strtolower($string));
+		if ($replaced) {
+			$string = preg_replace('/'.$delimiter.'/', $replaced, $string);
+		}
 	}
 	return $string;
 }
@@ -714,9 +717,14 @@ function check_and_save_matchup($items_data=FALSE)
 		$json = json_encode($ids);
 
 		// $data = $ci->custom_model->get('match_ups', ['bike_data' => $json, 'today' => $today], FALSE, 'row');
-		$bike_data_1 = json_encode(['id'=>[$ids[0], $ids[1]]]);
-		$bike_data_2 = json_encode(['id'=>[$ids[1], $ids[0]]]);
-		$data = $ci->custom_model->get('match_ups', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", FALSE, 'row');
+		if (isset($ids[1])) {
+			$bike_data_1 = json_encode(['id'=>[$ids[0], $ids[1]]]);
+			$bike_data_2 = json_encode(['id'=>[$ids[1], $ids[0]]]);
+			$data = $ci->custom_model->get('match_ups', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", FALSE, 'row');
+		} else {
+			$bike_data = json_encode(['id'=>[$ids[0]]]);
+			$data = $ci->custom_model->get('match_ups', "bike_data = '$bike_data'", FALSE, 'row');
+		}
 		// debug($data, 1);
 
 		if ($data == FALSE) {
@@ -739,27 +747,30 @@ function assemble_fields_data($data=FALSE)
 			$field_data = $ci->custom_model->get('fields_data', ['base' => $base], FALSE, 'row');
 			// debug($fields, 1);
 			$field_data['values'] = json_decode($field_data['values'], TRUE);
-			foreach ($fields as $column => $values) {
-				// debug(array_values($values), 1);
-				foreach ($field_data['values'] as $key => $row) {
-					if ($row['column'] === $column AND is_array($values)) {
-						$column_values = strlen(trim($row['data'])) ? explode(',', $row['data']) : [];
-						foreach ($values as $index => $input) {
-							if (!in_array($input['value'], $column_values)) {
-								$column_values[] = $input['value'];
+			// debug($field_data);
+			if (is_array($field_data['values'])) {
+				foreach ($fields as $column => $values) {
+				// debug(array_values($values));
+					foreach ($field_data['values'] as $key => $row) {
+						if ($row['column'] === $column AND is_array($values)) {
+							$column_values = strlen(trim($row['data'])) ? explode(',', $row['data']) : [];
+							foreach ($values as $index => $input) {
+								if (!in_array($input['value'], $column_values)) {
+									$column_values[] = $input['value'];
+								}
 							}
+							$field_data['values'][$key]['data'] = implode(',', $column_values);
 						}
-						$field_data['values'][$key]['data'] = implode(',', $column_values);
 					}
 				}
-			}
-			if (!isset($field_data['path'])) {
-				$field_data['path'] = "assets/data/jsons/".clean_string_name($base).".json";
+				if (!isset($field_data['path'])) {
+					$field_data['path'] = "assets/data/jsons/spec_template/".clean_string_name($base).".json";
+				}
+				unset($field_data['added']);
+				unset($field_data['updated']);
+				$result[] = $field_data;
 			}
 			// debug($field_data, 1);
-			unset($field_data['added']);
-			unset($field_data['updated']);
-			$result[] = $field_data;
 		}
 		// debug(['fields_data' => $result], 1);
 		return ['fields_data' => $result];
