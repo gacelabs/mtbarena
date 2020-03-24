@@ -175,6 +175,9 @@
 	margin-bottom: 20px;
 	padding-bottom: 40px;
 }
+.form-step-footer {
+	margin-bottom: 10px;
+}
 @media screen and (max-width: 767px) {
 	.dashboard-menu-box {
 		padding: 10px 10px 0 10px;
