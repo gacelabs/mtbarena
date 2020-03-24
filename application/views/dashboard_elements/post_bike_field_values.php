@@ -64,10 +64,10 @@
 					<?php endforeach ?>
 				<?php endif ?>
 				<div class="col-lg-12 zero-gap clearfix">
-					<div class="col-lg-6 col-md-6 col-sm-12 form-step-footer add_mainset" data-key="<?php echo $key;?>">
-						<span class="btn btn-primary text-info"><i class="fa fa-plus"></i> New Bike part</span>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-step-footer add_mainset" data-key="<?php echo $key;?>">
+						<span class="btn btn-default text-info"><i class="fa fa-plus"></i> New Bike part</span>
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-12 text-right">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
 						<button type="submit" class="btn btn-info"><i class="fa fa-floppy-o"></i> Save Template</button>
 						<div class="hidden-xs"><br></div>
 					</div>
