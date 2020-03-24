@@ -50,10 +50,10 @@ class Custom_Model extends MY_Model {
 								if (!empty($fields)) {
 									// debug($fields);
 									foreach ($fields as $column => $json) {
-										if (!isset($result[$key]['fields_data'][clean_string_name($base, '_')][$column])) {
-											$result[$key]['fields_data'][clean_string_name($base, '_')][$column] = '';
+										if (!isset($result[$key]['fields_data'][clean_string_name($base, '_')][clean_string_name($column, '_')])) {
+											$result[$key]['fields_data'][clean_string_name($base, '_')][clean_string_name($column, '_')] = '';
 										}
-										$result[$key]['fields_data'][clean_string_name($base, '_')][$column] = json_encode($json);
+										$result[$key]['fields_data'][clean_string_name($base, '_')][clean_string_name($column, '_')] = json_encode($json);
 									}
 								}
 							}

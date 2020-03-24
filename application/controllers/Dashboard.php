@@ -333,7 +333,7 @@ class Dashboard extends MY_Controller {
 					foreach ($row as $base => $fields) {
 						$fields_data[$base] = [];
 						foreach ($fields as $column => $value) {
-							$fields_data[$base][$column] = json_decode($value, TRUE);
+							$fields_data[clean_string_name($base, '_')][clean_string_name($column, '_')] = json_decode($value, TRUE);
 						}
 					}
 					// debug($fields_data, 1);

@@ -24,18 +24,23 @@ class Ajax extends MY_Controller {
 				if ($method) {
 					switch ($method) {
 						case 'home': case 'compare':
-							$bike_data_1 = json_encode(['id'=>[$data[0], $data[1]]]);
-							$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
-
 							if ($method == 'compare') {
 								$table = 'compares';
 							} else {
 								$table = 'match_ups';
 							}
 
-							$result = $this->custom_model->get($table, "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
+							if (isset($data[1])) {
+								$bike_data_1 = json_encode(['id'=>[$data[0], $data[1]]]);
+								$bike_data_2 = json_encode(['id'=>[$data[1], $data[0]]]);
+								$result = $this->custom_model->get($table, "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", 'id', 'row');
+							} else {
+								$bike_data = json_encode(['id'=>[$data[0]]]);
+								$result = $this->custom_model->get($table, "bike_data = '$bike_data'", 'id', 'row');
+							}
 							// debug($result, 1);
-							$where = "class = '$method' AND post_id = ".$result['id']." AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
+
+							$where = "class = '$method' AND post_id = '".$result['id']."' AND ip_address = '".$_SERVER['REMOTE_ADDR']."'";
 							if ($this->custom_model->get('likes_map', $where) == FALSE) {
 								$this->custom_model->save_count($table, $result);
 								$this->custom_model->new('likes_map', ['class'=>$method, 'user_id'=>$user_id, 'post_id'=>$result['id'], 'ip_address'=>$_SERVER['REMOTE_ADDR']]);

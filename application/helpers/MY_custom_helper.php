@@ -714,16 +714,16 @@ function check_and_save_matchup($items_data=FALSE)
 			$ids[] = $row['id'];
 		}
 		// debug($ids, 1);
-		$json = json_encode($ids);
-
 		// $data = $ci->custom_model->get('match_ups', ['bike_data' => $json, 'today' => $today], FALSE, 'row');
 		if (isset($ids[1])) {
 			$bike_data_1 = json_encode(['id'=>[$ids[0], $ids[1]]]);
 			$bike_data_2 = json_encode(['id'=>[$ids[1], $ids[0]]]);
 			$data = $ci->custom_model->get('match_ups', "(bike_data = '$bike_data_1' OR bike_data = '$bike_data_2')", FALSE, 'row');
+			$json = $bike_data_1;
 		} else {
 			$bike_data = json_encode(['id'=>[$ids[0]]]);
 			$data = $ci->custom_model->get('match_ups', "bike_data = '$bike_data'", FALSE, 'row');
+			$json = $bike_data;
 		}
 		// debug($data, 1);
 
