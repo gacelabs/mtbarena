@@ -46,7 +46,7 @@
 						<textarea id="textEditor" name="blog_content"></textarea>
 					</div>
 				</div>
-				<input type="hidden" id="blog_feat_photo" name="blog_feat_photo" value="">
+				<input type="hidden" id="blog_feat_photo" name="blog_feat_photo" value="" required="required">
 			</form>
 		</div>
 	</div>

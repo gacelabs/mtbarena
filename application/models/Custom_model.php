@@ -200,7 +200,7 @@ class Custom_Model extends MY_Model {
 		return $result;
 	}
 
-	public function blog_posts($limit=FALSE, $offset=FALSE, $clause=FALSE)
+	public function blog_posts($limit=FALSE, $offset=FALSE, $clause=FALSE, $is_view=FALSE)
 	{
 		if ($limit) {
 			if ($offset) {
@@ -218,6 +218,12 @@ class Custom_Model extends MY_Model {
 
 		if ($query->num_rows()) {
 			$blog_posts = $query->result_array();
+			if ($is_view) {
+				foreach ($blog_posts as $key => $posts) {
+					$blog_posts[$key]['blog_content'] = get_shortcode_values($posts['blog_content']);
+				}
+			}
+			// debug($blog_posts, 1);
 			return $blog_posts;
 		}
 		return FALSE;
