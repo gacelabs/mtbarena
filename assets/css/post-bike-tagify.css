@@ -1,3 +1,6 @@
+.form-step-block.mainset {
+	border-bottom: 1px solid #ccc;
+}
 .post-bike-form-checkbox-item {
 	margin-top: 10px;
 }
@@ -171,6 +174,9 @@
 	height: auto;
 	margin-bottom: 20px;
 	padding-bottom: 40px;
+}
+.form-step-footer {
+	margin-bottom: 10px;
 }
 @media screen and (max-width: 767px) {
 	.dashboard-menu-box {

@@ -81,7 +81,7 @@
 								<?php endforeach ?>
 							<?php elseif ($base == 'external link'): ?>
 								<div class="mtb-item-spec-label">
-									<p class="mtb-item-spec-label-text zero-gap">&nbsp;</p>
+									<p class="mtb-item-spec-label-text zero-gap">Website URL</p>
 								</div>
 								<div class="mtb-item-desc-label">
 									<p class="mtb-item-spec-desc-text zero-gap">
@@ -90,7 +90,13 @@
 								</div>
 							<?php elseif ($base == 'price tag'): ?>
 								<div class="mtb-item-spec-label">
-									<p class="mtb-item-spec-label-text zero-gap">&nbsp;</p>
+									<?php if ($field == 'affordable'): ?>
+										<p class="mtb-item-spec-label-text zero-gap">Affordable</p>
+										<?php elseif ($field == 'mid'): ?>
+										<p class="mtb-item-spec-label-text zero-gap">Mid Range</p>
+										<?php elseif ($field == 'premium'): ?>
+										<p class="mtb-item-spec-label-text zero-gap">Premium</p>
+									<?php endif ?>
 								</div>
 								<div class="mtb-item-desc-label">
 									<p class="mtb-item-spec-desc-text zero-gap">

@@ -32,7 +32,7 @@
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 form-step-block-label">
 										<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][sort]" value="<?php echo ucfirst($row['sort']);?>" placeholder="#" />
 									</div>
-									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-8 form-step-block-label spec-desc-box">
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-9 form-step-block-label spec-desc-box">
 										<div class="form-group" style="margin-bottom:5px;">
 											<b><input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][column]" value="<?php echo ucfirst($row['column']);?>" placeholder="Spec label: Brand, Sizes, Types, etc..." /></b>
 										</div>
@@ -63,13 +63,12 @@
 						</div>
 					<?php endforeach ?>
 				<?php endif ?>
-				<div class="col-lg-12 zero-gap clearfix">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 form-step-footer add_mainset" data-key="<?php echo $key;?>">
+				<div class="row form-step-footer zero-gap clearfix">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 add_mainset" data-key="<?php echo $key;?>">
 						<span class="btn btn-default text-info"><i class="fa fa-plus"></i> New Bike part</span>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
 						<button type="submit" class="btn btn-info"><i class="fa fa-floppy-o"></i> Save Template</button>
-						<div class="hidden-xs"><br></div>
 					</div>
 				</div>
 			</form>
@@ -91,7 +90,7 @@
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 form-step-block-label">
 							<input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][sort]" value="" placeholder="#">
 						</div>
-						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-8 form-step-block-label spec-desc-box">
+						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-9 form-step-block-label spec-desc-box">
 							<div class="form-group" style="margin-bottom:5px;">
 								<b><input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][column]" value="" placeholder="Spec label: Brand, Sizes, Types, etc..."></b>
 							</div>
