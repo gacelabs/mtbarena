@@ -862,7 +862,11 @@ function get_shortcode_values($data=FALSE)
 			// debug($queries);
 			$statements = [];
 			foreach ($queries as $key => $query) {
-				$string = "SELECT ".$query['field']." FROM ".$query['table']." WHERE ".$query['where'];
+				if (isset($query['where'])) {
+					$string = "SELECT ".$query['field']." FROM ".$query['table']." WHERE ".$query['where'];
+				} else {
+					$string = "SELECT ".$query['field']." FROM ".$query['table'];
+				}
 				if (isset($query['limit'])) {
 					$string .= $query['limit'];
 				}
