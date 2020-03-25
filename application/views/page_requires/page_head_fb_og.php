@@ -2,32 +2,31 @@
 	// prevents Search Engines to crawl
 	$noIndexPagesArr = ['dashboard'];
 	
-	$ogUrl = '';
 	$ogTitle = '';
 	$ogImageArr = [];
 	$ogDescription = '';
 
 	// for pages that has bikes
-	$metaForBikepages = ['landing', 'compare', 'singleBike'];
-	if (!empty($page_data['bikes'][0])) {
-		$bikeOne = empty($page_data['bikes'][0]) ? '' : $page_data['bikes'][0];
-		$bikeTwo = empty($page_data['bikes'][1]) ? '' : $page_data['bikes'][1];
+	$metaForBikepages = ['landing', 'compares', 'singleBike'];
+	if (in_array($body_id, $metaForBikepages)) {
+		$bikeOne = empty($page_data['bikes']['info'][0]) ? '' : $page_data['bikes']['info'][0];
+		$bikeTwo = empty($page_data['bikes']['info'][1]) ? '' : $page_data['bikes']['info'][1];
 		$bikeCompareUrl = empty($page_data['populars'][0]) ? '' : $page_data['populars'][0]['compare_url']; 
 
-		if (in_array($body_id, $metaForBikepages)) {
-			$ogUrl = empty($bikeTwo['bike_model']) ? base_url('/').$bikeOne['bike_url'] : base_url('/').$bikeCompareUrl;
+		if (empty($bikeOne)) {
+			$ogDescription = "MTB Arena - View Full Specifications of your favorite bikes.";
+			$ogTitle = 'MTB Area';
+		} else {
 			$ogTitle = empty($bikeTwo['bike_model']) ? 'MTB '.$bikeOne['bike_model'].' - Full Specifications' : 'MTB Match Up: '.$bikeOne['bike_model'].' VS. '.$bikeTwo['bike_model'];
 			array_push($ogImageArr, base_url('/').$bikeOne['feat_photo'], empty($bikeTwo['feat_photo']) ? '' : base_url('/').$bikeTwo['feat_photo']);
 			$ogDescription = 'What do you ride?';
 		}
 	}
 
-
 	// for blog pages
 	$metaForBlogpages = ['postBlog'];
 	$blog = empty($page_data['blog_data']) ? '' : $page_data['blog_data'][0];
 	if (in_array($body_id, $metaForBlogpages)) {
-		$ogUrl = base_url('/').$blog['blog_url'];
 		$ogTitle = ucwords($blog['blog_title']);
 		$ogImageArr = [base_url('/').$blog['blog_feat_photo']];
 		$ogDescription = trim(strip_tags($blog['blog_content']));

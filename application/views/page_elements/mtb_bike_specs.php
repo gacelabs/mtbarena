@@ -84,7 +84,7 @@
 									<p class="mtb-item-spec-label-text zero-gap">Website URL</p>
 								</div>
 								<div class="mtb-item-desc-label">
-									<p class="mtb-item-spec-desc-text zero-gap">
+									<p class="mtb-item-spec-desc-text zero-gap" style="word-wrap: break-word;">
 										<a href="<?php echo $field;?>"><?php echo $field;?></a>
 									</p>
 								</div>
