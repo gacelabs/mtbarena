@@ -798,7 +798,7 @@ function csv_to_array($filename='', $delimiter=',')
 	return $data;
 }
 
-function get_shortcode_values(&$data=FALSE)
+function get_shortcode_values($data=FALSE)
 {
 	if ($data) {
 		preg_match_all('/\[(.*?)\]/', $data, $matches);
