@@ -876,9 +876,9 @@ function get_shortcode_values($data=FALSE)
 					$statements[$key] = '';
 					foreach ($code_data as $index => $code) {
 						if (isset($query['class'])) {
-							$statements[$key] .= '<span class="'.$query['class'].'">'.$code[$query['field']].'</span>';
+							$statements[$key] .= '<span class="sc-'.$query['class'].'">'.$code[$query['field']].'</span>&nbsp;';
 						} else {
-							$statements[$key] .= '<span>'.$code[$query['field']].'</span>';
+							$statements[$key] .= '<span class="sc-default">'.$code[$query['field']].'</span>&nbsp;';
 						}
 					}
 				}

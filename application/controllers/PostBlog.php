@@ -140,7 +140,7 @@ class PostBlog extends MY_Controller {
 	public function view_blog($user_id, $blog_title)
 	{
 		$return = $this->custom_model->blog_posts(FALSE, FALSE, "user_id = '".$user_id."' AND blog_segment = '".$blog_title."' ", TRUE);
-		$allBlogs = $this->custom_model->blog_posts(5);
+		$allBlogs = $this->custom_model->blog_posts(5, FALSE, FALSE, TRUE);
 
 		if ($user_id && $blog_title && $allBlogs) {
 			$blog_data = $return;
