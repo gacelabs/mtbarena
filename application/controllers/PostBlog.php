@@ -139,7 +139,7 @@ class PostBlog extends MY_Controller {
 
 	public function view_blog($user_id, $blog_title)
 	{
-		$return = $this->custom_model->blog_posts(FALSE, FALSE, "user_id = '".$user_id."' AND blog_segment = '".$blog_title."' ");
+		$return = $this->custom_model->blog_posts(FALSE, FALSE, "user_id = '".$user_id."' AND blog_segment = '".$blog_title."' ", TRUE);
 		$allBlogs = $this->custom_model->blog_posts(5);
 
 		if ($user_id && $blog_title && $allBlogs) {
@@ -219,7 +219,7 @@ class PostBlog extends MY_Controller {
 			$post['user_id'] = $this->accounts->profile['id'];
 			$post['blog_url'] = $account['id'].'/blogs/'.$post['blog_segment'];
 			// debug($post, 1);
-			return $this->custom_model->add('blog_posts', $post, 'dashboard'); /*redirect to dashboard*/
+			return $this->custom_model->new('blog_posts', $post, 'dashboard'); /*redirect to dashboard*/
 		}
 		return FALSE;
 	}

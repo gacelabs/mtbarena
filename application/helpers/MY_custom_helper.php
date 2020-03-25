@@ -797,3 +797,95 @@ function csv_to_array($filename='', $delimiter=',')
 	}
 	return $data;
 }
+
+function get_shortcode_values(&$data=FALSE)
+{
+	if ($data) {
+		preg_match_all('/\[(.*?)\]/', $data, $matches);
+		if (isset($matches[1])) {
+			$ci =& get_instance();
+			$ci->load->model('custom_model');
+
+			$values = $matches[1];
+			$tags = $methods = $queries = [];
+			foreach ($values as $key => $value) {
+				$tags[$key] = explode('|', $value);
+			}
+			foreach ($tags as $key => $tag) {
+				foreach ($tag as $index => $row) {
+					$conditions = explode('=', $row);
+					$methods[$key][$conditions[0]] = str_replace('"', '', $conditions[1]);
+				}
+			}
+			// debug($methods);
+			foreach ($methods as $key => $method) {
+				if (isset($method['data'])) {
+					switch (strtolower($method['data'])) {
+						case 'compare': case 'bike':
+							$queries[$key]['field'] = 'bike_model';
+							$queries[$key]['table'] = 'bike_items';
+							break;
+						case 'profile':
+							$queries[$key]['field'] = 'store_name';
+							$queries[$key]['table'] = 'users';
+							break;
+					}
+					if (isset($method['search'])) {
+						switch (strtolower($method['data'])) {
+							case 'compare':
+								$ci->db->like('bike_model', $method['search']);
+								$items = $ci->db->get('bike_items');
+								if ($items->num_rows()) {
+									$bike_items = $items->result_array();
+									$queries[$key]['where'] = '';
+									$ids = [];
+									foreach ($bike_items as $bike) $ids[] = $bike['id'];
+									$queries[$key]['where'] .= "id IN (".implode(',', $ids).")";
+								}
+								break;
+							case 'bike':
+								$queries[$key]['where'] = "bike_model = '".$method['search']."'";
+								break;
+							case 'profile':
+								$queries[$key]['where'] = "store_name LIKE '%".$method['search']."%'";
+								break;
+						}
+					}
+					if (isset($method['limit']) AND (is_numeric($method['limit']) AND $method['limit'])) {
+						$queries[$key]['limit'] = ' LIMIT '.$method['limit'];
+					}
+					if (isset($method['style']) AND strlen(trim($method['style']))) {
+						$queries[$key]['class'] = trim($method['style']);
+					}
+				}
+			}
+			// debug($queries);
+			$statements = [];
+			foreach ($queries as $key => $query) {
+				$string = "SELECT ".$query['field']." FROM ".$query['table']." WHERE ".$query['where'];
+				if (isset($query['limit'])) {
+					$string .= $query['limit'];
+				}
+				$code_data = $ci->custom_model->query($string);
+				// debug($code_data);
+				if ($code_data) {
+					$statements[$key] = '';
+					foreach ($code_data as $index => $code) {
+						if (isset($query['class'])) {
+							$statements[$key] .= '<span class="'.$query['class'].'">'.$code[$query['field']].'</span>';
+						} else {
+							$statements[$key] .= '<span>'.$code[$query['field']].'</span>';
+						}
+					}
+				}
+			}
+			// debug($matches[0]);
+			foreach ($matches[0] as $key => $value) {
+				$data = str_replace($value, $statements[$key], $data);
+			}
+			// debug($data);
+			// debug($statements, 1);
+		}
+	}
+	return $data;
+}
