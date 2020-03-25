@@ -7,7 +7,7 @@
 	$ogDescription = '';
 
 	// for pages that has bikes
-	$metaForBikepages = ['landing', 'compares', 'singleBike'];
+	$metaForBikepages = ['landing', 'compare', 'singleBike'];
 	if (in_array($body_id, $metaForBikepages)) {
 		$bikeOne = empty($page_data['bikes']['info'][0]) ? '' : $page_data['bikes']['info'][0];
 		$bikeTwo = empty($page_data['bikes']['info'][1]) ? '' : $page_data['bikes']['info'][1];
