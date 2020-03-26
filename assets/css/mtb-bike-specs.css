@@ -43,6 +43,7 @@
 }
 .mtb-item-spec-label-text {
 	color: #888;	
+	word-break: break-all;
 }
 .mtb-item-spec-desc-text {
 	color: #333;
