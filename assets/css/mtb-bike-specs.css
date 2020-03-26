@@ -151,7 +151,8 @@
 	transition: all .3s ease-in-out;
 }
 #singleBike .mtb-item-image {
-	max-height: 400px;
+	height: 100%;
+	width: 40%
 }
 .mtb-spec-column, .mtb-desc-column {
 	padding: 10px;
@@ -300,7 +301,7 @@
 		padding: 5px;
 	}
 	.mtb-item-image-main-parent {
-		height: auto;
+		height: auto !important;
 	}
 	.mtb-item-model-parent:nth-child(odd), .mtb-item-model-parent:nth-child(even) {
 		border-right: 0 none;
@@ -318,8 +319,8 @@
 		top: initial;
 		transform: initial;
 	}
-	.mtb-item-model-main-image>img {
+	.mtb-item-model-main-image>img,width #singleBike .mtb-item-image {
 		height: 150px !important;
-		width: 100%;
+		width: 100% !important;
 	}
 }
