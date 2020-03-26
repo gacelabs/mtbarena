@@ -206,6 +206,7 @@
 }
 .mtb-item-model-main-image>img {
 	width: 90%;
+	margin-bottom: 0 !important;
 }
 @media screen and (max-width: 767px) {
 	.mtb-bike-specs-main-parent {
