@@ -11,22 +11,22 @@
 	z-index: 999;
 }
 .mtb-item-model-parent {
-	border: 1px solid #e5d6f5;
+	/*border: 1px solid #e5d6f5;*/
 	margin: 0;
 	position: relative;
 	text-align: center;
 }
 .mtb-item-model-inner {
-	padding: 10px;
+	/*padding: 10px;*/
 }
-.mtb-item-model-parent:nth-child(2) .mtb-item-model-inner, .mtb-item-spec-column .mtb-item-spec-desc-inner:nth-child(2) {
+.mtb-item-model-parent:nth-child(2) .mtb-item-model-inner, .mtb-item-spec-desc .mtb-item-spec-desc-inner:nth-child(2) {
 	background-color: #f7f7f7;
 }
 /*.mtb-item-spec-desc-inner {
 	padding: 10px 10px 20px 10px;
 }*/
 .mtb-item-spec-desc-inner>.mtb-item-spec-label {
-	background-color: #eee;
+	background-color: #e8e8e8;
 }
 .mtb-item-spec-desc-inner>.mtb-item-spec-label, .mtb-item-spec-desc-inner>.mtb-item-desc-label {
 	padding: 10px;
@@ -163,6 +163,52 @@
 	border-bottom: 1px solid #e5d6f5;
 	border-right: 1px solid #e5d6f5;
 }
+.mtb-item-model-parent:nth-child(odd) {
+	border-right: 2px solid #fff;
+}
+.mtb-item-model-parent:nth-child(even) {
+	border-left: 2px solid #fff;
+}
+.mtb-item-model-parent:nth-child(2) .mtb-item-model-inner {
+	background-color: unset;
+}
+.mtb-item-image-main-parent {
+	height: 250px;
+	margin-bottom: 5px;
+}
+.mtb-item-overlay-parent {
+	height: inherit;
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: -1;
+}
+.mtb-item-overlay-image {
+	background-repeat: no-repeat;
+	background-position: center;
+	filter: blur(7px);
+	height: 100%;
+	width: 100%;
+	transform: scale(1.1);	
+}
+#singleBike .mtb-item-overlay-image {
+	transform: scale(1.6);	
+}
+#singleBike .mtb-item-image-main-parent {
+	height: 250px;
+}
+.mtb-item-model-main-image {
+	height: 200px;
+	z-index: 1;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.mtb-item-model-main-image>img {
+	width: 90%;
+}
 @media screen and (max-width: 767px) {
 	.mtb-bike-specs-main-parent {
 		margin-bottom: 15px !important;
@@ -247,7 +293,33 @@
 	.mtb-item-spec-desc-inner>.mtb-item-spec-label {
 		font-size: 10px;
 	}
-	.mtb-item-spec-desc-inner>.mtb-item-spec-label, .mtb-item-spec-desc-inner>.mtb-item-desc-label {
+	.mtb-item-spec-desc-inner>.mtb-item-spec-label {
+		padding: 3px 5px;
+	}
+	.mtb-item-spec-desc-inner>.mtb-item-desc-label {
 		padding: 5px;
+	}
+	.mtb-item-image-main-parent {
+		height: auto;
+	}
+	.mtb-item-model-parent:nth-child(odd), .mtb-item-model-parent:nth-child(even) {
+		border-right: 0 none;
+		border-left: 0 none;
+	}
+	.mtb-item-model-parent:nth-child(odd) .mtb-item-model-inner {
+		padding-right: 2px !important;
+	}
+	.mtb-item-model-parent:nth-child(even) .mtb-item-model-inner {
+		padding-left: 2px !important;
+	}
+	.mtb-item-model-main-image {
+		height: initial;
+		position: initial;
+		top: initial;
+		transform: initial;
+	}
+	.mtb-item-model-main-image>img {
+		height: 150px !important;
+		width: 100%;
 	}
 }

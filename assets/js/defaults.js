@@ -256,7 +256,8 @@ $(function() {
 	function shrinksModelImage() {
 
 		if (window.pageYOffset > scrollPosition) {
-			$('.mtb-item-image.shrinkMe').addClass('mtbImageShrinker');
+			// $('.mtb-item-image.shrinkMe').addClass('mtbImageShrinker');
+			$('.mtb-item-image-main-parent').hide('fast');
 			$('.bikeStickyName').css('box-shadow', '0px 2px 4px 0px rgba(0,0,0,0.1)');
 			// $('.changeBikeInput').val('').blur();
 			// $('.inputDropdown').remove();
@@ -267,7 +268,8 @@ $(function() {
 		}
 
 		if (window.pageYOffset == 0) {
-			$('.mtb-item-image.shrinkMe').removeClass('mtbImageShrinker');
+			$('.mtb-item-image-main-parent').show('fast');
+			// $('.mtb-item-image.shrinkMe').removeClass('mtbImageShrinker');
 		}
 		// if (window.pageYOffset == 0) {
 		// 	$(document).click($('.mtbImageShrinker'), function() {
