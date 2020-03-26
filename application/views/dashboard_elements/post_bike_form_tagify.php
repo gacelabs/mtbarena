@@ -69,7 +69,8 @@
 												<div class="form-group">
 													<?php if ((isset($page_data['is_edit']) AND $page_data['is_edit']) AND 
 													((isset($page_data["fields_data"]) AND $page_data["fields_data"]) AND 
-													isset($page_data["fields_data"][clean_string_name($fields['base'], '_')]))): ?>
+													isset($page_data["fields_data"][clean_string_name($fields['base'], '_')]) AND
+													isset($page_data["fields_data"][clean_string_name($fields['base'], '_')][$field['column']]))): ?>
 														<input type="text" data-name="<?php echo $field['column'];?>" name="fields_data[<?php echo clean_string_name($fields['base'], '_');?>][<?php echo clean_string_name($field['column'], '_');?>]" class="typeAheadInput form-control" data-values='<?php echo $page_data["fields_data"][clean_string_name($fields["base"], '_')][$field["column"]];?>' />
 													<?php else: ?>
 														<input type="text" data-name="<?php echo $field['column'];?>" name="fields_data[<?php echo clean_string_name($fields['base'], '_');?>][<?php echo clean_string_name($field['column'], '_');?>]" class="typeAheadInput form-control" />
