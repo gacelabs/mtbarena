@@ -57,7 +57,7 @@
 								<div class="modelItemLabelBox">
 									<input type="text" name="change_bike_input" class="mtb-item-model-name text-ellipsis form-control zero-gap changeBikeInput" placeholder="<?php echo ucwords($bike['bike_model']);?>" data-ids='<?php echo json_encode($bike_ids);?>' data-name="<?php echo $bike['bike_model'];?>" data-id='<?php echo $bike['id'];?>'>
 									<span class="compare-search-icon"><i class="fa fa-search"></i></span>
-									<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?> <!-- (Posted: <?php //echo date('M Y', strtotime($bike['added']));?>) --></small></p>
+									<p class="text-ellipsis zero-gap"><small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?> <!--(Posted: <?php //echo date('M Y', strtotime($bike['added']));?>)--></small></p>
 								</div>
 							</div>
 						</div>
