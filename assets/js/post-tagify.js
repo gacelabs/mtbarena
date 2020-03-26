@@ -15,36 +15,37 @@ function runTagsInput(uiFieldData) {
 				uiInput.each(function(x, input) {
 					var inputData = $(input).data(),
 					oData = data[inputData.name];
-
 					// console.log(oData);
-					var oTagsSettings = {
-						whitelist : oData.whitelist,
-						dropdown: {
-							maxItems: Infinity,
-							enabled: 0,
-							classname: "suggestion-list"
-						},
-						enforceWhitelist: false,
-						editTags: true,
-						maxTags: 1
-					};
+					if (oData.whitelist != undefined) {
+						var oTagsSettings = {
+							whitelist : oData.whitelist,
+							dropdown: {
+								maxItems: Infinity,
+								enabled: 0,
+								classname: "suggestion-list"
+							},
+							enforceWhitelist: false,
+							editTags: true,
+							maxTags: 1
+						};
 
-					if (oData.max == 1) {
-						oTagsSettings.maxTags = Infinity;
-					}
-					if (!user.is_admin) { /*if not admin*/
-						oTagsSettings.enforceWhitelist = true;
-						oTagsSettings.editTags = false;
-					}
+						if (oData.max == 1) {
+							oTagsSettings.maxTags = Infinity;
+						}
+						if (!user.is_admin) { /*if not admin*/
+							oTagsSettings.enforceWhitelist = true;
+							oTagsSettings.editTags = false;
+						}
 
-					// var tagify = new Tagify(input, oTagsSettings);
-					$(input).tagify(oTagsSettings);
+						// var tagify = new Tagify(input, oTagsSettings);
+						$(input).tagify(oTagsSettings);
 
-					var tagify = inputData.tagify;
-					arrAllTags.push(tagify);
+						var tagify = inputData.tagify;
+						arrAllTags.push(tagify);
 
-					if (inputData.values) {
-						tagify.addTags(inputData.values);
+						if (inputData.values) {
+							tagify.addTags(inputData.values);
+						}
 					}
 				});
 			}

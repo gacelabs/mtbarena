@@ -1,4 +1,3 @@
-
 <?php 
 	// debug($page_data, 1);
 	if (isset($page_data['bikes']) AND $page_data['bikes']): 

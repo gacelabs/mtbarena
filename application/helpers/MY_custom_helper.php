@@ -654,6 +654,7 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 	if ($items_data) {
 		$ci =& get_instance();
 		$ci->load->model('custom_model');
+		// debug($items_data, 1);
 
 		$bike_items = [];
 		foreach ($items_data as $key => $bike) {
@@ -677,8 +678,8 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 				} else {
 					if ($field == 'fields_data') {
 						if (!is_array($data)) $data = json_decode($data, TRUE);
+						// debug($data, 1);
 						if ($data) {
-							// debug($data, 1);
 							foreach ($data as $base => $row) {
 								foreach ($row as $column => $json) {
 									$mapped = [];
@@ -686,10 +687,12 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 									if (!is_array($json)) $parsed = json_decode($json, TRUE);
 									if ($parsed) {
 										foreach ($parsed as $idx => $tags) $mapped[] = $tags['value'];
-										$bike_items['fields'][$base][$key][$column] = implode(', ', $mapped);
 									}
+									$bike_items['fields'][$base][$key][$column] = count($mapped) ? implode(', ', $mapped) : 'Unspecified';
 								}
 							}
+						} else {
+
 						}
 					} else {
 						$bike_items['fields'][str_replace('_', ' ', $field)][$key] = $data;

@@ -65,7 +65,7 @@ class Home extends MY_Controller {
 				'share_count' => isset($home['engagement']) ? $home['engagement']['share_count'] : 0,
 				'mostviews' => $this->custom_model->bike_items(10),
 				'populars' => $this->custom_model->compare_items(10),
-				'feed' => $this->custom_model->blog_posts(10, FALSE, FALSE),
+				'feed' => $this->custom_model->blog_posts(10, FALSE, FALSE, TRUE),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
