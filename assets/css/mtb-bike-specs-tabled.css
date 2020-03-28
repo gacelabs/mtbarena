@@ -1,10 +1,10 @@
-#compare .mtb-specs-container {
-	margin-top: 15px;
-}
 #specs-tabled .mtb-item-specs_header {
 	display: grid;
 	grid-gap: 0;
-	grid-template-columns: 25% 75%;
+	grid-template-columns: 20% 80%;
+}
+#specs-tabled .header-extra {
+	padding-right: 10px;
 }
 #specs-tabled .mtb-header-container {
 	display: grid;
@@ -54,6 +54,7 @@
 }
 #specs-tabled .header-image-parent {
 	position: relative;
+	overflow: hidden;
 }
 #specs-tabled .image-overlay-parent {
 	height: 250px;
@@ -72,8 +73,25 @@
 	transform: scale(2);
 	width: inherit;
 }
-#landing #specs-tabled .header-image-parent .bike-feat-image, #singleBike #specs-tabled .header-image-parent .bike-feat-image {
-	height: 190px;
+#landing #specs-tabled .bike-feat-image,
+#compare #specs-tabled .bike-feat-image {
+	height: auto;
+	width: 85%;
+}
+#singleBike #specs-tabled .bike-feat-image {
+	height: 230px;
+	width: auto;
+} 
+#specs-tabled .bike-feat-image>img {
+	height: 100%;
+    width: 100%;
+}
+#singleBike #specs-tabled .bike-feat-image>img {
+	height: inherit;
+	width: inherit;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
 }
 #specs-tabled .header-image-parent .bike-feat-image {
 	height: 200px;
@@ -96,11 +114,11 @@
 #specs-tabled thead>tr>th {
 	border: 0 none;
 }
-#singleBike #specs-tabled thead .row-col-1.grid-100 {
-	width: 140px;
+#singleBike #specs-tabled .row-col-1.grid-100 {
+	width: 105px;
 }
-#compare #specs-tabled thead .row-col-1.grid-50-50, #landing #specs-tabled thead .row-col-1.grid-50-50 {
-	width: 280px;
+#compare #specs-tabled .row-col-1.grid-50-50, #landing #specs-tabled .row-col-1.grid-50-50 {
+	width: 210px;
 }
 #specs-tabled thead .row-col-2 {
 	border-right: 1px solid #e5d6f5;
@@ -108,7 +126,7 @@
 	color: #7f2496;
 	text-align: center;
 }
-#specs-tabled thead .row-col-1, #specs-tabled thead .row-col-2, #specs-tabled tbody>tr>td {
+#specs-tabled .row-col-1, #specs-tabled thead .row-col-2, #specs-tabled tbody>tr>td {
 	padding: 5px 10px;
 }
 #specs-tabled tbody>tr>td.col-bike-1, #specs-tabled tbody>tr>td.col-bike-2 {
@@ -117,7 +135,10 @@
 	color: #333;
 	width: 420px;
 }
-#specs-tabled thead .row-col-1, #specs-tabled tbody .row-col-1 {
+#specs-tabled tbody>tr>td.col-bike-2 {
+
+}
+#specs-tabled .row-col-1, #specs-tabled tbody .row-col-1 {
 	border-bottom: 1px solid #ddd;
 	background-color: #e8e8e8;
 	color: #888;
@@ -168,9 +189,13 @@
 		max-height: 140px;
 		overflow: hidden;
 	}
-	#landing #specs-tabled .header-image-parent .bike-feat-image, 
-	#singleBike #specs-tabled .header-image-parent .bike-feat-image, 
-	#compare #specs-tabled .header-image-parent .bike-feat-image {
+	#singleBike #specs-tabled .header-image-parent {
+		max-height: 215px;
+	}
+	#landing #specs-tabled .bike-feat-image, 
+	#singleBike #specs-tabled .bike-feat-image, 
+	#compare #specs-tabled .bike-feat-image, 
+	#singleBike #specs-tabled .bike-feat-image>img {
 		height: auto;
 		position: static;
 		transform: none;
@@ -182,7 +207,7 @@
 	#specs-tabled .bike-model-parent {
 		margin-top: 5px;
 	}
-	#specs-tabled thead .row-col-1, #specs-tabled tbody .row-col-1 {
+	#specs-tabled .row-col-1, #specs-tabled tbody .row-col-1 {
 		display: none;
 	}
 }

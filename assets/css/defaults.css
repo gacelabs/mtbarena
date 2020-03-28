@@ -431,12 +431,14 @@ textarea {
 	padding-right: 10px;
 	width: 100%;
 }
-.grid-item {
+.capsule-list {
+	display: inline-grid;
 	width: auto;
 	background-color: #eee;
-	padding: 2px 5px;
+	padding: 4px 8px;
 	border-radius: 10px;
 	margin-bottom: 5px;
+	margin-right: 5px;
 }
 .img-align.center {
 	text-align: center;

@@ -38,13 +38,14 @@ class Compare extends MY_Controller {
 				'page_left_column' => array(
 					'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding hidden-xs',
 					'ui_elements' => array(
+						'widget_elements/most_viewed_bikes_list',
 						'widget_elements/popular_comparison_list'
 					),
 				),
 				'page_center_column' => array(
 					'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9',
 					'ui_elements' => array(
-						'widget_elements/bike_finder'
+						'page_elements/mtb_bike_specs_tabled'
 					)
 				),
 				'page_right_column' => array(
@@ -55,7 +56,6 @@ class Compare extends MY_Controller {
 				'page_footer' => array(
 					'column_visibility_class' => 'col-lg-12',
 					'ui_elements' => array(
-						'page_elements/mtb_bike_specs_tabled'
 					)
 				),
 				'modals' => array(

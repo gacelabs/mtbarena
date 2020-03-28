@@ -7,12 +7,10 @@
 		</ul>
 	</div>
 	<div class="box-item-body">
-		<div class="grid">
-			<!-- LOOP here -->
-			<div class="grid-item">
-				<a href="<?php echo base_url('search/trinx'); ?>" style="text-decoration:none;"><p class="zero-gap">Trinx <small><kbd class="theme-kbd">123</kbd></small></p></a>
-			</div>
-			<!-- LOOP here -->
+		<!-- LOOP here -->
+		<div class="capsule-list">
+			<a href="<?php echo base_url('search/trinx'); ?>" style="text-decoration:none;">Trinx <small><kbd class="theme-kbd">123</kbd></small></a>
 		</div>
+		<!-- LOOP here -->
 	</div>
 </div>

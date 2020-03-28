@@ -1,5 +1,6 @@
 <?php // debug($page_data['populars']); ?>
 <?php if (isset($page_data['populars']) AND $page_data['populars']): ?>
+<div class="stick-me">
 	<div class="box-item">
 		<div class="box-item-body-top">
 			<p class="zero-gap color-theme"><b>Popular Comparison</b></p>
@@ -25,4 +26,6 @@
 			<a href="<?php echo base_url('compare'); ?>" style="text-decoration:none;"><p class="color-link zero-gap">View All</p></a>
 		</div>
 	</div>
+	<?php $this->load->view('widget_elements/mtb_arena_mini_footer'); ?>
+</div>
 <?php endif ?>

@@ -54,7 +54,9 @@
 								<div class="image-overlay-parent">
 									<div class="image-overlay-inner" style="background-image: url(<?php echo base_url('assets/data/files/bikes/foxter-powell-1.0.jpg'); ?>)"></div>
 								</div>
-								<img src="<?php echo base_url('assets/data/files/bikes/foxter-powell-1.0.jpg'); ?>" class="bike-feat-image">
+								<div class="bike-feat-image">
+									<img src="<?php echo base_url('assets/data/files/bikes/foxter-powell-1.0.jpg'); ?>">
+								</div>
 							</div>
 
 							<div class="bike-model-parent">
@@ -75,8 +77,7 @@
 					<table class="table">
 						<thead>
 							<tr>
-								<th class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">SPECS</th>
-								<th class="row-col-2" colspan="2">FRAME</th>
+								<th class="row-col-2" colspan="3">FRAME</th>
 							</tr>
 						</thead>
 						<tbody>

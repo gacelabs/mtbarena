@@ -69,7 +69,7 @@
 					?>
 				</div>
 
-				<div class="<?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>">
+				<div class="<?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>" col-position="center">
 					<?php 
 						foreach ($page_center_column['ui_elements'] as $ui_elements) {
 							$this->load->view($ui_elements);
