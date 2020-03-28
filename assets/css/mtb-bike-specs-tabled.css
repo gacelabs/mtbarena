@@ -1,0 +1,188 @@
+#compare .mtb-specs-container {
+	margin-top: 15px;
+}
+#specs-tabled .mtb-item-specs_header {
+	display: grid;
+	grid-gap: 0;
+	grid-template-columns: 25% 75%;
+}
+#specs-tabled .mtb-header-container {
+	display: grid;
+	grid-gap: 1%;
+}
+#specs-tabled .mtb-header-container.grid-100 {
+	grid-template-columns: 100%;
+}
+#specs-tabled .mtb-header-container.grid-50-50 {
+	grid-template-columns: 49.5% 49.5%;
+}
+#specs-tabled .mtb-header-container.grid-33-33-33 {
+	grid-template-columns: 33% 33% 33%;
+}
+#specs-tabled .mtb-header-container .mtb-header-inner {
+	height: auto;
+	width: 100%;
+}
+#specs-tabled .bike-model-parent {
+	margin-top: 10px;
+	position: relative;
+}
+#specs-tabled .bike-model-parent .input-bike-name {
+	border-radius: 0;
+	color: #555;
+	font-weight: bold;
+	text-align: center;
+	text-transform: capitalize;
+}
+#specs-tabled .bike-model-parent .input-bike-name::placeholder {
+	color: #555;
+	font-weight: bold;
+	transition: all .3s ease-in-out;
+}
+#specs-tabled .bike-model-parent .input-bike-name:focus::placeholder {
+	color: #ddd;
+}
+#specs-tabled .bike-model-parent .compare-search-icon {
+	color: #aaa;
+	position: absolute;
+	right: 10px;
+	top: 5px;
+}
+#specs-tabled .bike-model-parent .bike-specs-source {
+	margin: 0;
+	text-align: center;
+}
+#specs-tabled .header-image-parent {
+	position: relative;
+}
+#specs-tabled .image-overlay-parent {
+	height: 250px;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	width: 100%;
+}
+#specs-tabled .image-overlay-inner {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	filter: blur(3px);
+	height: inherit;
+	object-fit: cover;
+	transform: scale(2);
+	width: inherit;
+}
+#landing #specs-tabled .header-image-parent .bike-feat-image, #singleBike #specs-tabled .header-image-parent .bike-feat-image {
+	height: 190px;
+}
+#specs-tabled .header-image-parent .bike-feat-image {
+	height: 200px;
+	margin: 0 auto;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	z-index: 1;
+}
+#specs-tabled .mtb-item-specs_body {
+	margin-top: 15px;
+}
+#specs-tabled table {
+	margin-bottom: 0;
+}
+#specs-tabled table td {
+	font-size: 14px;
+}
+#specs-tabled thead>tr>th {
+	border: 0 none;
+}
+#singleBike #specs-tabled thead .row-col-1.grid-100 {
+	width: 140px;
+}
+#compare #specs-tabled thead .row-col-1.grid-50-50, #landing #specs-tabled thead .row-col-1.grid-50-50 {
+	width: 280px;
+}
+#specs-tabled thead .row-col-2 {
+	border-right: 1px solid #e5d6f5;
+	background-color: #e5d6f5;
+	color: #7f2496;
+	text-align: center;
+}
+#specs-tabled thead .row-col-1, #specs-tabled thead .row-col-2, #specs-tabled tbody>tr>td {
+	padding: 5px 10px;
+}
+#specs-tabled tbody>tr>td.col-bike-1, #specs-tabled tbody>tr>td.col-bike-2 {
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	color: #333;
+	width: 420px;
+}
+#specs-tabled thead .row-col-1, #specs-tabled tbody .row-col-1 {
+	border-bottom: 1px solid #ddd;
+	background-color: #e8e8e8;
+	color: #888;
+}
+@media screen and (max-width: 991px) {
+	#specs-tabled .image-overlay-parent {
+		height: 190px;
+	}
+	#specs-tabled .header-image-parent .bike-feat-image {
+		height: 140px;
+	}
+}
+@media screen and (max-width: 767px) {
+	#specs-tabled {
+		margin-bottom: 15px;
+	}
+	#specs-tabled div[class^="col-"] {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#specs-tabled .box-item-body {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	#specs-tabled tbody>tr>td.col-bike-2 {
+		border-right: 0 none;
+	}
+	#specs-tabled .box-item-body-top ul {
+		display: block;
+	}
+	#specs-tabled .box-item-body-top ul li:nth-child(2) {
+		text-align: left !important;
+		margin-top: 5px;
+	}
+	#specs-tabled .mtb-item-specs_header {
+	    grid-template-columns: 100%;
+	}
+	#specs-tabled .mtb-item-specs_header .header-extra {
+		display: none;
+	}
+	#specs-tabled .mtb-specs-container .box-item-body {
+		padding: 10px 0;
+	}
+	#specs-tabled .image-overlay-parent {
+		display: none;
+	}
+	#specs-tabled .header-image-parent {
+		max-height: 140px;
+		overflow: hidden;
+	}
+	#landing #specs-tabled .header-image-parent .bike-feat-image, 
+	#singleBike #specs-tabled .header-image-parent .bike-feat-image, 
+	#compare #specs-tabled .header-image-parent .bike-feat-image {
+		height: auto;
+		position: static;
+		transform: none;
+		width: 100%;
+	}
+	#specs-tabled .bike-model-parent .input-bike-name {
+		padding: 5px;
+	}
+	#specs-tabled .bike-model-parent {
+		margin-top: 5px;
+	}
+	#specs-tabled thead .row-col-1, #specs-tabled tbody .row-col-1 {
+		display: none;
+	}
+}

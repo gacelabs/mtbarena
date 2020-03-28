@@ -21,7 +21,7 @@ class Home extends MY_Controller {
 			),
 			'css_links' => array(
 				'assets/css/defaults',
-				'assets/css/mtb-bike-specs',
+				'assets/css/mtb-bike-specs-tabled',
 				'assets/css/news-feed-box',
 				'assets/css/mediaquery'
 			),
@@ -41,7 +41,7 @@ class Home extends MY_Controller {
 			'page_center_column' => array(
 				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
 				'ui_elements' => array(
-					'page_elements/mtb_bike_specs',
+					'page_elements/mtb_bike_specs_tabled',
 					'page_elements/news_feed_box'
 				)
 			),

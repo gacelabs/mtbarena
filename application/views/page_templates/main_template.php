@@ -69,7 +69,7 @@
 					?>
 				</div>
 
-				<div class="<?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>" col-position="center">
+				<div class="<?php echo(!empty($page_center_column['column_visibility_class']) ? $page_center_column['column_visibility_class'] : ''); ?>">
 					<?php 
 						foreach ($page_center_column['ui_elements'] as $ui_elements) {
 							$this->load->view($ui_elements);
@@ -89,12 +89,16 @@
 		</div>
 
 		<!-- page footer -->
-		<div class="<?php echo(!empty($page_footer['column_visibility_class']) ? $page_footer['column_visibility_class'] : ''); ?>">
-		<?php
-			foreach ($page_footer['ui_elements'] as $ui_element) {
-				$this->load->view($ui_element);
-			}
-		?>
+		<div class="container">
+			<div class="row">
+				<div class="<?php echo(!empty($page_footer['column_visibility_class']) ? $page_footer['column_visibility_class'] : ''); ?>">
+					<?php
+						foreach ($page_footer['ui_elements'] as $ui_element) {
+							$this->load->view($ui_element);
+						}
+					?>
+				</div>
+			</div>
 		</div>
 
 		<!-- modals -->

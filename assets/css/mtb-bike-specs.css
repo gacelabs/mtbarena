@@ -25,12 +25,15 @@
 /*.mtb-item-spec-desc-inner {
 	padding: 10px 10px 20px 10px;
 }*/
+.mtb-item-spec-desc {
+	border-bottom: 1px solid #dadada;
+}
 .mtb-item-spec-desc-inner>.mtb-item-spec-label {
 	background-color: #e8e8e8;
 }
 .mtb-item-spec-desc-inner>.mtb-item-spec-label, .mtb-item-spec-desc-inner>.mtb-item-desc-label {
 	padding: 10px;
-	border-bottom: 1px solid #dadada;
+	/*border-bottom: 1px solid #dadada;*/
 	box-shadow: 1px 0px 0 #dadada;
 }
 .mtb-item-model-parent:nth-child(2), .mtb-item-model-parent:nth-child(3) {
