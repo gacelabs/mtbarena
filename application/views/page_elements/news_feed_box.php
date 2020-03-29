@@ -8,7 +8,7 @@
 					<ul style="display: flex;">
 						<li class="news-feed-item-image-column">
 							<div>
-								<img class="image-cropped" src="<?php echo $feed['blog_feat_photo'];?>" alt="<?php echo $feed['blog_segment'];?>" title="<?php echo $feed['blog_title'];?>">
+								<img class="image-cropped" src="<?php echo $feed['blog_feat_photo'] ? $feed['blog_feat_photo'] : '';?>" alt="<?php echo $feed['blog_segment'];?>" title="<?php echo $feed['blog_title'];?>">
 							</div>
 						</li>
 						<li class="news-feed-item-story-column flex-to-ellipsis">

@@ -11,11 +11,11 @@ $(document).ready(function() {
 			var oSettings = {
 				url: 'dashboard/search',
 				dataType: 'json',
-				data: {'keyword':event.target.value, 'id:notin':excludedIds},
+				data: {'keyword':event.target.value, 'id:notin':[]},
 				beforeSend: function() {
 					$('.inputDropdown').remove();
 					var spinner = '<i class="fa fa-spinner fa-pulse fa-fw"></i>';
-					if ($(thisInput).parent('.modelItemLabelBox').find('.fa-spinner').length != 1) {
+					if ($(thisInput).parent('.bike-model-parent').find('.fa-spinner').length != 1) {
 						$(spinner).insertAfter(thisInput);
 					}
 				},
@@ -51,19 +51,19 @@ $(document).ready(function() {
 					if (isEmpty == false) {
 						inputDropdown += '</div>';
 						$(inputDropdown).insertAfter(thisInput);
-						$(thisInput).parent('.modelItemLabelBox').find('.inputDropdown').css('width', $(thisInput).parent('.modelItemLabelBox').width());
+						$(thisInput).parent('.bike-model-parent').find('.inputDropdown').css('width', $(thisInput).parent('.bike-model-parent').width());
 					}
 					$(window).bind('resize', function() {
-						$(thisInput).parent('.modelItemLabelBox').find('.inputDropdown').css('width', $(thisInput).parent('.modelItemLabelBox').width());
+						$(thisInput).parent('.bike-model-parent').find('.inputDropdown').css('width', $(thisInput).parent('.bike-model-parent').width());
 					});
-					$(thisInput).parent('.modelItemLabelBox').find('.fa-spinner').remove();
+					$(thisInput).parent('.bike-model-parent').find('.fa-spinner').remove();
 				}
 			};
 			if (recentAjax != false) recentAjax.abort();
 			recentAjax = $.ajax(oSettings);
 		} else {
-			$(thisInput).parent('.modelItemLabelBox').find('.inputDropdown').remove();
-			$(thisInput).parent('.modelItemLabelBox').find('.fa-spinner').remove();
+			$(thisInput).parent('.bike-model-parent').find('.inputDropdown').remove();
+			$(thisInput).parent('.bike-model-parent').find('.fa-spinner').remove();
 		}
 	});
 

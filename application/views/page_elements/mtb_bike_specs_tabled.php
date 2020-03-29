@@ -49,65 +49,88 @@
 
 					<div class="mtb-header-container <?php echo $gridCountArr[$bikeCount-1]; ?>">
 						<!-- LOOP here -->
-						<div class="mtb-header-inner">
-							<div class="header-image-parent">
-								<div class="image-overlay-parent">
-									<div class="image-overlay-inner" style="background-image: url(<?php echo base_url('assets/data/files/bikes/foxter-powell-1.0.jpg'); ?>)"></div>
+						<?php foreach ($infos as $key => $bike): ?>
+							<div class="mtb-header-inner">
+								<div class="header-image-parent">
+									<div class="image-overlay-parent">
+										<div class="image-overlay-inner" style="background-image: url(<?php echo base_url($bike['feat_photo']);?>)"></div>
+									</div>
+									<div class="bike-feat-image">
+										<img src="<?php echo base_url($bike['feat_photo']);?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
+									</div>
 								</div>
-								<div class="bike-feat-image">
-									<img src="<?php echo base_url('assets/data/files/bikes/foxter-powell-1.0.jpg'); ?>">
-								</div>
-							</div>
 
-							<div class="bike-model-parent">
-								<input type="text" name="change_bike_input" class="input-bike-name changeBikeInput form-control" placeholder="Foxter Powell 1.0" />
-								<span class="compare-search-icon">
-									<i class="fa fa-search"></i>
-								</span>
-								<p class="bike-specs-source">
-									<small class="color-lightgray mtb-item-model-spec-from">From: Official Manufacturer</small>
-								</p>
+								<div class="bike-model-parent">
+									<input type="text" name="change_bike_input" class="input-bike-name changeBikeInput form-control" placeholder="<?php echo ucwords($bike['bike_model']);?>" data-ids='<?php echo json_encode($bike_ids);?>' data-name="<?php echo $bike['bike_model'];?>" data-id='<?php echo $bike['id'];?>'/>
+									<p class="bike-specs-source">
+										<small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?></small>
+									</p>
+								</div>
 							</div>
-						</div>
+						<?php endforeach ?>
 						<!-- LOOP here -->
 					</div>
 				</div>
 
 				<div class="mtb-item-specs_body">
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="row-col-2" colspan="3">FRAME</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Brand</td>
-								<td class="col-bike-1">Stock (Manufacturer)</td>
-								<td class="col-bike-2">Generic (No brand)</td>
-							</tr>
-							<tr>
-								<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Sizes</td>
-								<td class="col-bike-1">XS < 14", S 15" - 16", M 17" - 18"</td>
-								<td class="col-bike-2">XS < 14", S 15" - 16", M 17" - 18"</td>
-							</tr>
-							<tr>
-								<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Built</td>
-								<td class="col-bike-1">Titanium</td>
-								<td class="col-bike-2">Titanium</td>
-							</tr>
-							<tr>
-								<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Features</td>
-								<td class="col-bike-1">Internal Cabling, Smooth Weld, Lightweight, Tapered Head Tube, Alloy Shaped Tubes</td>
-								<td class="col-bike-2">Internal Cabling, Smooth Weld, Lightweight, Tapered Head Tube, Alloy Shaped Tubes</td>
-							</tr>
-							<tr>
-								<td class="row-col-1 ">Colors</td>
-								<td class="col-bike-1">Multi-Tone, Red, Blue, Orange</td>
-								<td class="col-bike-2">Multi-Tone, Red, Blue, Orange</td>
-							</tr>
-						</tbody>
-					</table>
+					<?php foreach ($fields_data as $base => $fields): ?>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="row-col-2" colspan="3"><?php echo strtoupper(clean_string_name($base, ' '));?></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach ($fields as $column => $field): ?>
+									<?php if (is_array($field)): ?>
+									<tr>
+										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>"><?php echo ucwords($column);?></td>
+										<?php foreach ($field as $key => $value): ?>
+											<td class="col-bike-<?php echo $key+1;?>"><?php echo $value;?></td>
+										<?php endforeach ?>
+									</tr>
+									<?php elseif ($base == 'external link'): ?>
+									<tr>
+										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Website URL</td>
+										<?php foreach ($fields as $key => $value): ?>
+											<td class="col-bike-<?php echo $key+1;?>">
+												<a href="<?php echo $value;?>"><?php echo $value;?></a>
+											</td>
+										<?php endforeach; 
+										break;?>
+									</tr>
+									<?php elseif ($base == 'price tag'): ?>
+									<tr>
+										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Estimated Price</td>
+										<?php foreach ($fields as $key => $value): ?>
+											<?php if ($value == 'affordable'): 
+												$Range = 'Affordable';
+											elseif ($value == 'mid'): 
+												$Range = 'Mid Range';
+											elseif ($value == 'premium'): 
+												$Range = 'Premium';
+											endif ?>
+											<td class="col-bike-<?php echo $key+1;?>">
+												<small class="color-lightgray"><?php echo $Range;?></small>
+												<?php if ($value == 'mid'): ?>
+													<i class="fa fa-tags"></i>
+													<i class="fa fa-tags"></i>
+												<?php elseif ($value == 'premium'): ?>
+													<i class="fa fa-tags"></i>
+													<i class="fa fa-tags"></i>
+													<i class="fa fa-tags"></i>
+													<i class="fa fa-tags"></i>
+												<?php endif ?>
+												<i class="fa fa-tags"></i>
+											</td>
+										<?php endforeach; 
+										break;?>
+									</tr>
+									<?php endif ?>
+								<?php endforeach ?>
+							</tbody>
+						</table>
+					<?php endforeach ?>
 				</div>
 			</div>
 		</div>

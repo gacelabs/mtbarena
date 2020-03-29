@@ -98,9 +98,9 @@
 								<div class="mtb-item-spec-label">
 									<?php if ($field == 'affordable'): ?>
 										<p class="mtb-item-spec-label-text zero-gap">Affordable</p>
-										<?php elseif ($field == 'mid'): ?>
+									<?php elseif ($field == 'mid'): ?>
 										<p class="mtb-item-spec-label-text zero-gap">Mid Range</p>
-										<?php elseif ($field == 'premium'): ?>
+									<?php elseif ($field == 'premium'): ?>
 										<p class="mtb-item-spec-label-text zero-gap">Premium</p>
 									<?php endif ?>
 								</div>

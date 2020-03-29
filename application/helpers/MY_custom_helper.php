@@ -688,11 +688,9 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 									if ($parsed) {
 										foreach ($parsed as $idx => $tags) $mapped[] = $tags['value'];
 									}
-									$bike_items['fields'][$base][$key][$column] = count($mapped) ? implode(', ', $mapped) : 'Unspecified';
+									$bike_items['fields'][$base][$column][$key] = count($mapped) ? implode(', ', $mapped) : 'Unspecified';
 								}
 							}
-						} else {
-
 						}
 					} else {
 						$bike_items['fields'][str_replace('_', ' ', $field)][$key] = $data;
