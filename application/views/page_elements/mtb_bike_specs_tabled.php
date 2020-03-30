@@ -96,14 +96,14 @@
 										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>"><div class="td-col-label">Website URL</div></td>
 										<?php foreach ($fields as $key => $value): ?>
 											<td class="col-bike-<?php echo $key+1;?>">
-												<a href="<?php echo $value;?>"><?php echo $value;?></a>
+												<a href="<?php echo $value;?>" class="break-word"><?php echo $value;?></a>
 											</td>
 										<?php endforeach; 
 										break;?>
 									</tr>
 									<?php elseif ($base == 'price tag'): ?>
 									<tr>
-										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Estimated Price</td>
+										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>"><div class="td-col-label">Estimated Price</div></td>
 										<?php foreach ($fields as $key => $value): ?>
 											<?php if ($value == 'affordable'): 
 												$Range = 'Affordable';

@@ -67,16 +67,16 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	filter: blur(3px);
+	filter: blur(7px);
 	height: inherit;
 	object-fit: cover;
-	transform: scale(2);
+	transform: scale(1.5);
 	width: inherit;
 }
-#landing #specs-tabled .bike-feat-image,
-#compare #specs-tabled .bike-feat-image {
+#landing #specs-tabled .bike-feat-image, #compare #specs-tabled .bike-feat-image {
 	height: auto;
-	width: 85%;
+	width: 100%;
+	overflow: hidden;
 }
 #singleBike #specs-tabled .bike-feat-image {
 	height: 230px;
@@ -198,6 +198,9 @@
 }
 #specs-tabled .inputDropdown .result-bike-item .media-left>img {
 	width: 50px;
+}
+.break-word {
+	word-break: break-word;
 }
 @media screen and (max-width: 1440px) {
 	#compare #specs-tabled .row-col-1.grid-50-50 .td-col-label, #landing #specs-tabled .row-col-1.grid-50-50 .td-col-label {
