@@ -44,7 +44,7 @@
 			<div class="mtb-item-specs-parent">
 				<div class="mtb-item-specs_header">
 					<div class="header-extra">
-						header-extra
+						&nbsp;
 					</div>
 
 					<div class="mtb-header-container <?php echo $gridCountArr[$bikeCount-1]; ?>">
@@ -84,14 +84,16 @@
 								<?php foreach ($fields as $column => $field): ?>
 									<?php if (is_array($field)): ?>
 									<tr>
-										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>"><?php echo ucwords($column);?></td>
+										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">
+											<div class="td-col-label"><?php echo ucwords($column);?></div>
+										</td>
 										<?php foreach ($field as $key => $value): ?>
 											<td class="col-bike-<?php echo $key+1;?>"><?php echo $value;?></td>
 										<?php endforeach ?>
 									</tr>
 									<?php elseif ($base == 'external link'): ?>
 									<tr>
-										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>">Website URL</td>
+										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>"><div class="td-col-label">Website URL</div></td>
 										<?php foreach ($fields as $key => $value): ?>
 											<td class="col-bike-<?php echo $key+1;?>">
 												<a href="<?php echo $value;?>"><?php echo $value;?></a>

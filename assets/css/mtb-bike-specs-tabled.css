@@ -84,7 +84,7 @@
 } 
 #specs-tabled .bike-feat-image>img {
 	height: 100%;
-    width: 100%;
+	width: 100%;
 }
 #singleBike #specs-tabled .bike-feat-image>img {
 	height: inherit;
@@ -102,6 +102,12 @@
 	top: 50%;
 	z-index: 1;
 }
+#specs-tabled .mtb-item-specs_body table {
+	margin-bottom: 15px;
+}
+#specs-tabled .mtb-item-specs_body table:last-child {
+	margin-bottom: 0;
+}
 #specs-tabled .mtb-item-specs_body {
 	margin-top: 15px;
 }
@@ -117,8 +123,8 @@
 #singleBike #specs-tabled .row-col-1.grid-100 {
 	width: 105px;
 }
-#compare #specs-tabled .row-col-1.grid-50-50, #landing #specs-tabled .row-col-1.grid-50-50 {
-	width: 210px;
+#compare #specs-tabled .row-col-1.grid-50-50 .td-col-label, #landing #specs-tabled .row-col-1.grid-50-50 .td-col-label {
+	width: 150px;
 }
 #specs-tabled thead .row-col-2 {
 	border-right: 1px solid #e5d6f5;
@@ -140,8 +146,9 @@
 }
 #specs-tabled .row-col-1, #specs-tabled tbody .row-col-1 {
 	border-bottom: 1px solid #ddd;
-	background-color: #e8e8e8;
+	background-color: #f1f1f1;
 	color: #888;
+	border-left: 1px solid #ddd;
 }
 #specs-tabled .inputDropdown {
 	width: 214px;
@@ -151,6 +158,8 @@
 	box-shadow: 2px 2px 10px 2px rgba(0,0,0,0.15);
 	border: 1px solid #bbb;
 	padding: 4px 0;
+	max-height: 140px;
+	overflow-y: auto;
 }
 #specs-tabled .fa-spinner {
 	position: absolute;
@@ -190,12 +199,25 @@
 #specs-tabled .inputDropdown .result-bike-item .media-left>img {
 	width: 50px;
 }
+@media screen and (max-width: 1440px) {
+	#compare #specs-tabled .row-col-1.grid-50-50 .td-col-label, #landing #specs-tabled .row-col-1.grid-50-50 .td-col-label {
+		width: 150px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	#compare #specs-tabled .row-col-1.grid-50-50 .td-col-label, #landing #specs-tabled .row-col-1.grid-50-50 .td-col-label {
+		width: 120px;
+	}
+}
 @media screen and (max-width: 991px) {
 	#specs-tabled .image-overlay-parent {
 		height: 190px;
 	}
 	#specs-tabled .header-image-parent .bike-feat-image {
 		height: 140px;
+	}
+	#compare #specs-tabled .row-col-1.grid-50-50 .td-col-label, #landing #specs-tabled .row-col-1.grid-50-50 .td-col-label {
+		width: 85px;
 	}
 }
 @media screen and (max-width: 767px) {
@@ -221,7 +243,7 @@
 		margin-top: 5px;
 	}
 	#specs-tabled .mtb-item-specs_header {
-	    grid-template-columns: 100%;
+		grid-template-columns: 100%;
 	}
 	#specs-tabled .mtb-item-specs_header .header-extra {
 		display: none;
