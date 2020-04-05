@@ -12,6 +12,7 @@
 }
 .search .mtb-item-image {
 	object-fit: cover !important;
+	max-height: 250px;
 }
 .mtb-compare-bike-tiles-parent .grid-column-item-gutter:hover .box-item {
 	transition: all .3s ease-in-out;
