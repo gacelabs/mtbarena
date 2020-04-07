@@ -21,7 +21,7 @@ class SingleBike extends MY_Controller {
 				'assets/css/mtb-bike-specs-tabled',
 				'assets/css/mediaquery'
 			),
-			'title' => fix_title($bike_model) . ' Full Specifications | MTB Arena',
+			'title' => fix_title($bike_model) . ' | MTB Arena',
 			'body_id' => 'singleBike',
 			'body_class' => 'single-bike',
 			'page_nav' => 'page_statics/main_nav',
