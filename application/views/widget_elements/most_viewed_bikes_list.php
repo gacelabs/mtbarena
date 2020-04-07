@@ -13,7 +13,7 @@
 					</tr>
 					<?php foreach ($page_data['mostviews'] as $key => $bike): ?>
 						<tr>
-							<td><a href="<?php echo $bike['bike_url'];?>"><?php echo $bike['bike_model'];?></a></td>
+							<td><a href="<?php echo $bike['bike_url'];?>"><?php echo ucwords($bike['bike_model']);?></a></td>
 							<td align="center" id="bike-vcnt-<?php echo $bike['id'];?>"><?php echo $bike['view_count'];?></td>
 						</tr>
 					<?php endforeach ?>

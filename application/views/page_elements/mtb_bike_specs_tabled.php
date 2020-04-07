@@ -63,7 +63,7 @@
 								<div class="bike-model-parent">
 									<input type="text" name="change_bike_input" class="input-bike-name changeBikeInput form-control" placeholder="<?php echo ucwords($bike['bike_model']);?>" data-ids='<?php echo json_encode($bike_ids);?>' data-name="<?php echo $bike['bike_model'];?>" data-id='<?php echo $bike['id'];?>'/>
 									<p class="bike-specs-source">
-										<small class="color-lightgray mtb-item-model-spec-from">From: <?php echo $bike['store_name'];?></small>
+										<small class="color-lightgray mtb-item-model-spec-from">From: <?php echo ucwords($bike['store_name']);?></small>
 									</p>
 								</div>
 							</div>
@@ -88,7 +88,7 @@
 											<div class="td-col-label"><?php echo ucwords($column);?></div>
 										</td>
 										<?php foreach ($field as $key => $value): ?>
-											<td class="col-bike-<?php echo $key+1;?>"><?php echo $value;?></td>
+											<td class="col-bike-<?php echo $key+1;?>"><?php echo ucwords($value);?></td>
 										<?php endforeach ?>
 									</tr>
 									<?php elseif ($base == 'external link'): ?>

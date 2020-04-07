@@ -13,7 +13,7 @@
 							<tr id="compare-<?php echo $compare['id'];?>">
 								<td>
 									<a href="<?php echo $compare['compare_url'];?>">
-										<?php echo $compare['bike_data'][0]['bike_model'];?> vs. <?php echo $compare['bike_data'][1]['bike_model'];?>
+										<?php echo ucwords($compare['bike_data'][0]['bike_model']);?> vs. <?php echo ucwords($compare['bike_data'][1]['bike_model']);?>
 									</a>
 								</td>
 							</tr>
