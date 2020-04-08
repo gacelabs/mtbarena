@@ -12,10 +12,10 @@
 	transition: all .3s ease-in-out;
 }
 .mtb-compare-bike-tiles-parent a:nth-child(odd) .grid-column-item-gutter {
-	padding: 0 7.5px 12.5px 0;
+	padding: 0 7.5px 15px 0;
 }
 .mtb-compare-bike-tiles-parent a:nth-child(even) .grid-column-item-gutter {
-	padding: 0 0 12.5px 7.5px;
+	padding: 0 0 15px 7.5px;
 }
 .grid-column .mtb-item-model-inner:first-child {
 	border-right: 2px solid #fff;
@@ -58,9 +58,14 @@
 	}
 
 	.mtb-compare-bike-tiles-parent a:nth-child(odd) .grid-column-item-gutter {
-		padding: 0 5px 10px 0;
+		padding: 0 0 10px 0;
 	}
 	.mtb-compare-bike-tiles-parent a:nth-child(even) .grid-column-item-gutter {
-		padding: 0 0 10px 5px;
+		padding: 0 0 10px 0;
+	}
+}
+@media screen and (max-width: 414px) {
+	.mtb-item-image {
+		height: 95px;
 	}
 }
