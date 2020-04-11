@@ -161,13 +161,19 @@ $(document).ready(function() {
 	if ($('table').length) {
 		$(document.body).find('table').each(function(i, elem) {
 			if ($.fn.dataTable != undefined) $.fn.dataTable.ext.errMode = 'none';
-			var text = $.trim($(elem).find('tr th:last').text());
+			var text = $.trim($(elem).find('tr:first th:first small').text());
+			// console.log(text)
 			var blanks = {}, currency = {targets: []};
-			if ($.inArray(text.toLowerCase(), ['action','']) >= 0) {
-				var last_cnt = $(elem).find('tr th').length - 1;
+			if ($.inArray(text.toLowerCase(), ['photo','']) >= 0) {
 				blanks.orderable = false;
-				blanks.targets = [last_cnt];
+				blanks.targets = [0];
 			}
+			var text2 = $.trim($(elem).find('tr:first th:last small').text());
+			if ($.inArray(text2.toLowerCase(), ['actions','']) >= 0) {
+				var last_cnt = $(elem).find('tr:first th').length - 1;
+				blanks.targets.push(last_cnt);
+			}
+			// console.log(blanks)
 			oSettings = {
 				// stateSave: true,
 				// responsive: true,
@@ -215,10 +221,10 @@ $(document).ready(function() {
 				}
 			};
 
-			$(elem).find('tr th:not(:last)').each(function(j, elemTR) {
-				if ($.trim($(elemTR).text()).toLowerCase().indexOf('date') >= 0) {
+			$(elem).find('tr:first th:not(:first):not(:last)').each(function(j, elemTR) {
+				/*if ($.trim($(elemTR).text()).toLowerCase().indexOf('date') >= 0) {
 					oSettings.order = [[j, 'desc']];
-				}
+				}*/
 				if ($.trim($(elemTR).text()).toLowerCase().indexOf('price') >= 0 || 
 					$.trim($(elemTR).text()).toLowerCase().indexOf('rate') >= 0 || 
 					$.trim($(elemTR).text()).toLowerCase().indexOf('amount') >= 0) {

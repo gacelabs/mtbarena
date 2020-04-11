@@ -19,14 +19,14 @@
 					<?php if (isset($page_data['specs']) AND $page_data['specs']): ?>
 						<?php foreach ($page_data['specs'] as $key => $bike): ?>
 							<tr>
-								<th scope="row">
+								<td scope="row">
 									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $bike['feat_photo'];?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
-								</th>
-								<th>
+								</td>
+								<td>
 									<?php echo $bike['bike_model'];?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($bike['added']));?></small>		
-								</th>
+								</td>
 								<td>
 									<?php echo date('M j, Y', strtotime($bike['updated']));?> <small class="color-lightgray"></small>
 								</td>
@@ -67,14 +67,14 @@
 					<?php if (isset($page_data['blogs']) AND $page_data['blogs']): ?>
 						<?php foreach ($page_data['blogs'] as $key => $blog): ?>
 							<tr>
-								<th scope="row">
+								<td scope="row">
 									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $blog['blog_feat_photo']; ?>" alt="" title="">
-								</th>
-								<th>
+								</td>
+								<td>
 									<?php echo $blog['blog_title']; ?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($blog['added']));?></small>		
-								</th>
+								</td>
 								<td>
 									<?php echo date('F j, Y', strtotime($blog['updated']));?>
 								</td>
