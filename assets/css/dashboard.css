@@ -16,7 +16,7 @@
 .table-responsive .dataTables_filter, .table-responsive .render-datatable {
 	margin-bottom: 10px;
 }
-.table-responsive .paginate_button.current {
+.table-responsive .paginate_button {
 	padding: 0 !important;
 }
 .table-responsive .dataTables_filter input {
