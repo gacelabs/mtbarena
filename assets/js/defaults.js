@@ -153,6 +153,10 @@ $(document).ready(function() {
 			seq++;
 		}, 1000);
 	}
+
+	if ($('.render-datatable').length) {
+		$('.render-datatable').DataTable();
+	}
 });
 
 $(window).on('load resize change', function() {

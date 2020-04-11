@@ -4,7 +4,7 @@
 	</div>
 	<div class="box-item-body">
 		<div class="table-responsive zero-gap">
-			<table class="table table-striped zero-gap">
+			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
 						<th><small>Photo</small></th>
@@ -52,7 +52,7 @@
 	</div>
 	<div class="box-item-body">
 		<div class="table-responsive zero-gap">
-			<table class="table table-striped zero-gap">
+			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
 						<th><small>Photo</small></th>
