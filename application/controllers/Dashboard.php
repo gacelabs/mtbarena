@@ -24,13 +24,13 @@ class Dashboard extends MY_Controller {
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
-				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-12 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/menu'
 				),
 			),
 			'page_center_column' => array(
-				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-12 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/posts_list'
 				)

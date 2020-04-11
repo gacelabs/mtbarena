@@ -17,4 +17,10 @@
 	.dashboard-menu-parent {
 		margin-bottom: 15px;
 	}
+	.table-responsive .render-datatable {
+		white-space: nowrap;
+	}
+	.table-responsive .render-datatable .th-inner {
+		min-width: 50px;
+	}
 }

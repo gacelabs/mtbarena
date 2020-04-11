@@ -7,12 +7,12 @@
 			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
-						<th><small>Photo</small></th>
-						<th><small>Bike Model</small></th>
-						<th><small>Updated</small></th>
-						<th><small>Views</small></th>
-						<th><small>Likes</small></th>
-						<th><small>Actions</small></th>
+						<th><div class="th-inner"><small>Photo</small></div></th>
+						<th><div class="th-inner"><small>Bike Model</small></div></th>
+						<th><div class="th-inner"><small>Updated</small></div></th>
+						<th><div class="th-inner"><small>Views</small></div></th>
+						<th><div class="th-inner"><small>Likes</small></div></th>
+						<th><div class="th-inner"><small>Actions</small></div></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -55,12 +55,12 @@
 			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
-						<th><small>Photo</small></th>
-						<th><small>Blog Title</small></th>
-						<th><small>Updated</small></th>
-						<th><small>Views</small></th>
-						<th><small>Likes</small></th>
-						<th><small>Actions</small></th>
+						<th><div class="th-inner"><small>Photo</small></div></th>
+						<th><div class="th-inner"><small>Blog Title</small></div></th>
+						<th><div class="th-inner"><small>Updated</small></div></th>
+						<th><div class="th-inner"><small>Views</small></div></th>
+						<th><div class="th-inner"><small>Likes</small></div></th>
+						<th><div class="th-inner"><small>Actions</small></div></th>
 					</tr>
 				</thead>
 				<tbody>
