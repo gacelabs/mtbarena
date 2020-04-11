@@ -13,6 +13,18 @@
 .tagify__dropdown__wrapper {
 	/*border-top: 3px solid #3595f6;*/
 }
+.table-responsive .dataTables_filter, .table-responsive .render-datatable {
+	margin-bottom: 10px;
+}
+.table-responsive .paginate_button.current {
+	padding: 0 !important;
+}
+.table-responsive .dataTables_filter input {
+	border: 1px solid #ccc;
+	padding: 6px 10px;
+	outline: none;
+	margin-bottom: 
+}
 @media screen and (max-width: 767px) {
 	.dashboard-menu-parent {
 		margin-bottom: 15px;

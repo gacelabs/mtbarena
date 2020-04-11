@@ -23,7 +23,7 @@
 									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $bike['feat_photo'];?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
 								</td>
 								<td>
-									<?php echo $bike['bike_model'];?>
+									<?php echo ucwords($bike['bike_model']);?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($bike['added']));?></small>		
 								</td>

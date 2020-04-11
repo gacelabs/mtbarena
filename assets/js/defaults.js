@@ -177,13 +177,13 @@ $(document).ready(function() {
 			oSettings = {
 				// stateSave: true,
 				// responsive: true,
+				"aaSorting": [[ 2, "asc" ]],
 				columnDefs: [blanks],
 				language: {
 					"search": "",
 					"lengthMenu": "_MENU_ Records",
 					"infoEmpty": "",
 					"emptyTable": "No posts found.",
-					"zeroRecords": "We can't seem to find that in your record.",
 					"searchPlaceholder": "Search...",
 					"info": "Total Records: <b>_TOTAL_</b>",
 					"infoFiltered": " matched found",
