@@ -22,12 +22,12 @@
 								<td scope="row">
 									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $bike['feat_photo'];?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
 								</td>
-								<td>
+								<td data-sort="<?php echo ucwords($bike['bike_model']);?>">
 									<?php echo ucwords($bike['bike_model']);?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($bike['added']));?></small>		
 								</td>
-								<td>
+								<td data-sort="<?php echo strtotime($bike['updated']);?>">
 									<?php echo date('M j, Y', strtotime($bike['updated']));?> <small class="color-lightgray"></small>
 								</td>
 								<td><?php echo $bike['view_count'];?></td>
@@ -70,12 +70,12 @@
 								<td scope="row">
 									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $blog['blog_feat_photo']; ?>" alt="" title="">
 								</td>
-								<td>
+								<td data-sort="<?php echo $blog['blog_title']; ?>">
 									<?php echo $blog['blog_title']; ?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($blog['added']));?></small>		
 								</td>
-								<td>
+								<td data-sort="<?php echo strtotime($blog['updated']);?>">
 									<?php echo date('F j, Y', strtotime($blog['updated']));?>
 								</td>
 								<td><?php echo $blog['view_count']; ?></td>
