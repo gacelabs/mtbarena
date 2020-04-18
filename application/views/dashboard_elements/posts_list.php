@@ -68,10 +68,10 @@
 						<?php foreach ($page_data['blogs'] as $key => $blog): ?>
 							<tr>
 								<td scope="row">
-									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $blog['blog_feat_photo']; ?>" alt="" title="">
+									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $blog['blog_feat_photo']; ?>" alt="<?php echo $blog['blog_title'];?>" title="<?php echo $blog['blog_title'];?>">
 								</td>
-								<td data-sort="<?php echo $blog['blog_title']; ?>">
-									<?php echo $blog['blog_title']; ?>
+								<td data-sort="<?php echo $blog['blog_title'];?>">
+									<?php echo $blog['blog_title'];?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($blog['added']));?></small>		
 								</td>
