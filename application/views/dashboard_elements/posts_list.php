@@ -7,12 +7,12 @@
 			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
-						<th><small>Photo</small></th>
-						<th><small>Bike Model</small></th>
-						<th><small>Updated</small></th>
-						<th><small>Views</small></th>
-						<th><small>Likes</small></th>
-						<th><small>Actions</small></th>
+						<th><div class="th-inner"><small>Photo</small></div></th>
+						<th><div class="th-inner"><small>Bike Model</small></div></th>
+						<th><div class="th-inner"><small>Updated</small></div></th>
+						<th><div class="th-inner"><small>Views</small></div></th>
+						<th><div class="th-inner"><small>Likes</small></div></th>
+						<th><div class="th-inner"><small>Actions</small></div></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -23,7 +23,7 @@
 									<img class="image-cropped small" style="border:1px solid #ccc;object-fit:scale-down;" src="<?php echo $bike['feat_photo'];?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
 								</td>
 								<td>
-									<?php echo $bike['bike_model'];?>
+									<?php echo ucwords($bike['bike_model']);?>
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($bike['added']));?></small>		
 								</td>
@@ -55,12 +55,12 @@
 			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
-						<th><small>Photo</small></th>
-						<th><small>Blog Title</small></th>
-						<th><small>Updated</small></th>
-						<th><small>Views</small></th>
-						<th><small>Likes</small></th>
-						<th><small>Actions</small></th>
+						<th><div class="th-inner"><small>Photo</small></div></th>
+						<th><div class="th-inner"><small>Blog Title</small></div></th>
+						<th><div class="th-inner"><small>Updated</small></div></th>
+						<th><div class="th-inner"><small>Views</small></div></th>
+						<th><div class="th-inner"><small>Likes</small></div></th>
+						<th><div class="th-inner"><small>Actions</small></div></th>
 					</tr>
 				</thead>
 				<tbody>

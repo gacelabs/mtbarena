@@ -24,13 +24,13 @@ class Dashboard extends MY_Controller {
 			'page_nav' => 'page_statics/main_nav',
 			'bikes_to_compare' => '',
 			'page_left_column' => array(
-				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
+				'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-12 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/menu'
 				),
 			),
 			'page_center_column' => array(
-				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+				'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-12 col-xs-padding',
 				'ui_elements' => array(
 					'dashboard_elements/posts_list'
 				)
@@ -50,8 +50,8 @@ class Dashboard extends MY_Controller {
 				
 			),
 			'page_data' => array(
-				'specs' => $this->custom_model->bike_items(10, ['user_id'=>$this->accounts->profile['id']]),
-				'blogs' => $this->custom_model->blog_posts(10, FALSE, ['user_id'=>$this->accounts->profile['id']]),
+				'specs' => $this->custom_model->bike_items("", ['user_id'=>$this->accounts->profile['id']]),
+				'blogs' => $this->custom_model->blog_posts("", FALSE, ['user_id'=>$this->accounts->profile['id']]),
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',

@@ -158,7 +158,7 @@ $(document).ready(function() {
 		$('.render-datatable').DataTable();
 	}*/
 
-	if ($('table').length) {
+	if ($('.render-datatable').length) {
 		$(document.body).find('table').each(function(i, elem) {
 			if ($.fn.dataTable != undefined) $.fn.dataTable.ext.errMode = 'none';
 			var text = $.trim($(elem).find('tr:first th:first small').text());
@@ -177,13 +177,13 @@ $(document).ready(function() {
 			oSettings = {
 				// stateSave: true,
 				// responsive: true,
+				"aaSorting": [[ 2, "asc" ]],
 				columnDefs: [blanks],
 				language: {
 					"search": "",
 					"lengthMenu": "_MENU_ Records",
 					"infoEmpty": "",
-					"emptyTable": "Your record is empty.",
-					"zeroRecords": "We can't seem to find that in your record.",
+					"emptyTable": "No posts found.",
 					"searchPlaceholder": "Search...",
 					"info": "Total Records: <b>_TOTAL_</b>",
 					"infoFiltered": " matched found",
