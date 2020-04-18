@@ -222,9 +222,9 @@ $(document).ready(function() {
 			};
 
 			$(elem).find('tr:first th:not(:first):not(:last)').each(function(j, elemTR) {
-				/*if ($.trim($(elemTR).text()).toLowerCase().indexOf('date') >= 0) {
+				if ($.trim($(elemTR).text()).toLowerCase().indexOf('updated') >= 0) {
 					oSettings.order = [[j, 'desc']];
-				}*/
+				}
 				if ($.trim($(elemTR).text()).toLowerCase().indexOf('price') >= 0 || 
 					$.trim($(elemTR).text()).toLowerCase().indexOf('rate') >= 0 || 
 					$.trim($(elemTR).text()).toLowerCase().indexOf('amount') >= 0) {

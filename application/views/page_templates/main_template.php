@@ -35,18 +35,14 @@
 		);
 		if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
 			$googleAnalyticsPages = ['landing', 'compare', 'singleBike'];
-	
 			if (in_array($body_id, $googleAnalyticsPages)) {
 				echo '<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSTM2RN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>';
 			}
 		}
-
 	?>
-
 	</div>
-	<!-- page nav -->
+		<!-- page nav -->
 		<?php
-
 			if (isset($page_nav) && $page_nav)
 			{
 				$this->load->view($page_nav);
@@ -55,7 +51,6 @@
 			{
 				echo "page_nav module unable to load.<br>";
 			}
-
 		?>
 
 		<!-- page body -->
@@ -103,16 +98,13 @@
 
 		<!-- modals -->
 		<?php
-
 			if (isset($modals) && $modals)
 			{
 				foreach ($modals as $modal) {
 					$this->load->view($modal);
 				}
 			}
-
 		?>
-
 		<!-- footer scripts -->
 		<?php if ($footer_scripts) {foreach ($footer_scripts as $script) {echo $script;}} ?>
 </body>

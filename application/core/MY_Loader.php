@@ -84,7 +84,9 @@ class MY_Loader extends CI_Loader {
 		 *	then stop the timer it won't be accurate.
 		 */
 		ob_start();
-		if (defined('ENVIRONMENT') AND ENVIRONMENT == 'development') echo '<!-- TEMPLATE START : '.(str_replace('/', '\\', $_ci_path)).' -->';
+		if (defined('ENVIRONMENT') AND ENVIRONMENT == 'development' AND !strpos($_ci_path, 'sitemap')) {
+			echo '<!-- TEMPLATE START : '.(str_replace('/', '\\', $_ci_path)).' -->';
+		}
 
 		// If the PHP installation does not support short tags we'll
 		// do a little string replacement, changing the short tags
@@ -97,7 +99,9 @@ class MY_Loader extends CI_Loader {
 		{
 			include($_ci_path); // include() vs include_once() allows for multiple views with the same name
 		}
-		if (defined('ENVIRONMENT') AND ENVIRONMENT == 'development') echo '<!-- TEMPLATE END : '.(str_replace('/', '\\', $_ci_path)).' -->';
+		if (defined('ENVIRONMENT') AND ENVIRONMENT == 'development' AND !strpos($_ci_path, 'sitemap')) {
+			echo '<!-- TEMPLATE END : '.(str_replace('/', '\\', $_ci_path)).' -->';
+		}
 
 		log_message('info', 'File loaded: '.$_ci_path);
 

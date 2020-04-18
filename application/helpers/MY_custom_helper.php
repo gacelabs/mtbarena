@@ -729,9 +729,19 @@ function check_and_save_matchup($items_data=FALSE)
 		// debug($data, 1);
 
 		if ($data == FALSE) {
-			return $ci->custom_model->new('match_ups', ['bike_data' => $json, 'today' => $today]);
+			$id = $ci->custom_model->new('match_ups', ['bike_data' => $json, 'today' => $today]);
+			return ['id' => $id, 'table' => 'match_ups'];
 		} else {
-			return $data['id'];
+			/*get random compares*/
+			$ci->db->order_by('id', 'RANDOM');
+			$ci->db->limit(1);
+			$query = $ci->db->get('compares');
+			if ($query->num_rows()) {
+				$data = $query->row_array();
+				return ['id' => $data['id'], 'table' => 'compares'];
+			} else {
+				return ['id' => $data['id'], 'table' => 'match_ups'];
+			}
 		}
 	}
 }
@@ -893,4 +903,10 @@ function get_shortcode_values($data=FALSE)
 		}
 	}
 	return $data;
+}
+
+function whats_the_day($in='tomorrow')
+{
+	$datetime = new DateTime($in);
+	return $datetime->format('Y-m-d');
 }

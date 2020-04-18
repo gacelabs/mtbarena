@@ -7,12 +7,41 @@ class Home extends MY_Controller {
 		$this->load->model('custom_model');
 		$home = curl_get_shares(current_full_url());
 		// debug($home, 1);
-		$items_data = $this->custom_model->bike_items();
-		$match_id = check_and_save_matchup($items_data);
-		$where = construct_where($match_id, 'match_ups.');
-		$items_data = $this->custom_model->matchup_bikes($where);
-		// debug($items_data, 1);
-		$bike_items = manipulate_bike_display_data($items_data, $match_id, 'match_ups');
+
+		$today = date('Y-m-d');
+		$matchup_date = $this->session->userdata('matchup_date');
+		$todays_matchup = $this->session->userdata('todays_matchup');
+		// debug($matchup_date != NULL AND $matchup_date != $today); exit();
+
+		/*check saved matchup_date is not today*/
+		if ($matchup_date != NULL AND $matchup_date != $today) {
+			$this->session->unset_userdata('todays_matchup');
+			$this->session->unset_userdata('matchup_date');
+			/*get again*/
+			$matchup_date = $this->session->userdata('todays_matchup');
+			$todays_matchup = $this->session->userdata('todays_matchup');
+		}
+
+		/*check and resetup todays match up*/
+		if ($matchup_date == NULL AND $todays_matchup == NULL) {
+			$items_data = $this->custom_model->bike_items();
+			$results = check_and_save_matchup($items_data);
+			$where = construct_where($results['id'], $results['table'].'.');
+			// debug($where, 1);
+			if ($results['table'] == 'compares') {
+				$items_data = $this->custom_model->compared_bikes($where);
+				$bike_items = manipulate_bike_display_data($items_data, $results['id'], 'compares');
+			} else {
+				$items_data = $this->custom_model->matchup_bikes($where);
+				$bike_items = manipulate_bike_display_data($items_data, $results['id'], 'match_ups');
+			}
+			/*reset*/
+			$this->session->set_userdata('matchup_date', $today);
+			$this->session->set_userdata('todays_matchup', $bike_items);
+		} else {
+			/*not yet tomorrow*/
+			$bike_items = $todays_matchup;
+		}
 		// debug($bike_items, 1);
 
 		$structure = array(
