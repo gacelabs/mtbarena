@@ -23,11 +23,14 @@ class Ajax extends MY_Controller {
 				$method = strtolower($method);
 				if ($method) {
 					switch ($method) {
-						case 'home': case 'compare':
+						case 'home': case 'compare': case 'compares':
 							if ($method == 'compare') {
 								$table = 'compares';
-							} else {
+							} elseif ($method == 'home') {
 								$table = 'match_ups';
+							} else {
+								$table = 'compares';
+								$method = 'compare';
 							}
 
 							if (isset($data[1])) {
@@ -50,7 +53,7 @@ class Ajax extends MY_Controller {
 						
 						default:
 							if ($method == 'postblog') $table = 'blog_posts';
-							if (in_array($method, ['home', 'singlebike'])) $table = 'bike_items';
+							if (in_array($method, ['bike_items', 'singlebike'])) $table = 'bike_items';
 
 							if (isset($table)) {
 								foreach ($data as $key => $id) {

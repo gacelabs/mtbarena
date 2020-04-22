@@ -663,6 +663,7 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 					if (in_array($field, ['id','view_count','share_count','like_count'])) {
 						if ($field == 'id') {
 							$bike_items['other']['id'] = $id;
+							$bike_items['other']['table'] = $table;
 							$bike_items['other']['bike_ids'][] = $data;
 							$bike_items['info'][$key]['id'] = $data;
 						} else {
@@ -699,6 +700,7 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 			}
 		}
 		// debug($bike_items, 1);
+		$bike_items['table'] = $table;
 		return $bike_items;
 	}
 	return FALSE;

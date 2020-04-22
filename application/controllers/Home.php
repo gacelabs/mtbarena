@@ -41,6 +41,17 @@ class Home extends MY_Controller {
 		} else {
 			/*not yet tomorrow*/
 			$bike_items = $todays_matchup;
+			if (isset($bike_items['other'])) {
+				$other = $bike_items['other'];
+				$method = $other['table'] == 'compares' ? 'compare' : ($other['table'] == 'match_ups' ? 'home' : $other['table']);
+				$post_id = $other['id'];
+				$where = "class = '$method' AND post_id = '".$post_id."'";
+				$likes_map = $this->custom_model->get('likes_map', $where);
+				// debug($likes_map, 1);
+				if ($likes_map) {
+					$bike_items['other']['like_count'] = count($likes_map);
+				}
+			}
 		}
 		// debug($bike_items, 1);
 

@@ -1,20 +1,21 @@
 <?php 
 	// debug($page_data, 1);
 	if (isset($page_data['bikes']) AND $page_data['bikes']): 
-	// total number of bikes in comparison
-	// value comes from $page_data['bikes'] array, counting keys within the said array
-	// this prevents error on $page_data['bikes'] index if there is only 1 data in the bike_item table
-	$infos = $page_data['bikes']['info'];
-	$fields_data = $page_data['bikes']['fields'];
+		// total number of bikes in comparison
+		// value comes from $page_data['bikes'] array, counting keys within the said array
+		// this prevents error on $page_data['bikes'] index if there is only 1 data in the bike_item table
+		$infos = $page_data['bikes']['info'];
+		$fields_data = $page_data['bikes']['fields'];
 
-	$bikeCount = count($infos);
-	// parse the class along .grid-column according to $bikeCount value
-	$gridCountArr = ['grid-100', 'grid-50-50', 'grid-33-33-33'];
+		$bikeCount = count($infos);
+		// parse the class along .grid-column according to $bikeCount value
+		$gridCountArr = ['grid-100', 'grid-50-50', 'grid-33-33-33'];
 
-	$id = $page_data['bikes']['other']['id'];
-	$bike_ids = $page_data['bikes']['other']['bike_ids'];
-	$like_count = $page_data['bikes']['other']['like_count'];
-	$share_count = $page_data['bikes']['other']['share_count'];
+		$id = $page_data['bikes']['other']['id'];
+		$bike_ids = $page_data['bikes']['other']['bike_ids'];
+		$like_count = $page_data['bikes']['other']['like_count'];
+		$share_count = $page_data['bikes']['other']['share_count'];
+		$table = $page_data['bikes']['table'];
 ?>
 
 	<div class="box-item mtb-specs-container" id="specs-tabled">
@@ -33,7 +34,7 @@
 					<button type="button" class="btn btn-xs btn-sq" onclick="popupSharer(this, '<?php echo current_full_url();?>', <?php echo $id;?>, '<?php echo $this->class_name;?>');">
 						<i class="fa fa-facebook color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="shcount"><?php echo $share_count;?></kbd></small>
 					</button>
-					<button type="button" class="btn btn-xs btn-sq" onclick='countHeart(this, "<?php echo $this->class_name;?>", <?php echo json_encode(['data'=>json_encode($bike_ids)]);?>)'>
+					<button type="button" class="btn btn-xs btn-sq" onclick='countHeart(this, "<?php echo $table;?>", <?php echo json_encode(['data'=>json_encode($bike_ids)]);?>)'>
 						<i class="fa fa-heart-o color-theme"></i> <small class="theme-kbd" style="margin-left:2px;"><kbd class="hcount"><?php echo $like_count;?></kbd></small>
 					</button>
 				</li>
