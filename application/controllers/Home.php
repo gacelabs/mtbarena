@@ -7,52 +7,12 @@ class Home extends MY_Controller {
 		$this->load->model('custom_model');
 		$home = curl_get_shares(current_full_url());
 		// debug($home, 1);
-
-		$today = date('Y-m-d');
-		$matchup_date = $this->session->userdata('matchup_date');
-		$todays_matchup = $this->session->userdata('todays_matchup');
-		// debug($matchup_date != NULL AND $matchup_date != $today); exit();
-
-		/*check saved matchup_date is not today*/
-		if ($matchup_date != NULL AND $matchup_date != $today) {
-			$this->session->unset_userdata('todays_matchup');
-			$this->session->unset_userdata('matchup_date');
-			/*get again*/
-			$matchup_date = $this->session->userdata('todays_matchup');
-			$todays_matchup = $this->session->userdata('todays_matchup');
-		}
-
-		/*check and resetup todays match up*/
-		if ($matchup_date == NULL AND $todays_matchup == NULL) {
-			$items_data = $this->custom_model->bike_items();
-			$results = check_and_save_matchup($items_data);
-			$where = construct_where($results['id'], $results['table'].'.');
-			// debug($where, 1);
-			if ($results['table'] == 'compares') {
-				$items_data = $this->custom_model->compared_bikes($where);
-				$bike_items = manipulate_bike_display_data($items_data, $results['id'], 'compares');
-			} else {
-				$items_data = $this->custom_model->matchup_bikes($where);
-				$bike_items = manipulate_bike_display_data($items_data, $results['id'], 'match_ups');
-			}
-			/*reset*/
-			$this->session->set_userdata('matchup_date', $today);
-			$this->session->set_userdata('todays_matchup', $bike_items);
-		} else {
-			/*not yet tomorrow*/
-			$bike_items = $todays_matchup;
-			if (isset($bike_items['other'])) {
-				$other = $bike_items['other'];
-				$method = $other['table'] == 'compares' ? 'compare' : ($other['table'] == 'match_ups' ? 'home' : $other['table']);
-				$post_id = $other['id'];
-				$where = "class = '$method' AND post_id = '".$post_id."'";
-				$likes_map = $this->custom_model->get('likes_map', $where);
-				// debug($likes_map, 1);
-				if ($likes_map) {
-					$bike_items['other']['like_count'] = count($likes_map);
-				}
-			}
-		}
+		$items_data = $this->custom_model->bike_items();
+		$results = check_and_save_matchup($items_data);
+		$where = construct_where($results['id'], $results['table'].'.');
+		// debug($where, 1);
+		$items_data = $this->custom_model->matchup_bikes($where);
+		$bike_items = manipulate_bike_display_data($items_data, $results['id'], 'match_ups');
 		// debug($bike_items, 1);
 
 		$structure = array(

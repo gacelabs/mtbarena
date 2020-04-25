@@ -728,22 +728,25 @@ function check_and_save_matchup($items_data=FALSE)
 			$data = $ci->custom_model->get('match_ups', "bike_data = '$bike_data'", FALSE, 'row');
 			$json = $bike_data;
 		}
-		// debug($data, 1);
 
 		if ($data == FALSE) {
 			$id = $ci->custom_model->new('match_ups', ['bike_data' => $json, 'today' => $today]);
 			return ['id' => $id, 'table' => 'match_ups'];
 		} else {
-			/*get random compares*/
-			$ci->db->order_by('id', 'RANDOM');
-			$ci->db->limit(1);
-			$query = $ci->db->get('compares');
-			if ($query->num_rows()) {
+			$data = $ci->custom_model->get('match_ups', "today = '".$today."'", FALSE, 'row');
+			// debug($data == FALSE, 1);
+			if ($data == FALSE) {
+				/*get random compares*/
+				$ci->db->order_by('id', 'RANDOM');
+				$ci->db->limit(1);
+				$query = $ci->db->get('compares');
 				$data = $query->row_array();
-				return ['id' => $data['id'], 'table' => 'compares'];
-			} else {
-				return ['id' => $data['id'], 'table' => 'match_ups'];
+				if ($query->num_rows()) {
+					$items_data = $ci->custom_model->compared_bikes(['id'=>$data['id']]);
+					return check_and_save_matchup($items_data);
+				}
 			}
+			return ['id' => $data['id'], 'table' => 'match_ups'];
 		}
 	}
 }
