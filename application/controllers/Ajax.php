@@ -23,10 +23,10 @@ class Ajax extends MY_Controller {
 				$method = strtolower($method);
 				if ($method) {
 					switch ($method) {
-						case 'home': case 'compare': case 'compares':
+						case 'home': case 'compare': case 'compares': case 'match_ups':
 							if ($method == 'compare') {
 								$table = 'compares';
-							} elseif ($method == 'home') {
+							} elseif (in_array($method, ['home', 'match_ups'])) {
 								$table = 'match_ups';
 							} else {
 								$table = 'compares';
