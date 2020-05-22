@@ -396,6 +396,7 @@ class Dashboard extends MY_Controller {
 		$this->load->model('custom_model');
 		$post = $this->input->get();
 		$and = "";
+		// debug($post, 1);
 		if ($post) {
 			$query = trim($post['keyword']);
 			if (isset($post['id:not'])) {
@@ -408,7 +409,7 @@ class Dashboard extends MY_Controller {
 				$and = " AND b.id = '".$post['id:is']."'";
 			}
 		}
-		// debug($post, 1);
+		// debug($and, 1);
 		// $bike_items = $this->custom_model->bike_items(FALSE, "b.bike_model LIKE '%$query%'".$and);
 		$bike_items = bike_search(urldecode($query), $and);
 		// debug($bike_items, 1);

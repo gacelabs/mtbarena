@@ -89,3 +89,5 @@ defined('APPID') OR define('APPID', '489158908632449');
 defined('FBTOKEN') OR define('FBTOKEN', '489158908632449|eea3208574301632162bb4d9256018b4');
 
 defined('VIEW_COUNT_THRESHOLD') OR define('VIEW_COUNT_THRESHOLD', 5); /*in seconds*/
+defined('GACELABS_SUPER_KEY')  OR define('GACELABS_SUPER_KEY', '&@c3L4b$-5uP3R-k3y');
+defined('GACELABS_KEY')		   OR define('GACELABS_KEY', '&@c3L4b$-k3y');

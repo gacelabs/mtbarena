@@ -87,7 +87,7 @@ function check_instance($obj=FALSE, $class=NULL)
 function format_ip($ip='')
 {
 	$ci =& get_instance();
-	$ID = '0'.'no-email@mtbarena.com'.$ip;
+	$ID = GACELABS_SUPER_KEY.$ip;
 	if (isset($ci->accounts) AND $ci->accounts->has_session) {
 		$ID = $ci->accounts->profile['id'].$ci->accounts->profile['email_address'].$ip;
 	}
@@ -97,7 +97,7 @@ function format_ip($ip='')
 		$DEVICE = substr(md5(get_mac_address()), 0, 7);
 	}
 	// debug($DEVICE, 1);
-	$ci->device_id = strtoupper('mtba-'.$DEVICE);
+	$ci->device_id = strtoupper(GACELABS_KEY.$DEVICE);
 	return $ci->device_id;
 }
 
@@ -119,45 +119,52 @@ function get_mac_address()
 	return $macaddress;
 }
 
-function time_diff($past=FALSE, $future=FALSE, $diff='minutes', $want='5', $get_elapsed=FALSE)
+function time_diff($past=FALSE, $future=FALSE, $diff='minutes', $want='5', $result=false)
 {
-	$elapsed = FALSE;
 	if ($past AND $future) {
 		$lapse = (strtotime($future) - strtotime($past));
 		if ($lapse > 0) {
 			switch ($diff) {
 				case 'seconds':
 					if ($lapse >= $want) {
-						$elapsed = $lapse;
-					} elseif ($get_elapsed) {
-						$elapsed = $lapse;
+						if ($result) {
+							return $lapse;
+						} else {
+							return TRUE;
+						}
 					}
 				break;
 				case 'minutes':
 					if (($lapse / 60) >= $want) {
-						$elapsed = floor($lapse / 60);
-					} elseif ($get_elapsed) {
-						$elapsed = floor($lapse / 60);
+						if ($result) {
+							return $lapse / 60;
+						} else {
+							return TRUE;
+						}
 					}
 				break;
 				case 'hours':
-					if (($lapse / 120) >= $want) {
-						$elapsed = floor($lapse / 120);
-					} elseif ($get_elapsed) {
-						$elapsed = floor($lapse / 120);
+					if (($lapse / 3600) >= $want) {
+						if ($result) {
+							return $lapse / 3600;
+						} else {
+							return TRUE;
+						}
 					}
 				break;
 				case 'days':
-					if (($lapse / 2880) >= $want) {
-						$elapsed = floor($lapse / 2880);
-					} elseif ($get_elapsed) {
-						$elapsed = floor($lapse / 2880);
+					if (($lapse / 86400) >= $want) {
+						if ($result) {
+							return $lapse / 86400;
+						} else {
+							return TRUE;
+						}
 					}
 				break;
 			}
 		}
 	}
-	return $elapsed;
+	return FALSE;
 }
 
 function get_root_path($path='', $is_doc_path=TRUE)

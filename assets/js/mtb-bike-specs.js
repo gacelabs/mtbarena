@@ -11,7 +11,7 @@ $(document).ready(function() {
 			var oSettings = {
 				url: 'dashboard/search',
 				dataType: 'json',
-				data: {'keyword':event.target.value, 'id:notin':[]},
+				data: {'keyword':event.target.value, 'id:notin':excludedIds},
 				beforeSend: function() {
 					$('.inputDropdown').remove();
 					var spinner = '<i class="fa fa-spinner fa-pulse fa-fw"></i>';
