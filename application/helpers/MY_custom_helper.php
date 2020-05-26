@@ -713,7 +713,7 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 	return FALSE;
 }
 
-function check_and_save_matchup($items_data=FALSE)
+function check_and_save_matchup($items_data=FALSE, $loop=0)
 {
 	if ($items_data) {
 		$ci =& get_instance();
@@ -749,8 +749,14 @@ function check_and_save_matchup($items_data=FALSE)
 				$query = $ci->db->get('compares');
 				$data = $query->row_array();
 				if ($query->num_rows()) {
-					$items_data = $ci->custom_model->compared_bikes(['id'=>$data['id']]);
-					return check_and_save_matchup($items_data);
+					if ($loop < 3) {
+						$loop++;
+						$items_data = $ci->custom_model->compared_bikes(['id'=>$data['id']]);
+						return check_and_save_matchup($items_data, $loop);
+					} else { /*when theres no more matchup to make get back to first data and change the today column*/
+						$data = $ci->custom_model->query("SELECT * FROM match_ups WHERE today < '".$today."' ORDER BY today ASC LIMIT 1", 'row');
+						$ci->custom_model->save('match_ups', ['today' => $today], ['id' => $data['id']]);
+					}
 				}
 			}
 			return ['id' => $data['id'], 'table' => 'match_ups'];
