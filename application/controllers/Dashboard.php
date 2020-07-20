@@ -511,7 +511,7 @@ class Dashboard extends MY_Controller {
 									}
 									if (isset($value[$idx]) AND isset($value[$idx]['column']) AND strlen(trim($value[$idx]['column']))) {
 										$value[$idx]['column'] = strtolower($value[$idx]['column']);
-										if (isset($value[$idx]['data']) AND count($value[$idx]['data'])) {
+										if (isset($value[$idx]['data']) AND isset(count($value[$idx]['data']))) {
 											$values = []; $exploded = explode(',', $value[$idx]['data']);
 											foreach ($exploded as $dataValue) {
 												if (trim($dataValue) != '') {
