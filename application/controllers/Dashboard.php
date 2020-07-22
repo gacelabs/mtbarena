@@ -484,7 +484,7 @@ class Dashboard extends MY_Controller {
 			$passed = TRUE;
 			$post = $passpost;
 		}
-		debug($post, 1);
+		// debug($post, 1);
 		$result = $to_remove = [];
 		if ($post) {
 			function sortByOrder($a, $b) {
@@ -511,17 +511,18 @@ class Dashboard extends MY_Controller {
 									}
 									if (isset($value[$idx]) AND isset($value[$idx]['column']) AND strlen(trim($value[$idx]['column']))) {
 										$value[$idx]['column'] = strtolower($value[$idx]['column']);
+										$values = []; 
 										if (is_array($value[$idx]['data']) AND count($value[$idx]['data'])) {
-											$values = []; $exploded = explode(',', $value[$idx]['data']);
+											$exploded = explode(',', $value[$idx]['data']);
 											foreach ($exploded as $dataValue) {
 												if (trim($dataValue) != '') {
 													$values[] = ['value' => trim($dataValue)];
 												}
 											}
-											$json_data[$key][$value[$idx]['column']]['base'] = $row['base'];
-											$json_data[$key][$value[$idx]['column']]['whitelist'] = $values;
-											$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
 										}
+										$json_data[$key][$value[$idx]['column']]['base'] = $row['base'];
+										$json_data[$key][$value[$idx]['column']]['whitelist'] = $values;
+										$json_data[$key][$value[$idx]['column']]['max'] = $value[$idx]['max'];
 									}
 									if (isset($value[$idx]) AND isset($value[$idx]['sort'])) {
 										$value[$idx]['sort'] = trim($value[$idx]['sort']) == '' ? 0 : trim($value[$idx]['sort']);
