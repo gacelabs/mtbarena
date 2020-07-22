@@ -484,7 +484,7 @@ class Dashboard extends MY_Controller {
 			$passed = TRUE;
 			$post = $passpost;
 		}
-		// debug($post, 1);
+		debug($post, 1);
 		$result = $to_remove = [];
 		if ($post) {
 			function sortByOrder($a, $b) {
