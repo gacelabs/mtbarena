@@ -570,7 +570,7 @@ class Dashboard extends MY_Controller {
 				// debug($json_file);
 				// debug($to_remove);
 				// debug($save_data, 1);
-				if (count($save_data)) {
+				if (count($save_data) AND isset($json_file)) {
 					foreach ($save_data as $key => $save) {
 						if (!isset($save['path'])) {
 							$save['path'] = "assets/data/jsons/spec_template/".clean_string_name($save['base']).".json";
