@@ -580,7 +580,7 @@ class Dashboard extends MY_Controller {
 						} else {
 							$this->custom_model->new($table, $save);
 						}
-						@file_put_contents(get_root_path($save['path']), $json_file[$key]);
+						file_put_contents(get_root_path($save['path']), $json_file[$key]);
 					}
 					$result[] = TRUE;
 				}
