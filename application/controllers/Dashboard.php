@@ -568,9 +568,9 @@ class Dashboard extends MY_Controller {
 						$json_file[$key] = json_encode($json);
 					}
 				}
-				debug($json_file);
+				/*debug($json_file);
 				debug($to_remove);
-				debug($save_data, 1); exit();
+				debug($save_data, 1); exit();*/
 				if (count($save_data) AND isset($json_file)) {
 					foreach ($save_data as $key => $save) {
 						if (!isset($save['path'])) {
