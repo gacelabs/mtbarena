@@ -18,11 +18,11 @@
 							<div class="col-lg-12 zero-gap clearfix fieldset">
 								<div class="col-lg-11 col-md-11 col-sm-11 col-xs-9">
 									<div class="form-group">
-	 									<b><input type="text" class="form-control color-theme" name="fields_data[<?php echo $key;?>][base]" value="<?php echo ucfirst($field['base']);?>" placeholder="Bike part: Frame, Fork, Saddle, etc..." /></b>
+	 									<b><input type="text" class="form-control color-theme" name="fields_data[<?php echo $key;?>][base]" value="<?php echo ucfirst($field['base']);?>" placeholder="Bike part: Frame, Fork, Saddle, etc..." required="required" /></b>
 									</div>
 								</div>
 								<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3">
-									<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][sort]" value="<?php echo $field['sort'];?>" placeholder="#">
+									<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][sort]" value="<?php echo $field['sort'];?>" placeholder="#" required="required">
 								</div>
 							</div>
 							<?php 
@@ -30,19 +30,19 @@
 								foreach ($field['values'] as $column => $row): ?>
 								<div class="col-lg-12 zero-gap form-step-body clearfix fieldset">
 									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 form-step-block-label">
-										<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][sort]" value="<?php echo ucfirst($row['sort']);?>" placeholder="#" />
+										<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][sort]" value="<?php echo ucfirst($row['sort']);?>" placeholder="#" required="required" />
 									</div>
 									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-9 form-step-block-label spec-desc-box">
 										<div class="form-group" style="margin-bottom:5px;">
-											<b><input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][column]" value="<?php echo ucfirst($row['column']);?>" placeholder="Spec label: Brand, Sizes, Types, etc..." /></b>
+											<b><input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][column]" value="<?php echo ucfirst($row['column']);?>" placeholder="Spec label: Brand, Sizes, Types, etc..." required="required" /></b>
 										</div>
 										<div class="form-group zero-gap">
-											<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][description]" value="<?php echo $row['description'];?>" placeholder="Label description." />
+											<input type="text" class="form-control" name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][description]" value="<?php echo $row['description'];?>" placeholder="Label description." required="required" />
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-step-block-input">
 										<div class="form-group zero-gap">
-											<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][data]" rows="3" class="form-control"><?php echo $row['data'];?></textarea>
+											<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[<?php echo $key;?>][values][<?php echo $cnt;?>][data]" rows="3" class="form-control" required="required"><?php echo $row['data'];?></textarea>
 										</div>
 									</div>
 									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-step-block-input">
@@ -83,31 +83,31 @@
 					<div class="col-lg-12 zero-gap clearfix">
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-9">
 							<div class="form-group">
-								<b><input type="text" class="form-control color-theme" name="fields_data[CHANGEKEY][base]" value="" placeholder="Bike part: Frame, fork, saddle, etc..." /></b></h4>
+								<b><input type="text" class="form-control color-theme" name="fields_data[CHANGEKEY][base]" value="" placeholder="Bike part: Frame, fork, saddle, etc..." required="required" /></b></h4>
 							</div>
 						</div>
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3">
-							<input type="text" class="form-control" name="fields_data[CHANGEKEY][sort]" value="" placeholder="#">
+							<input type="text" class="form-control" name="fields_data[CHANGEKEY][sort]" value="" placeholder="#" required="required">
 						</div>
 					</div>
 
 					<div class="col-lg-12 zero-gap form-step-body clearfix fieldset" id="field_template">
 						<div class="col-lg-1 col-md-1 col-sm-1 col-xs-3 form-step-block-label">
-							<input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][sort]" value="" placeholder="#">
+							<input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][sort]" value="" placeholder="#" required="required">
 						</div>
 						<div class="col-lg-3 col-md-3 col-sm-3 col-xs-9 form-step-block-label spec-desc-box">
 							<div class="form-group" style="margin-bottom:5px;">
-								<b><input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][column]" value="" placeholder="Spec label: Brand, Sizes, Types, etc..."></b>
+								<b><input type="text" class="form-control" name="fields_data[CHANGEKEY][values][CHANGECOL][column]" value="" placeholder="Spec label: Brand, Sizes, Types, etc..." required="required" ></b>
 							</div>
 							<div class="form-group zero-gap">
 								<p class="sub-label-text text-left">
-									<input type="text" class="form-control" id="" name="fields_data[CHANGEKEY][values][CHANGECOL][description]" value="" placeholder="Label description.">
+									<input type="text" class="form-control" id="" name="fields_data[CHANGEKEY][values][CHANGECOL][description]" value="" placeholder="Label description." required="required">
 								</p>
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 form-step-block-input">
 							<div class="form-group zero-gap">
-								<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[CHANGEKEY][values][CHANGECOL][data]" rows="3" class="form-control"></textarea>
+								<textarea placeholder="Values: Comma separated value. Value1,Value2,Value3..." name="fields_data[CHANGEKEY][values][CHANGECOL][data]" rows="3" class="form-control" required="required"></textarea>
 							</div>
 						</div>
 						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 form-step-block-input">
