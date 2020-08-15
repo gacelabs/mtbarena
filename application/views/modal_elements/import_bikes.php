@@ -12,7 +12,7 @@
 						<form action="<?php echo base_url('dashboard/import_posts'); ?>" enctype="multipart/form-data" method="post">
 							<div class="form-group">
 								<label for="email_address">Choose CSV file only</label>
-								<input type="file" class="form-control" name="csv_file" id="csv_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+								<input type="file" class="form-control" name="csv_file" id="csv_file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required="required">
 							</div>
 							<ul class="spaced-list between">
 								<li>
