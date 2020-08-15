@@ -64,10 +64,15 @@
 					<?php endforeach ?>
 				<?php endif ?>
 				<div class="row form-step-footer zero-gap clearfix">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 add_mainset" data-key="<?php echo $key;?>">
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 add_mainset" data-key="<?php echo $key;?>">
 						<span class="btn btn-default text-info"><i class="fa fa-plus"></i> New Bike part</span>
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+					<?php if (isset($page_data['fields']) AND $page_data['fields']): ?>
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+							<a href="<?php echo $page_data['csv_file_path'];?>" class="btn btn-success"><i class="fa fa-floppy-o"></i> Export CSV Headers</a>
+						</div>
+					<?php endif ?>
+					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-right">
 						<button type="submit" class="btn btn-info"><i class="fa fa-floppy-o"></i> Save Template</button>
 					</div>
 				</div>

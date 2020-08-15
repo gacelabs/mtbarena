@@ -106,7 +106,9 @@
 									<tr>
 										<td class="row-col-1 <?php echo $gridCountArr[$bikeCount-1]; ?>"><div class="td-col-label">Estimated Price</div></td>
 										<?php foreach ($fields as $key => $value): ?>
-											<?php if ($value == 'affordable'): 
+											<?php 
+											$Range = 'No estimates';
+											if ($value == 'affordable'): 
 												$Range = 'Affordable';
 											elseif ($value == 'mid'): 
 												$Range = 'Mid Range';
@@ -123,8 +125,9 @@
 													<i class="fa fa-tags"></i>
 													<i class="fa fa-tags"></i>
 													<i class="fa fa-tags"></i>
+												<?php elseif ($value != ''): ?>
+													<i class="fa fa-tags"></i>
 												<?php endif ?>
-												<i class="fa fa-tags"></i>
 											</td>
 										<?php endforeach; 
 										break;?>

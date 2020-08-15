@@ -235,7 +235,7 @@ function files_upload($_files=FALSE, $return_path=FALSE, $dir='', $this_name=FAL
 						}
 						$result[] = [
 							'file_path' => $uploadfile,
-							'url_path' => 'assets/data/files/'.$dir.'/'.$pathname,
+							'url_path' => str_replace('//', '/', 'assets/data/files/'.$dir.'/'.$pathname),
 							'status' => $status
 						];
 					}
@@ -260,7 +260,7 @@ function files_upload($_files=FALSE, $return_path=FALSE, $dir='', $this_name=FAL
 					}
 					$result = [
 						'file_path' => $uploadfile,
-						'url_path' => 'assets/data/files/'.$dir.'/'.$pathname,
+						'url_path' => str_replace('//', '/', 'assets/data/files/'.$dir.'/'.$pathname),
 						'status' => $status
 					];
 				}
@@ -693,7 +693,7 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 									$mapped = [];
 									$parsed = $json;
 									if (!is_array($json)) $parsed = json_decode($json, TRUE);
-									if ($parsed) {
+									if (is_array($parsed)) {
 										foreach ($parsed as $idx => $tags) $mapped[] = $tags['value'];
 									}
 									$bike_items['fields'][$base][$column][$key] = count($mapped) ? implode(', ', $mapped) : 'Unspecified';
@@ -809,22 +809,52 @@ function assemble_fields_data($data=FALSE)
 
 function csv_to_array($filename='', $delimiter=',')
 {
+	/*debug(get_root_path($filename), 1);
 	if(!file_exists(get_root_path($filename)) OR !is_readable(get_root_path($filename))) {
 		return FALSE;
-	}
-	$header = NULL;
-	$data = array();
-	if (($handle = fopen($filename, 'r')) !== FALSE) {
-		while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
-			if(!$header) {
-				$header = $row;
-			} else {
-				$data[] = array_combine($header, $row);
+	}*/
+	// $header = NULL;
+	// $data = array();
+	// if (($handle = fopen(get_root_path($filename), 'r')) !== FALSE) {
+	// 	while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE) {
+	// 		if(!$header) {
+	// 			$header = $row;
+	// 		} else {
+	// 			$data[] = array_combine($header, $row);
+	// 		}
+	// 	}
+	// 	fclose($handle);
+	// }
+	$data = Array();
+	$cnt = 0;
+	$file = fopen(get_root_path($filename), 'r');
+	if($file){
+		// debug(fgetcsv($file), 1);
+		while (($line = fgetcsv($file)) !== FALSE) {
+			// $line is an array of the csv elements
+			if ($cnt > 0) {
+				array_push($data, $line);
 			}
+			$cnt++;
 		}
-		fclose($handle);
+		fclose($file);
 	}
-	return $data;
+	// debug($data, 1);
+	return count($data) ? $data : FALSE;
+}
+
+function array_to_csv($data=false, $filename='default.csv', $dir='csv')
+{
+	// Open a file in write mode ('w')
+	$uploaddir = create_dirs($dir);
+	$fp = fopen($uploaddir.$filename, 'w'); 
+
+	// Loop through file pointer and a line 
+	foreach ($data as $fields) { 
+		fputcsv($fp, $fields); 
+	}
+	fclose($fp);
+	return get_root_path('assets/data/files/'.$dir.'/'.$filename, FALSE);
 }
 
 function get_shortcode_values($data=FALSE)
@@ -927,4 +957,21 @@ function whats_the_day($in='tomorrow')
 {
 	$datetime = new DateTime($in);
 	return $datetime->format('Y-m-d');
+}
+
+function forceDownLoad($filename)
+{
+	header("Pragma: public");
+	header("Expires: 0"); // set expiration time
+	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+	// header("Content-Type: application/force-download");
+	// header("Content-Type: application/octet-stream");
+	header('Content-Type: application/csv');
+	header("Content-Type: application/download");
+	header("Content-Disposition: attachment; filename=".basename($filename).";");
+	header("Content-Transfer-Encoding: binary");
+	header("Content-Length: ".filesize($filename));
+	
+	@readfile($filename);
+	exit(0);
 }

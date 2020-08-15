@@ -1,6 +1,7 @@
 <div class="box-item">
 	<div class="box-item-body-top">
 		<a href="<?php echo base_url('dashboard/post-bike'); ?>" class="btn btn-info btn-sm">New Bike</a>
+		<a data-toggle="tooltip" data-placement="bottom" title="" trigger-modal="#modal_import_file" data-original-title="Import csv" href="javascript:;" class="btn btn-warning btn-sm pull-right">Import Bikes</a>
 	</div>
 	<div class="box-item-body">
 		<div class="table-responsive zero-gap">

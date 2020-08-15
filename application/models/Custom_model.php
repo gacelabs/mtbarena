@@ -231,13 +231,12 @@ class Custom_Model extends MY_Model {
 
 	public function fields_data($clause=FALSE, $field=FALSE, $method='result')
 	{
-		function sortByOrder($a, $b) {
-			return $a['sort'] - $b['sort'];
-		}
 		$fields_data = $this->get('fields_data', $clause, $field, $method);
 		// debug($fields_data, 1);
 		if ($fields_data) {
-			usort($fields_data, 'sortByOrder');
+			usort($fields_data, function($a, $b) {
+				return $a['sort'] - $b['sort'];
+			});
 			foreach ($fields_data as $key => $row) {
 				$data = json_decode($row['values'], TRUE);
 				$fields_data[$key]['values'] = $data;

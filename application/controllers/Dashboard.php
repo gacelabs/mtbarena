@@ -47,7 +47,7 @@ class Dashboard extends MY_Controller {
 				)
 			),
 			'modals' => array(
-				
+				'modal_elements/import_bikes'
 			),
 			'page_data' => array(
 				'specs' => $this->custom_model->bike_items("", ['user_id'=>$this->accounts->profile['id']]),
@@ -323,6 +323,7 @@ class Dashboard extends MY_Controller {
 	public function add_item()
 	{
 		$post = $this->input->post();
+		// debug($post, 1);
 		// debug($_FILES);
 		if ($post) {
 			$account = $this->accounts->profile;
@@ -459,10 +460,11 @@ class Dashboard extends MY_Controller {
 				)
 			),
 			'modals' => array(
-				
+
 			),
 			'page_data' => array(
 				'fields' => $this->custom_model->fields_data(),
+				'csv_file_path' => $this->export_headers()
 			),
 			'footer_scripts' => array(
 				'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
@@ -601,5 +603,115 @@ class Dashboard extends MY_Controller {
 			}
 		}
 		return FALSE;
+	}
+
+	private function export_headers()
+	{
+		$fields_data = $this->custom_model->fields_data();
+		// debug($fields_data, 1);
+		if ($fields_data) {
+			$headers = ['Bike Model Name', 'Featured Photo'];
+			foreach ($fields_data as $key => $row) {
+				$base = $row['base'];
+				foreach ($row['values'] as $index => $field) {
+					$headers[] = ucwords($base.' '.$field['column']);
+				}
+			}
+		}
+		$headers[] = 'Price tag (affordable | mid | premium)';
+		$headers[] = 'Exteral link';
+		// debug([$headers], 1);
+		$file = array_to_csv([$headers], 'post-bike-headers.csv');
+		// debug($file, 1);
+		return $file;
+		// return forceDownLoad($file);
+	}
+
+	public function import_posts($type='bikes')
+	{
+		if ($_FILES) {
+			$name = $_FILES['csv_file']['name'];
+			$ext = trim(strtolower(pathinfo(basename($name), PATHINFO_EXTENSION)));
+			// debug($ext, 1);
+			if ($ext == 'csv') {
+				// $csv = csv_to_array($_FILES['csv_file']['tmp_name']);
+				$filename = files_upload($_FILES, TRUE, 'csv/imports/', 'tmp_csv_file.csv');
+				// debug(get_root_path($filename), 1);
+				$array = csv_to_array($filename);
+				unlink(get_root_path($filename));
+				// debug($array, 1);
+				if ($array) {
+					$fields_data = $this->custom_model->fields_data();
+					// debug($fields_data, 1);
+					if ($fields_data) {
+						$headers = ['bike_model'=>'', 'feat_photo'=>'', 'fields_data'=>[], 'price_tag'=>'', 'external_link'=>''];
+						$now = 1;
+						foreach ($fields_data as $key => $row) {
+							$base = $row['base'];
+							$now+=count($row['values']);
+							foreach ($row['values'] as $index => $field) {
+								$headers['fields_data'][$base.'-'.$now][$field['column']] = '';
+							}
+						}
+					}
+					// debug($headers, 1);
+					$post = []; $fields_data_row = 0;
+					$account = $this->accounts->profile;
+					foreach ($array as $key => $data) {
+						$tmp = $headers;
+						foreach ($data as $index => $value) {
+							if ($index == 0) {
+								$tmp['bike_model'] = $value;
+							} elseif ($index == 1) {
+								if (file_exists($value)) {
+									$ext = strtolower(pathinfo(basename($value), PATHINFO_EXTENSION));
+									$image = file_get_contents($value);
+									$user_path = 'assets/data/files/bikes/images/'.clean_string_name($account['store_name'].'-'.$account['id']);
+									$feat_photo = $user_path.'/'.$data[0].'.'.$ext;
+									$path = get_root_path($feat_photo);
+									file_put_contents($path, $image);
+									$tmp['feat_photo'] = $feat_photo;
+								}
+							} else {
+								break;
+							}
+						}
+						$tmp_data = $data; unset($tmp_data[0]); unset($tmp_data[1]);
+						foreach ($tmp['fields_data'] as $rowindex => $fields) {
+							$keys = array_keys($fields);
+							$exploded = explode('-', $rowindex);
+							foreach ($tmp_data as $index => $value) {
+								if (!in_array($index, [0,1])) {
+									if ($index != $exploded[1]) {
+										$tmp['fields_data'][str_replace(' ', '_', $exploded[0])][reset($keys)] = $value;
+										array_shift($keys);
+									} else {
+										$tmp['fields_data'][str_replace(' ', '_', $exploded[0])][reset($keys)] = $value;
+										unset($tmp['fields_data'][$rowindex]);
+										foreach ($tmp_data as $k => $v) {
+											if ($k <= $index) unset($tmp_data[$k]);
+										}
+										break;
+									}
+								}
+							}
+						}
+						$tmp['external_link'] = end($data);
+						$tmp['price_tag'] = isset($data[key($data)-1]) ? $data[key($data)-1] : '';
+						$post[] = $tmp;
+					}
+					// debug($post, 1);
+					if (count($post)) {
+						foreach ($post as $postdata) {
+							$postdata['user_id'] = $account['id'];
+							$postdata['fields_data'] = json_encode($postdata['fields_data']);
+							// debug($postdata, 1);
+							$this->custom_model->new('bike_items', $postdata);
+						}
+					}
+				}
+			}
+		}
+		return redirect(base_url('dashboard')); 
 	}
 }
