@@ -13,8 +13,11 @@
 					$key = 0;
 					if (isset($page_data['fields']) AND $page_data['fields']): ?>
 					<?php foreach ($page_data['fields'] as $key => $field): ?>
-						<input type="hidden" name="fields_data[<?php echo $key;?>][id]" value="<?php echo $field['id'];?>">
 						<div class="col-lg-12 zero-gap clearfix form-step-block mainset" id="<?php echo str_replace(' ', '_', $field['base']);?>">
+							<div class="pull-right">
+								<button type="button" onclick="confirm('Are you sure?') ? $(this).parents('.mainset').remove() : false;">Delete part</button>
+							</div>
+							<input type="hidden" name="fields_data[<?php echo $key;?>][id]" value="<?php echo $field['id'];?>">
 							<div class="col-lg-12 zero-gap clearfix fieldset">
 								<div class="col-lg-11 col-md-11 col-sm-11 col-xs-9">
 									<div class="form-group">
@@ -52,11 +55,14 @@
 											<option value="0"<?php echo $row['max'] == 0 ? ' selected' : '';?>>No</option>
 										</select>
 									</div>
+									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-step-block-input">
+										<button type="button" onclick="confirm('Are you sure?') ? $(this).parents('.fieldset').remove() : false;">Delete spec</button>
+									</div>
 								</div>
 							<?php 
 								$cnt++;
 								endforeach ?>
-							<div class="col-lg-12 clearfix add_fieldset" data-key="<?php echo $key;?>" style="margin-top:15px;">
+							<div class="col-lg-12 clearfix add_fieldset" data-key="<?php echo $key;?>" style="margin-top:15px; width: 115px;">
 								<span class="btn btn-xs btn-default text-info"><i class="fa fa-plus"></i> Specs field</span>
 							</div>
 							<input type="hidden" name="fields_data[<?php echo $key;?>][path]" value="assets/data/jsons/spec_template/<?php echo $field['base'];?>.json">
@@ -80,6 +86,9 @@
 
 			<div class="hide" id="main_template">
 				<div class="col-lg-12 zero-gap clearfix form-step-block mainset">
+					<div class="pull-right">
+						<button type="button" onclick="confirm('Are you sure?') ? $(this).parents('.mainset').remove() : false;">Delete part</button>
+					</div>
 					<div class="col-lg-12 zero-gap clearfix">
 						<div class="col-lg-11 col-md-11 col-sm-11 col-xs-9">
 							<div class="form-group">
@@ -116,6 +125,9 @@
 								<option value="1">Yes</option>
 								<option value="0">No</option>
 							</select>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 form-step-block-input">
+							<button type="button" onclick="confirm('Are you sure?') ? $(this).parents('.fieldset').remove() : false;">Delete spec</button>
 						</div>
 					</div>
 					<div class="col-lg-12 zero-gap clearfix">
