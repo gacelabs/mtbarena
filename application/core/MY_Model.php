@@ -51,6 +51,7 @@ class MY_Model extends CI_Model {
 				$post = (array)$post;
 				$post['version'] = 1;
 			}
+			$post['last_updated'] = date('Y-m-d H:i:s');
 			$this->db->insert($table, $post);
 			if ($redirect_url != '') {
 				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));
@@ -69,6 +70,7 @@ class MY_Model extends CI_Model {
 				$set = (array)$set;
 				$set['version'] = (int)$data['version'] + 1;
 			}
+			$set['last_updated'] = date('Y-m-d H:i:s');
 			$this->db->update($table, $set, $where);
 			if ($redirect_url != '') {
 				redirect(base_url($redirect_url == 'home' ? '' : $redirect_url));

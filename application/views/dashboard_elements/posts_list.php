@@ -28,8 +28,8 @@
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($bike['added']));?></small>		
 								</td>
-								<td data-sort="<?php echo strtotime($bike['updated']);?>">
-									<?php echo date('M j, Y', strtotime($bike['updated']));?> <small class="color-lightgray"></small>
+								<td data-sort="<?php echo strtotime($bike['last_updated']);?>">
+									<?php echo date('M j, Y', strtotime($bike['last_updated']));?> <small class="color-lightgray"></small>
 								</td>
 								<td><?php echo $bike['view_count'];?></td>
 								<td><?php echo $bike['like_count'];?></td>
@@ -76,8 +76,8 @@
 									<br>
 									<small class="color-lightgray"><?php echo date('M j, Y', strtotime($blog['added']));?></small>		
 								</td>
-								<td data-sort="<?php echo strtotime($blog['updated']);?>">
-									<?php echo date('F j, Y', strtotime($blog['updated']));?>
+								<td data-sort="<?php echo strtotime($blog['last_updated']);?>">
+									<?php echo date('F j, Y', strtotime($blog['last_updated']));?>
 								</td>
 								<td><?php echo $blog['view_count']; ?></td>
 								<td><?php echo $blog['like_count']; ?></td>
