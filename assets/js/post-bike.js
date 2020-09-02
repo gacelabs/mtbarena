@@ -33,7 +33,7 @@ $(document).ready(function() {
 						for(x in res) {
 							var oItem = res[x];
 							oItem.fields_data = $.parseJSON(oItem.fields_data);
-							var d = new Date(oItem.updated), monthYear = monthNames[d.getMonth()]+' '+d.getFullYear();
+							var d = new Date(oItem.last_updated), monthYear = monthNames[d.getMonth()]+' '+d.getFullYear();
 							var jsonString = JSON.stringify(oItem).replace(/[']/g, "");
 							$(e.target).append("<option data-tokens='"+oItem.bike_model.toLowerCase()+"' data-subtext='"+oItem.store_name+" (Updated: "+monthYear+")' data-id='' data-selector='input.typeAheadInput' data-json='"+jsonString+"'>"+oItem.bike_model+"</option>");
 							$(e.target).selectpicker('refresh');
