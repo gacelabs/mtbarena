@@ -515,11 +515,13 @@ class Dashboard extends MY_Controller {
 										$value[$idx]['column'] = strtolower($value[$idx]['column']);
 										$values = []; 
 										if (is_array($value[$idx]['data']) AND count($value[$idx]['data'])) {
+											$exploded = $value[$idx]['data'];
+										} else {
 											$exploded = explode(',', $value[$idx]['data']);
-											foreach ($exploded as $dataValue) {
-												if (trim($dataValue) != '') {
-													$values[] = ['value' => trim($dataValue)];
-												}
+										}
+										foreach ($exploded as $dataValue) {
+											if (trim($dataValue) != '') {
+												$values[] = ['value' => trim($dataValue)];
 											}
 										}
 										$json_data[$key][$value[$idx]['column']]['base'] = $row['base'];
@@ -563,7 +565,7 @@ class Dashboard extends MY_Controller {
 						}
 					}
 				}
-				// debug($json_data);
+				// debug($json_data, 1);
 				if (count($json_data)) {
 					$json_file = [];
 					foreach ($json_data as $key => $json) {
