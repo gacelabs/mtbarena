@@ -170,7 +170,7 @@ class Custom_Model extends MY_Model {
 			CONCAT('dashboard/edit-bike/', b.id) AS edit_url, 
 			CONCAT(b.id, '-', b.user_id, '/mtb/', REPLACE(LOWER(REPLACE(b.bike_model, ' ', '-')), '\'', ''), '-full-specifications') AS bike_url
 			FROM bike_items b 
-			ORDER BY b.view_count DESC, b.updated DESC
+			ORDER BY b.id
 		");
 		$result = [];
 		if ($return) {

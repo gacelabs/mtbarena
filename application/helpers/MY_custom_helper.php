@@ -661,12 +661,22 @@ function manipulate_bike_display_data($items_data=FALSE, $id=FALSE, $table=FALSE
 	if ($items_data) {
 		$ci =& get_instance();
 		$ci->load->model('custom_model');
+		$table_fields = $ci->db->list_fields('bike_items');
 		// debug($items_data, 1);
+		foreach (['external_link', 'fields_data', 'price_tag'] as $value) {
+			if (($key = array_search($value, $table_fields)) !== false) {
+				unset($table_fields[$key]);
+			}
+		}
+		$table_fields[] = 'store_name';
+		$table_fields[] = 'bike_url';
+		// debug($table_fields, 1);
 
 		$bike_items = [];
 		foreach ($items_data as $key => $bike) {
 			foreach ($bike as $field => $data) {
-				if (in_array($field, ['id','user_id','bike_model','feat_photo','view_count','share_count','like_count','added','updated','version','store_name','bike_url'])) {
+				// if (in_array($field, ['id','user_id','bike_model','feat_photo','view_count','share_count','like_count','added','updated','version','store_name','bike_url'])) {
+				if (in_array($field, $table_fields)) {
 					if (in_array($field, ['id','view_count','share_count','like_count'])) {
 						if ($field == 'id') {
 							$bike_items['other']['id'] = $id;
