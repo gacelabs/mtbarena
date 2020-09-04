@@ -4,27 +4,30 @@
 <head>
 	<?php $this->load->view('page_requires/page_head'); ?>
 	<script id="static-instance">
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId      : '<?php echo APPID;?>',
-				cookie     : true,
-				xfbml      : true,
-				version    : 'v6.0'
-			});
-			FB.AppEvents.logPageView();   
-		};
-		(function(d, s, id){
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement(s); js.id = id;
-			js.src = "https://connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
-
 		const viewCountThreshold = <?php echo VIEW_COUNT_THRESHOLD;?>;
 		const user = <?php echo $this->session->userdata('profile') ? json_encode($this->session->userdata('profile')) : '{}';?>;
 		const className = '<?php echo $this->class_name;?>';
 	</script>
+	<?php if (!in_array($body_id, ['dashboard'])): ?>
+		<script type="text/javascript">
+			window.fbAsyncInit = function() {
+				FB.init({
+					appId      : '<?php echo APPID;?>',
+					cookie     : true,
+					xfbml      : true,
+					version    : 'v6.0'
+				});
+				FB.AppEvents.logPageView();   
+			};
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "https://connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+	<?php endif ?>
 </head>
 
 <body id="<?php echo (empty($body_id) ? '' : $body_id); ?>" class="<?php echo (empty($body_class) ? '' : $body_class); ?>">

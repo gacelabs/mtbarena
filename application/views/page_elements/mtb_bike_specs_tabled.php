@@ -23,7 +23,9 @@
 			<ul class="spaced-list between">
 				<li class="text-left">
 				<?php if ($bikeCount == 1) { ?>
-					<p class="zero-gap color-theme"><b>Bike Model Full Specifications</b></p>
+					<?php foreach ($infos as $key => $bike): ?>
+						<h1 class="zero-gap color-theme" style=" font-size: 17px;"><?php echo ucwords($bike['bike_model']);?> Full Specifications</h1>
+					<?php endforeach ?>
 				<?php } elseif ($bikeCount == 2) { ?>
 					<p class="zero-gap color-theme"><b><?php echo $body_id == "landing"? "Today's Match Up!" : "Head To Head Full Specifications"; ?></b></p>
 				<?php } elseif ($bikeCount == 3) { ?>

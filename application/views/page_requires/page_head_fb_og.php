@@ -1,7 +1,4 @@
 <?php
-	// prevents Search Engines to crawl
-	$noIndexPagesArr = ['dashboard'];
-	
 	$ogTitle = '';
 	$ogImageArr = [];
 	$ogDescription = '';
@@ -32,29 +29,27 @@
 		$ogDescription = trim(strip_tags($blog['blog_content']));
 	}
 
+	// prevents Search Engines to crawl
+	$noIndexPagesArr = ['dashboard'];
 ?>
-<!-- facebook opengraph -->
 <?php if (in_array($body_id, $noIndexPagesArr)) { ?>
-<meta name="description" content="MTB Arena | Bike Specifications Comparison Site"  />
+	<meta name="robots" content="noindex,nofollow">
 <?php } else { ?>
-<meta property="fb:app_id" content="'<?php echo APPID;?>'" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="<?php echo current_full_url();?>" />
-<meta property="og:title" content="<?php echo $ogTitle;?>" />
-<meta property="og:description" content="<?php echo $ogDescription;?>" />
-<meta name="og:site_name" content="MTB Arena" />
-<link rel="canonical" href="<?php echo current_full_url();?>" />
+	<meta name="description" content="<?php echo $ogDescription;?>" />
+	<!-- facebook opengraph -->
+	<meta property="fb:app_id" content="'<?php echo APPID;?>'" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="<?php echo current_full_url();?>" />
+	<meta property="og:title" content="<?php echo $ogTitle;?>" />
+	<meta property="og:description" content="<?php echo $ogDescription;?>" />
+	<meta name="og:site_name" content="MTB Arena" />
+	<link rel="canonical" href="<?php echo current_full_url();?>" />
 	<?php foreach ($ogImageArr as $image) { ?>
 		<?php if (empty($image)) { ?>
 			<?php continue; ?>
 		<?php } ?>
 		<meta property="og:image" content="<?php echo $image; ?>" />
 	<?php } ?>
-<?php } ?>
-<!-- facebook opengraph -->
-
-<?php if (in_array($body_id, $noIndexPagesArr)) { ?>
-<meta name="robots" content="noindex,nofollow">
-<?php } else { ?>
-<meta name="robots" content="index,follow">
+	<meta name="robots" content="index,follow">
+	<!-- facebook opengraph -->
 <?php } ?>
