@@ -47,6 +47,9 @@ function runTagsInput(uiFieldData) {
 							tagify.addTags(inputData.values);
 						}
 					}
+					$(input).bind('paste', function(e) {
+						$(e.target).trigger('keypress');
+					});
 				});
 			}
 		};
