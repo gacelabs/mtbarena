@@ -785,29 +785,31 @@ function assemble_fields_data($data=FALSE)
 		foreach ($data as $base => $fields) {
 			$field_data = $ci->custom_model->get('fields_data', ['base' => $base], FALSE, 'row');
 			// debug($fields, 1);
-			$field_data['values'] = json_decode($field_data['values'], TRUE);
-			// debug($field_data);
-			if (is_array($field_data['values'])) {
-				foreach ($fields as $column => $values) {
-				// debug(array_values($values));
-					foreach ($field_data['values'] as $key => $row) {
-						if ($row['column'] === $column AND is_array($values)) {
-							$column_values = strlen(trim($row['data'])) ? explode(',', $row['data']) : [];
-							foreach ($values as $index => $input) {
-								if (!in_array($input['value'], $column_values)) {
-									$column_values[] = $input['value'];
+			if ($field_data) {
+				$field_data['values'] = json_decode($field_data['values'], TRUE);
+				// debug($field_data);
+				if (is_array($field_data['values'])) {
+					foreach ($fields as $column => $values) {
+					// debug(array_values($values));
+						foreach ($field_data['values'] as $key => $row) {
+							if ($row['column'] === $column AND is_array($values)) {
+								$column_values = strlen(trim($row['data'])) ? explode(',', $row['data']) : [];
+								foreach ($values as $index => $input) {
+									if (!in_array($input['value'], $column_values)) {
+										$column_values[] = $input['value'];
+									}
 								}
+								$field_data['values'][$key]['data'] = implode(',', $column_values);
 							}
-							$field_data['values'][$key]['data'] = implode(',', $column_values);
 						}
 					}
+					if (!isset($field_data['path'])) {
+						$field_data['path'] = "assets/data/jsons/spec_template/".clean_string_name($base).".json";
+					}
+					unset($field_data['added']);
+					unset($field_data['updated']);
+					$result[] = $field_data;
 				}
-				if (!isset($field_data['path'])) {
-					$field_data['path'] = "assets/data/jsons/spec_template/".clean_string_name($base).".json";
-				}
-				unset($field_data['added']);
-				unset($field_data['updated']);
-				$result[] = $field_data;
 			}
 			// debug($field_data, 1);
 		}
