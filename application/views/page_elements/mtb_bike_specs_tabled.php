@@ -51,7 +51,7 @@
 					<div class="header-extra ads-panel">
 						<?php if ($ads): ?>
 							<?php foreach ($ads as $key => $ad): ?>
-								<a target="_blank" href="<?php echo $ad['link'];?>">
+								<a<?php if ($key > 0): ?> class="hide"<?php endif ?> target="_blank" href="<?php echo $ad['link'];?>">
 									<img class="image-cropped" src="<?php echo $ad['image'];?>" alt="<?php echo $ad['name'];?>" loading="lazy" />
 								</a>
 							<?php endforeach ?>
