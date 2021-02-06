@@ -64,6 +64,7 @@
 						<th><div class="th-inner"><small>Photo</small></div></th>
 						<th><div class="th-inner"><small>Ad Name</small></div></th>
 						<th><div class="th-inner"><small>Updated</small></div></th>
+						<th><div class="th-inner"><small>Hidden</small></div></th>
 						<th><div class="th-inner"><small>Actions</small></div></th>
 					</tr>
 				</thead>
@@ -81,6 +82,9 @@
 								</td>
 								<td data-sort="<?php echo strtotime($ad['last_updated']);?>">
 									<?php echo date('M j, Y', strtotime($ad['last_updated']));?> <small class="color-lightgray"></small>
+								</td>
+								<td scope="row">
+									<?php if ($ad['hide']): ?>Yes<?php else: ?>No<?php endif ?>
 								</td>
 								<td>
 									<a href="<?php echo $ad['link'];?>">Link</a> 
