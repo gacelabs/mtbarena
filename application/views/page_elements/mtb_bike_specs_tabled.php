@@ -17,7 +17,7 @@
 		$share_count = $page_data['bikes']['other']['share_count'];
 		$table = $page_data['bikes']['table'];
 
-	$ads = $this->custom_model->get('ads_panel');
+	$ads = $this->custom_model->get('ads_panel', ['hide' => 0]);
 ?>
 
 	<div class="box-item mtb-specs-container" id="specs-tabled">

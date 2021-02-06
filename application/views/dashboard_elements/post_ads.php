@@ -1,5 +1,5 @@
 <?php
-	$ad = ['id' => '', 'name' => '', 'link' => '', 'image' => FALSE];
+	$ad = ['id' => '', 'name' => '', 'link' => '', 'hide' => 0, 'image' => FALSE];
 	$has_ad = 6;
 	if (isset($page_data['ad']) AND $page_data['ad']) {
 		$ad = $page_data['ad'][0];
@@ -24,6 +24,12 @@
 					<div class="form-group">
 						<label>Link</label>
 						<input type="url" class="form-control color-theme" name="link" required="required" value="<?php echo $ad['link'];?>" />
+					</div>
+				</div>
+				<div class="col-lg-<?php echo $has_ad;?> col-md-<?php echo $has_ad;?> col-sm-<?php echo $has_ad;?> col-xs-12">
+					<div class="form-group zero-gap">
+						<label for="ad_photo">Hide</label>
+						<input type="checkbox" class="form-control no-border" name="hide"<?php echo $ad['hide'] ? ' checked="checked"' : '';?> />
 					</div>
 				</div>
 				<div class="col-lg-<?php echo $has_ad;?> col-md-<?php echo $has_ad;?> col-sm-<?php echo $has_ad;?> col-xs-12">
