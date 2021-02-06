@@ -716,4 +716,94 @@ class Dashboard extends MY_Controller {
 		}
 		return redirect(base_url('dashboard')); 
 	}
+
+	public function ads_panel($method=FALSE, $id=FALSE)
+	{
+		if ($method == FALSE) {
+			$ad = FALSE;
+			if ($id > 0) {
+				$ad = $this->custom_model->get('ads_panel', ['id' => $id]);
+			}
+			$structure = array(
+				'metas' => array(
+					''
+				),
+				'css_links' => array(
+					'assets/css/mediaquery',
+					'assets/css/dashboard',
+					'assets/css/post-bike',
+					'assets/css/post-bike-tagify',
+					'assets/css/bs-select.min'
+				),
+				'title' => 'Post fields | MTB Arena',
+				'body_id' => 'dashboard',
+				'body_class' => 'post-fields specs-template',
+				'page_nav' => 'page_statics/main_nav',
+				'bikes_to_compare' => '',
+				'page_left_column' => array(
+					'column_visibility_class' => 'col-lg-3 col-md-3 col-sm-3 col-xs-padding',
+					'ui_elements' => array(
+						'dashboard_elements/menu'
+					),
+				),
+				'page_center_column' => array(
+					'column_visibility_class' => 'col-lg-9 col-md-9 col-sm-9 col-xs-padding',
+					'ui_elements' => array(
+						// 'dashboard_elements/post_bike_form'
+						'dashboard_elements/post_ads'
+					)
+				),
+				'page_right_column' => array(
+					'column_visibility_class' => 'hidden-lg hidden-md hidden-sm hidden-xs',
+					'ui_elements' => array(
+					)
+				),
+				'page_footer' => array(
+					'column_visibility_class' => '',
+					'ui_elements' => array(
+
+					)
+				),
+				'modals' => array(
+
+				),
+				'page_data' => array(
+					'ads' => $this->custom_model->get('ads_panel'),
+					'ad' => $ad
+				),
+				'footer_scripts' => array(
+					'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
+					'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
+					'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+					'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
+					'<script type="text/javascript" src="'.base_url('assets/js/post-fields.js').'"></script>'
+				)
+			);
+			$this->load->view('page_templates/main_template', $structure);
+		} elseif ($method == 'save') {
+			$post = $this->input->post();
+			if ($post) {
+				$account = $this->accounts->profile;
+				if ($id > 0) {
+					$ad = $this->custom_model->get('ads_panel', ['id' => $id], FALSE, 'row');
+					if ($ad) {
+						if (isset($_FILES['ad_photo']) AND $_FILES['ad_photo']['error'] == 0) {
+							$filename = files_upload($_FILES, TRUE, 'ads/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['name']);
+							$post['image'] = $filename;
+						}
+						return $this->custom_model->save('ads_panel', $post, ['id' => $id], 'dashboard/ads_panel'); /*redirect to dashboard/ads_panel*/
+					}
+					redirect(base_url('dashboard/ads_panel/0/'.$id.'?error=Ad does not exists!'));
+				} else {
+					$filename = files_upload($_FILES, TRUE, 'ads/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['name']);
+					// debug($filename);
+					$post['image'] = $filename;
+					// debug($post, 1);
+					return $this->custom_model->new('ads_panel', $post, 'dashboard/ads_panel'); /*redirect to dashboard/ads_panel*/
+				}
+			}
+		} elseif ($method == 'edit') {
+			redirect(base_url('dashboard/ads_panel/0/'.$id));
+		}
+	}
 }

@@ -19,6 +19,9 @@
 					<a href="dashboard/specs-template">
 						<p class="<?php echo ($body_class == "specs-template" ? 'active' : ''); ?>">Specs Template</p>
 					</a>
+					<a href="dashboard/ads-panel">
+						<p class="<?php echo ($body_class == "specs-template" ? 'active' : ''); ?>">Ads Panel</p>
+					</a>
 				<?php endif ?>
 			</div>
 		</div>

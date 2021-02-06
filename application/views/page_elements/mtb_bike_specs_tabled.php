@@ -16,6 +16,8 @@
 		$like_count = $page_data['bikes']['other']['like_count'];
 		$share_count = $page_data['bikes']['other']['share_count'];
 		$table = $page_data['bikes']['table'];
+
+	$ads = $this->custom_model->get('ads_panel');
 ?>
 
 	<div class="box-item mtb-specs-container" id="specs-tabled">
@@ -46,8 +48,16 @@
 		<div class="box-item-body">
 			<div class="mtb-item-specs-parent">
 				<div class="mtb-item-specs_header">
-					<div class="header-extra">
-						&nbsp;
+					<div class="header-extra ads-panel">
+						<?php if ($ads): ?>
+							<?php foreach ($ads as $key => $ad): ?>
+								<a href="<?php echo $ad['link'];?>">
+									<img class="image-cropped" src="<?php echo $ad['image'];?>" alt="<?php echo $ad['name'];?>" loading="lazy" />
+								</a>
+							<?php endforeach ?>
+						<?php else: ?>
+							&nbsp;
+						<?php endif ?>
 					</div>
 
 					<div class="mtb-header-container <?php echo $gridCountArr[$bikeCount-1]; ?>">
@@ -56,17 +66,19 @@
 							<div class="mtb-header-inner">
 								<div class="header-image-parent">
 									<div class="image-overlay-parent">
-										<div class="image-overlay-inner" style="background-image: url(<?php echo base_url($bike['feat_photo']);?>)"></div>
+										<div class="image-overlay-inner" style="background-image: url('<?php echo base_url($bike['feat_photo']);?>')"></div>
 									</div>
-									<div class="bike-feat-image">
-										<img src="<?php echo base_url($bike['feat_photo']);?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
-									</div>
+									<?php if ($this->class_name != 'singlebike'): ?><a href="<?php echo base_url($bike["bike_url"]);?>"><?php endif ?>
+										<div class="bike-feat-image">
+											<img src="<?php echo base_url($bike['feat_photo']);?>" alt="<?php echo ucwords($bike['bike_model']);?>" title="<?php echo ucwords($bike['bike_model']);?>">
+										</div>
+									<?php if ($this->class_name != 'singlebike'): ?></a><?php endif ?>
 								</div>
 
 								<div class="bike-model-parent">
 									<input type="text" name="change_bike_input" class="input-bike-name changeBikeInput form-control" placeholder="<?php echo ucwords($bike['bike_model']);?>" data-ids='<?php echo json_encode($bike_ids);?>' data-name="<?php echo $bike['bike_model'];?>" data-id='<?php echo $bike['id'];?>'/>
 									<p class="bike-specs-source">
-										<small class="color-lightgray mtb-item-model-spec-from">From: <?php echo ucwords($bike['store_name']);?></small>
+										<small class="color-lightgray mtb-item-model-spec-from">From: <?php echo ucwords($bike['store_name']).$this->class_name;?></small>
 									</p>
 								</div>
 							</div>
