@@ -785,6 +785,8 @@ class Dashboard extends MY_Controller {
 			$post = $this->input->post();
 			if ($post) {
 				$account = $this->accounts->profile;
+				$post['hide'] = $post['hide'] == 'on' ? 1:0;
+				// debug($post, 1);
 				if ($id > 0) {
 					$ad = $this->custom_model->get('ads_panel', ['id' => $id], FALSE, 'row');
 					if ($ad) {
@@ -799,7 +801,6 @@ class Dashboard extends MY_Controller {
 					$filename = files_upload($_FILES, TRUE, 'ads/images/'.clean_string_name($account['store_name'].'-'.$account['id']), $post['name']);
 					// debug($filename);
 					$post['image'] = $filename;
-					// debug($post, 1);
 					return $this->custom_model->new('ads_panel', $post, 'dashboard/ads_panel'); /*redirect to dashboard/ads_panel*/
 				}
 			}
