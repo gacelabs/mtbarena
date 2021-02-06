@@ -735,9 +735,9 @@ class Dashboard extends MY_Controller {
 					'assets/css/post-bike-tagify',
 					'assets/css/bs-select.min'
 				),
-				'title' => 'Post fields | MTB Arena',
+				'title' => 'Post Ads | MTB Arena',
 				'body_id' => 'dashboard',
-				'body_class' => 'post-fields specs-template',
+				'body_class' => 'post-ads',
 				'page_nav' => 'page_statics/main_nav',
 				'bikes_to_compare' => '',
 				'page_left_column' => array(
@@ -776,7 +776,6 @@ class Dashboard extends MY_Controller {
 					'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 					'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
 					'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
-					'<script type="text/javascript" src="'.base_url('assets/js/post-fields.js').'"></script>'
 				)
 			);
 			$this->load->view('page_templates/main_template', $structure);

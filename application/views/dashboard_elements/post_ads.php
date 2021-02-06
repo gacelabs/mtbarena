@@ -56,7 +56,7 @@
 			<table class="table table-striped zero-gap render-datatable">
 				<thead>
 					<tr>
-						<th><div class="th-inner"><small>Ad Image</small></div></th>
+						<th><div class="th-inner"><small>Photo</small></div></th>
 						<th><div class="th-inner"><small>Ad Name</small></div></th>
 						<th><div class="th-inner"><small>Updated</small></div></th>
 						<th><div class="th-inner"><small>Actions</small></div></th>
