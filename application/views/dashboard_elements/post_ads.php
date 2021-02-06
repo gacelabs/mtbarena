@@ -49,7 +49,6 @@
 		</div>
 	</div>
 </div>
-
 <div class="box-item">
 	<div class="box-item-body">
 		<div class="table-responsive zero-gap">
