@@ -40,7 +40,7 @@
 				</li> -->
 				<?php if ($current_profile): ?>
 					<li class="<?php if (!empty($body_id) && $body_id == 'log_in') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Log out">
-						<a href="<?php echo base_url('logout'); ?>"><i class="fa fa-sign-in"></i> <span class="hidden-lg hidden-md hidden-sm">Log out</span></a>
+						<a href="<?php echo base_url('logout'); ?>"><i class="fa fa-sign-out"></i> <span class="hidden-lg hidden-md hidden-sm">Log out</span></a>
 					</li>
 					<li class="<?php if (!empty($body_id) && $body_id == 'dashboard') {echo 'active';} ?>" data-toggle="tooltip" data-placement="bottom" title="Dashboard">
 						<a href="<?php echo base_url('dashboard'); ?>"><i class="fa fa-tachometer"></i> <span class="hidden-lg hidden-md hidden-sm">Dashboard</span></a>
