@@ -733,7 +733,8 @@ class Dashboard extends MY_Controller {
 					'assets/css/dashboard',
 					'assets/css/post-bike',
 					'assets/css/post-bike-tagify',
-					'assets/css/bs-select.min'
+					'assets/css/bs-select.min',
+					'assets/DataTables/datatables.min',
 				),
 				'title' => 'Post Ads | MTB Arena',
 				'body_id' => 'dashboard',
@@ -775,6 +776,7 @@ class Dashboard extends MY_Controller {
 					'<script type="text/javascript" src="'.base_url('assets/js/jquery-min.js').'"></script>',
 					'<script type="text/javascript" src="'.base_url('assets/js/bootstrap.min.js').'"></script>',
 					'<script type="text/javascript" src="'.base_url('assets/js/bs-select.min.js').'"></script>',
+					'<script type="text/javascript" src="'.base_url('assets/DataTables/datatables.min.js').'"></script>',
 					'<script type="text/javascript" src="'.base_url('assets/js/defaults.js').'"></script>',
 				)
 			);
